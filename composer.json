@@ -1,0 +1,12 @@
+{
+    "name": "milestone/dd",
+    "description": "Mobile Direct Delivery - Laravel Package..",
+    "type": "laravel-package",
+    "authors": [
+        {
+            "name": "Firose Hussain",
+            "email": "github@firumon.com"
+        }
+    ],
+    "require": {}
+}
