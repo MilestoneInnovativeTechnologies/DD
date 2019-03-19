@@ -20,6 +20,10 @@ class CreatePricelistProductsTable extends Migration
             $table->decimal('price', 30,10)->default(0);
             $table->decimal('price_min', 30,10)->default(0);
             $table->decimal('price_max', 30,10)->default(0);
+            $table->enum('discount1_type', ['Amount','Percentage'])->default('Amount');
+            $table->decimal('discount1_quantity', 5,2)->default(0);
+            $table->enum('discount2_type', ['Amount','Percentage'])->default('Amount');
+            $table->decimal('discount2_quantity', 5,2)->default(0);
             $table->audit();
         });
     }
