@@ -1,11 +1,11 @@
 {
-    "name": "milestone/dd",
-    "description": "Mobile Direct Delivery - Laravel Package..",
+    "name": "milestone/ss",
+    "description": "ePlus Smart Sale - Laravel Package..",
     "type": "laravel-package",
     "authors": [
         {
-            "name": "Firose Hussain",
-            "email": "github@firumon.com"
+            "name": "Milestone Innovative Technologies",
+            "email": "info@milestoneit.net"
         }
     ],
     "require": {}
