@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserAccountTable extends Migration
+class CreateTaxruleTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateUserAccountTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_account', function (Blueprint $table) {
+        Schema::create('taxrule', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user');
+            $table->char('taxcode', '15')->nullable()->index();
             $table->char('code', '15')->nullable()->index();
+            $table->string('name', '64')->nullable()->index();
+            $table->decimal('percentage', 5,2)->default(0);
             $table->audit();
-            $table->foreign('user')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
@@ -29,6 +30,6 @@ class CreateUserAccountTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_account');
+        Schema::dropIfExists('taxrule');
     }
 }

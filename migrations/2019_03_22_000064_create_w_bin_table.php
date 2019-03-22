@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateStoreunloadProductsTable extends Migration
+class CreateWBinTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateStoreunloadProductsTable extends Migration
      */
     public function up()
     {
-        Schema::create('storeunload_products', function (Blueprint $table) {
+        Schema::create('w_bin', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreignCascade('storeunload', 'storeunload');
-            $table->foreignCascade('spt', 'store_product_transactions');
-            $table->audit();
+            $table->unsignedTinyInteger('bin')->default(1);
         });
     }
 
@@ -28,6 +26,6 @@ class CreateStoreunloadProductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('storeunload_products');
+        Schema::dropIfExists('w_bin');
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Milestone\DD;
+namespace Milestone\SS;
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\ServiceProvider;

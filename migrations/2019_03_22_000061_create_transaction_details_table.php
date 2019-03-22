@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateStoreloadProductsTable extends Migration
+class CreateTransactionDetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,15 @@ class CreateStoreloadProductsTable extends Migration
      */
     public function up()
     {
-        Schema::create('storeload_products', function (Blueprint $table) {
+        Schema::create('transaction_details', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreignCascade('storeload', 'storeload');
+            $table->foreignCascade('transaction', 'transactions');
             $table->foreignCascade('spt', 'store_product_transactions');
-            $table->enum('verified', [0,1])->default(0)->index();
-            $table->unsignedBigInteger('verified_user')->nullable();
+            $table->decimal('price', 30,10)->default(0);
+            $table->decimal('tax', 30,10)->default(0);
+            $table->decimal('discount', 30,10)->default(0);
+            $table->decimal('total', 30,10)->default(0);
             $table->audit();
-            $table->foreign('verified_user')->references('id')->on('users')->onUpdate('cascade')->onDelete('set null');
         });
     }
 
@@ -31,6 +32,6 @@ class CreateStoreloadProductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('storeload_products');
+        Schema::dropIfExists('transaction_details');
     }
 }

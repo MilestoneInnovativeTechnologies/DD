@@ -18,7 +18,10 @@ class CreateStoresTable extends Migration
             $table->char('catcode', '15')->nullable()->index();
             $table->char('code', '15')->nullable()->index();
             $table->string('name', '64')->nullable()->index();
+            $table->char('cocode', '5')->nullable()->index();
+            $table->char('brcode', '6')->nullable()->index();
             $table->enum('type', ['Public','Protected','System'])->nullable()->default('Public');
+            $table->enum('status', ['Active','Inactive'])->nullable()->default('Active');
             $table->audit();
         });
     }

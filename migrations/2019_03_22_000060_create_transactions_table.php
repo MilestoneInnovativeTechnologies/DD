@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSalesTable extends Migration
+class CreateTransactionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,16 @@ class CreateSalesTable extends Migration
      */
     public function up()
     {
-        Schema::create('sales', function (Blueprint $table) {
+        Schema::create('transactions', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->foreignNullable('user', 'users');
             $table->char('docno', '20')->nullable()->index();
+            $table->timestamp('date')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->unsignedBigInteger('customer')->nullable()->index();
-            $table->unsignedBigInteger('executive')->nullable()->index();
+            $table->char('fycode', '5')->nullable()->index();
+            $table->char('fncode', '5')->nullable()->index();
             $table->enum('status', ['Active','Inactive'])->nullable()->default('Active');
             $table->audit();
-            $table->foreign('customer')->references('id')->on('users')->onUpdate('cascade')->onDelete('set null');
-            $table->foreign('executive')->references('id')->on('users')->onUpdate('cascade')->onDelete('set null');
         });
     }
 
@@ -32,6 +33,6 @@ class CreateSalesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sales');
+        Schema::dropIfExists('transactions');
     }
 }

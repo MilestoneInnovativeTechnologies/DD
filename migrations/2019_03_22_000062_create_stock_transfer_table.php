@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSaleProductsTable extends Migration
+class CreateStockTransferTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateSaleProductsTable extends Migration
      */
     public function up()
     {
-        Schema::create('sale_products', function (Blueprint $table) {
+        Schema::create('stock_transfer', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreignCascade('sales', 'sales');
-            $table->foreignCascade('spt', 'store_product_transactions');
-            $table->decimal('price', 30,10)->default(0);
+            $table->foreignNullable('out', 'transactions');
+            $table->foreignNullable('in', 'transactions');
+            $table->foreignNullable('verified_by', 'users');
+            $table->timestamp('verified_at')->nullable();
             $table->audit();
         });
     }
@@ -29,6 +30,6 @@ class CreateSaleProductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sale_products');
+        Schema::dropIfExists('stock_transfer');
     }
 }

@@ -17,7 +17,8 @@ class CreateProductgroupsTable extends Migration
             $table->bigIncrements('id');
             $table->char('code', '15')->nullable()->index();
             $table->string('name', '64')->nullable()->index();
-            $table->enum('master', ['No','Yes'])->default('No');
+            $table->char('igmref', '31')->nullable()->index();
+            $table->foreignNullable('belongs', 'productgroups');
             $table->foreignNullable('parent', 'productgroups');
             $table->enum('type', ['Public','Protected','System'])->nullable()->default('Public');
             $table->enum('status', ['Active','Inactive'])->nullable()->default('Active');

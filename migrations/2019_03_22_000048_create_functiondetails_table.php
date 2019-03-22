@@ -14,6 +14,7 @@ class CreateFunctiondetailsTable extends Migration
     public function up()
     {
         Schema::create('functiondetails', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->char('code', '15')->nullable()->index();
             $table->string('format', '30')->nullable()->default('[BR][FN]-[FY]-[AI]');
             $table->decimal('digit_length', 2,0)->default(4);
