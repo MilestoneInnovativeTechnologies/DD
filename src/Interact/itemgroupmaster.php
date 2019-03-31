@@ -5,9 +5,11 @@ namespace Milestone\SS\Interact;
 use Illuminate\Support\Arr;
 use Milestone\SS\Model\Productgroup;
 use Milestone\Interact\Table;
+use Milestone\SS\Model\Tax;
 
 class itemgroupmaster implements Table
 {
+    public $tax_cache = null;
     public function getModel()
     {
         return Productgroup::class;
@@ -16,7 +18,7 @@ class itemgroupmaster implements Table
     public function getFillAttributes()
     {
         return [
-            'code','name','igmref','parent','belongs','type','status'
+            'code','name','igmref','parent','belongs','type','tax1','tax2','status'
         ];
     }
 
@@ -35,7 +37,9 @@ class itemgroupmaster implements Table
         return [
             'igmref' => 'getIGMReference',
             'belongs' => 'getBelongsValue',
-            'parent' => 'getParentValue'
+            'parent' => 'getParentValue',
+            'tax1' => 'getTax1ID',
+            'tax2' => 'getTax2ID'
         ];
     }
 
@@ -60,5 +64,16 @@ class itemgroupmaster implements Table
         return $product_group->exists() ? $product_group->first()->id : null;
     }
 
+    public function getTax1ID($record){
+        return $this->getTaxID($record['TAXRULE']);
+    }
+    public function getTax2ID($record){
+        return $this->getTaxID($record['TAXRULE02']);
+    }
 
+    private function getTaxID($code){
+        if(!$code) return null;
+        if(!$this->tax_cache) $this->tax_cache = Tax::pluck('id','code')->toArray();
+        return Arr::get($this->tax_cache,$code);
+    }
 }

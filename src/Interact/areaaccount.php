@@ -37,7 +37,7 @@
 
         public function getPrimaryValueFromRowData($data)
         {
-            $area_user = AreaUser::where(['code' => $data['AREACODE'],'user' => $data['ACCCODE']])->first();
+            $area_user = AreaUser::where(['area' => $data['AREACODE'],'user' => $data['ACCCODE']])->first();
             return $area_user ? $area_user->id : null;
         }
 
