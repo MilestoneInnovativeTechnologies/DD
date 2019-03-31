@@ -1,0 +1,10 @@
+<?php
+
+namespace Milestone\SS\Model;
+
+use Illuminate\Database\Eloquent\Model;
+
+class SalesOrderItem extends Model
+{
+    protected $table = 'sales_order_items';
+}
