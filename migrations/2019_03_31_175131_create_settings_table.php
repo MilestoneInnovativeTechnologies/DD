@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProductgroupsTable extends Migration
+class CreateSettingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,11 @@ class CreateProductgroupsTable extends Migration
      */
     public function up()
     {
-        Schema::create('productgroups', function (Blueprint $table) {
+        Schema::create('settings', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->char('code', '15')->nullable()->index();
             $table->string('name', '64')->nullable()->index();
-            $table->char('igmref', '31')->nullable()->index();
-            $table->foreignNullable('belongs', 'productgroups');
-            $table->foreignNullable('parent', 'productgroups');
-            $table->enum('type', ['Public','Protected','System'])->nullable()->default('Public');
+            $table->string('description', '1024')->nullable();
+            $table->string('value', '256')->nullable();
             $table->enum('status', ['Active','Inactive'])->nullable()->default('Active');
             $table->audit();
         });
@@ -33,6 +30,6 @@ class CreateProductgroupsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('productgroups');
+        Schema::dropIfExists('settings');
     }
 }

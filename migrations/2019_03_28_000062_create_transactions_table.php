@@ -18,7 +18,7 @@ class CreateTransactionsTable extends Migration
             $table->foreignNullable('user', 'users');
             $table->char('docno', '20')->nullable()->index();
             $table->timestamp('date')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->unsignedBigInteger('customer')->nullable()->index();
+            $table->foreignNullable('customer', 'users');
             $table->char('fycode', '5')->nullable()->index();
             $table->char('fncode', '5')->nullable()->index();
             $table->enum('status', ['Active','Inactive'])->nullable()->default('Active');

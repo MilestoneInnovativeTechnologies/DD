@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTaxruleTable extends Migration
+class CreateTaxTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateTaxruleTable extends Migration
      */
     public function up()
     {
-        Schema::create('taxrule', function (Blueprint $table) {
+        Schema::create('tax', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->char('taxcode', '15')->nullable()->index();
             $table->char('code', '15')->nullable()->index();
             $table->string('name', '64')->nullable()->index();
-            $table->decimal('percentage', 5,2)->default(0);
+            $table->enum('status', ['Active','Inactive'])->nullable()->default('Active');
             $table->audit();
         });
     }
@@ -30,6 +29,6 @@ class CreateTaxruleTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('taxrule');
+        Schema::dropIfExists('tax');
     }
 }
