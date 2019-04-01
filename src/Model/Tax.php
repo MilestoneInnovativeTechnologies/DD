@@ -7,4 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Tax extends Model
 {
     protected $table = 'tax';
+
+    public function Details(){ return $this->hasMany(TaxDetail::class,'tax'); }
 }

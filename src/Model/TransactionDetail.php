@@ -8,7 +8,5 @@ class TransactionDetail extends Model
 {
     protected $table = 'transaction_details';
 
-    public function Product(){
-        $this->belongsTo(StoreProductTransaction::class,'spt','id');
-    }
+    public function Product(){ $this->belongsTo(StoreProductTransaction::class,'spt')->with(['Product']); }
 }
