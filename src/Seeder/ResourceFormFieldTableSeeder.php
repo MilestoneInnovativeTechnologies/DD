@@ -17,7 +17,9 @@ class ResourceFormFieldTableSeeder extends Seeder
         \DB::statement('set foreign_key_checks = 0');
         \Milestone\Appframe\Model\ResourceFormField::query()
             ->create([	'id' => '309101', 	'resource_form' => '308101', 	'name' => 'name', 	'type' => 'Text', 	'label' => 'Nature Name', 											])
-            ->create([	'id' => '309102', 	'resource_form' => '308102', 	'name' => 'name', 	'type' => 'Text', 	'label' => 'Type Name', 											])
+            ->create([	'id' => '309102', 	'resource_form' => '308101', 	'name' => 'status', 	'type' => 'Select', 	'label' => 'Status', 											])
+            ->create([	'id' => '309103', 	'resource_form' => '308102', 	'name' => 'name', 	'type' => 'Text', 	'label' => 'Type Name', 											])
+            ->create([	'id' => '309104', 	'resource_form' => '308102', 	'name' => 'status', 	'type' => 'Select', 	'label' => 'Status', 											])
         ;
         \DB::statement('set foreign_key_checks = ' . $_);
     }
