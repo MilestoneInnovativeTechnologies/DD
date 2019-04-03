@@ -15,6 +15,7 @@ class CreateUserSettingsTable extends Migration
     {
         Schema::create('user_settings', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->foreignCascade('user', 'users');
             $table->foreignCascade('setting', 'settings');
             $table->string('value', '256')->nullable();
             $table->enum('status', ['Active','Inactive'])->nullable()->default('Active');
