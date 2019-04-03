@@ -7,4 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Setting extends Model
 {
     protected $table = 'settings';
+
+    public function Users(){
+        return $this->hasMany(UserSetting::class,'setting')->with(['User']);
+    }
 }
