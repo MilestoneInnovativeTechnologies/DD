@@ -14,6 +14,6 @@ class User extends AppframeUser
         });
     }
     public function Area(){ return $this->belongsToMany(Area::class,'area_user','user','area'); }
-    public function Settings(){ return $this->hasMany(UserSetting::class,'user'); }
+    public function Settings(){ return $this->hasMany(UserSetting::class,'user')->with(['Settings']); }
     public function StoreAndArea(){ return $this->hasMany(UserStoreArea::class,'user')->with(['Store','Area']); }
 }
