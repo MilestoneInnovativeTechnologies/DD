@@ -16,9 +16,11 @@ class ResourceListTableSeeder extends Seeder
         $_ = \DB::statement('SELECT @@GLOBAL.foreign_key_checks');
         \DB::statement('set foreign_key_checks = 0');
         \Milestone\Appframe\Model\ResourceList::query()
-            ->create([	'id' => '321101', 	'resource' => '304118', 	'name' => 'TransactionProductNature', 	'description' => 'Nature of the product in a transaction', 	'title' => 'Product Nature', 	'identity' => 'name', 	'items_per_page' => '20', 									])
-            ->create([	'id' => '321102', 	'resource' => '304119', 	'name' => 'TransactionProductType', 	'description' => 'Type of transaction whether is load, unload etc', 	'title' => 'Transaction Types', 	'identity' => 'name', 	'items_per_page' => '20', 									])
-            ->create([	'id' => '321103', 	'resource' => '304103', 	'name' => 'Settings', 	'description' => 'List all available Settings', 	'title' => 'Settings', 	'identity' => 'name', 	'items_per_page' => '20', 									])
+            ->create([	'id' => '322101', 	'resource' => '305118', 	'name' => 'TransactionProductNature', 	'description' => 'Nature of the product in a transaction', 	'title' => 'Product Nature', 	'identity' => 'name', 	'items_per_page' => '20', 									])
+            ->create([	'id' => '322102', 	'resource' => '305119', 	'name' => 'TransactionProductType', 	'description' => 'Type of transaction whether is load, unload etc', 	'title' => 'Transaction Types', 	'identity' => 'name', 	'items_per_page' => '20', 									])
+            ->create([	'id' => '322103', 	'resource' => '305103', 	'name' => 'Settings', 	'description' => 'List all available Settings', 	'title' => 'Settings', 	'identity' => 'name', 	'items_per_page' => '20', 									])
+            ->create([	'id' => '322104', 	'resource' => '305101', 	'name' => 'ListAllUsers', 	'description' => 'List all available users', 	'title' => 'Users', 	'identity' => 'name', 	'items_per_page' => '50', 									])
+            ->create([	'id' => '322105', 	'resource' => '305115', 	'name' => 'ListAllUserSetting', 	'description' => 'List all user setting and value', 		'identity' => 'id', 	'items_per_page' => '50', 									])
         ;
         \DB::statement('set foreign_key_checks = ' . $_);
     }

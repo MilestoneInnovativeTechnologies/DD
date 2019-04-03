@@ -16,7 +16,7 @@ class RoleTableSeeder extends Seeder
         $_ = \DB::statement('SELECT @@GLOBAL.foreign_key_checks');
         \DB::statement('set foreign_key_checks = 0');
         \Milestone\Appframe\Model\Role::query()
-            ->create([	'id' => '302101', 	'name' => 'eplus_administrators', 	'description' => 'ePlus administrators role', 	'title' => 'Administrator', 												])
+            ->create([	'id' => '303101', 	'name' => 'eplus_administrators', 	'description' => 'ePlus administrators role', 	'title' => 'ePlus Administrator', 												])
         ;
         \DB::statement('set foreign_key_checks = ' . $_);
     }
