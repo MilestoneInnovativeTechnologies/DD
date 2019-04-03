@@ -26,6 +26,6 @@ class Productgroup extends Model
 
     public function ProductsOfGroup($num){
         $field = 'group' . $num;
-        $this->hasMany(Productgroup::class,$field);
+        return $this->hasMany(Productgroup::class,$field);
     }
 }

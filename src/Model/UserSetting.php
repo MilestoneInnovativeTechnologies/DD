@@ -8,6 +8,6 @@ class UserSetting extends Model
 {
     protected $table = 'user_settings';
 
-    public function Settings(){ $this->belongsTo(Setting::class,'setting'); }
-    public function User(){ $this->belongsTo(User::class,'user'); }
+    public function Settings(){ return $this->belongsTo(Setting::class,'setting'); }
+    public function User(){ return $this->belongsTo(User::class,'user'); }
 }

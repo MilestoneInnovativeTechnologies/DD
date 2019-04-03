@@ -8,6 +8,6 @@ class PricelistProduct extends Model
 {
     protected $table = 'pricelist_products';
 
-    public function Pricelist(){ $this->belongsTo(Pricelist::class,'pricelist'); }
-    public function Product(){ $this->belongsTo(Product::class,'product'); }
+    public function Pricelist(){ return $this->belongsTo(Pricelist::class,'pricelist'); }
+    public function Product(){ return $this->belongsTo(Product::class,'product'); }
 }

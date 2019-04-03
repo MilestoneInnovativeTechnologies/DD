@@ -9,6 +9,6 @@ class AreaUser extends Model
 {
     protected $table = 'area_users';
 
-    public function Area(){ $this->belongsTo(Area::class,'area'); }
-    public function User(){ $this->belongsTo(User::class,'user'); }
+    public function Area(){ return $this->belongsTo(Area::class,'area'); }
+    public function User(){ return $this->belongsTo(User::class,'user'); }
 }
