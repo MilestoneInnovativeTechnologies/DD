@@ -18,6 +18,7 @@ class ResourceListTableSeeder extends Seeder
         \Milestone\Appframe\Model\ResourceList::query()
             ->create([	'id' => '321101', 	'resource' => '304118', 	'name' => 'TransactionProductNature', 	'description' => 'Nature of the product in a transaction', 	'title' => 'Product Nature', 	'identity' => 'name', 	'items_per_page' => '20', 									])
             ->create([	'id' => '321102', 	'resource' => '304119', 	'name' => 'TransactionProductType', 	'description' => 'Type of transaction whether is load, unload etc', 	'title' => 'Transaction Types', 	'identity' => 'name', 	'items_per_page' => '20', 									])
+            ->create([	'id' => '321103', 	'resource' => '304103', 	'name' => 'Settings', 	'description' => 'List all available Settings', 	'title' => 'Settings', 	'identity' => 'name', 	'items_per_page' => '20', 									])
         ;
         \DB::statement('set foreign_key_checks = ' . $_);
     }

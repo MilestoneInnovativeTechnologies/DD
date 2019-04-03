@@ -18,6 +18,7 @@ class ResourceActionDataTableSeeder extends Seeder
         \Milestone\Appframe\Model\ResourceActionData::query()
             ->create([	'id' => '335101', 	'resource_action' => '331105', 	'resource_data' => '326101', 													])
             ->create([	'id' => '335102', 	'resource_action' => '331106', 	'resource_data' => '326102', 													])
+            ->create([	'id' => '335103', 	'resource_action' => '331110', 	'resource_data' => '326103', 													])
         ;
         \DB::statement('set foreign_key_checks = ' . $_);
     }

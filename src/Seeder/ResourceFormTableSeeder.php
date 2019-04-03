@@ -18,6 +18,7 @@ class ResourceFormTableSeeder extends Seeder
         \Milestone\Appframe\Model\ResourceForm::query()
             ->create([	'id' => '308101', 	'resource' => '304118', 	'name' => 'NewTransactionProductNature', 	'description' => 'Enter a new nature of a product transaction', 	'title' => 'New Nature of Product in Transaction', 	'action_text' => 'Save', 										])
             ->create([	'id' => '308102', 	'resource' => '304119', 	'name' => 'NewProductTransactionType', 	'description' => 'Enter a new type of product transaction', 	'title' => 'New Type of Product Transaction', 	'action_text' => 'Save', 										])
+            ->create([	'id' => '308103', 	'resource' => '304103', 	'name' => 'AddNewSetting', 	'description' => 'Add a new setting, the value mentioned will be deault to all users', 	'title' => 'Settings', 	'action_text' => 'Save', 										])
         ;
         \DB::statement('set foreign_key_checks = ' . $_);
     }

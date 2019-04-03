@@ -18,6 +18,7 @@ class ResourceFormFieldValidationTableSeeder extends Seeder
         \Milestone\Appframe\Model\ResourceFormFieldValidation::query()
             ->create([	'id' => '314101', 	'form_field' => '309101', 	'rule' => 'required', 	'message' => 'Name is mandatory', 												])
             ->create([	'id' => '314102', 	'form_field' => '309103', 	'rule' => 'required', 	'message' => 'Name is mandatory', 												])
+            ->create([	'id' => '314103', 	'form_field' => '309105', 	'rule' => 'required', 	'message' => 'Name is mandatory', 												])
         ;
         \DB::statement('set foreign_key_checks = ' . $_);
     }

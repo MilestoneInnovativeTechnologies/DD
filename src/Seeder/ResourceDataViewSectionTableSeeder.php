@@ -18,6 +18,8 @@ class ResourceDataViewSectionTableSeeder extends Seeder
         \Milestone\Appframe\Model\ResourceDataViewSection::query()
             ->create([	'id' => '329101', 	'resource_data' => '326101', 		'title_field' => 'name', 		'colspan' => '12', 										])
             ->create([	'id' => '329102', 	'resource_data' => '326102', 		'title_field' => 'name', 		'colspan' => '12', 										])
+            ->create([	'id' => '329103', 	'resource_data' => '326103', 	'title' => 'Basic', 			'colspan' => '4', 										])
+            ->create([	'id' => '329104', 	'resource_data' => '326103', 	'title' => 'Detail', 			'colspan' => '12', 										])
         ;
         \DB::statement('set foreign_key_checks = ' . $_);
     }
