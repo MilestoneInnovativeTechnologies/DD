@@ -36,6 +36,17 @@ class ResourceActionTableSeeder extends Seeder
             ->create([	'id' => '332118', 	'resource' => '305115', 	'name' => 'ListAllUserSettingsAction', 	'description' => 'Action to list all user settings', 			'menu' => 'List All', 									])
             ->create([	'id' => '332119', 	'resource' => '305115', 	'name' => 'ChangeUserSettingStatusAction', 	'description' => 'Action to call the form to change user setting status', 	'title' => 'Change Status', 	'type' => 'primary', 										])
             ->create([	'id' => '332120', 	'resource' => '305115', 	'name' => 'ViewUserSettingsDetails', 	'description' => 'Action to call resource data of user settings', 	'title' => 'View Details', 	'type' => 'primary', 										])
+            ->create([	'id' => '332121', 	'resource' => '305116', 	'name' => 'AddUserStoreAreaRecordAction', 	'description' => 'Action to call form to add user store area', 			'menu' => 'New', 									])
+            ->create([	'id' => '332122', 	'resource' => '305116', 	'name' => 'ListUserStoreAreaRecordAction', 	'description' => 'Action to list all user store area', 			'menu' => 'List All', 									])
+            ->create([	'id' => '332123', 	'resource' => '305116', 	'name' => 'ViewUserStoreAreaAction', 	'description' => 'Action to view user store and area', 	'title' => 'View Details', 	'type' => 'primary', 										])
+            ->create([	'id' => '332124', 	'resource' => '305116', 	'name' => 'EditUserStoreAreaAction', 	'description' => 'Action to call a form to update user store area', 	'title' => 'Edit', 	'type' => 'primary', 										])
+            ->create([	'id' => '332125', 	'resource' => '305113', 	'name' => 'ListAreaAction', 	'description' => 'Action to list all areas', 			'menu' => 'List All', 									])
+            ->create([	'id' => '332126', 	'resource' => '305112', 	'name' => 'ListStoreAction', 	'description' => 'Action to list all stores', 			'menu' => 'List All', 									])
+            ->create([	'id' => '332127', 	'resource' => '305101', 	'name' => 'ListStoreAreaOfUserAction', 	'description' => 'Action to list all store and area of the selected user', 	'title' => 'View Store and Area', 	'type' => 'primary', 										])
+            ->create([	'id' => '332128', 	'resource' => '305101', 	'name' => 'AddStoreAreaForUser', 	'description' => 'Action to call the form to add store area for a user', 	'title' => 'Add Store and Area', 	'type' => 'primary', 										])
+            ->create([	'id' => '332129', 	'resource' => '305113', 	'name' => 'ListStoreAndUserOfArea', 	'description' => 'Action to list all Store and User assigned to selected area', 	'title' => 'View Store and User', 	'type' => 'primary', 										])
+            ->create([	'id' => '332130', 	'resource' => '305113', 	'name' => 'AssignStoreAndUserForArea', 	'description' => 'Action to call the form to assign store and user for an area', 	'title' => 'Assign Store and Executive', 	'type' => 'primary', 										])
+            ->create([	'id' => '332131', 	'resource' => '305112', 	'name' => 'ListUsersAssigned', 	'description' => 'Action to list all users assigned to a store', 	'title' => 'Manage Executives Assigned', 	'type' => 'primary', 										])
         ;
         \DB::statement('set foreign_key_checks = ' . $_);
     }

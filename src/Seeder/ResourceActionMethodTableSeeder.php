@@ -36,6 +36,17 @@ class ResourceActionMethodTableSeeder extends Seeder
             ->create([	'id' => '333118', 	'resource_action' => '332118', 	'type' => 'List', 	'idn1' => '322105', 												])
             ->create([	'id' => '333119', 	'resource_action' => '332119', 	'type' => 'FormWithData', 	'idn1' => '309105', 	'idn2' => '327104', 											])
             ->create([	'id' => '333120', 	'resource_action' => '332120', 	'type' => 'Data', 	'idn1' => '327104', 												])
+            ->create([	'id' => '333121', 	'resource_action' => '332121', 	'type' => 'Form', 	'idn1' => '309106', 												])
+            ->create([	'id' => '333122', 	'resource_action' => '332122', 	'type' => 'List', 	'idn1' => '322107', 												])
+            ->create([	'id' => '333123', 	'resource_action' => '332123', 	'type' => 'Data', 	'idn1' => '327105', 												])
+            ->create([	'id' => '333124', 	'resource_action' => '332124', 	'type' => 'FormWithData', 	'idn1' => '309106', 	'idn2' => '327105', 											])
+            ->create([	'id' => '333125', 	'resource_action' => '332125', 	'type' => 'List', 	'idn1' => '322108', 												])
+            ->create([	'id' => '333126', 	'resource_action' => '332126', 	'type' => 'List', 	'idn1' => '322109', 												])
+            ->create([	'id' => '333127', 	'resource_action' => '332127', 	'type' => 'ListRelation', 	'idn1' => '308139', 	'idn2' => '322107', 											])
+            ->create([	'id' => '333128', 	'resource_action' => '332128', 	'type' => 'AddRelation', 	'idn1' => '308139', 	'idn2' => '309106', 	'idn3' => '310113', 										])
+            ->create([	'id' => '333129', 	'resource_action' => '332129', 	'type' => 'ListRelation', 	'idn1' => '308144', 	'idn2' => '322107', 											])
+            ->create([	'id' => '333130', 	'resource_action' => '332130', 	'type' => 'AddRelation', 	'idn1' => '308144', 	'idn2' => '309106', 	'idn3' => '310115', 										])
+            ->create([	'id' => '333131', 	'resource_action' => '332131', 	'type' => 'ManageRelation', 	'idn1' => '308143', 	'idn2' => '322106', 											])
         ;
         \DB::statement('set foreign_key_checks = ' . $_);
     }

@@ -20,6 +20,7 @@ class ResourceDefaultTableSeeder extends Seeder
             ->create([	'id' => '337102', 	'resource' => '305119', 	'list' => '332104', 	'create' => '332103', 		'update' => '332106', 										])
             ->create([	'id' => '337103', 	'resource' => '305103', 	'list' => '332108', 	'create' => '332107', 	'read' => '332109', 	'update' => '332110', 										])
             ->create([	'id' => '337104', 	'resource' => '305115', 	'list' => '332118', 	'create' => '332114', 	'read' => '332120', 	'update' => '332119', 										])
+            ->create([	'id' => '337105', 	'resource' => '305116', 	'list' => '332122', 	'create' => '332121', 	'read' => '332123', 	'update' => '332124', 										])
         ;
         \DB::statement('set foreign_key_checks = ' . $_);
     }

@@ -20,6 +20,7 @@ class ProductTransactionTypeTableSeeder extends Seeder
             ->create([	'id' => '2', 	'name' => 'Unload', 														])
             ->create([	'id' => '3', 	'name' => 'Sale', 														])
             ->create([	'id' => '4', 	'name' => 'Return', 														])
+            ->create([	'id' => '5', 	'name' => 'Other', 														])
         ;
         \DB::statement('set foreign_key_checks = ' . $_);
     }

@@ -33,6 +33,18 @@ class ResourceListLayoutTableSeeder extends Seeder
             ->create([	'id' => '325115', 	'resource_list' => '322106', 	'label' => 'Name', 	'field' => 'name', 												])
             ->create([	'id' => '325116', 	'resource_list' => '322106', 	'label' => 'Email', 	'field' => 'email', 												])
             ->create([	'id' => '325117', 	'resource_list' => '322106', 	'label' => 'Reference', 	'field' => 'reference', 												])
+            ->create([	'id' => '325118', 	'resource_list' => '322107', 	'label' => 'Executive', 	'field' => 'name', 	'relation' => '308142', 											])
+            ->create([	'id' => '325119', 	'resource_list' => '322107', 	'label' => 'Store', 	'field' => 'name', 	'relation' => '308141', 											])
+            ->create([	'id' => '325120', 	'resource_list' => '322107', 	'label' => 'Area', 	'field' => 'name', 	'relation' => '308140', 											])
+            ->create([	'id' => '325121', 	'resource_list' => '322107', 	'label' => 'Status', 	'field' => 'status', 												])
+            ->create([	'id' => '325122', 	'resource_list' => '322108', 	'label' => 'Code', 	'field' => 'code', 												])
+            ->create([	'id' => '325123', 	'resource_list' => '322108', 	'label' => 'Name', 	'field' => 'name', 												])
+            ->create([	'id' => '325124', 	'resource_list' => '322108', 	'label' => 'Type', 	'field' => 'type', 												])
+            ->create([	'id' => '325125', 	'resource_list' => '322108', 	'label' => 'Status', 	'field' => 'status', 												])
+            ->create([	'id' => '325126', 	'resource_list' => '322109', 	'label' => 'Code', 	'field' => 'code', 												])
+            ->create([	'id' => '325127', 	'resource_list' => '322109', 	'label' => 'Name', 	'field' => 'name', 												])
+            ->create([	'id' => '325128', 	'resource_list' => '322109', 	'label' => 'Company Code', 	'field' => 'cocode', 												])
+            ->create([	'id' => '325129', 	'resource_list' => '322109', 	'label' => 'Branch Code', 	'field' => 'brcode', 												])
         ;
         \DB::statement('set foreign_key_checks = ' . $_);
     }

@@ -21,6 +21,7 @@ class ResourceFormTableSeeder extends Seeder
             ->create([	'id' => '309103', 	'resource' => '305103', 	'name' => 'AddNewSetting', 	'description' => 'Add a new setting, the value mentioned will be deault to all users', 	'title' => 'Settings', 	'action_text' => 'Save', 										])
             ->create([	'id' => '309104', 	'resource' => '305115', 	'name' => 'AddNewUserSetting', 	'description' => 'Add new user setting', 	'title' => 'User Setting', 	'action_text' => 'Save', 										])
             ->create([	'id' => '309105', 	'resource' => '305115', 	'name' => 'ChangeUserSettingStatus', 	'description' => 'Form to update user settings status', 	'title' => 'Change Status', 	'action_text' => 'Save', 										])
+            ->create([	'id' => '309106', 	'resource' => '305116', 	'name' => 'AddUserStoreAreaForm', 	'description' => 'Form to add user store area', 	'title' => 'User, Store and Area', 	'action_text' => 'Save', 										])
         ;
         \DB::statement('set foreign_key_checks = ' . $_);
     }
