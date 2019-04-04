@@ -15,11 +15,11 @@ class CreateUserStoreAreaTable extends Migration
     {
         Schema::create('user_store_area', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user');
+            $table->foreignCascade('user', 'users');
             $table->foreignCascade('store', 'stores');
             $table->foreignCascade('area', 'areas');
+            $table->enum('status', ['Active','Inactive'])->nullable()->default('Active');
             $table->audit();
-            $table->foreign('user')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
