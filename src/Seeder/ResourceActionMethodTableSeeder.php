@@ -28,6 +28,14 @@ class ResourceActionMethodTableSeeder extends Seeder
             ->create([	'id' => '333110', 	'resource_action' => '332110', 	'type' => 'FormWithData', 	'idn1' => '309103', 	'idn2' => '327103', 											])
             ->create([	'id' => '333111', 	'resource_action' => '332111', 	'type' => 'List', 	'idn1' => '322104', 												])
             ->create([	'id' => '333112', 	'resource_action' => '332112', 	'type' => 'ListRelation', 	'idn1' => '308137', 	'idn2' => '322105', 											])
+            ->create([	'id' => '333113', 	'resource_action' => '332113', 	'type' => 'List', 	'idn1' => '322106', 												])
+            ->create([	'id' => '333114', 	'resource_action' => '332114', 	'type' => 'Form', 	'idn1' => '309104', 												])
+            ->create([	'id' => '333115', 	'resource_action' => '332115', 	'type' => 'AddRelation', 	'idn1' => '308137', 	'idn2' => '309104', 	'idn3' => '310109', 										])
+            ->create([	'id' => '333116', 	'resource_action' => '332116', 	'type' => 'ListRelation', 	'idn1' => '308134', 	'idn2' => '322105', 											])
+            ->create([	'id' => '333117', 	'resource_action' => '332117', 	'type' => 'AddRelation', 	'idn1' => '308134', 	'idn2' => '309104', 	'idn3' => '310110', 										])
+            ->create([	'id' => '333118', 	'resource_action' => '332118', 	'type' => 'List', 	'idn1' => '322105', 												])
+            ->create([	'id' => '333119', 	'resource_action' => '332119', 	'type' => 'FormWithData', 	'idn1' => '309105', 	'idn2' => '327104', 											])
+            ->create([	'id' => '333120', 	'resource_action' => '332120', 	'type' => 'Data', 	'idn1' => '327104', 												])
         ;
         \DB::statement('set foreign_key_checks = ' . $_);
     }

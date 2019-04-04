@@ -29,6 +29,10 @@ class ResourceListLayoutTableSeeder extends Seeder
             ->create([	'id' => '325111', 	'resource_list' => '322105', 	'label' => 'User', 	'field' => 'name', 	'relation' => '308138', 											])
             ->create([	'id' => '325112', 	'resource_list' => '322105', 	'label' => 'Settings', 	'field' => 'name', 	'relation' => '308136', 											])
             ->create([	'id' => '325113', 	'resource_list' => '322105', 	'label' => 'Value', 	'field' => 'value', 												])
+            ->create([	'id' => '325114', 	'resource_list' => '322105', 	'label' => 'Status', 	'field' => 'status', 												])
+            ->create([	'id' => '325115', 	'resource_list' => '322106', 	'label' => 'Name', 	'field' => 'name', 												])
+            ->create([	'id' => '325116', 	'resource_list' => '322106', 	'label' => 'Email', 	'field' => 'email', 												])
+            ->create([	'id' => '325117', 	'resource_list' => '322106', 	'label' => 'Reference', 	'field' => 'reference', 												])
         ;
         \DB::statement('set foreign_key_checks = ' . $_);
     }

@@ -20,7 +20,8 @@ class ResourceListTableSeeder extends Seeder
             ->create([	'id' => '322102', 	'resource' => '305119', 	'name' => 'TransactionProductType', 	'description' => 'Type of transaction whether is load, unload etc', 	'title' => 'Transaction Types', 	'identity' => 'name', 	'items_per_page' => '20', 									])
             ->create([	'id' => '322103', 	'resource' => '305103', 	'name' => 'Settings', 	'description' => 'List all available Settings', 	'title' => 'Settings', 	'identity' => 'name', 	'items_per_page' => '20', 									])
             ->create([	'id' => '322104', 	'resource' => '305101', 	'name' => 'ListAllUsers', 	'description' => 'List all available users', 	'title' => 'Users', 	'identity' => 'name', 	'items_per_page' => '50', 									])
-            ->create([	'id' => '322105', 	'resource' => '305115', 	'name' => 'ListAllUserSetting', 	'description' => 'List all user setting and value', 		'identity' => 'id', 	'items_per_page' => '50', 									])
+            ->create([	'id' => '322105', 	'resource' => '305115', 	'name' => 'ListAllUserSetting', 	'description' => 'List all user setting and value', 	'title' => 'User Settings', 	'identity' => 'user.name', 	'items_per_page' => '50', 									])
+            ->create([	'id' => '322106', 	'resource' => '305101', 	'name' => 'SalesExecutiveUserList', 	'description' => 'List all sales executives from users', 	'title' => 'Sales Executives', 	'identity' => 'name', 	'items_per_page' => '50', 									])
         ;
         \DB::statement('set foreign_key_checks = ' . $_);
     }

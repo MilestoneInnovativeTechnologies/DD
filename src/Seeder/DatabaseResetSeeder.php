@@ -13,13 +13,13 @@ class DatabaseResetSeeder extends Seeder
      */
     public function run()
     {
-        \DB::statement('DELETE FROM users WHERE id > 300100');\DB::statement('ALTER TABLE `users` AUTO_INCREMENT=1');
-        \DB::statement('DELETE FROM __groups WHERE id > 301100');\DB::statement('ALTER TABLE `__groups` AUTO_INCREMENT=1');
-        \DB::statement('DELETE FROM __group_users WHERE id > 302100');\DB::statement('ALTER TABLE `__group_users` AUTO_INCREMENT=1');
-        \DB::statement('DELETE FROM __roles WHERE id > 303100');\DB::statement('ALTER TABLE `__roles` AUTO_INCREMENT=1');
-        \DB::statement('DELETE FROM __group_roles WHERE id > 304100');\DB::statement('ALTER TABLE `__group_roles` AUTO_INCREMENT=1');
+//        \DB::statement('DELETE FROM users WHERE id > 300100');\DB::statement('ALTER TABLE `users` AUTO_INCREMENT=1');
+//        \DB::statement('DELETE FROM __groups WHERE id > 301100');\DB::statement('ALTER TABLE `__groups` AUTO_INCREMENT=1');
+//        \DB::statement('DELETE FROM __group_users WHERE id > 302100');\DB::statement('ALTER TABLE `__group_users` AUTO_INCREMENT=1');
+//        \DB::statement('DELETE FROM __roles WHERE id > 303100');\DB::statement('ALTER TABLE `__roles` AUTO_INCREMENT=1');
+//        \DB::statement('DELETE FROM __group_roles WHERE id > 304100');\DB::statement('ALTER TABLE `__group_roles` AUTO_INCREMENT=1');
         \DB::statement('DELETE FROM __resources WHERE id > 305100');\DB::statement('ALTER TABLE `__resources` AUTO_INCREMENT=1');
-        \DB::statement('DELETE FROM __resource_roles WHERE id > 306100');\DB::statement('ALTER TABLE `__resource_roles` AUTO_INCREMENT=1');
+//        \DB::statement('DELETE FROM __resource_roles WHERE id > 306100');\DB::statement('ALTER TABLE `__resource_roles` AUTO_INCREMENT=1');
         \DB::statement('DELETE FROM __resource_scopes WHERE id > 307100');\DB::statement('ALTER TABLE `__resource_scopes` AUTO_INCREMENT=1');
         \DB::statement('DELETE FROM __resource_relations WHERE id > 308100');\DB::statement('ALTER TABLE `__resource_relations` AUTO_INCREMENT=1');
         \DB::statement('DELETE FROM __resource_forms WHERE id > 309100');\DB::statement('ALTER TABLE `__resource_forms` AUTO_INCREMENT=1');

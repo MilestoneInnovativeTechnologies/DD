@@ -13,13 +13,13 @@ class DatabaseInitSeeder extends Seeder
      */
     public function run()
     {
-        \DB::statement('ALTER TABLE `users`  AUTO_INCREMENT=300101');
-        \DB::statement('ALTER TABLE `__groups`  AUTO_INCREMENT=301101');
-        \DB::statement('ALTER TABLE `__group_users`  AUTO_INCREMENT=302101');
-        \DB::statement('ALTER TABLE `__roles`  AUTO_INCREMENT=303101');
-        \DB::statement('ALTER TABLE `__group_roles`  AUTO_INCREMENT=304101');
+//        \DB::statement('ALTER TABLE `users`  AUTO_INCREMENT=300101');
+//        \DB::statement('ALTER TABLE `__groups`  AUTO_INCREMENT=301101');
+//        \DB::statement('ALTER TABLE `__group_users`  AUTO_INCREMENT=302101');
+//        \DB::statement('ALTER TABLE `__roles`  AUTO_INCREMENT=303101');
+//        \DB::statement('ALTER TABLE `__group_roles`  AUTO_INCREMENT=304101');
         \DB::statement('ALTER TABLE `__resources`  AUTO_INCREMENT=305101');
-        \DB::statement('ALTER TABLE `__resource_roles`  AUTO_INCREMENT=306101');
+//        \DB::statement('ALTER TABLE `__resource_roles`  AUTO_INCREMENT=306101');
         \DB::statement('ALTER TABLE `__resource_scopes`  AUTO_INCREMENT=307101');
         \DB::statement('ALTER TABLE `__resource_relations`  AUTO_INCREMENT=308101');
         \DB::statement('ALTER TABLE `__resource_forms`  AUTO_INCREMENT=309101');
