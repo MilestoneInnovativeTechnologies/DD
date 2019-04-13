@@ -16,11 +16,11 @@ class DatabaseSeeder extends Seeder
         $this->call(DatabaseResetSeeder::class);
         $this->call(DatabaseInitSeeder::class);
         $this->call([
-//             UserTableSeeder::class,
-//             GroupTableSeeder::class,
-//             GroupUserTableSeeder::class,
-//             RoleTableSeeder::class,
-//             GroupRoleTableSeeder::class,
+             UserTableSeeder::class,
+             GroupTableSeeder::class,
+             GroupUserTableSeeder::class,
+             RoleTableSeeder::class,
+             GroupRoleTableSeeder::class,
              ResourceTableSeeder::class,
              ResourceRoleTableSeeder::class,
              ResourceRelationTableSeeder::class,
