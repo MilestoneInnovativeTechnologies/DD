@@ -8,5 +8,20 @@
             "email": "info@milestoneit.net"
         }
     ],
-    "require": {}
+    "require": {
+        "milestone/appframe": "^0.9.7",
+        "milestone/interact": "0.2.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Milestone\\SS\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Milestone\\Interact\\SSServiceProvider"
+            ]
+        }
+    }
 }

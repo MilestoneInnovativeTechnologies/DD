@@ -5,7 +5,7 @@ namespace Milestone\SS;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\ServiceProvider;
 
-class DDServiceProvider extends ServiceProvider
+class SSServiceProvider extends ServiceProvider
 {
     /**
      * Register services.
