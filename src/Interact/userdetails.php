@@ -18,17 +18,12 @@
             return GroupUser::class;
         }
 
-        public function getFillAttributes()
+        public function getImportAttributes()
         {
             return ['group','user'];
         }
 
-        public function attributeToColumnMapArray()
-        {
-            // TODO: Implement attributeToColumnMapArray() method.
-        }
-
-        public function attributeToColumnMethodMapArray()
+        public function getImportMappings()
         {
             return [
                 'group' => 'getGroupId',
@@ -36,7 +31,7 @@
             ];
         }
 
-        public function getPrimaryValueFromRowData($data)
+        public function getPrimaryIdFromImportRecord($data)
         {
             return null;
         }
@@ -48,9 +43,18 @@
             return Arr::get($this->user_cache,$data['CODE']);
         }
 
-        public function preActions($Content){
+        public function preImport($Content){
             $this->group_cache = Group::pluck('id','reference')->toArray();
             $this->user_cache = User::pluck('id','reference')->toArray();
         }
 
+        public function getExportMappings()
+        {
+            // TODO: Implement getExportMappings() method.
+        }
+
+        public function getExportAttributes()
+        {
+            // TODO: Implement getExportAttributes() method.
+        }
     }

@@ -16,23 +16,16 @@
             return StoreProductTransaction::class;
         }
 
-        public function getFillAttributes()
+        public function getImportAttributes()
         {
             return ['store','product','direction','quantity','user','nature','date','type','status'];
         }
 
-        public function attributeToColumnMapArray()
+        public function getImportMappings()
         {
             return [
                 'quantity' => 'QTY',
-                'date' => 'DOCDATE'
-            ];
-        }
-
-
-        public function attributeToColumnMethodMapArray()
-        {
-            return [
+                'date' => 'DOCDATE',
                 'store' => 'getStoreID',
                 'product' => 'getProductID',
                 'direction' => 'getDirection',
@@ -64,19 +57,17 @@
 
         public function getNature($data){
             return null;
-            // TODO: Implement nature for store_product_trans.
         }
 
         public function getType($data){
             return null;
-            // TODO: Implement type for store_product_trans.
         }
 
         public function getStatus($data){
             return $data['CANCEL_USER'] ? 'Inactive' : 'Active';
         }
 
-        public function getPrimaryValueFromRowData($data)
+        public function getPrimaryIdFromImportRecord($data)
         {
             list('DOCNO' => $docno,'FYCODE' => $fycode,'FNCODE' => $fncode,'ITEMCODE' => $product_code, 'QTY' => $quantity) = $data;
             $transaction = Transaction::where(compact('docno','fncode','fycode'))->first();
@@ -89,7 +80,7 @@
             return null;
         }
 
-        public function isDone($record,$id){
+        public function recordImported($record,$id){
             list('DOCNO' => $docno,'FYCODE' => $fycode,'FNCODE' => $fncode,
                 'QTY' => $quantity, 'RATE' => $rate, 'TAX' => $tax,
                 'DISCOUNT01' => $discount1, 'DISCOUNT02' => $discount2, 'DISCOUNT03' => $discount3,
@@ -99,6 +90,16 @@
                 $price = $quantity * $rate; $discount = $discount1+$discount2+$discount3; $total = $price+$tax-$discount;
                 $transaction->Products()->attach([$id => compact('price','tax','discount','total')]);
             }
+        }
+
+        public function getExportMappings()
+        {
+            // TODO: Implement getExportMappings() method.
+        }
+
+        public function getExportAttributes()
+        {
+            // TODO: Implement getExportAttributes() method.
         }
 
     }

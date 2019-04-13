@@ -13,7 +13,7 @@ class itemmaster implements Table
         return Product::class;
     }
 
-    public function getFillAttributes()
+    public function getImportAttributes()
     {
         return [
             'code','name','narration','narration2','narration3','narration4','narration5','narration6','narration7',
@@ -22,9 +22,9 @@ class itemmaster implements Table
         ];
     }
 
-    public function attributeToColumnMapArray()
+    public function getImportMappings()
     {
-        return [
+        return array_merge([
             'code' => 'CODE',
             'name' => 'NAME',
             'narration' => 'NARRATION',
@@ -39,13 +39,9 @@ class itemmaster implements Table
             'narration10' => 'NARRATION10',
             'type' => 'TYPE',
             'status' => 'STATUS'
-        ];
-    }
-
-    public function attributeToColumnMethodMapArray()
-    {
-        return array_combine(array_map(function($n){ return 'group' . $n; },range(1,10)),
-        array_map(function($n){ return 'getGroupValue' . $n; },range(1,10)));
+        ],
+            array_combine(array_map(function($n){ return 'group' . $n; },range(1,10)),
+            array_map(function($n){ return 'getGroupValue' . $n; },range(1,10))));
     }
 
     public function __call($name, $arguments)
@@ -62,11 +58,20 @@ class itemmaster implements Table
         return $product_group ? $product_group->id : null;
     }
 
-    public function getPrimaryValueFromRowData($data)
+    public function getPrimaryIdFromImportRecord($data)
     {
         $product = Product::where('code',$data['CODE'])->first();
         return $product ? $product->id : null;
     }
 
 
+    public function getExportMappings()
+    {
+        // TODO: Implement getExportMappings() method.
+    }
+
+    public function getExportAttributes()
+    {
+        // TODO: Implement getExportAttributes() method.
+    }
 }

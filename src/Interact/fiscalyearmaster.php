@@ -11,12 +11,12 @@
             return \Milestone\SS\Model\Fiscalyearmaster::class;
         }
 
-        public function getFillAttributes()
+        public function getImportAttributes()
         {
             return ['code','cocode','name','start_date','end_date','status'];
         }
 
-        public function attributeToColumnMapArray()
+        public function getImportMappings()
         {
             return [
                 'code' => 'CODE',
@@ -28,14 +28,19 @@
             ];
         }
 
-        public function attributeToColumnMethodMapArray()
-        {
-            return [];
-        }
-
-        public function getPrimaryValueFromRowData($data)
+        public function getPrimaryIdFromImportRecord($data)
         {
             $fiscal = \Milestone\SS\Model\Fiscalyearmaster::where(['code' => $data['CODE'],'cocode' => $data['COCODE']])->first();
             return $fiscal ? $fiscal->id : null;
+        }
+
+        public function getExportMappings()
+        {
+            // TODO: Implement getExportMappings() method.
+        }
+
+        public function getExportAttributes()
+        {
+            // TODO: Implement getExportAttributes() method.
         }
     }

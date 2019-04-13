@@ -14,26 +14,32 @@
             return User::class;
         }
 
-        public function getFillAttributes()
+        public function getImportAttributes()
         {
             return ['name','email','password','reference'];
         }
 
-        public function attributeToColumnMapArray()
-        {
-            return ['reference' => 'CODE'];
-        }
-
-        public function attributeToColumnMethodMapArray()
+        public function getImportMappings()
         {
             return [
+                'reference' => 'CODE',
                 'name' => 'getName',
                 'email' => 'getEmail',
                 'password' => 'getPassword',
             ];
         }
 
-        public function getPrimaryValueFromRowData($data)
+        public function getExportMappings()
+        {
+            // TODO: Implement getExportMappings() method.
+        }
+
+        public function getExportAttributes()
+        {
+            // TODO: Implement getExportAttributes() method.
+        }
+
+        public function getPrimaryIdFromImportRecord($data)
         {
             $user = User::where(['reference' => $data['CODE']])->first();
             return $user ? $user->id : null;

@@ -19,21 +19,20 @@
             return Functiondetail::class;
         }
 
-        public function getFillAttributes()
+        public function getImportAttributes()
         {
             return ['code','tax','taxselection','taxunique','taxrule','ratewithtax','discount01','discount02','discount02base','discount03','discountmode','discount'];
         }
 
-        public function attributeToColumnMapArray()
+        public function getImportMappings()
         {
-            return array_combine(Arr::except($this->getFillAttributes(),['4']),array_map('strtoupper',Arr::except($this->getFillAttributes(),['4'])));
-        }
-
-        public function attributeToColumnMethodMapArray()
-        {
-            return [
-                'taxrule' => 'getTaxID'
-            ];
+            return array_merge(
+                array_combine(
+                    Arr::except($this->getImportAttributes(),['4']),
+                    array_map('strtoupper',Arr::except($this->getImportAttributes(),['4']))
+                ),
+                ['taxrule' => 'getTaxID']
+            );
         }
 
         public function getTaxID($record){
@@ -41,20 +40,20 @@
             return $tax ? $tax->id : null;
         }
 
-        public function getPrimaryValueFromRowData($data)
+        public function getPrimaryIdFromImportRecord($data)
         {
             $function = Functiondetail::where('code',$data['CODE'])->first();
             return $function ? $function->id : null;
         }
 
-        public function preActions(){
+        public function preImport(){
             $this->functions_cache = Functiondetail::pluck('id','code')->toArray();
         }
 
-        public function isRecordValid($record){
+        public function isValidImportRecord($record){
             if(in_array($this->mode,['create','insert'])){
                 if(array_key_exists($record['CODE'],$this->functions_cache)){
-                    $this->update_cache[$this->functions_cache[$record['CODE']]] = array_map(function($key)use($record){ return $record[$key]; },$this->attributeToColumnMapArray());
+                    $this->update_cache[$this->functions_cache[$record['CODE']]] = array_map(function($key)use($record){ return $record[$key]; },$this->getImportMappings());
                     foreach ($this->attributeToColumnMethodMapArray() as $key => $function)
                         $this->update_cache[$this->functions_cache[$record['CODE']]][$key] = call_user_func([$this,$function],$record);
                     return false;
@@ -62,9 +61,19 @@
             } return true;
         }
 
-        public function postActions(){
+        public function postImport(){
             if(is_array($this->update_cache) && !empty($this->update_cache))
                 foreach($this->update_cache as $id => $update_array)
                     Functiondetail::find($id)->update($update_array);
+        }
+
+        public function getExportMappings()
+        {
+            // TODO: Implement getExportMappings() method.
+        }
+
+        public function getExportAttributes()
+        {
+            // TODO: Implement getExportAttributes() method.
         }
     }

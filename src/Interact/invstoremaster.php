@@ -12,12 +12,12 @@
             return Store::class;
         }
 
-        public function getFillAttributes()
+        public function getImportAttributes()
         {
             return ['catcode','code','name','type','status'];
         }
 
-        public function attributeToColumnMapArray()
+        public function getImportMappings()
         {
             return [
                 'catcode' => 'CATCODE',
@@ -28,17 +28,21 @@
             ];
         }
 
-        public function attributeToColumnMethodMapArray()
-        {
-            return [];
-        }
-
-
-        public function getPrimaryValueFromRowData($data)
+        public function getPrimaryIdFromImportRecord($data)
         {
             $catcode = $data['CATCODE']; $code = $data['CODE'];
             $store = Store::where(compact('catcode','code'))->first();
             return $store ? $store->id : null;
+        }
+
+        public function getExportMappings()
+        {
+            // TODO: Implement getExportMappings() method.
+        }
+
+        public function getExportAttributes()
+        {
+            // TODO: Implement getExportAttributes() method.
         }
 
     }

@@ -17,22 +17,16 @@
             return SalesOrderItem::class;
         }
 
-        public function getFillAttributes()
+        public function getImportAttributes()
         {
             return ['so','product','rate','quantity'];
         }
 
-        public function attributeToColumnMapArray()
+        public function getImportMappings()
         {
             return [
                 'rate' => 'RATE',
                 'quantity' => 'QTY',
-            ];
-        }
-
-        public function attributeToColumnMethodMapArray()
-        {
-            return [
                 'so' => 'getSO',
                 'product' => 'getProductID'
             ];
@@ -48,14 +42,24 @@
             return Arr::get($this->product_cache,$record['ITEMCODE']);
         }
 
-        public function getPrimaryValueFromRowData($data)
+        public function getPrimaryIdFromImportRecord($data)
         {
             $so = $this->getSO($data); $product = $data['ITEMCODE'];
             $soi = SalesOrderItem::where(compact('so','product'))->first();
             return $soi ? $soi->id : null;
         }
 
-        public function preActions(){
+        public function preImport(){
             $this->product_cache = Product::pluck('id','code')->toArray();
+        }
+
+        public function getExportMappings()
+        {
+            // TODO: Implement getExportMappings() method.
+        }
+
+        public function getExportAttributes()
+        {
+            // TODO: Implement getExportAttributes() method.
         }
     }

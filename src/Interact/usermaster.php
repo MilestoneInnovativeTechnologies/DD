@@ -17,44 +17,50 @@
             return Group::class;
         }
 
-        public function getFillAttributes()
+        public function getImportAttributes()
         {
             return ['name','title','reference'];
         }
 
-        public function attributeToColumnMapArray()
+        public function getImportMappings()
         {
             return [
                 'reference' => 'CODE',
                 'title' => 'NAME',
+                'name' => 'getName'
             ];
-        }
-
-        public function attributeToColumnMethodMapArray()
-        {
-            return ['name' => 'getName'];
         }
 
         public function getName($data){
             return Str::camel($data['NAME']);
         }
 
-        public function getPrimaryValueFromRowData($data)
+        public function getPrimaryIdFromImportRecord($data)
         {
             $group = Group::where('reference',$data['CODE'])->first();
             $group ? $group->id : null;
         }
 
-        public function isRecordValid($record){
+        public function isValidImportRecord($record){
             return $record['ISGROUP'] === 'Y';
         }
-        public function preActions(){
+        public function preImport(){
             $this->role_cache = Role::pluck('name','id')->toArray();
         }
-        public function isDone($record,$id){
+        public function recordImported($record,$id){
             $role_name = $this->new_role_prefix . $this->getName($record);
-            if(!in_array($role_name,$this->role_cache)) { $role = new Role; $role->unguard(); $role->create(['name' => $role_name, 'title' => $record['NAME']]); $this->preActions(); }
+            if(!in_array($role_name,$this->role_cache)) { $role = new Role; $role->unguard(); $role->create(['name' => $role_name, 'title' => $record['NAME']]); $this->preImport(); }
             $role = Role::find(array_search($role_name,$this->role_cache));
             $role->Groups()->attach($id);
+        }
+
+        public function getExportMappings()
+        {
+            // TODO: Implement getExportMappings() method.
+        }
+
+        public function getExportAttributes()
+        {
+            // TODO: Implement getExportAttributes() method.
         }
     }

@@ -9,7 +9,6 @@
 
     class accountdetails implements Table
     {
-        private $account_group = ['name' => 'eplus_account','description' => 'ePlus user accounts comes under this group','title' => 'ePlus Accounts'];
         private $account_group_id = null;
 
         public function getModel()
@@ -17,22 +16,16 @@
             return User::class;
         }
 
-        public function getFillAttributes()
+        public function getImportAttributes()
         {
             return ['name','email','password','reference'];
         }
 
-        public function attributeToColumnMapArray()
+        public function getImportMappings()
         {
             return [
                 'reference' => 'CODE',
                 'name' => 'DISPLAYNAME',
-            ];
-        }
-
-        public function attributeToColumnMethodMapArray()
-        {
-            return [
                 'email' => 'getEmail',
                 'password' => 'getPassword',
             ];
@@ -45,24 +38,29 @@
             return Str::random(strlen($data['CODE']));
         }
 
-        public function getPrimaryValueFromRowData($data)
+        public function getPrimaryIdFromImportRecord($data)
         {
             $user = User::where('reference',$data['CODE'])->first();
             return $user ? $user->id : null;
         }
 
-        public function preActions(){
-            if(!Group::where('name',$this->account_group['name'])->first()){
-                $group = new Group();
-                $group->unguard();
-                $group->create($this->account_group);
-            }
-            $group = Group::where('name',$this->account_group['name'])->first();
+        public function preImport(){
+            $group = Group::where('name','eplus_account')->first();
             $this->account_group_id = $group ? $group->id : null;
         }
 
-        public function postActions($Content,$Result){
+        public function postImport($Content,$Result){
             $users = array_values($Result);
             Group::find($this->account_group_id)->Users()->attach($users);
+        }
+
+        public function getExportMappings()
+        {
+            // TODO: Implement getExportMappings() method.
+        }
+
+        public function getExportAttributes()
+        {
+            // TODO: Implement getExportAttributes() method.
         }
     }

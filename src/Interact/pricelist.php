@@ -15,25 +15,19 @@
             return PricelistProduct::class;
         }
 
-        public function getFillAttributes()
+        public function getImportAttributes()
         {
             return ['pricelist','product','price','price_min','price_max','discount1_quantity','discount2_quantity'];
         }
 
-        public function attributeToColumnMapArray()
+        public function getImportMappings()
         {
             return [
                 'price' => 'PRICE',
                 'price_min' => 'MINPRICE',
                 'price_max' => 'MAXPRICE',
                 'discount1_quantity' => 'DISCOUNT01PERC',
-                'discount2_quantity' => 'DISCOUNT02PERC'
-            ];
-        }
-
-        public function attributeToColumnMethodMapArray()
-        {
-            return [
+                'discount2_quantity' => 'DISCOUNT02PERC',
                 'pricelist' => 'getPriceList',
                 'product' => 'getProductId',
             ];
@@ -54,11 +48,20 @@
             return $product->id;
         }
 
-        public function getPrimaryValueFromRowData($data)
+        public function getPrimaryIdFromImportRecord($data)
         {
             $pricelist = $data['CODE']; $product = $data['ITEMCODE'];
             $pricelist_product = PricelistProduct::where(compact('pricelist','product'))->first();
             return $pricelist_product ? $pricelist_product->id : null;
         }
 
+        public function getExportMappings()
+        {
+            // TODO: Implement getExportMappings() method.
+        }
+
+        public function getExportAttributes()
+        {
+            // TODO: Implement getExportAttributes() method.
+        }
     }

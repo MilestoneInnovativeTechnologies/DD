@@ -12,25 +12,30 @@
             return \Milestone\SS\Model\BillData::class;
         }
 
-        public function getFillAttributes()
+        public function getImportAttributes()
         {
             return ['COCODE', 'BRCODE', 'FYCODE', 'FNCODE', 'DOCNO', 'SRNO', 'DSRNO', 'DOCDATE', 'CO', 'BR', 'ACCCODE', 'BILLNO', 'BILLDATE', 'DUEDATE', 'AMT', 'SIGN', 'BILL_TYPE', 'TYPE', 'CANCEL'];
         }
 
-        public function attributeToColumnMapArray()
+        public function getImportMappings()
         {
             return [];
         }
 
-        public function attributeToColumnMethodMapArray()
-        {
-            return [];
-        }
-
-        public function getPrimaryValueFromRowData($data)
+        public function getPrimaryIdFromImportRecord($data)
         {
             $pks = Arr::only($data,['COCODE', 'BRCODE', 'FYCODE', 'FNCODE', 'DOCNO', 'SRNO', 'DSRNO']);
             $billdata = \Milestone\SS\Model\BillData::where($pks)->first();
             return $billdata ? $billdata->id : null;
+        }
+
+        public function getExportMappings()
+        {
+            // TODO: Implement getExportMappings() method.
+        }
+
+        public function getExportAttributes()
+        {
+            // TODO: Implement getExportAttributes() method.
         }
     }

@@ -12,12 +12,12 @@ class itemgroup implements Table
         return Productgroup::class;
     }
 
-    public function getFillAttributes()
+    public function getImportAttributes()
     {
         return ['code','name','status','type'];
     }
 
-    public function attributeToColumnMapArray()
+    public function getImportMappings()
     {
         return [
             'code' => 'CODE',
@@ -27,15 +27,20 @@ class itemgroup implements Table
         ];
     }
 
-    public function attributeToColumnMethodMapArray()
-    {
-        return [];
-    }
-
-    public function getPrimaryValueFromRowData($data)
+    public function getPrimaryIdFromImportRecord($data)
     {
         $record = Productgroup::where('code',$data['CODE'])->first();
         return $record ? $record->id : null;
+    }
+
+    public function getExportMappings()
+    {
+        // TODO: Implement getExportMappings() method.
+    }
+
+    public function getExportAttributes()
+    {
+        // TODO: Implement getExportAttributes() method.
     }
 
 

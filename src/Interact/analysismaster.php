@@ -16,19 +16,15 @@
             return User::class;
         }
 
-        public function getFillAttributes()
+        public function getImportAttributes()
         {
             return ['name','email','reference','password'];
         }
 
-        public function attributeToColumnMapArray()
-        {
-            return ['name' => 'NAME'];
-        }
-
-        public function attributeToColumnMethodMapArray()
+        public function getImportMappings()
         {
             return [
+                'name' => 'NAME',
                 'email' => 'getEmail',
                 'reference' => 'getReference',
                 'password' => 'getPassword'
@@ -45,25 +41,35 @@
             return Str::random(strlen($record['CODE']));
         }
 
-        public function getPrimaryValueFromRowData($data)
+        public function getPrimaryIdFromImportRecord($data)
         {
             $reference = $this->getReference($data);
             $user = User::where(compact('reference'))->first();
             return $user ? $user->id : null;
         }
 
-        public function isRecordValid($record){
+        public function isValidImportRecord($record){
             return ($record['CATCODE'] === 'SE' && $record['ISGROUP'] === 'N');
         }
 
-        public function isDone($record,$id){
+        public function recordImported($record,$id){
             $this->sls[] = $id;
         }
-        public function postActions(){
+        public function postImport(){
             if(empty($this->sls)) return;
             $group = Group::where('reference','SLS');
             if($group->exists()) return $group->first()->Users()->attach($this->sls);
             $group = new Group(); $group->unguard(); $group = $group->create($this->new_sls);
             return $group->Users()->attach($this->sls);
+        }
+
+        public function getExportMappings()
+        {
+            // TODO: Implement getExportMappings() method.
+        }
+
+        public function getExportAttributes()
+        {
+            // TODO: Implement getExportAttributes() method.
         }
     }

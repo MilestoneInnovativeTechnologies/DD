@@ -12,12 +12,12 @@
             return Area::class;
         }
 
-        public function getFillAttributes()
+        public function getImportAttributes()
         {
             return ['code','name','type','status'];
         }
 
-        public function attributeToColumnMapArray()
+        public function getImportMappings()
         {
             return [
                 'code' => 'CODE',
@@ -27,15 +27,20 @@
             ];
         }
 
-        public function attributeToColumnMethodMapArray()
-        {
-            return [];
-        }
-
-        public function getPrimaryValueFromRowData($data)
+        public function getPrimaryIdFromImportRecord($data)
         {
             $area = Area::where('code',$data['CODE'])->first();
             return $area ? $area->id : null;
+        }
+
+        public function getExportMappings()
+        {
+            // TODO: Implement getExportMappings() method.
+        }
+
+        public function getExportAttributes()
+        {
+            // TODO: Implement getExportAttributes() method.
         }
 
     }

@@ -15,26 +15,20 @@ class itemgroupmaster implements Table
         return Productgroup::class;
     }
 
-    public function getFillAttributes()
+    public function getImportAttributes()
     {
         return [
             'code','name','igmref','parent','belongs','type','tax1','tax2','status'
         ];
     }
 
-    public function attributeToColumnMapArray()
+    public function getImportMappings()
     {
         return [
             'code' => 'CODE',
             'name' => 'NAME',
             'type' => 'TYPE',
-            'status' => 'STATUS'
-        ];
-    }
-
-    public function attributeToColumnMethodMapArray()
-    {
-        return [
+            'status' => 'STATUS',
             'igmref' => 'getIGMReference',
             'belongs' => 'getBelongsValue',
             'parent' => 'getParentValue',
@@ -58,7 +52,7 @@ class itemgroupmaster implements Table
         return $product_group ? $product_group->id : null;
     }
 
-    public function getPrimaryValueFromRowData($data)
+    public function getPrimaryIdFromImportRecord($data)
     {
         $product_group = Productgroup::where(['belongs' => $data['CATCODE'],'code' => $data['CODE']]);
         return $product_group->exists() ? $product_group->first()->id : null;
@@ -75,5 +69,15 @@ class itemgroupmaster implements Table
         if(!$code) return null;
         if(!$this->tax_cache) $this->tax_cache = Tax::pluck('id','code')->toArray();
         return Arr::get($this->tax_cache,$code);
+    }
+
+    public function getExportMappings()
+    {
+        // TODO: Implement getExportMappings() method.
+    }
+
+    public function getExportAttributes()
+    {
+        // TODO: Implement getExportAttributes() method.
     }
 }

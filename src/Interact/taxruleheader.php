@@ -12,12 +12,12 @@
             return Tax::class;
         }
 
-        public function getFillAttributes()
+        public function getImportAttributes()
         {
             return ['code','name','status'];
         }
 
-        public function attributeToColumnMapArray()
+        public function getImportMappings()
         {
             return [
                 'code' => 'CODE',
@@ -26,14 +26,19 @@
             ];
         }
 
-        public function attributeToColumnMethodMapArray()
-        {
-            return [];
-        }
-
-        public function getPrimaryValueFromRowData($data)
+        public function getPrimaryIdFromImportRecord($data)
         {
             $tax = Tax::where('code',$data['CODE'])->first();
             return $tax ? $tax->id : null;
+        }
+
+        public function getExportMappings()
+        {
+            // TODO: Implement getExportMappings() method.
+        }
+
+        public function getExportAttributes()
+        {
+            // TODO: Implement getExportAttributes() method.
         }
     }

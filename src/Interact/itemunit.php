@@ -13,22 +13,17 @@
             return WBin::class;
         }
 
-        public function getFillAttributes()
+        public function getImportAttributes()
         {
             return ['bin'];
         }
 
-        public function attributeToColumnMapArray()
-        {
-            return [];
-        }
-
-        public function attributeToColumnMethodMapArray()
+        public function getImportMappings()
         {
             return ['bin' => 'doBin'];
         }
 
-        public function getPrimaryValueFromRowData($data)
+        public function getPrimaryIdFromImportRecord($data)
         {
             return 1;
         }
@@ -39,4 +34,13 @@
             return 1;
         }
 
+        public function getExportMappings()
+        {
+            // TODO: Implement getExportMappings() method.
+        }
+
+        public function getExportAttributes()
+        {
+            // TODO: Implement getExportAttributes() method.
+        }
     }

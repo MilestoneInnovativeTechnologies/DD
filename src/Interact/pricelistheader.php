@@ -12,12 +12,12 @@
             return Pricelist::class;
         }
 
-        public function getFillAttributes()
+        public function getImportAttributes()
         {
             return ['code','name','status'];
         }
 
-        public function attributeToColumnMapArray()
+        public function getImportMappings()
         {
             return [
                 'code' => 'CODE',
@@ -26,16 +26,20 @@
             ];
         }
 
-        public function attributeToColumnMethodMapArray()
-        {
-            return [];
-        }
-
-        public function getPrimaryValueFromRowData($data)
+        public function getPrimaryIdFromImportRecord($data)
         {
             $pricelist = Pricelist::where('code',$data['CODE'])->first();
             return $pricelist ? $pricelist->id : null;
         }
 
 
+        public function getExportMappings()
+        {
+            // TODO: Implement getExportMappings() method.
+        }
+
+        public function getExportAttributes()
+        {
+            // TODO: Implement getExportAttributes() method.
+        }
     }

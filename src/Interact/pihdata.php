@@ -16,31 +16,25 @@
             return SalesOrder::class;
         }
 
-        public function getFillAttributes()
+        public function getImportAttributes()
         {
             return ['docno','date','user','customer','fycode','fncode','status'];
         }
 
-        public function attributeToColumnMapArray()
+        public function getImportMappings()
         {
             return [
                 'docno' => 'DOCNO',
                 'date' => 'DOCDATE',
                 'fycode' => 'FYCODE',
                 'fncode' => 'FNCODE',
-            ];
-        }
-
-        public function attributeToColumnMethodMapArray()
-        {
-            return [
                 'user' => 'getUserID',
                 'customer' => 'getCustomerID',
                 'status' => 'getStatus'
             ];
         }
 
-        public function preActions(){
+        public function preImport(){
             $users = User::all();
             $this->user_cache = $users->pluck('id','reference')->toArray();
         }
@@ -55,10 +49,20 @@
             return $record['CANCEL'] === 'No' ? 'Active' : 'Inactive';
         }
 
-        public function getPrimaryValueFromRowData($data)
+        public function getPrimaryIdFromImportRecord($data)
         {
             list($fycode,$fncode,$docno) = Arr::only($data,['FYCODE','FNCODE','DOCNO']);
             $so = SalesOrder::where(compact('fycode','fncode','docno'))->first();
             return $so ? $so->id : null;
+        }
+
+        public function getExportMappings()
+        {
+            // TODO: Implement getExportMappings() method.
+        }
+
+        public function getExportAttributes()
+        {
+            // TODO: Implement getExportAttributes() method.
         }
     }

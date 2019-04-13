@@ -18,24 +18,18 @@
             return Transaction::class;
         }
 
-        public function getFillAttributes()
+        public function getImportAttributes()
         {
             return ['user','fycode','fncode','docno','date','customer','status'];
         }
 
-        public function attributeToColumnMapArray()
+        public function getImportMappings()
         {
             return [
                 'docno' => 'DOCNO',
                 'date' => 'DOCDATE',
                 'fycode' => 'FYCODE',
-                'fncode' => 'FNCODE'
-            ];
-        }
-
-        public function attributeToColumnMethodMapArray()
-        {
-            return [
+                'fncode' => 'FNCODE',
                 'user' => 'getUserID',
                 'customer' => 'getCustomerID',
                 'status' => 'getStatus'
@@ -56,12 +50,12 @@
             return $data['CANCEL_USER'] ? 'Inactive' : 'Active';
         }
 
-        public function getPrimaryValueFromRowData($data)
+        public function getPrimaryIdFromImportRecord($data)
         {
             return $this->getTransactionID($data['DOCNO'],$data['FNCODE'],$data['FYCODE']);
         }
 
-        public function isDone($record,$id){
+        public function recordImported($record,$id){
             if($record['FNCODE'] == $this->fn_out){
                 $stock_transfer = new StockTransfer;
                 $stock_transfer->create(['out' => $id]);
@@ -76,7 +70,7 @@
             return $transaction ? $transaction->id : null;
         }
 
-        public function postActions(){
+        public function postImport(){
             $cache = $this->in_cache;
             if(!empty($cache)){
                 $fncode = $this->fn_out;
@@ -94,6 +88,16 @@
                 }
             }
             return;
+        }
+
+        public function getExportMappings()
+        {
+            // TODO: Implement getExportMappings() method.
+        }
+
+        public function getExportAttributes()
+        {
+            // TODO: Implement getExportAttributes() method.
         }
 
     }
