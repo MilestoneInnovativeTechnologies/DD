@@ -25,7 +25,16 @@ class SSServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->loadMigrations();
+        $this->loadRoutes();
     }
+
+
+
+    private function getRootPath(){ return __DIR__ . '/..'; }
+    private function getProjectMigrationPath(){ return $this->getRootPath() . '/migrations/'; }
+    private function getProjectRoutesPath(){ return $this->getRootPath() . '/routes/'; }
+
+
 
     private function registerBlueprintMacro(){
         Blueprint::macro('foreignCascade',function($field,$table){
@@ -38,12 +47,16 @@ class SSServiceProvider extends ServiceProvider
         });
     }
 
+
+
     private function loadMigrations(){
         $source = $this->getProjectMigrationPath();
         $this->loadMigrationsFrom($source);
     }
 
-    private function getProjectMigrationPath(){
-        return __DIR__ . '/../migrations';
+    private function loadRoutes(){
+        $routeFiles = ['web.php','api.php'];
+        foreach ($routeFiles as $routeFile)
+            $this->loadRoutesFrom($this->getProjectRoutesPath() . $routeFile);
     }
 }

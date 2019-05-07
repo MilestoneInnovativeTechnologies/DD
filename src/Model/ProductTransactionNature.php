@@ -7,4 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class ProductTransactionNature extends Model
 {
     protected $table = 'product_transaction_natures';
+
+    public function scopeActive($q){ $q->where('status','Active'); }
 }

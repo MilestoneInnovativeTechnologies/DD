@@ -9,7 +9,7 @@
 
     class usermaster implements Table
     {
-        public $role_cache = null;
+        public $role_cache = null, $group_cache = null;
         public $new_role_prefix = 'eplus_';
 
         public function getModel()
@@ -42,10 +42,11 @@
         }
 
         public function isValidImportRecord($record){
-            return $record['ISGROUP'] === 'Y';
+            return $record['ISGROUP'] === 'Y' && !in_array($record['CODE'],$this->group_cache);
         }
         public function preImport(){
             $this->role_cache = Role::pluck('name','id')->toArray();
+            $this->group_cache = Group::pluck('reference')->toArray();
         }
         public function recordImported($record,$id){
             $role_name = $this->new_role_prefix . $this->getName($record);

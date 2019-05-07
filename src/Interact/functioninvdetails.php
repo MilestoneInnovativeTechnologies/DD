@@ -53,12 +53,16 @@
         public function isValidImportRecord($record){
             if(in_array($this->mode,['create','insert'])){
                 if(array_key_exists($record['CODE'],$this->functions_cache)){
-                    $this->update_cache[$this->functions_cache[$record['CODE']]] = array_map(function($key)use($record){ return $record[$key]; },$this->getImportMappings());
-                    foreach ($this->attributeToColumnMethodMapArray() as $key => $function)
-                        $this->update_cache[$this->functions_cache[$record['CODE']]][$key] = call_user_func([$this,$function],$record);
+                    $this->update_cache[$this->functions_cache[$record['CODE']]] = array_map(function($key)use($record){ return $this->getKeyValue($key,$record); },$this->getImportMappings());
                     return false;
                 }
             } return true;
+        }
+
+        private function getKeyValue($key,$record){
+            if(method_exists($this,$key)) return call_user_func([$this,$key],$record);
+            if(array_key_exists($key,$record)) return $record[$key];
+            return null;
         }
 
         public function postImport(){

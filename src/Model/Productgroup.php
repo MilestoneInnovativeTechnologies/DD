@@ -3,9 +3,12 @@
 namespace Milestone\SS\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use Milestone\SS\ModelTraits\ScopeActive;
 
 class Productgroup extends Model
 {
+    use ScopeActive;
+
     protected $table = 'productgroups';
 
     public function Belongs(){ return $this->belongsTo(self::class,'belongs'); }
@@ -28,4 +31,6 @@ class Productgroup extends Model
         $field = 'group' . $num;
         return $this->hasMany(Productgroup::class,$field);
     }
+
+    public function scopeActive($q){ $q->where('status','Active'); }
 }
