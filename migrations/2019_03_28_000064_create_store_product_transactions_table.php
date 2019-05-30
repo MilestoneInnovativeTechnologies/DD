@@ -15,6 +15,7 @@ class CreateStoreProductTransactionsTable extends Migration
     {
         Schema::create('store_product_transactions', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->char('_ref', '30')->nullable()->index();
             $table->foreignNullable('store', 'stores');
             $table->foreignNullable('product', 'products');
             $table->enum('direction', ['Out','In'])->default('Out');

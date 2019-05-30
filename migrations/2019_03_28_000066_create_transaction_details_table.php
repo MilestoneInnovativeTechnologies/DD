@@ -21,6 +21,7 @@ class CreateTransactionDetailsTable extends Migration
             $table->decimal('tax', 30,10)->default(0);
             $table->decimal('discount', 30,10)->default(0);
             $table->decimal('total', 30,10)->default(0);
+            $table->char('_ref', '30')->nullable()->index();
             $table->audit();
         });
     }

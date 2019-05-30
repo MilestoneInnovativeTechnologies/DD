@@ -15,6 +15,7 @@ class CreateTransactionsTable extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->char('_ref', '30')->nullable()->index();
             $table->foreignNullable('user', 'users');
             $table->char('docno', '20')->nullable()->index();
             $table->timestamp('date')->default(DB::raw('CURRENT_TIMESTAMP'));
