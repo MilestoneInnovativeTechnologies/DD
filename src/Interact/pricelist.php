@@ -62,6 +62,6 @@
 
         public function getExportAttributes()
         {
-            // TODO: Implement getExportAttributes() method.
+            return ['id','pricelist','product','price'];
         }
     }

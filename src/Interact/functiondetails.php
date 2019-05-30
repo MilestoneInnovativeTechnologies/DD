@@ -68,12 +68,12 @@ class functiondetails implements Table
 
     public function getExportMappings()
     {
-        return array_flip($this->getImportMappings());
+        return [];
     }
 
     public function getExportAttributes()
     {
-        return ['CODE','NUMBERING_FORMAT','DIGIT_LENGTH','DEFAULTHCODE'];
+        return ['format','digit_length'];
     }
 
 }

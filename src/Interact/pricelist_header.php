@@ -2,45 +2,44 @@
 
     namespace Milestone\SS\Interact;
 
+    use Milestone\SS\Model\Pricelist;
     use Milestone\Interact\Table;
 
-    class fiscalyearmaster implements Table
+    class pricelist_header implements Table
     {
         public function getModel()
         {
-            return \Milestone\SS\Model\Fiscalyearmaster::class;
+            return Pricelist::class;
         }
 
         public function getImportAttributes()
         {
-            return ['code','cocode','name','start_date','end_date','status'];
+            return ['code','name','status'];
         }
 
         public function getImportMappings()
         {
             return [
                 'code' => 'CODE',
-                'cocode' => 'COCODE',
                 'name' => 'NAME',
-                'start_date' => 'START_DATE',
-                'end_date' => 'END_DATE',
                 'status' => 'STATUS'
             ];
         }
 
         public function getPrimaryIdFromImportRecord($data)
         {
-            $fiscal = \Milestone\SS\Model\Fiscalyearmaster::where(['code' => $data['CODE'],'cocode' => $data['COCODE']])->first();
-            return $fiscal ? $fiscal->id : null;
+            $pricelist = Pricelist::where('code',$data['CODE'])->first();
+            return $pricelist ? $pricelist->id : null;
         }
+
 
         public function getExportMappings()
         {
-            return [];
+            // TODO: Implement getExportMappings() method.
         }
 
         public function getExportAttributes()
         {
-            return ['id','name','start_date','end_date'];
+            return ['id','name'];
         }
     }
