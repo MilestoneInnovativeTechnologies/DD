@@ -13,16 +13,22 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('api',function(){
-    $DATA = [];
-    \Milestone\SS\Model\User::where('reference','like','SE%')->get()->each(function($user)use(&$DATA){
-        $token = now()->toDateTimeString(); $hash = hash('sha256',$token);
-        $DATA[$user->name] = '?api_token=' . $hash; $user->api_token = $hash; $user->save();
-    });
-    return $DATA;
-});
+//Route::get('api',function(){
+//    $DATA = [];
+//    \Milestone\SS\Model\User::where('reference','like','SE%')->get()->each(function($user)use(&$DATA){
+//        $token = now()->toDateTimeString() . random_bytes(8); $hash = hash('sha256',$token);
+//        $DATA[$user->name] = '?api_token=' . $hash; $user->api_token = $hash; $user->password = 123456; $user->save();
+//    });
+//    return $DATA;
+//});
 
 Route::group([],function(){
+    Route::post('login',function(Request $request){
+        if(\Illuminate\Support\Facades\Auth::attempt($request->only(['email', 'password']))){
+            return \Milestone\SS\Model\User::where($request->only(['email']))->first();
+        }
+        return [];
+    });
     Route::get('setup',function(){ return new \Milestone\SS\Resources\SetupResource(\Milestone\SS\Model\Setup::find(1)); });
     Route::get('settings',function(){ return \Milestone\SS\Resources\SettingResource::collection(\Milestone\SS\Model\Setting::active()->get()); });
     Route::get('tax',function(){ return \Milestone\SS\Resources\TaxDetailResource::collection(\Milestone\SS\Model\TaxDetail::active()->get()); });
