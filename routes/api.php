@@ -22,7 +22,9 @@ use Illuminate\Http\Request;
 //    return $DATA;
 //});
 
-Route::group([],function(){
+Route::group([
+    'prefix' => 'api'
+],function(){
     Route::post('login',function(Request $request){
         if(\Illuminate\Support\Facades\Auth::attempt($request->only(['email', 'password']))){
             return \Milestone\SS\Model\User::where($request->only(['email']))->first();
@@ -37,13 +39,12 @@ Route::group([],function(){
     Route::get('ptnature',function(){ return \Milestone\SS\Resources\ProductTransactionNatureResource::collection(\Milestone\SS\Model\ProductTransactionNature::active()->get()); });
     Route::get('pttype',function(){ return \Milestone\SS\Resources\ProductTransactionTypeResource::collection(\Milestone\SS\Model\ProductTransactionType::active()->get()); });
     Route::get('products',function(){ return \Milestone\SS\Resources\ProductResource::collection(\Milestone\SS\Model\Product::active()->get()); });
-});
-
-Route::group([
-    'middleware' => 'auth:api',
-],function(){
-    Route::get('stores',function(){ return \Milestone\SS\Resources\StoreResource::collection(\Milestone\SS\Model\Store::requester()->active()->get()); });
-    Route::get('areas',function(){ return \Milestone\SS\Resources\AreaResource::collection(\Milestone\SS\Model\Area::requester()->active()->get()); });
-    Route::get('customers',function(){ return \Milestone\SS\Resources\CustomerResource::collection(\Milestone\SS\Model\Customer::requesterArea()->get()); });
-    Route::get('transaction/{id}',function($id){ return new \Milestone\SS\Resources\TransactionResource(\Milestone\SS\Model\Transaction::with('Details')->find($id)); });
+    Route::group([
+        'middleware' => 'api',
+    ],function(){
+        Route::get('stores',function(){ return \Milestone\SS\Resources\StoreResource::collection(\Milestone\SS\Model\Store::requester()->active()->get()); });
+        Route::get('areas',function(){ return \Milestone\SS\Resources\AreaResource::collection(\Milestone\SS\Model\Area::requester()->active()->get()); });
+        Route::get('customers',function(){ return \Milestone\SS\Resources\CustomerResource::collection(\Milestone\SS\Model\Customer::requesterArea()->get()); });
+        Route::get('transaction/{id}',function($id){ return new \Milestone\SS\Resources\TransactionResource(\Milestone\SS\Model\Transaction::with('Details')->find($id)); });
+    });
 });
