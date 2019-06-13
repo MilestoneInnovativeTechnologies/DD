@@ -34,4 +34,11 @@
         {
             return ['id','area','user'];
         }
+
+        public function preExportGet($query){
+            return (request()->_user) ? $query->where('user',request()->_user) : $query;
+        }
+        public function preExportUpdate($query){
+            return (request()->_user) ? $query->where('user',request()->_user) : $query;
+        }
     }
