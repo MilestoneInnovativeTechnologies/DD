@@ -18,7 +18,7 @@
 
         public function getImportAttributes()
         {
-            return ['docno','date','user','customer','fycode','fncode','status'];
+            return ['docno','date','user','customer','fycode','fncode','status','_ref'];
         }
 
         public function getImportMappings()
@@ -30,7 +30,8 @@
                 'fncode' => 'FNCODE',
                 'user' => 'getUserID',
                 'customer' => 'getCustomerID',
-                'status' => 'getStatus'
+                'status' => 'getStatus',
+                '_ref' => 'getReference'
             ];
         }
 
@@ -48,6 +49,9 @@
         public function getStatus($record){
             return $record['CANCEL'] === 'No' ? 'Active' : 'Inactive';
         }
+        public function getReference($record){
+            return implode('',['U',$this->getUserID($record),'T',intval(microtime(true)*10000)]);
+        }
 
         public function getPrimaryIdFromImportRecord($data)
         {
@@ -60,7 +64,6 @@
         {
             // TODO: Implement getExportMappings() method.
         }
-
         public function getExportAttributes()
         {
             // TODO: Implement getExportAttributes() method.

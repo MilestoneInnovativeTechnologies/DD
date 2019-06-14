@@ -11,6 +11,7 @@
     class piidata implements Table
     {
         public $product_cache = null;
+        private $so_ref = [];
 
         public function getModel()
         {
@@ -19,7 +20,7 @@
 
         public function getImportAttributes()
         {
-            return ['so','product','rate','quantity'];
+            return ['so','product','rate','quantity','_ref'];
         }
 
         public function getImportMappings()
@@ -28,14 +29,20 @@
                 'rate' => 'RATE',
                 'quantity' => 'QTY',
                 'so' => 'getSO',
-                'product' => 'getProductID'
+                'product' => 'getProductID',
+                '_ref' => 'getRef'
             ];
         }
 
         public function getSO($record){
             list($fycode,$fncode,$docno) = array_values(Arr::only($record,['FYCODE','FNCODE','DOCNO']));
             $so = SalesOrder::where(compact('fycode','fncode','docno'))->first();
-            return $so ? $so->id : null;
+            $id = $so ? $so->id : null;
+            if($id) $this->so_ref[implode('-',[$fycode,$fncode,$docno])] = $so->_ref;
+            return $id;
+        }
+        public function getRef($record){
+            return $this->so_ref[implode('-',array_values(Arr::only($record,['FYCODE','FNCODE','DOCNO'])))];
         }
 
         public function getProductID($record){
