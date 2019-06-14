@@ -22,6 +22,7 @@ class CreateSalesOrderTable extends Migration
             $table->char('fycode', '5')->nullable()->index();
             $table->char('fncode', '5')->nullable()->index();
             $table->enum('progress', ['Incomplete','Partial','Completed'])->nullable()->default('Incomplete');
+            $table->char('_ref', '30')->nullable()->index();
             $table->enum('status', ['Active','Inactive'])->nullable()->default('Active');
             $table->audit();
         });
