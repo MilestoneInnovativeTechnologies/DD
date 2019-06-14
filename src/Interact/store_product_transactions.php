@@ -2,6 +2,7 @@
 
     namespace Milestone\SS\Interact;
 
+    use Illuminate\Support\Arr;
     use Illuminate\Support\Facades\Auth;
     use Milestone\Interact\Table;
     use Milestone\SS\Model\StoreProductTransaction;
@@ -21,25 +22,26 @@
 
         public function getImportMappings()
         {
-            return ['_ref' => 'getProperReference'];
+            //
         }
 
         public function getPrimaryIdFromImportRecord($data)
         {
+            return Arr::get(StoreProductTransaction::where('_ref',$data['_ref'])->first(),'id',null);
         }
 
         public function getExportMappings()
         {
-            return ['id' => 'getProperReference'];
+            return ['id' => 'getReference'];
         }
 
         public function getExportAttributes()
         {
-            return ['id','store','product','direction','quantity','user','nature','date','type','_ref'];
+            return ['id','store','product','direction','quantity','user','nature','date','type'];
         }
 
-        public function getProperReference($record){
-            return $record['_ref'] ?: implode('',['U',$record['user'],'T',intval(microtime(true)*10000)]);
+        public function getReference($record){
+            return $record['_ref'];
         }
 
         public function preExportGet($query){
