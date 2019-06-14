@@ -32,16 +32,12 @@
 
         public function getExportMappings()
         {
-            return ['id' => 'getReference'];
+            //
         }
 
         public function getExportAttributes()
         {
-            return ['id','store','product','direction','quantity','user','nature','date','type'];
-        }
-
-        public function getReference($record){
-            return $record['_ref'];
+            return ['_ref','store','product','direction','quantity','user','nature','date','type'];
         }
 
         public function preExportGet($query){

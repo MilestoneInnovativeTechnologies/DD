@@ -6,7 +6,6 @@
     use Illuminate\Support\Facades\Auth;
     use Milestone\Interact\Table;
     use Milestone\SS\Model\Transaction;
-    use Milestone\SS\Model\User;
 
     class transactions implements Table
     {
@@ -32,16 +31,12 @@
 
         public function getExportMappings()
         {
-            return ['id' => 'recordReference'];
+            //
         }
 
         public function getExportAttributes()
         {
-            return ['id','user','docno','date','customer','fycode','fncode'];
-        }
-
-        public function recordReference($record){
-            return $record['_ref'];
+            return ['_ref','user','docno','date','customer','fycode','fncode'];
         }
 
         public function preExportGet($query){

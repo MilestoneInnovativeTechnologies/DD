@@ -31,16 +31,12 @@
 
         public function getExportMappings()
         {
-            return ['id' => 'recordReference'];
+            //
         }
 
         public function getExportAttributes()
         {
-            return ['id','docno','date','user','customer','fycode','fncode','progress','_ref'];
-        }
-
-        public function recordReference($record){
-            return $record['_ref'];
+            return ['docno','date','user','customer','fycode','fncode','progress','_ref'];
         }
 
         public function preExportGet($query){
