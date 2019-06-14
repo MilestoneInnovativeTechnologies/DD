@@ -11,4 +11,11 @@ class UserStoreArea extends Model
     public function Store(){ return $this->belongsTo(Store::class,'store'); }
     public function Area(){ return $this->belongsTo(Area::class,'area'); }
     public function User(){ return $this->belongsTo(User::class,'user'); }
+    public function AssignedAreas(){ return $this->hasMany(AreaUser::class,'area','area'); }
+    public function Customers(){ return $this->belongsToMany(User::class,'area_users','area','user','area','id'); }
+
+    public function scopeAssigned($Q){
+        if(!request()->user()->id) return $Q;
+        return $Q->where('user',request()->user()->id);
+    }
 }

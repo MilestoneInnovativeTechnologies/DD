@@ -18,6 +18,7 @@ class User extends AppframeUser
     public function Settings(){ return $this->hasMany(UserSetting::class,'user')->with(['Settings']); }
     public function StoreAndArea(){ return $this->hasMany(UserStoreArea::class,'user')->with(['Store','Area']); }
     public function Transactions(){ return $this->hasMany(Transaction::class,'customer'); }
+    public function AreaCustomers(){ return $this->hasManyThrough(AreaUser::class,UserStoreArea::class,'user','area','id','area'); }
 
     public function Groups(){ return $this->belongsToMany(Group::class,'__group_users','user','group'); }
 
