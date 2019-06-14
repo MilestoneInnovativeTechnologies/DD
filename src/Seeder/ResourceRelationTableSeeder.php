@@ -47,7 +47,7 @@ class ResourceRelationTableSeeder extends Seeder
             ->create([	'id' => '308129', 	'resource' => '305111', 	'name' => 'Pricelist', 	'description' => 'Details of pricelist this item belongs to', 	'method' => 'Pricelist', 	'type' => 'belongsTo', 	'relate_resource' => '305110', 									])
             ->create([	'id' => '308130', 	'resource' => '305111', 	'name' => 'Product', 	'description' => 'Details of product this item consist of', 	'method' => 'Product', 	'type' => 'belongsTo', 	'relate_resource' => '305109', 									])
             ->create([	'id' => '308131', 	'resource' => '305114', 	'name' => 'Area', 	'description' => 'Details of area', 	'method' => 'Area', 	'type' => 'belongsTo', 	'relate_resource' => '305113', 									])
-            ->create([	'id' => '308132', 	'resource' => '305114', 	'name' => 'User', 	'description' => 'Details of user', 	'method' => 'User', 	'type' => 'belongsTo', 	'relate_resource' => '305101', 									])
+            ->create([	'id' => '308132', 	'resource' => '305114', 	'name' => 'Customer', 	'description' => 'Details of customer', 	'method' => 'Customer', 	'type' => 'belongsTo', 	'relate_resource' => '305101', 									])
             ->create([	'id' => '308133', 	'resource' => '305113', 	'name' => 'User', 	'description' => 'Details of user', 	'method' => 'User', 	'type' => 'belongsToMany', 	'relate_resource' => '305101', 									])
             ->create([	'id' => '308134', 	'resource' => '305103', 	'name' => 'Users', 	'description' => 'Users list corresponding to a settings', 	'method' => 'Users', 	'type' => 'hasMany', 	'relate_resource' => '305115', 									])
             ->create([	'id' => '308135', 	'resource' => '305101', 	'name' => 'Area', 	'description' => 'Details of area', 	'method' => 'Area', 	'type' => 'belongsToMany', 	'relate_resource' => '305113', 									])
@@ -73,6 +73,12 @@ class ResourceRelationTableSeeder extends Seeder
             ->create([	'id' => '308155', 	'resource' => '305127', 	'name' => 'Product', 	'description' => 'Product details of an sales order item', 	'method' => 'Product', 	'type' => 'belongsTo', 	'relate_resource' => '305109', 									])
             ->create([	'id' => '308156', 	'resource' => '305128', 	'name' => 'IN', 	'description' => 'Stock in transactions', 	'method' => 'IN', 	'type' => 'belongsTo', 	'relate_resource' => '305121', 									])
             ->create([	'id' => '308157', 	'resource' => '305128', 	'name' => 'OUT', 	'description' => 'Stock out transactions', 	'method' => 'OUT', 	'type' => 'belongsTo', 	'relate_resource' => '305121', 									])
+            ->create([	'id' => '308158', 	'resource' => '305126', 	'name' => 'Customer', 	'description' => 'The customer to which this sales order belongs', 	'method' => 'Customer', 	'type' => 'belongsTo', 	'relate_resource' => '305101', 									])
+            ->create([	'id' => '308159', 	'resource' => '305116', 	'name' => 'AssignedAreas', 	'description' => 'The user_areas which assigned to this record', 	'method' => 'AssignedAreas', 	'type' => 'hasMany', 	'relate_resource' => '305114', 									])
+            ->create([	'id' => '308160', 	'resource' => '305114', 	'name' => 'Users', 	'description' => 'The executives assigned to a area_user', 	'method' => 'Users', 	'type' => 'hasMany', 	'relate_resource' => '305116', 									])
+            ->create([	'id' => '308161', 	'resource' => '305116', 	'name' => 'Customers', 	'description' => 'Customers who are in selected records area', 	'method' => 'Customers', 	'type' => 'belongsToMany', 	'relate_resource' => '305101', 									])
+            ->create([	'id' => '308162', 	'resource' => '305101', 	'name' => 'AreaCustomers', 	'description' => 'List of customers belongs to the area which are assigned to a user', 	'method' => 'AreaCustomers', 	'type' => 'hasManyThrough', 	'relate_resource' => '305114', 									])
+            ->create([	'id' => '308163', 	'resource' => '305127', 	'name' => 'SalesOrder', 	'description' => 'Sales order details for a so item', 	'method' => 'SalesOrder', 	'type' => 'belongsTo', 	'relate_resource' => '305126', 									])
         ;
         \DB::statement('set foreign_key_checks = ' . $_);
     }
