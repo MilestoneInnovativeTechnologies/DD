@@ -2,18 +2,20 @@
 
     namespace Milestone\SS\Interact;
 
+    use Illuminate\Support\Facades\Auth;
     use Milestone\Interact\Table;
+    use Milestone\SS\Model\SalesOrder;
 
     class sales_order implements Table
     {
         public function getModel()
         {
-            return \Milestone\SS\Model\SalesOrder::class;
+            return SalesOrder::class;
         }
 
         public function getImportAttributes()
         {
-            return ['docno','date','user','customer','fycode','fncode','progress'];
+            return ['docno','date','user','customer','fycode','fncode','progress','_ref'];
         }
 
         public function getImportMappings()
@@ -23,17 +25,30 @@
 
         public function getPrimaryIdFromImportRecord($data)
         {
-            $docno = \Milestone\SS\Model\SalesOrder::where(['docno' => $data['docno']])->first();
-            return $docno ? $docno->id : null;
+            $SO = SalesOrder::where(['_ref' => $data['_ref'],'user' => $data['user']])->first();
+            return $SO ? $SO->id : null;
         }
 
         public function getExportMappings()
         {
-            // TODO: Implement getExportMappings() method.
+            return ['id' => 'recordReference'];
         }
 
         public function getExportAttributes()
         {
-            return ['docno','date','user','customer','fycode','fncode','progress'];
+            return ['id','docno','date','user','customer','fycode','fncode','progress','_ref'];
+        }
+
+        public function recordReference($record){
+            return $record['_ref'];
+        }
+
+        public function preExportGet($query){
+            if (request()->_user) Auth::loginUsingId(request()->_user); else return $query;
+            return $query->assignedAreaCustomer();
+        }
+        public function preExportUpdate($query){
+            if (request()->_user) Auth::loginUsingId(request()->_user); else return $query;
+            return $query->assignedAreaCustomer();
         }
     }

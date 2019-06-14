@@ -2,48 +2,62 @@
 
     namespace Milestone\SS\Interact;
 
-    use Illuminate\Support\Arr;
+    use Illuminate\Support\Facades\Auth;
     use Milestone\Interact\Table;
     use Milestone\SS\Model\SalesOrder;
+    use Milestone\SS\Model\SalesOrderItem;
 
     class sales_order_items implements Table
     {
         public function getModel()
         {
-            return \Milestone\SS\Model\SalesOrderItem::class;
+            return SalesOrderItem::class;
         }
 
         public function getImportAttributes()
         {
-            return ['so','product','rate','quantity'];
+            return ['so','product','rate','quantity','_ref'];
         }
 
         public function getImportMappings()
         {
-            return ['so' => 'getSOFromDocNo'];
+            return ['so' => 'getSOId'];
         }
 
         public function getPrimaryIdFromImportRecord($data)
         {
-            $docno = \Milestone\SS\Model\SalesOrder::where(['docno' => $data['docno']])->first();
-            return $docno ? $docno->id : null;
+            $SO = SalesOrder::where('_ref',$data['_ref'])->first();
+            return $SO ? $SO->id : null;
         }
 
         public function getExportMappings()
         {
-            ['so' => 'getDocNoFromSO'];
+            return ['so' => 'recordReference'];
         }
 
         public function getExportAttributes()
         {
-            return ['so','product','rate','quantity'];
+            return ['so','product','rate','quantity','_ref'];
         }
 
-        public function getDocNoFromSO($record){
-            return Arr::get(SalesOrder::find($record['so']),'docno');
+        public function recordReference($record){
+            return $record['_ref'];
         }
 
-        public function getSOFromDocNo($record){
-            return Arr::get(SalesOrder::where('docno',$record['so'])->first(),'id');
+        public function getSOId($record){
+            return $this->getPrimaryIdFromImportRecord($record);
+        }
+
+        public function preExportGet($query){
+            if (request()->_user) Auth::loginUsingId(request()->_user); else return $query;
+            return $query->whereHas('SalesOrder',function ($Q){
+                $Q->assignedAreaCustomer();
+            });
+        }
+        public function preExportUpdate($query){
+            if (request()->_user) Auth::loginUsingId(request()->_user); else return $query;
+            return $query->whereHas('SalesOrder',function ($Q){
+                $Q->assignedAreaCustomer();
+            });
         }
     }

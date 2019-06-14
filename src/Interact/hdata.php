@@ -20,12 +20,13 @@
 
         public function getImportAttributes()
         {
-            return ['user','fycode','fncode','docno','date','customer','status'];
+            return ['_ref','user','fycode','fncode','docno','date','customer','status'];
         }
 
         public function getImportMappings()
         {
             return [
+                '_ref' => 'getReference',
                 'docno' => 'DOCNO',
                 'date' => 'DOCDATE',
                 'fycode' => 'FYCODE',
@@ -36,6 +37,9 @@
             ];
         }
 
+        public function getReference($data){
+            return implode('',['U',$this->getUserID($data),'T',intval(microtime(true)*10000)]);
+        }
         public function getUserID($data){
             $user = User::where('reference',$data['CREATED_USER'])->first();
             return $user ? $user->id : null;
