@@ -23,7 +23,8 @@ use Illuminate\Http\Request;
 //});
 
 Route::group([
-    'prefix' => 'api'
+    'prefix' => 'api',
+    'middleware' => [\App\Http\Middleware\APIDebug::class]
 ],function(){
     Route::post('login',function(Request $request){
         if(\Illuminate\Support\Facades\Auth::attempt($request->only(['email', 'password']))){
