@@ -2,6 +2,7 @@
 
     namespace Milestone\SS\Interact;
 
+    use Illuminate\Support\Facades\Auth;
     use Milestone\Interact\Table;
 
     class area_users implements Table
@@ -36,9 +37,13 @@
         }
 
         public function preExportGet($query){
-            return (request()->_user) ? $query->where('user',request()->_user) : $query;
+            if(!request()->_user) return $query;
+            Auth::loginUsingId(request()->_user);
+            return $query->assigned();
         }
         public function preExportUpdate($query){
-            return (request()->_user) ? $query->where('user',request()->_user) : $query;
+            if(!request()->_user) return $query;
+            Auth::loginUsingId(request()->_user);
+            return $query->assigned();
         }
     }
