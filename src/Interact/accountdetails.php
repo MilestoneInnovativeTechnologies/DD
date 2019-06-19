@@ -18,7 +18,7 @@
 
         public function getImportAttributes()
         {
-            return ['name','email','password','reference'];
+            return ['name','email','phone','password','reference'];
         }
 
         public function getImportMappings()
