@@ -26,6 +26,7 @@
             return [
                 'reference' => 'CODE',
                 'name' => 'DISPLAYNAME',
+                'phone' => 'PHONE',
                 'email' => 'getEmail',
                 'password' => 'getPassword',
             ];
