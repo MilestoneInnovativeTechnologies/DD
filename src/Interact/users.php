@@ -32,6 +32,6 @@
 
         public function getExportAttributes()
         {
-            return ['id','name'];
+            return ['id','name','code','phone','outstanding_normal','outstanding_overdue','outstanding_critical'];
         }
     }
