@@ -29,11 +29,11 @@
 
         public function getExportMappings()
         {
-            // TODO: Implement getExportMappings() method.
+            return [];
         }
 
         public function getExportAttributes()
         {
-            // TODO: Implement getExportAttributes() method.
+            return array_merge(['id'],array_slice($this->getImportAttributes(),1));
         }
     }
