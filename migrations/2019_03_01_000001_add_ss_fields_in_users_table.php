@@ -16,6 +16,7 @@ class AddSsFieldsInUsersTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->char('reference',15)->nullable()->index()->after('email');
             $table->string('api_token',128)->nullable()->index()->after('email');
+            $table->string('phone',128)->nullable()->index()->after('email');
         });
     }
 
@@ -27,7 +28,7 @@ class AddSsFieldsInUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn(['reference','api_token']);
+            $table->dropColumn(['reference','api_token','phone']);
         });
     }
 }
