@@ -42,8 +42,9 @@
         }
 
         public function recordImported($record){
+            if($record['FNCODE'] != 'BR1' || $record['TYPE'] === 'System') return;
             list('DOCNO' => $docno, 'FYCODE' => $fycode, 'FNCODE' => $fncode, 'NARRATION2' => $bank) = $record;
-            $pri = compact($docno,$fycode,$fncode); $data = compact($bank);
+            $pri = compact('docno','fycode','fncode'); $data = compact('bank');
             Receipt::where($pri)->update($data);
         }
     }

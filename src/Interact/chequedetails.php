@@ -43,7 +43,7 @@
 
         public function recordImported($record){
             list('DOCNO' => $docno, 'FYCODE' => $fycode, 'FNCODE' => $fncode, 'CHQNO' => $cheque, 'CHQDATE' => $cheque_date) = $record;
-            $pri = compact($docno,$fycode,$fncode); $data = compact($cheque,$cheque_date);
+            $pri = compact('docno','fycode','fncode'); $data = compact('cheque','cheque_date');
             Receipt::where($pri)->update($data);
         }
     }

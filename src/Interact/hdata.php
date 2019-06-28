@@ -106,7 +106,7 @@
             $user = $this->getUserID($record); $mode = substr($fncode,0,2) == 'CR' ? 'Cash' : 'Cheque';
             $customer = $this->getCustomerID($record); $status = $this->getStatus($record);
             $_ref = $this->getReference($record);
-            $data_pri = compact($docno,$fycode,$fncode); $data = compact($user,$mode,$customer,$date,$amount,$status,$_ref);
+            $data_pri = compact('docno','fycode','fncode'); $data = compact('user','mode','customer','date','amount','status','_ref');
             Receipt::updateOrCreate($data_pri,$data);
         }
 
