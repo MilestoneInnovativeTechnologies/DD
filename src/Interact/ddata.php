@@ -2,7 +2,9 @@
 
     namespace Milestone\SS\Interact;
 
+    use Illuminate\Support\Arr;
     use Milestone\Interact\Table;
+    use Milestone\SS\Model\Receipt;
 
     class ddata implements Table
     {
@@ -24,7 +26,8 @@
         public function getPrimaryIdFromImportRecord($data)
         {
             $pks = ['COCODE', 'BRCODE', 'FYCODE', 'FNCODE', 'DOCNO', 'SRNO'];
-            $ddata = \Milestone\SS\Model\DData::where($pks)->first();
+            $priData = Arr::only($data,$pks);
+            $ddata = \Milestone\SS\Model\DData::where($priData)->first();
             return $ddata ? $ddata->id : null;
         }
 
@@ -36,5 +39,11 @@
         public function getExportAttributes()
         {
             // TODO: Implement getExportAttributes() method.
+        }
+
+        public function recordImported($record){
+            list('DOCNO' => $docno, 'FYCODE' => $fycode, 'FNCODE' => $fncode, 'NARRATION2' => $bank) = $record;
+            $pri = compact($docno,$fycode,$fncode); $data = compact($bank);
+            Receipt::where($pri)->update($data);
         }
     }

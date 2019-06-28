@@ -2,7 +2,9 @@
 
     namespace Milestone\SS\Interact;
 
+    use Illuminate\Support\Arr;
     use Milestone\Interact\Table;
+    use Milestone\SS\Model\Receipt;
 
     class chequedetails implements Table
     {
@@ -34,7 +36,14 @@
         public function getPrimaryIdFromImportRecord($data)
         {
             $pks = ['COCODE', 'BRCODE', 'FYCODE', 'FNCODE', 'DOCNO', 'SRNO', 'VERSION'];
-            $cheque = \Milestone\SS\Model\ChequeDetail::where($pks)->first();
+            $priData = Arr::only($data,$pks);
+            $cheque = \Milestone\SS\Model\ChequeDetail::where($priData)->first();
             return $cheque ? $cheque->id : null;
+        }
+
+        public function recordImported($record){
+            list('DOCNO' => $docno, 'FYCODE' => $fycode, 'FNCODE' => $fncode, 'CHQNO' => $cheque, 'CHQDATE' => $cheque_date) = $record;
+            $pri = compact($docno,$fycode,$fncode); $data = compact($cheque,$cheque_date);
+            Receipt::where($pri)->update($data);
         }
     }

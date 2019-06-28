@@ -18,6 +18,7 @@ class CreateFiscalyearmasterTable extends Migration
             $table->char('code', '15')->nullable()->index();
             $table->char('cocode', '5')->nullable()->index();
             $table->string('name', '64')->nullable()->index();
+            $table->string('abr', '15')->nullable();
             $table->datetime('start_date')->nullable();
             $table->datetime('end_date')->nullable();
             $table->enum('status', ['ReadWrite','ReadOnly','Inactive'])->default('ReadWrite')->nullable();

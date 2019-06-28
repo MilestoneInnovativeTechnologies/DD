@@ -3,6 +3,7 @@
     namespace Milestone\SS\Interact;
 
     use Milestone\Appframe\Model\User;
+    use Milestone\SS\Model\Receipt;
     use Milestone\SS\Model\StockTransfer;
     use Milestone\SS\Model\Transaction;
     use Milestone\Interact\Table;
@@ -11,6 +12,8 @@
     {
         private $fn_in = 'MT1';
         private $fn_out = 'MT2';
+        private $cr = 'CR';
+        private $br = 'BR';
         private $in_cache = [];
 
         public function getModel()
@@ -20,7 +23,7 @@
 
         public function getImportAttributes()
         {
-            return ['_ref','user','fycode','fncode','docno','date','customer','status'];
+            return ['_ref','user','fycode','fncode','docno','date','customer','payment_type','status'];
         }
 
         public function getImportMappings()
@@ -33,6 +36,7 @@
                 'fncode' => 'FNCODE',
                 'user' => 'getUserID',
                 'customer' => 'getCustomerID',
+                'payment_type' => 'PAYMENTMODE',
                 'status' => 'getStatus'
             ];
         }
@@ -60,12 +64,15 @@
         }
 
         public function recordImported($record,$id){
-            if($record['FNCODE'] == $this->fn_out){
+            $fncode = $record['FNCODE'];
+            if($fncode == $this->fn_out){
                 $stock_transfer = new StockTransfer;
                 $stock_transfer->create(['out' => $id]);
-            } elseif($record['FNCODE'] == $this->fn_in){
+            } elseif($fncode == $this->fn_in){
                 $docno = $record['REFNO']; $fycode = $record['FYCODE'];
                 $this->in_cache[$fycode][$docno] = $id;
+            } elseif (in_array(substr($fncode,0,2),[$this->cr,$this->br])){
+                $this->addReceipt($record);
             }
         }
 
@@ -92,6 +99,15 @@
                 }
             }
             return;
+        }
+
+        private function addReceipt($record){
+            list('DOCNO' => $docno,'FYCODE' => $fycode, 'FNCODE' => $fncode, 'DOCDATE' => $date, 'AMT' => $amount) = $record;
+            $user = $this->getUserID($record); $mode = substr($fncode,0,2) == 'CR' ? 'Cash' : 'Cheque';
+            $customer = $this->getCustomerID($record); $status = $this->getStatus($record);
+            $_ref = $this->getReference($record);
+            $data_pri = compact($docno,$fycode,$fncode); $data = compact($user,$mode,$customer,$date,$amount,$status,$_ref);
+            Receipt::updateOrCreate($data_pri,$data);
         }
 
         public function getExportMappings()

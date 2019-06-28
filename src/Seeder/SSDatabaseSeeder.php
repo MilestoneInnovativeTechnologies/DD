@@ -41,6 +41,8 @@
                 SalesOrderTableSeeder::class,
                 SalesOrderItemTableSeeder::class,
                 StockTransferTableSeeder::class,
+                ReceiptTableSeeder::class,
+                FnReserveTableSeeder::class,
                 WBinTableSeeder::class
             ]);
         }

@@ -32,6 +32,6 @@
 
         public function getExportAttributes()
         {
-            return ['id','name','uom','group1','group2','group3','group4'];
+            return ['id','name','uom','narration','group1','group2','group3','group4'];
         }
     }

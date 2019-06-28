@@ -17,11 +17,12 @@ class CreateTransactionDetailsTable extends Migration
             $table->bigIncrements('id');
             $table->foreignCascade('transaction', 'transactions');
             $table->foreignCascade('spt', 'store_product_transactions');
-            $table->decimal('price', 30,10)->default(0);
+            $table->decimal('amount', 30,10)->default(0);
             $table->decimal('tax', 30,10)->default(0);
             $table->decimal('discount', 30,10)->default(0);
             $table->decimal('total', 30,10)->default(0);
-            $table->char('_ref', '30')->nullable()->index();
+            $table->char('_ref_trans', '30')->nullable()->index();
+            $table->char('_ref_spt', '30')->nullable()->index();
             $table->audit();
         });
     }

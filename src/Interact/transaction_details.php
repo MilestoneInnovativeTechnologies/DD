@@ -18,7 +18,7 @@
 
         public function getImportAttributes()
         {
-            return ['transaction','spt','price','tax','discount','total'];
+            return ['transaction','spt','amount','tax','discount','total'];
         }
 
         public function getImportMappings()
@@ -36,14 +36,14 @@
         public function getExportMappings()
         {
             return [
-                'transaction' => 'getTransactionReference',
-                'spt' => 'getSPTReference'
+                'transaction' => '_ref_trans',
+                'spt' => '_ref_spt'
             ];
         }
 
         public function getExportAttributes()
         {
-            return ['transaction','spt','price','tax','discount','total'];
+            return ['transaction','spt','amount','tax','discount','total'];
         }
 
         public function getTransactionReference($record){

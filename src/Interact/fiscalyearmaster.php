@@ -13,7 +13,7 @@
 
         public function getImportAttributes()
         {
-            return ['code','cocode','name','start_date','end_date','status'];
+            return ['code','cocode','name','abr','start_date','end_date','status'];
         }
 
         public function getImportMappings()
@@ -22,6 +22,7 @@
                 'code' => 'CODE',
                 'cocode' => 'COCODE',
                 'name' => 'NAME',
+                'abr' => 'ABR',
                 'start_date' => 'START_DATE',
                 'end_date' => 'END_DATE',
                 'status' => 'STATUS'
@@ -41,6 +42,6 @@
 
         public function getExportAttributes()
         {
-            return ['id','name','start_date','end_date'];
+            return ['id','name','abr','start_date','end_date'];
         }
     }

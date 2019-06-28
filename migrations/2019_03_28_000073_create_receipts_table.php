@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTransactionsTable extends Migration
+class CreateReceiptsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,20 @@ class CreateTransactionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('transactions', function (Blueprint $table) {
+        Schema::create('receipts', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->char('_ref', '30')->nullable()->index();
-            $table->foreignNullable('user', 'users');
             $table->char('docno', '20')->nullable()->index();
-            $table->timestamp('date')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->foreignNullable('customer', 'users');
             $table->char('fycode', '5')->nullable()->index();
             $table->char('fncode', '5')->nullable()->index();
-            $table->enum('payment_type', ['Cash','Credit','Card','Cheque','DemandDraft','Digital Wallet','Multi'])->nullable()->default('Cash');
+            $table->foreignNullable('user', 'users');
+            $table->enum('mode', ['Cash','Cheque'])->nullable()->default('Cash');
+            $table->foreignNullable('customer', 'users');
+            $table->timestamp('date')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->decimal('amount', 30,10)->default(0);
+            $table->string('bank', '60')->nullable();
+            $table->string('cheque', '60')->nullable();
+            $table->datetime('cheque_date')->nullable();
+            $table->char('_ref', '30')->nullable()->index();
             $table->enum('status', ['Active','Inactive'])->nullable()->default('Active');
             $table->audit();
         });
@@ -35,6 +39,6 @@ class CreateTransactionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('transactions');
+        Schema::dropIfExists('receipts');
     }
 }

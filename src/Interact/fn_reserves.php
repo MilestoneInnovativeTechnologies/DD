@@ -3,35 +3,37 @@
     namespace Milestone\SS\Interact;
 
     use Milestone\Interact\Table;
+    use Milestone\SS\Model\FnReserve;
 
-    class stores implements Table
+    class fn_reserves implements Table
     {
         public function getModel()
         {
-            return \Milestone\SS\Model\Store::class;
+            return FnReserve::class;
         }
 
         public function getImportAttributes()
         {
-            return [];
+            return ['id','fncode','user','store','start_num','end_num','quantity','current','progress','status'];
         }
 
         public function getImportMappings()
         {
-            return [];
+            //
         }
 
         public function getPrimaryIdFromImportRecord($data)
         {
+            return $data['id'];
         }
 
         public function getExportMappings()
         {
-            return [];
+            //
         }
 
         public function getExportAttributes()
         {
-            return ['id','name','cocode','co_abr','brcode','br_abr'];
+            return ['id','fncode','user','store','start_num','end_num','quantity','current','progress','status'];
         }
     }

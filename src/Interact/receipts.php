@@ -5,18 +5,18 @@
     use Illuminate\Support\Arr;
     use Illuminate\Support\Facades\Auth;
     use Milestone\Interact\Table;
-    use Milestone\SS\Model\Transaction;
+    use Milestone\SS\Model\Receipt;
 
-    class transactions implements Table
+    class receipts implements Table
     {
         public function getModel()
         {
-            return Transaction::class;
+            return Receipt::class;
         }
 
         public function getImportAttributes()
         {
-            return ['user','docno','date','customer','fycode','fncode','payment_type','_ref'];
+            return ['docno','mode','customer','date','user','amount','bank','cheque','cheque_date','_ref','status'];
         }
 
         public function getImportMappings()
@@ -26,7 +26,7 @@
 
         public function getPrimaryIdFromImportRecord($data)
         {
-            return Arr::get(Transaction::where('_ref',$data['_ref'])->first(),'id',null);
+            return Arr::get(Receipt::where('_ref',$data['_ref'])->first(),'id',null);
         }
 
         public function getExportMappings()
@@ -36,15 +36,15 @@
 
         public function getExportAttributes()
         {
-            return ['_ref','user','docno','date','customer','fycode','fncode','payment_type'];
+            return ['docno','mode','customer','date','user','amount','bank','cheque','cheque_date','_ref','status'];
         }
 
         public function preExportGet($query){
             if (request()->_user) Auth::loginUsingId(request()->_user); else return $query;
-            return $query->assignedCustomerTransactions()->orWhere('fncode','like','MT%');
+            return $query->assignedCustomerReceipts();
         }
         public function preExportUpdate($query){
             if (request()->_user) Auth::loginUsingId(request()->_user); else return $query;
-            return $query->assignedCustomerTransactions()->orWhere('fncode','like','MT%');
+            return $query->assignedCustomerReceipts();
         }
     }

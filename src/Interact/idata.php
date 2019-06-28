@@ -16,7 +16,8 @@
     {
         private $cache = [
             'nature' => [],
-            'type' => []
+            'type' => [],
+            '_ref_spt' => null,
         ];
 
         public function preImport(){
@@ -51,7 +52,8 @@
         }
 
         public function getReference($data){
-            return implode('',['U',$this->getUserID($data),'T',intval(microtime(true)*10000)]);
+            $ref = implode('',['U',$this->getUserID($data),'T',intval(microtime(true)*10000)]);
+            $this->cache['_ref_spt'] = $ref; return $ref;
         }
         public function getStoreID($data){
             $store = Store::where(['catcode' => $data['STRCATCODE'],'code' => $data['STRCODE']])->first();
@@ -106,9 +108,10 @@
                 'DISCOUNT01' => $discount1, 'DISCOUNT02' => $discount2, 'DISCOUNT03' => $discount3,
                 ) = $record;
             $transaction = Transaction::where(compact('docno','fncode','fycode'))->first();
+            $_ref_spt = $this->cache['_ref_spt'];
             if($transaction){
-                $price = $quantity * $rate; $discount = $discount1+$discount2+$discount3; $total = $price+$tax-$discount; $_ref = $transaction->_ref;
-                $transaction->Products()->attach([$id => compact('price','tax','discount','total','_ref')]);
+                $amount = $quantity * $rate; $discount = $discount1+$discount2+$discount3; $total = $amount+$tax-$discount; $_ref_trans = $transaction->_ref;
+                $transaction->Products()->attach([$id => compact('amount','tax','discount','total','_ref_trans','_ref_spt')]);
             }
         }
 
