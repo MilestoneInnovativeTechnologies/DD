@@ -6,6 +6,7 @@
     use Illuminate\Support\Facades\Auth;
     use Milestone\Interact\Table;
     use Milestone\SS\Model\Receipt;
+    use Milestone\SS\Model\User;
 
     class receipts implements Table
     {

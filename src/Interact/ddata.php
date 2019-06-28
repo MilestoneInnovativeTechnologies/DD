@@ -3,11 +3,15 @@
     namespace Milestone\SS\Interact;
 
     use Illuminate\Support\Arr;
+    use Milestone\Appframe\Model\User;
     use Milestone\Interact\Table;
     use Milestone\SS\Model\Receipt;
 
     class ddata implements Table
     {
+        private $cr = 'CR';
+        private $br = 'BR';
+
         public function getModel()
         {
             return \Milestone\SS\Model\DData::class;
@@ -42,9 +46,16 @@
         }
 
         public function recordImported($record){
-            if($record['FNCODE'] != 'BR1' || $record['TYPE'] === 'System') return;
+            if(!in_array(substr($record['FNCODE'],0,2),[$this->cr,$this->br]) || $record['TYPE'] === 'System') return;
             list('DOCNO' => $docno, 'FYCODE' => $fycode, 'FNCODE' => $fncode, 'NARRATION2' => $bank) = $record;
-            $pri = compact('docno','fycode','fncode'); $data = compact('bank');
+            $customer = $this->getCustomerID($record);
+            $pri = compact('docno','fycode','fncode'); $data = compact('bank','customer');
             Receipt::where($pri)->update($data);
         }
+
+        public function getCustomerID($data){
+            $user = User::where('reference',$data['ACCCODE'])->first();
+            return $user ? $user->id : null;
+        }
+
     }
