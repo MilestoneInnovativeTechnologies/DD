@@ -42,6 +42,6 @@
 
         public function getExportAttributes()
         {
-            return ['id','name','abr','start_date','end_date'];
+            return ['id','code','name','abr','start_date','end_date'];
         }
     }
