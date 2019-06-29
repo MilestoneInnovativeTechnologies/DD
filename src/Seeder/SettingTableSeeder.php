@@ -16,8 +16,8 @@ class SettingTableSeeder extends Seeder
         $_ = \DB::statement('SELECT @@GLOBAL.foreign_key_checks');
         \DB::statement('set foreign_key_checks = 0');
         \Milestone\SS\Model\Setting::truncate()
-            ->create([	'id' => '1', 	'name' => 'SALESB2BFNCODE', 	'description' => 'Function code used in sales form', 	'value' => 'SL1', 												])
-            ->create([	'id' => '2', 	'name' => 'SALESB2CFNCODE', 	'description' => 'Function code used in sales form B2C', 	'value' => 'SL2', 												])
+            ->create([	'id' => '1', 	'name' => 'SALESB2CFNCODE', 	'description' => 'Function code used in sales form', 	'value' => 'SL1', 												])
+            ->create([	'id' => '2', 	'name' => 'SALESB2BFNCODE', 	'description' => 'Function code used in sales form B2C', 	'value' => 'SL2', 												])
             ->create([	'id' => '3', 	'name' => 'SALESRETURNFNCODE', 	'description' => 'Function code used in sales return form', 	'value' => 'SL1', 												])
             ->create([	'id' => '4', 	'name' => 'SALESORDERFNCODE', 	'description' => 'Function code used in sales order form', 	'value' => 'SO1', 												])
             ->create([	'id' => '5', 	'name' => 'CASHRECEIPTFNCODE', 	'description' => 'Function code used in cash receipt form', 	'value' => 'CR1', 												])
