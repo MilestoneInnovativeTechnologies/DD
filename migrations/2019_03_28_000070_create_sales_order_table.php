@@ -21,6 +21,7 @@ class CreateSalesOrderTable extends Migration
             $table->foreignNullable('customer', 'users');
             $table->char('fycode', '5')->nullable()->index();
             $table->char('fncode', '5')->nullable()->index();
+            $table->enum('payment_type', ['Cash','Credit','Card','Cheque','DemandDraft','Digital Wallet','Multi'])->nullable()->default('Cash');
             $table->enum('progress', ['Incomplete','Partial','Completed'])->nullable()->default('Incomplete');
             $table->char('_ref', '30')->nullable()->index();
             $table->enum('status', ['Active','Inactive'])->nullable()->default('Active');

@@ -20,7 +20,7 @@
 
         public function getImportAttributes()
         {
-            return ['so','product','rate','quantity','_ref'];
+            return ['so','product','rate','quantity','tax','discount','total','_ref'];
         }
 
         public function getImportMappings()
@@ -28,12 +28,21 @@
             return [
                 'rate' => 'RATE',
                 'quantity' => 'QTY',
+                'tax' => 'TAX',
+                'discount' => 'getDiscount',
+                'total' => 'getTotal',
                 'so' => 'getSO',
                 'product' => 'getProductID',
                 '_ref' => 'getRef'
             ];
         }
 
+        public function getDiscount($record){
+            return 0;
+        }
+        public function getTotal($record){
+            return (floatval($record['QTY']) * floatval($record['RATE'])) + floatval($record['TAX']) - $this->getDiscount($record);
+        }
         public function getSO($record){
             list($fycode,$fncode,$docno) = array_values(Arr::only($record,['FYCODE','FNCODE','DOCNO']));
             $so = SalesOrder::where(compact('fycode','fncode','docno'))->first();

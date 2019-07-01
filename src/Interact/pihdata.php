@@ -18,7 +18,7 @@
 
         public function getImportAttributes()
         {
-            return ['docno','date','user','customer','fycode','fncode','status','_ref'];
+            return ['docno','date','user','customer','fycode','fncode','payment_type','status','_ref'];
         }
 
         public function getImportMappings()
@@ -28,6 +28,7 @@
                 'date' => 'DOCDATE',
                 'fycode' => 'FYCODE',
                 'fncode' => 'FNCODE',
+                'payment_type' => 'PAYMENTMODE',
                 'user' => 'getUserID',
                 'customer' => 'getCustomerID',
                 'status' => 'getStatus',

@@ -19,6 +19,9 @@ class CreateSalesOrderItemsTable extends Migration
             $table->foreignNullable('product', 'products');
             $table->decimal('rate', 30,10)->default(0);
             $table->decimal('quantity', 30,10)->default(1);
+            $table->decimal('tax', 30,10)->default(0);
+            $table->decimal('discount', 30,10)->default(0);
+            $table->decimal('total', 30,10)->default(0);
             $table->char('_ref', '30')->nullable()->index();
             $table->audit();
         });

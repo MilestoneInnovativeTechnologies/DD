@@ -15,7 +15,7 @@
 
         public function getImportAttributes()
         {
-            return ['docno','date','user','customer','fycode','fncode','progress','_ref'];
+            return ['docno','date','user','customer','fycode','fncode','payment_type','progress','_ref'];
         }
 
         public function getImportMappings()
@@ -36,7 +36,7 @@
 
         public function getExportAttributes()
         {
-            return ['docno','date','user','customer','fycode','fncode','progress','_ref'];
+            return ['docno','date','user','customer','fycode','fncode','payment_type','progress','_ref'];
         }
 
         public function preExportGet($query){

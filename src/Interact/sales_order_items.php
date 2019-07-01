@@ -16,7 +16,7 @@
 
         public function getImportAttributes()
         {
-            return ['so','product','rate','quantity','_ref'];
+            return ['so','product','rate','quantity','tax','discount','total','_ref'];
         }
 
         public function getImportMappings()
@@ -37,7 +37,7 @@
 
         public function getExportAttributes()
         {
-            return ['so','product','rate','quantity','_ref'];
+            return ['so','product','rate','quantity','tax','discount','total','_ref'];
         }
 
         public function recordReference($record){
