@@ -41,10 +41,10 @@
 
         public function preExportGet($query){
             if (request()->_user) Auth::loginUsingId(request()->_user); else return $query;
-            return $query->assignedAreaCustomer();
+            return $query->assignedAreaCustomer()->where('progress','!=','Completed');
         }
         public function preExportUpdate($query){
             if (request()->_user) Auth::loginUsingId(request()->_user); else return $query;
-            return $query->assignedAreaCustomer();
+            return $query->assignedAreaCustomer()->where('progress','!=','Completed');
         }
     }
