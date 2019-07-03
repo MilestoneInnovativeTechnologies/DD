@@ -47,6 +47,7 @@ class ResourceTableSeeder extends Seeder
             ->create([	'id' => '305129', 	'name' => 'WBin', 	'description' => 'Waste bin used while ePlus direct import', 	'title' => 'Waste Bin', 	'namespace' => 'Milestone\SS\Model', 	'table' => 'w_bin', 										])
             ->create([	'id' => '305130', 	'name' => 'Receipt', 	'description' => 'Receipts', 	'title' => 'Receipts', 	'namespace' => 'Milestone\SS\Model', 	'table' => 'receipts', 										])
             ->create([	'id' => '305131', 	'name' => 'FnReserve', 	'description' => 'Function Reserves', 	'title' => 'Function Reserves', 	'namespace' => 'Milestone\SS\Model', 	'table' => 'fn_reserves', 										])
+            ->create([	'id' => '305132', 	'name' => 'SalesOrderSale', 	'description' => 'Sales which done on Sales Order', 	'title' => 'Sales Order Sales', 	'namespace' => 'Milestone\SS\Model', 	'table' => 'sales_order_sales', 										])
         ;
         \DB::statement('set foreign_key_checks = ' . $_);
     }

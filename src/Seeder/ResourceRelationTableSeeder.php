@@ -80,6 +80,8 @@ class ResourceRelationTableSeeder extends Seeder
             ->create([	'id' => '308162', 	'resource' => '305101', 	'name' => 'AreaCustomers', 	'description' => 'List of customers belongs to the area which are assigned to a user', 	'method' => 'AreaCustomers', 	'type' => 'hasManyThrough', 	'relate_resource' => '305114', 									])
             ->create([	'id' => '308163', 	'resource' => '305127', 	'name' => 'SalesOrder', 	'description' => 'Sales order details for a so item', 	'method' => 'SalesOrder', 	'type' => 'belongsTo', 	'relate_resource' => '305126', 									])
             ->create([	'id' => '308164', 	'resource' => '305122', 	'name' => 'Transaction', 	'description' => 'Detail of transaction header', 	'method' => 'Transaction', 	'type' => 'belongsTo', 	'relate_resource' => '305121', 									])
+            ->create([	'id' => '308165', 	'resource' => '305132', 	'name' => 'SalesOrder', 	'description' => 'Sales order details', 	'method' => 'SalesOrder', 	'type' => 'belongsTo', 	'relate_resource' => '305126', 									])
+            ->create([	'id' => '308166', 	'resource' => '305132', 	'name' => 'Transaction', 	'description' => 'Detail of transaction', 	'method' => 'Transaction', 	'type' => 'belongsTo', 	'relate_resource' => '305121', 									])
         ;
         \DB::statement('set foreign_key_checks = ' . $_);
     }
