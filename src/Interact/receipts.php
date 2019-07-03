@@ -6,7 +6,6 @@
     use Illuminate\Support\Facades\Auth;
     use Milestone\Interact\Table;
     use Milestone\SS\Model\Receipt;
-    use Milestone\SS\Model\User;
 
     class receipts implements Table
     {
@@ -17,7 +16,7 @@
 
         public function getImportAttributes()
         {
-            return ['docno','mode','customer','date','user','amount','bank','cheque','cheque_date','_ref','status'];
+            return ['docno','fycode','fncode','mode','customer','date','user','amount','bank','cheque','cheque_date','_ref','status'];
         }
 
         public function getImportMappings()
@@ -37,7 +36,7 @@
 
         public function getExportAttributes()
         {
-            return ['docno','mode','customer','date','user','amount','bank','cheque','cheque_date','_ref','status'];
+            return ['docno','fycode','fncode','mode','customer','date','user','amount','bank','cheque','cheque_date','_ref','status'];
         }
 
         public function preExportGet($query){
