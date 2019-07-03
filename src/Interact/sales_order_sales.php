@@ -23,7 +23,7 @@
 
         public function getImportAttributes()
         {
-            return ['so','product','so_quantity','transaction','sale_quantity'];
+            return ['so','product','quantity','transaction','sale_quantity'];
         }
 
         public function getImportMappings()
@@ -58,7 +58,7 @@
 
         public function getExportAttributes()
         {
-            return ['so','product','so_quantity','transaction','sale_quantity'];
+            return ['so','product','quantity','transaction','sale_quantity'];
         }
 
         public function getSORef($record){
@@ -71,10 +71,12 @@
         }
 
         public function preExportGet($query){
+            $query = $query->whereHas('SalesOrder',function($Q){ return $Q->where('progress','!=','Completed'); });
             if (request()->_user) Auth::loginUsingId(request()->_user); else return $query;
             return $query->assignedCustomerSalesOrder();
         }
         public function preExportUpdate($query){
+            $query = $query->whereHas('SalesOrder',function($Q){ return $Q->where('progress','!=','Completed'); });
             if (request()->_user) Auth::loginUsingId(request()->_user); else return $query;
             return $query->assignedCustomerSalesOrder();
         }

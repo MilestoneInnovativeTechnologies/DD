@@ -49,15 +49,13 @@
         }
 
         public function preExportGet($query){
+            $query = $query->whereHas('SalesOrder',function ($Q){ $Q->where('progress','!=','Completed'); });
             if (request()->_user) Auth::loginUsingId(request()->_user); else return $query;
-            return $query->whereHas('SalesOrder',function ($Q){
-                $Q->assignedAreaCustomer();
-            });
+            return $query->whereHas('SalesOrder',function ($Q){ $Q->assignedAreaCustomer(); });
         }
         public function preExportUpdate($query){
+            $query = $query->whereHas('SalesOrder',function ($Q){ $Q->where('progress','!=','Completed'); });
             if (request()->_user) Auth::loginUsingId(request()->_user); else return $query;
-            return $query->whereHas('SalesOrder',function ($Q){
-                $Q->assignedAreaCustomer();
-            });
+            return $query->whereHas('SalesOrder',function ($Q){ $Q->assignedAreaCustomer(); });
         }
     }

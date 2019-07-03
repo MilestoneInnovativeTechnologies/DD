@@ -40,11 +40,13 @@
         }
 
         public function preExportGet($query){
+            $query = $query->where('progress','!=','Completed');
             if (request()->_user) Auth::loginUsingId(request()->_user); else return $query;
-            return $query->assignedAreaCustomer()->where('progress','!=','Completed');
+            return $query->assignedAreaCustomer();
         }
         public function preExportUpdate($query){
+            $query = $query->where('progress','!=','Completed');
             if (request()->_user) Auth::loginUsingId(request()->_user); else return $query;
-            return $query->assignedAreaCustomer()->where('progress','!=','Completed');
+            return $query->assignedAreaCustomer();
         }
     }
