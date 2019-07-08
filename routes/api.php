@@ -13,14 +13,14 @@ use Illuminate\Http\Request;
 |
 */
 
-//Route::get('api',function(){
-//    $DATA = [];
-//    \Milestone\SS\Model\User::where('reference','like','SE%')->get()->each(function($user)use(&$DATA){
-//        $token = now()->toDateTimeString() . random_bytes(8); $hash = hash('sha256',$token);
-//        $DATA[$user->name] = '?api_token=' . $hash; $user->api_token = $hash; $user->password = 123456; $user->save();
-//    });
-//    return $DATA;
-//});
+Route::get('api',function(){
+    $DATA = [];
+    \Milestone\SS\Model\User::where('reference','like','SE%')->get()->each(function($user)use(&$DATA){
+        $token = now()->toDateTimeString() . random_bytes(8); $hash = hash('sha256',$token);
+        $DATA[$user->name] = '?api_token=' . $hash; $user->api_token = $hash; $user->password = 123456; $user->save();
+    });
+    return $DATA;
+});
 
 Route::group([
     'prefix' => 'api',
