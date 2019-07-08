@@ -20,7 +20,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Milestone\\Interact\\SSServiceProvider"
+                "Milestone\\SS\\SSServiceProvider"
             ]
         }
     }
