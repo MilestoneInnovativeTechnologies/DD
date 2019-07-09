@@ -47,12 +47,12 @@ class CreateSetupTable extends Migration
             $table->enum('PRODUCTIONCOSTUPDATION', ['Auto','None'])->nullable()->default('None');
             $table->enum('PRODUCTIONNARRATION', ['Public','Protected'])->nullable()->default('Protected');
             $table->char('DEFAULTBRANCH', '15')->nullable()->default('HO');
-            $table->char('DEFAULTUNIT', '15')->default('PCS');
+            $table->char('DEFAULTUNIT', '15')->nullable()->default('PCS');
             $table->enum('TAX', ['Yes','No'])->nullable()->default('Yes');
             $table->enum('TAX02', ['Yes','No'])->nullable()->default('No');
             $table->enum('TAXREF', ['ItemGroup','Item'])->nullable()->default('Item');
             $table->enum('ITEMSERIAL', ['Yes','No'])->nullable()->default('No');
-            $table->string('ITEMSERIALTEXT', '30')->DEFAULT ('Item Serial');
+            $table->string('ITEMSERIALTEXT', '30')->nullable()->default ('Item Serial');
             $table->enum('PAYMENTMODEACTION', ['Direct','Ledger'])->nullable()->default('Direct');
             $table->enum('BILLPOSTING', ['Auto','Manual','None'])->nullable()->default('Manual');
             $table->enum('AUTOBILLPOSTING', ['UptoDate','AnyDate'])->nullable()->default('UptoDate');
@@ -72,7 +72,7 @@ class CreateSetupTable extends Migration
             $table->enum('AREA', ['Yes','No'])->nullable()->default('No');
             $table->string('AREATEXT', '30')->default('Area');
             $table->enum('STORAGEBIN', ['Yes','No'])->nullable()->default('No');
-            $table->string('STORAGEBINTEXT', '30')->DEFAULT ('Storage Bin');
+            $table->string('STORAGEBINTEXT', '30')->nullable()->default('Storage Bin');
             $table->enum('WORKFLOW', ['Enabled','Disabled'])->nullable()->default('Disabled');
             $table->char('LANGUAGE', '15')->nullable();
             $table->string('CULTURE', '30')->nullable();
