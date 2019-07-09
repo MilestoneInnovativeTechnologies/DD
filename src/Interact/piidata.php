@@ -44,14 +44,15 @@
             return (floatval($record['QTY']) * floatval($record['RATE'])) + floatval($record['TAX']) - $this->getDiscount($record);
         }
         public function getSO($record){
-            list($fycode,$fncode,$docno) = array_values(Arr::only($record,['FYCODE','FNCODE','DOCNO']));
+            list('DOCNO' => $docno,'FYCODE' => $fycode, 'FNCODE' => $fncode) = $record;
             $so = SalesOrder::where(compact('fycode','fncode','docno'))->first();
             $id = $so ? $so->id : null;
             if($id) $this->so_ref[implode('-',[$fycode,$fncode,$docno])] = $so->_ref;
             return $id;
         }
         public function getRef($record){
-            return $this->so_ref[implode('-',array_values(Arr::only($record,['FYCODE','FNCODE','DOCNO'])))];
+            list('DOCNO' => $docno,'FYCODE' => $fycode, 'FNCODE' => $fncode) = $record;
+            return $this->so_ref[implode('-',[$fycode,$fncode,$docno])];
         }
 
         public function getProductID($record){

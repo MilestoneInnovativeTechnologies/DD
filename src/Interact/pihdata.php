@@ -56,9 +56,8 @@
 
         public function getPrimaryIdFromImportRecord($data)
         {
-            list($fycode,$fncode,$docno) = Arr::only($data,['FYCODE','FNCODE','DOCNO']);
-            $so = SalesOrder::where(compact('fycode','fncode','docno'))->first();
-            return $so ? $so->id : null;
+            list('DOCNO' => $docno,'FYCODE' => $fycode, 'FNCODE' => $fncode) = $data;
+            return Arr::get(SalesOrder::where(compact('fycode','fncode','docno'))->first(),'id',null);
         }
 
         public function getExportMappings()
