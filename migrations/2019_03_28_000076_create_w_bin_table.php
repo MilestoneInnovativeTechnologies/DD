@@ -16,6 +16,7 @@ class CreateWBinTable extends Migration
         Schema::create('w_bin', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedTinyInteger('bin')->default(1);
+            $table->audit();
         });
     }
 
