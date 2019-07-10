@@ -33,7 +33,7 @@ class functionR implements Table
             $FN->category = $record['CATEGORY'];
             $FN->save();
         }
-        return time();
+        return 1;
     }
 
     public function getPrimaryIdFromImportRecord($data)
