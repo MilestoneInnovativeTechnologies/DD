@@ -156,7 +156,7 @@
             return $this->cache['sos'][$cacheKey] = $SOS ?: $this->getCreateSalesOrderSales($SO,$TR,$PR);
         }
         public function getCreateSalesOrderSales($SO,$TR,$PR){
-            $quantity = $SO->Items->firstWhere('product',$PR)->quantity;
+            $quantity = Arr::get($SO->Items->firstWhere('product',$PR),'quantity',0);
             return SalesOrderSale::create(['so' => $SO->id, 'transaction' => $TR->id, 'product' => $PR, 'quantity' => $quantity, 'sale_quantity' => 0]);
         }
 
