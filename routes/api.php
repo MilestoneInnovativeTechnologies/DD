@@ -48,10 +48,3 @@ Route::group([
         Route::get('transaction/{id}',function($id){ return new \Milestone\SS\Resources\TransactionResource(\Milestone\SS\Model\Transaction::with('Details')->find($id)); });
     });
 });
-
-Route::get('reset',function(){
-    \Illuminate\Support\Facades\Artisan::call('migrate:refresh');
-    \Illuminate\Support\Facades\Artisan::call('db:seed',['--class' => 'Milestone\\SS\\Seeder\\DatabaseSeeder']);
-    \Illuminate\Support\Facades\Artisan::call('db:seed',['--class' => 'Milestone\\SS\\Seeder\\SSDatabaseSeeder']);
-    return 'DONE';
-});
