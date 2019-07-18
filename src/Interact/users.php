@@ -14,7 +14,7 @@
 
         public function getImportAttributes()
         {
-            return [];
+            return ['id','name','phone'];
         }
 
         public function getImportMappings()
