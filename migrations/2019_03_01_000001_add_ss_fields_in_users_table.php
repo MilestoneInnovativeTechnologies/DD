@@ -14,6 +14,7 @@ class AddSsFieldsInUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
+            $table->string('email',191)->change();
             $table->char('reference',15)->nullable()->index()->after('email');
             $table->string('api_token',128)->nullable()->index()->after('email');
             $table->string('phone',128)->nullable()->index()->after('email');
