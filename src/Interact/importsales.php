@@ -29,12 +29,12 @@
 
         public function getExportMappings()
         {
-            return ['BILLNO','DOCDATE','ACCCODE','ITEMCODE','UNITCODE','PARTCODE','QTY','RATE','DISCOUNT'];
+            //
         }
 
         public function getExportAttributes()
         {
-            // TODO: Implement getExportAttributes() method.
+            return ['BILLNO','DOCDATE','ACCCODE','ITEMCODE','UNITCODE','PARTCODE','QTY','RATE','DISCOUNT'];
         }
 
     }
