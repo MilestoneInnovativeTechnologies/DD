@@ -24,6 +24,9 @@ class CreateImportsalesTable extends Migration
             $table->decimal('QTY', 30,10)->default('1');
             $table->decimal('RATE', 30,10)->default('0');
             $table->decimal('DISCOUNT', 30,10)->default('0');
+            $table->char('COCODE', '5')->nullable();
+            $table->char('BRCODE', '5')->nullable();
+            $table->char('FYCODE', '5')->nullable();
             $table->audit();
         });
     }
