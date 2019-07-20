@@ -34,7 +34,7 @@
 
         public function getExportAttributes()
         {
-            return ['BILLNO','DOCDATE','ACCCODE','ITEMCODE','UNITCODE','PARTCODE','QTY','RATE','DISCOUNT'];
+            return ['BILLNO','DOCDATE','ACCCODE','ITEMCODE','UNITCODE','PARTCODE','QTY','RATE','DISCOUNT','COCODE','BRCODE','FYCODE'];
         }
 
     }
