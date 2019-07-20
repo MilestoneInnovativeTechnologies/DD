@@ -47,6 +47,7 @@
             return $this->getTaxValue($tax);
         }
         private function getTaxValue($tax){
+            return 0;
             $taxCode = Arr::get(Tax::find($tax),'code',0);
             return $taxCode ? DB::select('SELECT TAXVALUE(?,1,1,1) AS TV', [$taxCode])[0]->TV : $taxCode;
         }

@@ -45,6 +45,7 @@ class Product extends Model
     }
 
     public function getTaxAttribute(){
+        return 0;
         $this->setTaxCache();
         $taxKeys = ['tax1','tax2']; $myTax = [];
         $product_group = $this->group_cache[$this->group1];
