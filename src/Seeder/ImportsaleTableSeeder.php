@@ -1,5 +1,7 @@
 <?php
 
+namespace Milestone\SS\Seeder;
+
 use Illuminate\Database\Seeder;
 
 class ImportsaleTableSeeder extends Seeder
