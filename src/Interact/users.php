@@ -45,6 +45,7 @@
         public function getOutstandingCritical($record){ return $this->getOutstanding($record['reference'],'Critical'); }
         public function getOutstandingOverdue($record){ return $this->getOutstanding($record['reference'],'Overdue'); }
         private function getOutstanding($account,$type){
+            return 0;
             return DB::select('SELECT OUTSTANDINGASON(?,?,?,?) AS OST', [$account,date('Y-m-d H:i:s'),'Yes',$type])[0]->OST;
         }
     }
