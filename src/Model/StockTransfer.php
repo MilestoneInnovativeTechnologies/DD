@@ -10,4 +10,6 @@ class StockTransfer extends Model
 
     public function IN(){ return $this->belongsTo(Transaction::class,'in'); }
     public function OUT(){ return $this->belongsTo(Transaction::class,'out'); }
+
+    public function scopePending($Q){ return $Q->whereNull('in'); }
 }

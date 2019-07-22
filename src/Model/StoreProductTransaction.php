@@ -13,4 +13,11 @@ class StoreProductTransaction extends Model
     public function User(){ return $this->belongsTo(User::class,'user'); }
     public function Nature(){ return $this->belongsTo(ProductTransactionNature::class,'nature'); }
     public function type(){ return $this->belongsTo(ProductTransactionType::class,'type'); }
+    public function TransactionDetail(){ return $this->hasOne(TransactionDetail::class,'spt','id'); }
+
+    public function scopePendingSTOut($Q){
+        return $Q->whereHas('TransactionDetail.Transaction',function($Q){
+            $Q->sTPending();
+        });
+    }
 }

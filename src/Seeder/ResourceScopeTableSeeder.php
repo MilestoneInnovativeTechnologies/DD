@@ -23,6 +23,9 @@ class ResourceScopeTableSeeder extends Seeder
             ->create([	'id' => '307105', 	'resource' => '305121', 	'name' => 'AssignedCustomerTransactions', 	'description' => 'Transactions related to customers who are assigned to the requesting executive', 	'method' => 'assignedCustomerTransactions', 											])
             ->create([	'id' => '307106', 	'resource' => '305130', 	'name' => 'AssignedCustomerReceipts', 	'description' => 'Receipts related to customers who are assigned to the requesting executive', 	'method' => 'assignedCustomerReceipts', 											])
             ->create([	'id' => '307107', 	'resource' => '305132', 	'name' => 'AssignedCustomerSalesOrder', 	'description' => 'The records of sales order in which sales order belongs to any assigned customer', 	'method' => 'assignedCustomerSalesOrder', 											])
+            ->create([	'id' => '307108', 	'resource' => '305121', 	'name' => 'StockTransferPending', 	'description' => 'The transactions which are all pending stock transafer', 	'method' => 'sTPending', 											])
+            ->create([	'id' => '307109', 	'resource' => '305128', 	'name' => 'PendingStockTransfer', 	'description' => 'Stock transafers which are pending', 	'method' => 'pending', 											])
+            ->create([	'id' => '307110', 	'resource' => '305120', 	'name' => 'PendingStockTransferOut', 	'description' => 'The store product transaction of a pending stock transfer out', 	'method' => 'pendingSTOut', 											])
         ;
         \DB::statement('set foreign_key_checks = ' . $_);
     }

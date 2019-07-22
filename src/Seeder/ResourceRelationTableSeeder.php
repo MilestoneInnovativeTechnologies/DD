@@ -82,6 +82,9 @@ class ResourceRelationTableSeeder extends Seeder
             ->create([	'id' => '308164', 	'resource' => '305122', 	'name' => 'Transaction', 	'description' => 'Detail of transaction header', 	'method' => 'Transaction', 	'type' => 'belongsTo', 	'relate_resource' => '305121', 									])
             ->create([	'id' => '308165', 	'resource' => '305132', 	'name' => 'SalesOrder', 	'description' => 'Sales order details', 	'method' => 'SalesOrder', 	'type' => 'belongsTo', 	'relate_resource' => '305126', 									])
             ->create([	'id' => '308166', 	'resource' => '305132', 	'name' => 'Transaction', 	'description' => 'Detail of transaction', 	'method' => 'Transaction', 	'type' => 'belongsTo', 	'relate_resource' => '305121', 									])
+            ->create([	'id' => '308167', 	'resource' => '305121', 	'name' => 'StockOutTransactions', 	'description' => 'TransferOut transactions', 	'method' => 'STOut', 	'type' => 'hasMany', 	'relate_resource' => '305128', 									])
+            ->create([	'id' => '308168', 	'resource' => '305121', 	'name' => 'StockInTransactions', 	'description' => 'TransferIn transactions', 	'method' => 'STIn', 	'type' => 'hasMany', 	'relate_resource' => '305128', 									])
+            ->create([	'id' => '308169', 	'resource' => '305120', 	'name' => 'TransactionDetail', 	'description' => 'Detail of Transaction of a Stock product transaction', 	'method' => 'TransactionDetail', 	'type' => 'hasOne', 	'relate_resource' => '305122', 									])
         ;
         \DB::statement('set foreign_key_checks = ' . $_);
     }
