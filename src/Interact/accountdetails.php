@@ -18,7 +18,7 @@
 
         public function getImportAttributes()
         {
-            return ['name','email','phone','password','reference'];
+            return ['name','email','phone','address','password','reference'];
         }
 
         public function getImportMappings()
@@ -27,6 +27,7 @@
                 'reference' => 'CODE',
                 'name' => 'DISPLAYNAME',
                 'phone' => 'PHONE',
+                'address' => 'ADDRESS',
                 'email' => 'getEmail',
                 'password' => 'getPassword',
             ];
@@ -36,7 +37,7 @@
             return $data['EMAIL'] ?: implode("@",[$data['CODE'],'temp.mail']);
         }
         public function getPassword($data){
-            return Str::random(strlen($data['CODE']));
+            return '123456';
         }
 
         public function getPrimaryIdFromImportRecord($data)
@@ -57,7 +58,12 @@
 
         public function getExportMappings()
         {
-            // TODO: Implement getExportMappings() method.
+            return [
+                'DISPLAYNAME' => 'name',
+                'PHONE' => 'phone',
+                'ADDRESS' => 'address',
+                'getEmail' => 'email',
+            ];
         }
 
         public function getExportAttributes()

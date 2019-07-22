@@ -14,12 +14,12 @@
 
         public function getImportAttributes()
         {
-            return ['id','name','phone'];
+            return ['id','name','phone','email','address','password'];
         }
 
         public function getImportMappings()
         {
-            return [];
+            return ['password' => 'getPassword'];
         }
 
         public function getPrimaryIdFromImportRecord($data)
@@ -38,7 +38,7 @@
 
         public function getExportAttributes()
         {
-            return ['id','name','code','phone','outstanding_normal','outstanding_overdue','outstanding_critical'];
+            return ['id','name','code','phone','address','outstanding_normal','outstanding_overdue','outstanding_critical'];
         }
 
         public function getOutstandingNormal($record){ return $this->getOutstanding($record['reference'],'Normal'); }
@@ -48,4 +48,5 @@
             return 0;
             return DB::select('SELECT OUTSTANDINGASON(?,?,?,?) AS OST', [$account,date('Y-m-d H:i:s'),'Yes',$type])[0]->OST;
         }
+        public function getPassword(){ return '123456'; }
     }
