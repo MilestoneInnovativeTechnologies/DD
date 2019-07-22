@@ -42,10 +42,10 @@
 
         public function preExportGet($query){
             if (request()->_user) Auth::loginUsingId(request()->_user); else return $query;
-            return $query->whereIn('store',UserStoreArea::assigned()->pluck('store')->all());
+            return $query->pendingSTOut()->orWhereIn('store',UserStoreArea::assigned()->pluck('store')->all());
         }
         public function preExportUpdate($query){
             if (request()->_user) Auth::loginUsingId(request()->_user); else return $query;
-            return $query->whereIn('store',UserStoreArea::assigned()->pluck('store')->all());
+            return $query->pendingSTOut()->orWhereIn('store',UserStoreArea::assigned()->pluck('store')->all());
         }
     }
