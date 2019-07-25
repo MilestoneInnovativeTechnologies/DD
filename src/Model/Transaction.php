@@ -19,8 +19,8 @@ class Transaction extends Model
 
     public function Details(){ return $this->hasMany(TransactionDetail::class,'transaction','id')->with(['Product']); }
     public function Products(){ return $this->belongsToMany(StoreProductTransaction::class,'transaction_details','transaction','spt')->withPivot(['amount','total','tax','discount'])->with(['Product'])->withTimestamps(); }
-    public function STOut(){ return $this->hasMany(StockTransfer::class,'out','id'); }
-    public function STIn(){ return $this->hasMany(StockTransfer::class,'in','id'); }
+    public function STOut(){ return $this->hasOne(StockTransfer::class,'out','id'); }
+    public function STIn(){ return $this->hasOne(StockTransfer::class,'in','id'); }
 
     public function scopeAssignedCustomerTransactions($Q){
         return $Q->whereIn('customer',User::find(request()->user()->id)->AreaCustomers->pluck('user')->all());
