@@ -9,10 +9,12 @@
     use Milestone\SS\Model\ProductTransactionType;
     use Milestone\SS\Model\SalesOrder;
     use Milestone\SS\Model\SalesOrderSale;
+    use Milestone\SS\Model\StockTransfer;
     use Milestone\SS\Model\Store;
     use Milestone\SS\Model\StoreProductTransaction;
     use Milestone\SS\Model\Transaction;
     use Milestone\Interact\Table;
+    use Milestone\SS\Model\TransactionDetail;
 
     class idata implements Table
     {
@@ -26,7 +28,9 @@
             'so' => [],
             'sos' => [],
             'transaction' => [],
-            'so_progress' => []
+            'so_progress' => [],
+            'detail' => [],
+            'ref' => [],
         ];
 
         public function preImport(){
@@ -188,12 +192,97 @@
 
         public function getExportMappings()
         {
-            // TODO: Implement getExportMappings() method.
+            return [
+                'COCODE' => 'getCOCode',
+                'BRCODE' => 'getBRCode',
+                'FYCODE' => 'getFYCode',
+                'FNCODE' => 'getFNCode',
+                'DOCNO' => 'getDocNo',
+                'SRNO' => 'getSRNo',
+                'SLNO' => 'getSLNo',
+                'TYPE' => 'getTransType',
+                'CANCEL' => 'getTransCancel',
+                'DOCDATE' => 'getDocDate',
+                'CO' => 'getCOCode',
+                'BR' => 'getBRCode',
+                'STRCATCODE' => 'getStrCatCode',
+                'STRCODE' => 'getStrCode',
+                'ITEMCODE' => 'getItemCode',
+                'UNITCODE' => 'getUnitCode',
+                'PARTCODE' => 'getPartCode',
+                'UNITQTY' => 'quantity',
+                'UNITRATE' => 'getUnitRate',
+                'SIGN' => 'getSign',
+                'TAXRULE' => 'getTaxRule',
+                'TAX' => 'getTaxValue',
+                'REFCOCODE' => 'getRefCOCode',
+                'REFBRCODE' => 'getRefBRCode',
+                'REFFYCODE' => 'getRefFYCode',
+                'REFFNCODE' => 'getRefFNCode',
+                'REFDOCNO' => 'getRefDocNo'
+            ];
         }
 
         public function getExportAttributes()
         {
-            // TODO: Implement getExportAttributes() method.
+            return ['COCODE','BRCODE','FYCODE','FNCODE','DOCNO','SRNO','SLNO','TYPE','CANCEL','DOCDATE','CO','BR','STRCATCODE','STRCODE','ITEMCODE','UNITCODE','PARTCODE','UNITQTY','UNITRATE','SIGN','TAXRULE','TAX','REFCOCODE','REFBRCODE','REFFYCODE','REFFNCODE','REFDOCNO'];
         }
 
+        public function preExportGet($query){ return $query->with(['Product']); }
+
+        public function getStoreProp($data, $prop){
+            $store_id = $data['store'];
+            if(!array_key_exists($store_id,$this->cache['store'])) $this->cache['store'][$store_id] = Store::find($store_id)->toArray();
+            return Arr::get($this->cache['store'],"{$store_id}.{$prop}",null);
+        }
+        public function getTransactionProp($data,$prop){
+            $TD = TransactionDetail::with('Transaction')->where('spt',$data['id'])->get(); if($TD->isEmpty()) return null; $TD1 = $TD->first();
+            if(!array_key_exists($TD1->transaction,$this->cache['detail'])) $this->cache['detail'][$TD1->transaction] = $TD->toArray();
+            if(!array_key_exists($TD1->transaction,$this->cache['transaction'])) $this->cache['transaction'][$TD1->transaction] = $TD->first()->Transaction->toArray();
+            return Arr::get($this->cache['transaction'],"{$TD1->transaction}.{$prop}",null);
+        }
+        public function getProdProp($data, $prop){
+            $product_id = $data['product']['id'];
+            if(!array_key_exists($product_id,$this->cache['product'])) $this->cache['product'][$product_id] = Product::with('Group01.Tax')->find($product_id)->toArray();
+            return Arr::get($this->cache['product'][$product_id],"{$prop}",null);
+        }
+        public function getTDProp($data, $prop){
+            $id = $this->getTransactionProp($data,'id'); $spt = $data['id'];
+            $idx = collect($this->cache['detail'][$id])->search(function ($item)use($spt){ return $item['spt'] == $spt; });
+            return Arr::get($this->cache['detail'],"{$id}.{$idx}.{$prop}",null);
+        }
+        public function getRefProp($data, $prop){
+            $fncode = $this->getTransactionProp($data,'fncode'); if($fncode !== 'MT1') return null;
+            $id = $this->getTransactionProp($data,'id'); $out = StockTransfer::where('in',$id)->first()->out;
+            if(!array_key_exists($out,$this->cache['transaction'])) $this->cache['transaction'][$out] = Transaction::find($out)->toArray();
+            return Arr::get($this->cache['transaction'][$out],$prop,null);
+        }
+
+        public function getCOCode($data){ return $this->getStoreProp($data,'cocode'); }
+        public function getBRCode($data){ return $this->getStoreProp($data,'brcode'); }
+        public function getFYCode($data){ return $this->getTransactionProp($data,'fycode'); }
+        public function getFNCode($data){ return $this->getTransactionProp($data,'fncode'); }
+        public function getDocNo($data){ return $this->getTransactionProp($data,'docno'); }
+        public function getSRNo($data){
+            $id = $this->getTransactionProp($data,'id'); $spt = $data['id'];
+            return collect($this->cache['detail'][$id])->search(function ($item)use($spt){ return $item['spt'] == $spt; })+1;
+        }
+        public function getSLNo($data){ return $this->getSRNo($data); }
+        public function getTransType($data){ return 'Normal'; }
+        public function getTransCancel($data){ return ($data['status'] === 'Active') ? 'No' : 'Yes'; }
+        public function getDocDate($data){ return $this->getTransactionProp($data,'date'); }
+        public function getStrCatCode($data){ return $this->getStoreProp($data,'catcode'); }
+        public function getStrCode($data){ return $this->getStoreProp($data,'code'); }
+        public function getItemCode($data){ return $this->getProdProp($data,'code'); }
+        public function getUnitCode($data){ return $this->getProdProp($data,'uom'); }
+        public function getPartCode($data){ return $this->getProdProp($data,'partcode'); }
+        public function getUnitRate($data){ return $this->getTDProp($data,'amount'); }
+        public function getSign($data){ return ($data['direction'] === 'out') ? (-1) : 1; }
+        public function getTaxRule($data){ return $this->getProdProp($data,'group01.tax.code'); }
+        public function getTaxValue($data){ return $this->getTDProp($data,'tax'); }
+        public function getRefCOCode($data){ return ($this->getRefProp($data,'fncode')) ? $this->getCOCode($data) : null; }
+        public function getRefBRCode($data){ return ($this->getRefProp($data,'fncode')) ? $this->getBRCode($data) : null; }
+        public function getRefFYCode($data){ return $this->getRefProp($data,'fycode'); }
+        public function getRefFNCode($data){ return $this->getRefProp($data,'fncode'); }
+        public function getRefDocNo($data){ return $this->getRefProp($data,'date'); }
     }
