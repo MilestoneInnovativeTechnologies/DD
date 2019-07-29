@@ -6,10 +6,12 @@
     use Milestone\Appframe\Model\User;
     use Milestone\Interact\Table;
     use Milestone\SS\Model\SalesOrder;
+    use Milestone\SS\Model\UserStoreArea;
 
     class pihdata implements Table
     {
         private $user_cache = null;
+        private $customer_cache = [];
 
         public function getModel()
         {
@@ -62,10 +64,38 @@
 
         public function getExportMappings()
         {
-            // TODO: Implement getExportMappings() method.
+            return ['COCODE' => 'getCOCode',
+                'BRCODE' => 'getBRCode',
+                'FYCODE' => 'fycode',
+                'FNCODE' => 'fncode',
+                'DOCNO' => 'docno',
+                'DOCDATE' => 'date',
+                'CO' => 'getCOCode',
+                'BR' => 'getBRCode',
+                'ACCCODE' => 'getACCCode',
+                'PAYMENTMODE' => 'payment_type',
+                'ANALYSISCATCODE' => 'getAnalysisCatCode',
+                'ANALYSISCODE' => 'getAnalysisCode',
+                'STRSRCCAT' => 'getStrSrcCode',
+                'REFDATE' => 'date'];
         }
         public function getExportAttributes()
         {
-            // TODO: Implement getExportAttributes() method.
+            return ['COCODE','BRCODE','FYCODE','FNCODE','DOCNO','DOCDATE','CO','BR','ACCCODE','PAYMENTMODE','ANALYSISCATCODE','ANALYSISCODE','STRSRCCAT','REFDATE'];
         }
+
+        public function getUserProp($data,$prop){
+            if(!array_key_exists($data['user'],(array) $this->user_cache)) $this->user_cache[$data['user']] = UserStoreArea::where('user',$data['user'])->with(['Store','User'])->first();
+            return Arr::get($this->user_cache[$data['user']],$prop, Arr::get($this->user_cache[$data['user']],"User.{$prop}", Arr::get($this->user_cache[$data['user']],"Store.{$prop}",null)));
+        }
+
+        public function getCOCode($data){ return $this->getUserProp($data,'cocode'); }
+        public function getBRCode($data){ return $this->getUserProp($data,'brcode'); }
+        public function getACCCode($data){
+            if(!$this->customer_cache) $this->customer_cache = User::all()->pluck('reference','id')->toArray();
+            return Arr::get($this->customer_cache,$data['customer']);
+        }
+        public function getAnalysisCatCode(){ return 'SE'; }
+        public function getAnalysisCode($data){ return str_ireplace($this->getAnalysisCatCode(),'',$this->getUserProp($data,'reference')); }
+        public function getStrSrcCode(){ return 'INV'; }
     }
