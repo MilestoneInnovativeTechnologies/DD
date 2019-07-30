@@ -337,93 +337,93 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=291 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=373 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table ssdb.migrations: ~82 rows (approximately)
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-	(209, '2014_10_12_000000_create_users_table', 1),
-	(210, '2014_10_12_100000_create_password_resets_table', 1),
-	(211, '2019_01_24_000002_create___groups_table', 1),
-	(212, '2019_01_24_000003_create___group_users_table', 1),
-	(213, '2019_01_24_000004_create___roles_table', 1),
-	(214, '2019_01_24_000005_create___group_roles_table', 1),
-	(215, '2019_01_24_000006_create___resources_table', 1),
-	(216, '2019_01_24_000007_create___resource_roles_table', 1),
-	(217, '2019_01_24_000008_create___resource_relations_table', 1),
-	(218, '2019_01_24_000009_create___resource_scopes_table', 1),
-	(219, '2019_01_24_000010_create___resource_forms_table', 1),
-	(220, '2019_01_24_000011_create___resource_form_fields_table', 1),
-	(221, '2019_01_24_000012_create___resource_form_field_attrs_table', 1),
-	(222, '2019_01_24_000013_create___resource_form_field_data_table', 1),
-	(223, '2019_01_24_000014_create___resource_form_field_validations_table', 1),
-	(224, '2019_01_24_000015_create___resource_form_field_options_table', 1),
-	(225, '2019_01_24_000016_create___resource_form_field_depends_table', 1),
-	(226, '2019_01_24_000017_create___resource_form_field_dynamic_table', 1),
-	(227, '2019_01_24_000018_create___resource_form_layout_table', 1),
-	(228, '2019_01_24_000019_create___resource_form_collection_table', 1),
-	(229, '2019_01_24_000020_create___resource_form_upload_table', 1),
-	(230, '2019_01_24_000021_create___resource_form_defaults_table', 1),
-	(231, '2019_01_24_000022_create___resource_lists_table', 1),
-	(232, '2019_01_24_000023_create___resource_list_relations_table', 1),
-	(233, '2019_01_24_000024_create___resource_list_scopes_table', 1),
-	(234, '2019_01_24_000025_create___resource_list_layout_table', 1),
-	(235, '2019_01_24_000026_create___resource_list_search_table', 1),
-	(236, '2019_01_24_000027_create___resource_data_table', 1),
-	(237, '2019_01_24_000028_create___resource_data_relations_table', 1),
-	(238, '2019_01_24_000029_create___resource_data_scopes_table', 1),
-	(239, '2019_01_24_000030_create___resource_data_view_sections_table', 1),
-	(240, '2019_01_24_000031_create___resource_data_view_section_items_table', 1),
-	(241, '2019_01_24_000032_create___resource_form_data_map_table', 1),
-	(242, '2019_01_24_000033_create___resource_actions_table', 1),
-	(243, '2019_01_24_000034_create___resource_action_attrs_table', 1),
-	(244, '2019_01_24_000035_create___resource_action_methods_table', 1),
-	(245, '2019_01_24_000036_create___resource_action_lists_table', 1),
-	(246, '2019_01_24_000037_create___resource_action_data_table', 1),
-	(247, '2019_01_24_000038_create___resource_defaults_table', 1),
-	(248, '2019_01_24_000039_create___resource_metrics_table', 1),
-	(249, '2019_01_24_000040_create___resource_dashboard_table', 1),
-	(250, '2019_01_24_000041_create___resource_dashboard_sections_table', 1),
-	(251, '2019_01_24_000042_create___resource_dashboard_section_items_table', 1),
-	(252, '2019_01_24_000043_create___organisation_table', 1),
-	(253, '2019_01_24_000044_create___organisation_contacts_table', 1),
-	(254, '2019_03_01_000001_add_ss_fields_in_users_table', 1),
-	(255, '2019_03_01_000002_add_ss_fields_in_groups_table', 1),
-	(256, '2019_03_01_000003_add_ss_fields_in_roles_table', 1),
-	(257, '2019_03_01_000004_create_outstanding_functions', 1),
-	(258, '2019_03_01_000005_create_taxvalue_functions', 1),
-	(259, '2019_03_28_000046_create_setup_table', 1),
-	(260, '2019_03_28_000047_create_settings_table', 1),
-	(261, '2019_03_28_000048_create_tax_table', 1),
-	(262, '2019_03_28_000049_create_tax_details_table', 1),
-	(263, '2019_03_28_000050_create_fiscalyearmaster_table', 1),
-	(264, '2019_03_28_000051_create_functiondetails_table', 1),
-	(265, '2019_03_28_000052_create_productgroups_table', 1),
-	(266, '2019_03_28_000053_create_products_table', 1),
-	(267, '2019_03_28_000054_create_pricelist_table', 1),
-	(268, '2019_03_28_000055_create_pricelist_products_table', 1),
-	(269, '2019_03_28_000056_create_stores_table', 1),
-	(270, '2019_03_28_000057_create_areas_table', 1),
-	(271, '2019_03_28_000058_create_area_users_table', 1),
-	(272, '2019_03_28_000059_create_user_settings_table', 1),
-	(273, '2019_03_28_000060_create_user_store_area_table', 1),
-	(274, '2019_03_28_000061_create_store_products_table', 1),
-	(275, '2019_03_28_000062_create_product_transaction_natures_table', 1),
-	(276, '2019_03_28_000063_create_product_transaction_types_table', 1),
-	(277, '2019_03_28_000064_create_store_product_transactions_table', 1),
-	(278, '2019_03_28_000065_create_transactions_table', 1),
-	(279, '2019_03_28_000066_create_transaction_details_table', 1),
-	(280, '2019_03_28_000067_create_bill_data_table', 1),
-	(281, '2019_03_28_000068_create_d_data_table', 1),
-	(282, '2019_03_28_000069_create_cheque_details_table', 1),
-	(283, '2019_03_28_000070_create_sales_order_table', 1),
-	(284, '2019_03_28_000071_create_sales_order_items_table', 1),
-	(285, '2019_03_28_000072_create_stock_transfer_table', 1),
-	(286, '2019_03_28_000073_create_receipts_table', 1),
-	(287, '2019_03_28_000074_create_fn_reserves_table', 1),
-	(288, '2019_03_28_000075_create_sales_order_sales_table', 1),
-	(289, '2019_03_28_000076_create_w_bin_table', 1),
-	(290, '2019_03_28_000077_create_importsales_table', 1);
+	(291, '2014_10_12_000000_create_users_table', 1),
+	(292, '2014_10_12_100000_create_password_resets_table', 1),
+	(293, '2019_01_24_000002_create___groups_table', 1),
+	(294, '2019_01_24_000003_create___group_users_table', 1),
+	(295, '2019_01_24_000004_create___roles_table', 1),
+	(296, '2019_01_24_000005_create___group_roles_table', 1),
+	(297, '2019_01_24_000006_create___resources_table', 1),
+	(298, '2019_01_24_000007_create___resource_roles_table', 1),
+	(299, '2019_01_24_000008_create___resource_relations_table', 1),
+	(300, '2019_01_24_000009_create___resource_scopes_table', 1),
+	(301, '2019_01_24_000010_create___resource_forms_table', 1),
+	(302, '2019_01_24_000011_create___resource_form_fields_table', 1),
+	(303, '2019_01_24_000012_create___resource_form_field_attrs_table', 1),
+	(304, '2019_01_24_000013_create___resource_form_field_data_table', 1),
+	(305, '2019_01_24_000014_create___resource_form_field_validations_table', 1),
+	(306, '2019_01_24_000015_create___resource_form_field_options_table', 1),
+	(307, '2019_01_24_000016_create___resource_form_field_depends_table', 1),
+	(308, '2019_01_24_000017_create___resource_form_field_dynamic_table', 1),
+	(309, '2019_01_24_000018_create___resource_form_layout_table', 1),
+	(310, '2019_01_24_000019_create___resource_form_collection_table', 1),
+	(311, '2019_01_24_000020_create___resource_form_upload_table', 1),
+	(312, '2019_01_24_000021_create___resource_form_defaults_table', 1),
+	(313, '2019_01_24_000022_create___resource_lists_table', 1),
+	(314, '2019_01_24_000023_create___resource_list_relations_table', 1),
+	(315, '2019_01_24_000024_create___resource_list_scopes_table', 1),
+	(316, '2019_01_24_000025_create___resource_list_layout_table', 1),
+	(317, '2019_01_24_000026_create___resource_list_search_table', 1),
+	(318, '2019_01_24_000027_create___resource_data_table', 1),
+	(319, '2019_01_24_000028_create___resource_data_relations_table', 1),
+	(320, '2019_01_24_000029_create___resource_data_scopes_table', 1),
+	(321, '2019_01_24_000030_create___resource_data_view_sections_table', 1),
+	(322, '2019_01_24_000031_create___resource_data_view_section_items_table', 1),
+	(323, '2019_01_24_000032_create___resource_form_data_map_table', 1),
+	(324, '2019_01_24_000033_create___resource_actions_table', 1),
+	(325, '2019_01_24_000034_create___resource_action_attrs_table', 1),
+	(326, '2019_01_24_000035_create___resource_action_methods_table', 1),
+	(327, '2019_01_24_000036_create___resource_action_lists_table', 1),
+	(328, '2019_01_24_000037_create___resource_action_data_table', 1),
+	(329, '2019_01_24_000038_create___resource_defaults_table', 1),
+	(330, '2019_01_24_000039_create___resource_metrics_table', 1),
+	(331, '2019_01_24_000040_create___resource_dashboard_table', 1),
+	(332, '2019_01_24_000041_create___resource_dashboard_sections_table', 1),
+	(333, '2019_01_24_000042_create___resource_dashboard_section_items_table', 1),
+	(334, '2019_01_24_000043_create___organisation_table', 1),
+	(335, '2019_01_24_000044_create___organisation_contacts_table', 1),
+	(336, '2019_03_01_000001_add_ss_fields_in_users_table', 1),
+	(337, '2019_03_01_000002_add_ss_fields_in_groups_table', 1),
+	(338, '2019_03_01_000003_add_ss_fields_in_roles_table', 1),
+	(339, '2019_03_01_000004_create_outstanding_functions', 1),
+	(340, '2019_03_01_000005_create_taxvalue_functions', 1),
+	(341, '2019_03_28_000046_create_setup_table', 1),
+	(342, '2019_03_28_000047_create_settings_table', 1),
+	(343, '2019_03_28_000048_create_tax_table', 1),
+	(344, '2019_03_28_000049_create_tax_details_table', 1),
+	(345, '2019_03_28_000050_create_fiscalyearmaster_table', 1),
+	(346, '2019_03_28_000051_create_functiondetails_table', 1),
+	(347, '2019_03_28_000052_create_productgroups_table', 1),
+	(348, '2019_03_28_000053_create_products_table', 1),
+	(349, '2019_03_28_000054_create_pricelist_table', 1),
+	(350, '2019_03_28_000055_create_pricelist_products_table', 1),
+	(351, '2019_03_28_000056_create_stores_table', 1),
+	(352, '2019_03_28_000057_create_areas_table', 1),
+	(353, '2019_03_28_000058_create_area_users_table', 1),
+	(354, '2019_03_28_000059_create_user_settings_table', 1),
+	(355, '2019_03_28_000060_create_user_store_area_table', 1),
+	(356, '2019_03_28_000061_create_store_products_table', 1),
+	(357, '2019_03_28_000062_create_product_transaction_natures_table', 1),
+	(358, '2019_03_28_000063_create_product_transaction_types_table', 1),
+	(359, '2019_03_28_000064_create_store_product_transactions_table', 1),
+	(360, '2019_03_28_000065_create_transactions_table', 1),
+	(361, '2019_03_28_000066_create_transaction_details_table', 1),
+	(362, '2019_03_28_000067_create_bill_data_table', 1),
+	(363, '2019_03_28_000068_create_d_data_table', 1),
+	(364, '2019_03_28_000069_create_cheque_details_table', 1),
+	(365, '2019_03_28_000070_create_sales_order_table', 1),
+	(366, '2019_03_28_000071_create_sales_order_items_table', 1),
+	(367, '2019_03_28_000072_create_stock_transfer_table', 1),
+	(368, '2019_03_28_000073_create_receipts_table', 1),
+	(369, '2019_03_28_000074_create_fn_reserves_table', 1),
+	(370, '2019_03_28_000075_create_sales_order_sales_table', 1),
+	(371, '2019_03_28_000076_create_w_bin_table', 1),
+	(372, '2019_03_28_000077_create_importsales_table', 1);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 
 -- Dumping structure for table ssdb.password_resets
@@ -623,11 +623,11 @@ CREATE TABLE IF NOT EXISTS `product_transaction_natures` (
 -- Dumping data for table ssdb.product_transaction_natures: ~5 rows (approximately)
 /*!40000 ALTER TABLE `product_transaction_natures` DISABLE KEYS */;
 INSERT INTO `product_transaction_natures` (`id`, `name`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(1, 'Fresh', 'Active', NULL, NULL, '2019-07-22 06:02:01', '2019-07-22 06:02:01'),
-	(2, 'Damaged', 'Active', NULL, NULL, '2019-07-22 06:02:01', '2019-07-22 06:02:01'),
-	(3, 'Expired', 'Active', NULL, NULL, '2019-07-22 06:02:01', '2019-07-22 06:02:01'),
-	(4, 'Unsold', 'Active', NULL, NULL, '2019-07-22 06:02:01', '2019-07-22 06:02:01'),
-	(5, 'Other', 'Active', NULL, NULL, '2019-07-22 06:02:01', '2019-07-22 06:02:01');
+	(1, 'Fresh', 'Active', NULL, NULL, '2019-07-30 12:34:10', '2019-07-30 12:34:10'),
+	(2, 'Damaged', 'Active', NULL, NULL, '2019-07-30 12:34:10', '2019-07-30 12:34:10'),
+	(3, 'Expired', 'Active', NULL, NULL, '2019-07-30 12:34:10', '2019-07-30 12:34:10'),
+	(4, 'Unsold', 'Active', NULL, NULL, '2019-07-30 12:34:10', '2019-07-30 12:34:10'),
+	(5, 'Other', 'Active', NULL, NULL, '2019-07-30 12:34:10', '2019-07-30 12:34:10');
 /*!40000 ALTER TABLE `product_transaction_natures` ENABLE KEYS */;
 
 -- Dumping structure for table ssdb.product_transaction_types
@@ -651,12 +651,12 @@ CREATE TABLE IF NOT EXISTS `product_transaction_types` (
 -- Dumping data for table ssdb.product_transaction_types: ~6 rows (approximately)
 /*!40000 ALTER TABLE `product_transaction_types` DISABLE KEYS */;
 INSERT INTO `product_transaction_types` (`id`, `name`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(1, 'Purchase', 'Active', NULL, NULL, '2019-07-22 06:02:01', '2019-07-22 06:02:01'),
-	(2, 'Sale', 'Active', NULL, NULL, '2019-07-22 06:02:01', '2019-07-22 06:02:01'),
-	(3, 'Return', 'Active', NULL, NULL, '2019-07-22 06:02:01', '2019-07-22 06:02:01'),
-	(4, 'Load', 'Active', NULL, NULL, '2019-07-22 06:02:01', '2019-07-22 06:02:01'),
-	(5, 'Unload', 'Active', NULL, NULL, '2019-07-22 06:02:01', '2019-07-22 06:02:01'),
-	(6, 'Other', 'Active', NULL, NULL, '2019-07-22 06:02:01', '2019-07-22 06:02:01');
+	(1, 'Purchase', 'Active', NULL, NULL, '2019-07-30 12:34:10', '2019-07-30 12:34:10'),
+	(2, 'Sale', 'Active', NULL, NULL, '2019-07-30 12:34:10', '2019-07-30 12:34:10'),
+	(3, 'Return', 'Active', NULL, NULL, '2019-07-30 12:34:10', '2019-07-30 12:34:10'),
+	(4, 'Load', 'Active', NULL, NULL, '2019-07-30 12:34:10', '2019-07-30 12:34:10'),
+	(5, 'Unload', 'Active', NULL, NULL, '2019-07-30 12:34:10', '2019-07-30 12:34:10'),
+	(6, 'Other', 'Active', NULL, NULL, '2019-07-30 12:34:10', '2019-07-30 12:34:10');
 /*!40000 ALTER TABLE `product_transaction_types` ENABLE KEYS */;
 
 -- Dumping structure for table ssdb.receipts
@@ -821,14 +821,14 @@ CREATE TABLE IF NOT EXISTS `settings` (
 -- Dumping data for table ssdb.settings: ~8 rows (approximately)
 /*!40000 ALTER TABLE `settings` DISABLE KEYS */;
 INSERT INTO `settings` (`id`, `name`, `description`, `value`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(1, 'SALESB2CFNCODE', 'Function code used in sales form', 'SL1', 'Active', NULL, NULL, '2019-07-22 06:02:00', '2019-07-22 06:02:00'),
-	(2, 'SALESB2BFNCODE', 'Function code used in sales form B2C', 'SL2', 'Active', NULL, NULL, '2019-07-22 06:02:00', '2019-07-22 06:02:00'),
-	(3, 'SALESRETURNFNCODE', 'Function code used in sales return form', 'SR1', 'Active', NULL, NULL, '2019-07-22 06:02:00', '2019-07-22 06:02:00'),
-	(4, 'SALESORDERFNCODE', 'Function code used in sales order form', 'SO1', 'Active', NULL, NULL, '2019-07-22 06:02:00', '2019-07-22 06:02:00'),
-	(5, 'CASHRECEIPTFNCODE', 'Function code used in cash receipt form', 'CR1', 'Active', NULL, NULL, '2019-07-22 06:02:00', '2019-07-22 06:02:00'),
-	(6, 'CHEQUERECEIPTFNCODE', 'Function code used in cheque receipt form', 'BR1', 'Active', NULL, NULL, '2019-07-22 06:02:00', '2019-07-22 06:02:00'),
-	(7, 'STOCKTRANSFERINFNCODE', 'Function code used in stock transfer IN form', 'MT1', 'Active', NULL, NULL, '2019-07-22 06:02:00', '2019-07-22 06:02:00'),
-	(8, 'STOCKTRANSFEROUTFNCODE', 'Function code used in stock transfer OUT form', 'MT2', 'Active', NULL, NULL, '2019-07-22 06:02:00', '2019-07-22 06:02:00');
+	(1, 'SALESB2CFNCODE', 'Function code used in sales form', 'SL1', 'Active', NULL, NULL, '2019-07-30 12:34:09', '2019-07-30 12:34:09'),
+	(2, 'SALESB2BFNCODE', 'Function code used in sales form B2C', 'SL2', 'Active', NULL, NULL, '2019-07-30 12:34:09', '2019-07-30 12:34:09'),
+	(3, 'SALESRETURNFNCODE', 'Function code used in sales return form', 'SR1', 'Active', NULL, NULL, '2019-07-30 12:34:09', '2019-07-30 12:34:09'),
+	(4, 'SALESORDERFNCODE', 'Function code used in sales order form', 'SO1', 'Active', NULL, NULL, '2019-07-30 12:34:09', '2019-07-30 12:34:09'),
+	(5, 'CASHRECEIPTFNCODE', 'Function code used in cash receipt form', 'CR1', 'Active', NULL, NULL, '2019-07-30 12:34:09', '2019-07-30 12:34:09'),
+	(6, 'CHEQUERECEIPTFNCODE', 'Function code used in cheque receipt form', 'BR1', 'Active', NULL, NULL, '2019-07-30 12:34:09', '2019-07-30 12:34:09'),
+	(7, 'STOCKTRANSFERINFNCODE', 'Function code used in stock transfer IN form', 'MT1', 'Active', NULL, NULL, '2019-07-30 12:34:09', '2019-07-30 12:34:09'),
+	(8, 'STOCKTRANSFEROUTFNCODE', 'Function code used in stock transfer OUT form', 'MT2', 'Active', NULL, NULL, '2019-07-30 12:34:09', '2019-07-30 12:34:09');
 /*!40000 ALTER TABLE `settings` ENABLE KEYS */;
 
 -- Dumping structure for table ssdb.setup
@@ -961,6 +961,7 @@ CREATE TABLE IF NOT EXISTS `stores` (
   `co_abr` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `brcode` char(6) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `br_abr` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `currency` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `type` enum('Public','Protected','System') COLLATE utf8mb4_unicode_ci DEFAULT 'Public',
   `status` enum('Active','Inactive') COLLATE utf8mb4_unicode_ci DEFAULT 'Active',
   `created_by` bigint(20) unsigned DEFAULT NULL,
@@ -1305,10 +1306,10 @@ CREATE TABLE IF NOT EXISTS `__groups` (
 -- Dumping data for table ssdb.__groups: ~4 rows (approximately)
 /*!40000 ALTER TABLE `__groups` DISABLE KEYS */;
 INSERT INTO `__groups` (`id`, `name`, `description`, `title`, `reference`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(301101, 'accountant', 'ePlus Accountant', 'Accountant', 'ACC', NULL, NULL, '2019-07-22 06:01:44', '2019-07-22 06:01:44'),
-	(301102, 'administrators', 'ePlus Administrator', 'Administators', 'ADM', NULL, NULL, '2019-07-22 06:01:45', '2019-07-22 06:01:45'),
-	(301103, 'salesExecutive', 'ePlus Sales Executives', 'Sales Executives', 'SLS', NULL, NULL, '2019-07-22 06:01:45', '2019-07-22 06:01:45'),
-	(301104, 'eplus_account', 'ePlus user accounts or customers', 'ePlus Accounts', NULL, NULL, NULL, '2019-07-22 06:01:45', '2019-07-22 06:01:45');
+	(301101, 'accountant', 'ePlus Accountant', 'Accountant', 'ACC', NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(301102, 'administrators', 'ePlus Administrator', 'Administators', 'ADM', NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(301103, 'salesExecutive', 'ePlus Sales Executives', 'Sales Executives', 'SLS', NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(301104, 'eplus_account', 'ePlus user accounts or customers', 'ePlus Accounts', NULL, NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59');
 /*!40000 ALTER TABLE `__groups` ENABLE KEYS */;
 
 -- Dumping structure for table ssdb.__group_roles
@@ -1335,9 +1336,9 @@ CREATE TABLE IF NOT EXISTS `__group_roles` (
 -- Dumping data for table ssdb.__group_roles: ~3 rows (approximately)
 /*!40000 ALTER TABLE `__group_roles` DISABLE KEYS */;
 INSERT INTO `__group_roles` (`id`, `group`, `role`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(304101, 301101, 303102, NULL, NULL, '2019-07-22 06:01:45', '2019-07-22 06:01:45'),
-	(304102, 301102, 303101, NULL, NULL, '2019-07-22 06:01:45', '2019-07-22 06:01:45'),
-	(304103, 301103, 303103, NULL, NULL, '2019-07-22 06:01:45', '2019-07-22 06:01:45');
+	(304101, 301101, 303102, NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(304102, 301102, 303101, NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(304103, 301103, 303103, NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59');
 /*!40000 ALTER TABLE `__group_roles` ENABLE KEYS */;
 
 -- Dumping structure for table ssdb.__group_users
@@ -1444,38 +1445,38 @@ CREATE TABLE IF NOT EXISTS `__resources` (
 -- Dumping data for table ssdb.__resources: ~32 rows (approximately)
 /*!40000 ALTER TABLE `__resources` DISABLE KEYS */;
 INSERT INTO `__resources` (`id`, `name`, `description`, `title`, `namespace`, `table`, `controller`, `controller_namespace`, `development`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(305101, 'User', 'Users of Smart Sale', 'Users', 'Milestone\\SS\\Model', 'users', NULL, NULL, 'No', NULL, NULL, '2019-07-22 06:01:45', '2019-07-22 06:01:45'),
-	(305102, 'Setup', 'ePlus setup details', 'Setup', 'Milestone\\SS\\Model', 'setup', NULL, NULL, 'No', NULL, NULL, '2019-07-22 06:01:45', '2019-07-22 06:01:45'),
-	(305103, 'Setting', 'Settings available in web and mob interface', 'Settings', 'Milestone\\SS\\Model', 'settings', NULL, NULL, 'No', NULL, NULL, '2019-07-22 06:01:45', '2019-07-22 06:01:45'),
-	(305104, 'Tax', 'Tax master', 'Tax', 'Milestone\\SS\\Model', 'tax', NULL, NULL, 'No', NULL, NULL, '2019-07-22 06:01:45', '2019-07-22 06:01:45'),
-	(305105, 'TaxDetail', 'Tax details', 'Tax Details', 'Milestone\\SS\\Model', 'tax_details', NULL, NULL, 'No', NULL, NULL, '2019-07-22 06:01:45', '2019-07-22 06:01:45'),
-	(305106, 'Fiscalyearmaster', 'Financial Years', 'Fiscal Year', 'Milestone\\SS\\Model', 'fiscalyearmaster', NULL, NULL, 'No', NULL, NULL, '2019-07-22 06:01:45', '2019-07-22 06:01:45'),
-	(305107, 'Functiondetail', 'ePlus functions', 'ePlus Functions', 'Milestone\\SS\\Model', 'functiondetails', NULL, NULL, 'No', NULL, NULL, '2019-07-22 06:01:45', '2019-07-22 06:01:45'),
-	(305108, 'Productgroup', 'Product groups - item group and item group master', 'Product Group', 'Milestone\\SS\\Model', 'productgroups', NULL, NULL, 'No', NULL, NULL, '2019-07-22 06:01:45', '2019-07-22 06:01:45'),
-	(305109, 'Product', 'Products or Items', 'Products', 'Milestone\\SS\\Model', 'products', NULL, NULL, 'No', NULL, NULL, '2019-07-22 06:01:45', '2019-07-22 06:01:45'),
-	(305110, 'Pricelist', 'Price list header', 'Price List', 'Milestone\\SS\\Model', 'pricelist', NULL, NULL, 'No', NULL, NULL, '2019-07-22 06:01:45', '2019-07-22 06:01:45'),
-	(305111, 'PricelistProduct', 'Price list products', 'Price List Products', 'Milestone\\SS\\Model', 'pricelist_products', NULL, NULL, 'No', NULL, NULL, '2019-07-22 06:01:45', '2019-07-22 06:01:45'),
-	(305112, 'Store', 'Stores', 'Stores', 'Milestone\\SS\\Model', 'stores', NULL, NULL, 'No', NULL, NULL, '2019-07-22 06:01:45', '2019-07-22 06:01:45'),
-	(305113, 'Area', 'Areas', 'Areas', 'Milestone\\SS\\Model', 'areas', NULL, NULL, 'No', NULL, NULL, '2019-07-22 06:01:45', '2019-07-22 06:01:45'),
-	(305114, 'AreaUser', 'Users in an area', 'Area User', 'Milestone\\SS\\Model', 'area_users', NULL, NULL, 'No', NULL, NULL, '2019-07-22 06:01:45', '2019-07-22 06:01:45'),
-	(305115, 'UserSetting', 'Web and Mob settings for each user', 'User Settings', 'Milestone\\SS\\Model', 'user_settings', NULL, NULL, 'No', NULL, NULL, '2019-07-22 06:01:45', '2019-07-22 06:01:45'),
-	(305116, 'UserStoreArea', 'Stores and Areas assigned to a user (executive)', 'User Store and Area', 'Milestone\\SS\\Model', 'user_store_area', NULL, NULL, 'No', NULL, NULL, '2019-07-22 06:01:45', '2019-07-22 06:01:45'),
-	(305117, 'StoreProduct', 'Products in a store', 'Store Products', 'Milestone\\SS\\Model', 'store_products', NULL, NULL, 'No', NULL, NULL, '2019-07-22 06:01:45', '2019-07-22 06:01:45'),
-	(305118, 'ProductTransactionNature', 'Product transaction nature', 'Product Transaction Natures', 'Milestone\\SS\\Model', 'product_transaction_natures', NULL, NULL, 'No', NULL, NULL, '2019-07-22 06:01:45', '2019-07-22 06:01:45'),
-	(305119, 'ProductTransactionType', 'Product transaction types', 'Product Transaction Types', 'Milestone\\SS\\Model', 'product_transaction_types', NULL, NULL, 'No', NULL, NULL, '2019-07-22 06:01:45', '2019-07-22 06:01:45'),
-	(305120, 'StoreProductTransaction', 'Product transactions in a store - in and out', 'Product Transaction in Store', 'Milestone\\SS\\Model', 'store_product_transactions', NULL, NULL, 'No', NULL, NULL, '2019-07-22 06:01:45', '2019-07-22 06:01:45'),
-	(305121, 'Transaction', 'Transaction header - customer, date, document number', 'Transactions', 'Milestone\\SS\\Model', 'transactions', NULL, NULL, 'No', NULL, NULL, '2019-07-22 06:01:45', '2019-07-22 06:01:45'),
-	(305122, 'TransactionDetail', 'Products in a transaction, its price tax etc', 'Transaction Details', 'Milestone\\SS\\Model', 'transaction_details', NULL, NULL, 'No', NULL, NULL, '2019-07-22 06:01:45', '2019-07-22 06:01:45'),
-	(305123, 'BillData', 'Bills generated during transactions', 'Bill Data', 'Milestone\\SS\\Model', 'bill_data', NULL, NULL, 'No', NULL, NULL, '2019-07-22 06:01:45', '2019-07-22 06:01:45'),
-	(305124, 'DData', 'ePlus Ddata for detailed transaction bills', 'ePlus DData', 'Milestone\\SS\\Model', 'd_data', NULL, NULL, 'No', NULL, NULL, '2019-07-22 06:01:45', '2019-07-22 06:01:45'),
-	(305125, 'ChequeDetail', 'Cheque Details', 'Cheque Details', 'Milestone\\SS\\Model', 'cheque_details', NULL, NULL, 'No', NULL, NULL, '2019-07-22 06:01:45', '2019-07-22 06:01:45'),
-	(305126, 'SalesOrder', 'Sales orders', 'Sales Orders', 'Milestone\\SS\\Model', 'sales_order', NULL, NULL, 'No', NULL, NULL, '2019-07-22 06:01:45', '2019-07-22 06:01:45'),
-	(305127, 'SalesOrderItem', 'Sales order items', 'Sales Order Items', 'Milestone\\SS\\Model', 'sales_order_items', NULL, NULL, 'No', NULL, NULL, '2019-07-22 06:01:45', '2019-07-22 06:01:45'),
-	(305128, 'StockTransfer', 'Stock transfer from and to a store', 'Stock Transfers', 'Milestone\\SS\\Model', 'stock_transfer', NULL, NULL, 'No', NULL, NULL, '2019-07-22 06:01:46', '2019-07-22 06:01:46'),
-	(305129, 'WBin', 'Waste bin used while ePlus direct import', 'Waste Bin', 'Milestone\\SS\\Model', 'w_bin', NULL, NULL, 'No', NULL, NULL, '2019-07-22 06:01:46', '2019-07-22 06:01:46'),
-	(305130, 'Receipt', 'Receipts', 'Receipts', 'Milestone\\SS\\Model', 'receipts', NULL, NULL, 'No', NULL, NULL, '2019-07-22 06:01:46', '2019-07-22 06:01:46'),
-	(305131, 'FnReserve', 'Function Reserves', 'Function Reserves', 'Milestone\\SS\\Model', 'fn_reserves', NULL, NULL, 'No', NULL, NULL, '2019-07-22 06:01:46', '2019-07-22 06:01:46'),
-	(305132, 'SalesOrderSale', 'Sales which done on Sales Order', 'Sales Order Sales', 'Milestone\\SS\\Model', 'sales_order_sales', NULL, NULL, 'No', NULL, NULL, '2019-07-22 06:01:46', '2019-07-22 06:01:46');
+	(305101, 'User', 'Users of Smart Sale', 'Users', 'Milestone\\SS\\Model', 'users', NULL, NULL, 'No', NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(305102, 'Setup', 'ePlus setup details', 'Setup', 'Milestone\\SS\\Model', 'setup', NULL, NULL, 'No', NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(305103, 'Setting', 'Settings available in web and mob interface', 'Settings', 'Milestone\\SS\\Model', 'settings', NULL, NULL, 'No', NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(305104, 'Tax', 'Tax master', 'Tax', 'Milestone\\SS\\Model', 'tax', NULL, NULL, 'No', NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(305105, 'TaxDetail', 'Tax details', 'Tax Details', 'Milestone\\SS\\Model', 'tax_details', NULL, NULL, 'No', NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(305106, 'Fiscalyearmaster', 'Financial Years', 'Fiscal Year', 'Milestone\\SS\\Model', 'fiscalyearmaster', NULL, NULL, 'No', NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(305107, 'Functiondetail', 'ePlus functions', 'ePlus Functions', 'Milestone\\SS\\Model', 'functiondetails', NULL, NULL, 'No', NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(305108, 'Productgroup', 'Product groups - item group and item group master', 'Product Group', 'Milestone\\SS\\Model', 'productgroups', NULL, NULL, 'No', NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(305109, 'Product', 'Products or Items', 'Products', 'Milestone\\SS\\Model', 'products', NULL, NULL, 'No', NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(305110, 'Pricelist', 'Price list header', 'Price List', 'Milestone\\SS\\Model', 'pricelist', NULL, NULL, 'No', NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(305111, 'PricelistProduct', 'Price list products', 'Price List Products', 'Milestone\\SS\\Model', 'pricelist_products', NULL, NULL, 'No', NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(305112, 'Store', 'Stores', 'Stores', 'Milestone\\SS\\Model', 'stores', NULL, NULL, 'No', NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(305113, 'Area', 'Areas', 'Areas', 'Milestone\\SS\\Model', 'areas', NULL, NULL, 'No', NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(305114, 'AreaUser', 'Users in an area', 'Area User', 'Milestone\\SS\\Model', 'area_users', NULL, NULL, 'No', NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(305115, 'UserSetting', 'Web and Mob settings for each user', 'User Settings', 'Milestone\\SS\\Model', 'user_settings', NULL, NULL, 'No', NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(305116, 'UserStoreArea', 'Stores and Areas assigned to a user (executive)', 'User Store and Area', 'Milestone\\SS\\Model', 'user_store_area', NULL, NULL, 'No', NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(305117, 'StoreProduct', 'Products in a store', 'Store Products', 'Milestone\\SS\\Model', 'store_products', NULL, NULL, 'No', NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(305118, 'ProductTransactionNature', 'Product transaction nature', 'Product Transaction Natures', 'Milestone\\SS\\Model', 'product_transaction_natures', NULL, NULL, 'No', NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(305119, 'ProductTransactionType', 'Product transaction types', 'Product Transaction Types', 'Milestone\\SS\\Model', 'product_transaction_types', NULL, NULL, 'No', NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(305120, 'StoreProductTransaction', 'Product transactions in a store - in and out', 'Product Transaction in Store', 'Milestone\\SS\\Model', 'store_product_transactions', NULL, NULL, 'No', NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(305121, 'Transaction', 'Transaction header - customer, date, document number', 'Transactions', 'Milestone\\SS\\Model', 'transactions', NULL, NULL, 'No', NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(305122, 'TransactionDetail', 'Products in a transaction, its price tax etc', 'Transaction Details', 'Milestone\\SS\\Model', 'transaction_details', NULL, NULL, 'No', NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(305123, 'BillData', 'Bills generated during transactions', 'Bill Data', 'Milestone\\SS\\Model', 'bill_data', NULL, NULL, 'No', NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(305124, 'DData', 'ePlus Ddata for detailed transaction bills', 'ePlus DData', 'Milestone\\SS\\Model', 'd_data', NULL, NULL, 'No', NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(305125, 'ChequeDetail', 'Cheque Details', 'Cheque Details', 'Milestone\\SS\\Model', 'cheque_details', NULL, NULL, 'No', NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(305126, 'SalesOrder', 'Sales orders', 'Sales Orders', 'Milestone\\SS\\Model', 'sales_order', NULL, NULL, 'No', NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(305127, 'SalesOrderItem', 'Sales order items', 'Sales Order Items', 'Milestone\\SS\\Model', 'sales_order_items', NULL, NULL, 'No', NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(305128, 'StockTransfer', 'Stock transfer from and to a store', 'Stock Transfers', 'Milestone\\SS\\Model', 'stock_transfer', NULL, NULL, 'No', NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(305129, 'WBin', 'Waste bin used while ePlus direct import', 'Waste Bin', 'Milestone\\SS\\Model', 'w_bin', NULL, NULL, 'No', NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(305130, 'Receipt', 'Receipts', 'Receipts', 'Milestone\\SS\\Model', 'receipts', NULL, NULL, 'No', NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(305131, 'FnReserve', 'Function Reserves', 'Function Reserves', 'Milestone\\SS\\Model', 'fn_reserves', NULL, NULL, 'No', NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(305132, 'SalesOrderSale', 'Sales which done on Sales Order', 'Sales Order Sales', 'Milestone\\SS\\Model', 'sales_order_sales', NULL, NULL, 'No', NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59');
 /*!40000 ALTER TABLE `__resources` ENABLE KEYS */;
 
 -- Dumping structure for table ssdb.__resource_actions
@@ -1510,37 +1511,37 @@ CREATE TABLE IF NOT EXISTS `__resource_actions` (
 -- Dumping data for table ssdb.__resource_actions: ~31 rows (approximately)
 /*!40000 ALTER TABLE `__resource_actions` DISABLE KEYS */;
 INSERT INTO `__resource_actions` (`id`, `resource`, `name`, `description`, `title`, `type`, `menu`, `icon`, `set`, `on`, `confirm`, `handler`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(332101, 305118, 'ProductTransactionNewNature', 'Nature of the product in a transaction.. Fresh, Expired, Damaged etc', NULL, 'outline-info', 'New', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:52', '2019-07-22 06:01:52'),
-	(332102, 305118, 'ProductTransactionViewNature', 'List all natures a product transaction havs', NULL, 'outline-info', 'List', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:52', '2019-07-22 06:01:52'),
-	(332103, 305119, 'ProductTransactionNewType', 'Type of transaction like Loading, Unloading, Sales', NULL, 'outline-info', 'New', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:53', '2019-07-22 06:01:53'),
-	(332104, 305119, 'ProductTransactionViewTypes', 'List all available types of product transaction', NULL, 'outline-info', 'List', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:53', '2019-07-22 06:01:53'),
-	(332105, 305118, 'UpdateProductTransactionNature', 'Edit Nature details, change status', 'Update', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:53', '2019-07-22 06:01:53'),
-	(332106, 305119, 'UpdateProductTransactionType', 'Change type status, update name ', 'Update', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:53', '2019-07-22 06:01:53'),
-	(332107, 305103, 'NewSettings', 'Create new setting', NULL, 'outline-info', 'New', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:53', '2019-07-22 06:01:53'),
-	(332108, 305103, 'ListSettings', 'List all settings', NULL, 'outline-info', 'List All', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:53', '2019-07-22 06:01:53'),
-	(332109, 305103, 'ViewSettingsDetails', 'Data view of a settings', 'Details', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:53', '2019-07-22 06:01:53'),
-	(332110, 305103, 'UpdateSettings', 'Edit settings details', 'Edit', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:53', '2019-07-22 06:01:53'),
-	(332111, 305101, 'UsersList', 'List all available users', NULL, 'outline-info', 'List All', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:53', '2019-07-22 06:01:53'),
-	(332112, 305101, 'UserSettingsListAction', 'List all settings of a user', 'View Settings', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:53', '2019-07-22 06:01:53'),
-	(332113, 305101, 'ListSalesExecutiveAction', 'Action to list all sales executive', NULL, 'outline-info', 'Sales Executives', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:53', '2019-07-22 06:01:53'),
-	(332114, 305115, 'AddNewUserSettingAction', 'Action to call form to add user setting', NULL, 'outline-info', 'New User Setting', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:53', '2019-07-22 06:01:53'),
-	(332115, 305101, 'AddSettingsForSelectedUser', 'Action to call a form to add a setting for the selected user', 'Add Setting', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:53', '2019-07-22 06:01:53'),
-	(332116, 305103, 'SettingsUsersListAction', 'List all users having this setting', 'View Users', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:53', '2019-07-22 06:01:53'),
-	(332117, 305103, 'AddUserForSelectedSetting', 'Action to call a form to add a user for the selected setting', 'Add User', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:53', '2019-07-22 06:01:53'),
-	(332118, 305115, 'ListAllUserSettingsAction', 'Action to list all user settings', NULL, 'outline-info', 'List All', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:53', '2019-07-22 06:01:53'),
-	(332119, 305115, 'ChangeUserSettingStatusAction', 'Action to call the form to change user setting status', 'Change Status', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:53', '2019-07-22 06:01:53'),
-	(332120, 305115, 'ViewUserSettingsDetails', 'Action to call resource data of user settings', 'View Details', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:53', '2019-07-22 06:01:53'),
-	(332121, 305116, 'AddUserStoreAreaRecordAction', 'Action to call form to add user store area', NULL, 'outline-info', 'New', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:53', '2019-07-22 06:01:53'),
-	(332122, 305116, 'ListUserStoreAreaRecordAction', 'Action to list all user store area', NULL, 'outline-info', 'List All', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:53', '2019-07-22 06:01:53'),
-	(332123, 305116, 'ViewUserStoreAreaAction', 'Action to view user store and area', 'View Details', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:53', '2019-07-22 06:01:53'),
-	(332124, 305116, 'EditUserStoreAreaAction', 'Action to call a form to update user store area', 'Edit', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:53', '2019-07-22 06:01:53'),
-	(332125, 305113, 'ListAreaAction', 'Action to list all areas', NULL, 'outline-info', 'List All', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:53', '2019-07-22 06:01:53'),
-	(332126, 305112, 'ListStoreAction', 'Action to list all stores', NULL, 'outline-info', 'List All', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:53', '2019-07-22 06:01:53'),
-	(332127, 305101, 'ListStoreAreaOfUserAction', 'Action to list all store and area of the selected user', 'View Store and Area', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:53', '2019-07-22 06:01:53'),
-	(332128, 305101, 'AddStoreAreaForUser', 'Action to call the form to add store area for a user', 'Add Store and Area', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:53', '2019-07-22 06:01:53'),
-	(332129, 305113, 'ListStoreAndUserOfArea', 'Action to list all Store and User assigned to selected area', 'View Store and User', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:53', '2019-07-22 06:01:53'),
-	(332130, 305113, 'AssignStoreAndUserForArea', 'Action to call the form to assign store and user for an area', 'Assign Store and Executive', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:53', '2019-07-22 06:01:53'),
-	(332131, 305112, 'ListUsersAssigned', 'Action to list all users assigned to a store', 'Manage Executives Assigned', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:53', '2019-07-22 06:01:53');
+	(332101, 305118, 'ProductTransactionNewNature', 'Nature of the product in a transaction.. Fresh, Expired, Damaged etc', NULL, 'outline-info', 'New', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:03', '2019-07-30 12:34:03'),
+	(332102, 305118, 'ProductTransactionViewNature', 'List all natures a product transaction havs', NULL, 'outline-info', 'List', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:03', '2019-07-30 12:34:03'),
+	(332103, 305119, 'ProductTransactionNewType', 'Type of transaction like Loading, Unloading, Sales', NULL, 'outline-info', 'New', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:03', '2019-07-30 12:34:03'),
+	(332104, 305119, 'ProductTransactionViewTypes', 'List all available types of product transaction', NULL, 'outline-info', 'List', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:03', '2019-07-30 12:34:03'),
+	(332105, 305118, 'UpdateProductTransactionNature', 'Edit Nature details, change status', 'Update', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:03', '2019-07-30 12:34:03'),
+	(332106, 305119, 'UpdateProductTransactionType', 'Change type status, update name ', 'Update', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:03', '2019-07-30 12:34:03'),
+	(332107, 305103, 'NewSettings', 'Create new setting', NULL, 'outline-info', 'New', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:03', '2019-07-30 12:34:03'),
+	(332108, 305103, 'ListSettings', 'List all settings', NULL, 'outline-info', 'List All', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:03', '2019-07-30 12:34:03'),
+	(332109, 305103, 'ViewSettingsDetails', 'Data view of a settings', 'Details', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:03', '2019-07-30 12:34:03'),
+	(332110, 305103, 'UpdateSettings', 'Edit settings details', 'Edit', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:03', '2019-07-30 12:34:03'),
+	(332111, 305101, 'UsersList', 'List all available users', NULL, 'outline-info', 'List All', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:03', '2019-07-30 12:34:03'),
+	(332112, 305101, 'UserSettingsListAction', 'List all settings of a user', 'View Settings', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:03', '2019-07-30 12:34:03'),
+	(332113, 305101, 'ListSalesExecutiveAction', 'Action to list all sales executive', NULL, 'outline-info', 'Sales Executives', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:03', '2019-07-30 12:34:03'),
+	(332114, 305115, 'AddNewUserSettingAction', 'Action to call form to add user setting', NULL, 'outline-info', 'New User Setting', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:03', '2019-07-30 12:34:03'),
+	(332115, 305101, 'AddSettingsForSelectedUser', 'Action to call a form to add a setting for the selected user', 'Add Setting', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:03', '2019-07-30 12:34:03'),
+	(332116, 305103, 'SettingsUsersListAction', 'List all users having this setting', 'View Users', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:03', '2019-07-30 12:34:03'),
+	(332117, 305103, 'AddUserForSelectedSetting', 'Action to call a form to add a user for the selected setting', 'Add User', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:03', '2019-07-30 12:34:03'),
+	(332118, 305115, 'ListAllUserSettingsAction', 'Action to list all user settings', NULL, 'outline-info', 'List All', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:03', '2019-07-30 12:34:03'),
+	(332119, 305115, 'ChangeUserSettingStatusAction', 'Action to call the form to change user setting status', 'Change Status', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:03', '2019-07-30 12:34:03'),
+	(332120, 305115, 'ViewUserSettingsDetails', 'Action to call resource data of user settings', 'View Details', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:03', '2019-07-30 12:34:03'),
+	(332121, 305116, 'AddUserStoreAreaRecordAction', 'Action to call form to add user store area', NULL, 'outline-info', 'New', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:03', '2019-07-30 12:34:03'),
+	(332122, 305116, 'ListUserStoreAreaRecordAction', 'Action to list all user store area', NULL, 'outline-info', 'List All', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:03', '2019-07-30 12:34:03'),
+	(332123, 305116, 'ViewUserStoreAreaAction', 'Action to view user store and area', 'View Details', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:03', '2019-07-30 12:34:03'),
+	(332124, 305116, 'EditUserStoreAreaAction', 'Action to call a form to update user store area', 'Edit', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:03', '2019-07-30 12:34:03'),
+	(332125, 305113, 'ListAreaAction', 'Action to list all areas', NULL, 'outline-info', 'List All', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:03', '2019-07-30 12:34:03'),
+	(332126, 305112, 'ListStoreAction', 'Action to list all stores', NULL, 'outline-info', 'List All', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:03', '2019-07-30 12:34:03'),
+	(332127, 305101, 'ListStoreAreaOfUserAction', 'Action to list all store and area of the selected user', 'View Store and Area', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:03', '2019-07-30 12:34:03'),
+	(332128, 305101, 'AddStoreAreaForUser', 'Action to call the form to add store area for a user', 'Add Store and Area', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:03', '2019-07-30 12:34:03'),
+	(332129, 305113, 'ListStoreAndUserOfArea', 'Action to list all Store and User assigned to selected area', 'View Store and User', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:03', '2019-07-30 12:34:03'),
+	(332130, 305113, 'AssignStoreAndUserForArea', 'Action to call the form to assign store and user for an area', 'Assign Store and Executive', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:03', '2019-07-30 12:34:03'),
+	(332131, 305112, 'ListUsersAssigned', 'Action to list all users assigned to a store', 'Manage Executives Assigned', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:03', '2019-07-30 12:34:03');
 /*!40000 ALTER TABLE `__resource_actions` ENABLE KEYS */;
 
 -- Dumping structure for table ssdb.__resource_action_attrs
@@ -1591,11 +1592,11 @@ CREATE TABLE IF NOT EXISTS `__resource_action_data` (
 -- Dumping data for table ssdb.__resource_action_data: ~5 rows (approximately)
 /*!40000 ALTER TABLE `__resource_action_data` DISABLE KEYS */;
 INSERT INTO `__resource_action_data` (`id`, `resource_action`, `resource_data`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(336101, 332105, 327101, NULL, NULL, '2019-07-22 06:01:55', '2019-07-22 06:01:55'),
-	(336102, 332106, 327102, NULL, NULL, '2019-07-22 06:01:55', '2019-07-22 06:01:55'),
-	(336103, 332110, 327103, NULL, NULL, '2019-07-22 06:01:55', '2019-07-22 06:01:55'),
-	(336104, 332119, 327104, NULL, NULL, '2019-07-22 06:01:55', '2019-07-22 06:01:55'),
-	(336105, 332124, 327105, NULL, NULL, '2019-07-22 06:01:55', '2019-07-22 06:01:55');
+	(336101, 332105, 327101, NULL, NULL, '2019-07-30 12:34:04', '2019-07-30 12:34:04'),
+	(336102, 332106, 327102, NULL, NULL, '2019-07-30 12:34:04', '2019-07-30 12:34:04'),
+	(336103, 332110, 327103, NULL, NULL, '2019-07-30 12:34:04', '2019-07-30 12:34:04'),
+	(336104, 332119, 327104, NULL, NULL, '2019-07-30 12:34:04', '2019-07-30 12:34:04'),
+	(336105, 332124, 327105, NULL, NULL, '2019-07-30 12:34:04', '2019-07-30 12:34:04');
 /*!40000 ALTER TABLE `__resource_action_data` ENABLE KEYS */;
 
 -- Dumping structure for table ssdb.__resource_action_lists
@@ -1622,23 +1623,23 @@ CREATE TABLE IF NOT EXISTS `__resource_action_lists` (
 -- Dumping data for table ssdb.__resource_action_lists: ~17 rows (approximately)
 /*!40000 ALTER TABLE `__resource_action_lists` DISABLE KEYS */;
 INSERT INTO `__resource_action_lists` (`id`, `resource_action`, `resource_list`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(335101, 332105, 322101, NULL, NULL, '2019-07-22 06:01:54', '2019-07-22 06:01:54'),
-	(335102, 332106, 322102, NULL, NULL, '2019-07-22 06:01:54', '2019-07-22 06:01:54'),
-	(335103, 332109, 322103, NULL, NULL, '2019-07-22 06:01:54', '2019-07-22 06:01:54'),
-	(335104, 332110, 322103, NULL, NULL, '2019-07-22 06:01:54', '2019-07-22 06:01:54'),
-	(335105, 332112, 322106, NULL, NULL, '2019-07-22 06:01:54', '2019-07-22 06:01:54'),
-	(335106, 332115, 322106, NULL, NULL, '2019-07-22 06:01:54', '2019-07-22 06:01:54'),
-	(335107, 332116, 322103, NULL, NULL, '2019-07-22 06:01:54', '2019-07-22 06:01:54'),
-	(335108, 332117, 322103, NULL, NULL, '2019-07-22 06:01:54', '2019-07-22 06:01:54'),
-	(335109, 332120, 322105, NULL, NULL, '2019-07-22 06:01:54', '2019-07-22 06:01:54'),
-	(335110, 332119, 322105, NULL, NULL, '2019-07-22 06:01:54', '2019-07-22 06:01:54'),
-	(335111, 332123, 322107, NULL, NULL, '2019-07-22 06:01:54', '2019-07-22 06:01:54'),
-	(335112, 332124, 322107, NULL, NULL, '2019-07-22 06:01:54', '2019-07-22 06:01:54'),
-	(335113, 332127, 322106, NULL, NULL, '2019-07-22 06:01:54', '2019-07-22 06:01:54'),
-	(335114, 332128, 322106, NULL, NULL, '2019-07-22 06:01:54', '2019-07-22 06:01:54'),
-	(335115, 332129, 322108, NULL, NULL, '2019-07-22 06:01:54', '2019-07-22 06:01:54'),
-	(335116, 332130, 322108, NULL, NULL, '2019-07-22 06:01:54', '2019-07-22 06:01:54'),
-	(335117, 332131, 322109, NULL, NULL, '2019-07-22 06:01:54', '2019-07-22 06:01:54');
+	(335101, 332105, 322101, NULL, NULL, '2019-07-30 12:34:04', '2019-07-30 12:34:04'),
+	(335102, 332106, 322102, NULL, NULL, '2019-07-30 12:34:04', '2019-07-30 12:34:04'),
+	(335103, 332109, 322103, NULL, NULL, '2019-07-30 12:34:04', '2019-07-30 12:34:04'),
+	(335104, 332110, 322103, NULL, NULL, '2019-07-30 12:34:04', '2019-07-30 12:34:04'),
+	(335105, 332112, 322106, NULL, NULL, '2019-07-30 12:34:04', '2019-07-30 12:34:04'),
+	(335106, 332115, 322106, NULL, NULL, '2019-07-30 12:34:04', '2019-07-30 12:34:04'),
+	(335107, 332116, 322103, NULL, NULL, '2019-07-30 12:34:04', '2019-07-30 12:34:04'),
+	(335108, 332117, 322103, NULL, NULL, '2019-07-30 12:34:04', '2019-07-30 12:34:04'),
+	(335109, 332120, 322105, NULL, NULL, '2019-07-30 12:34:04', '2019-07-30 12:34:04'),
+	(335110, 332119, 322105, NULL, NULL, '2019-07-30 12:34:04', '2019-07-30 12:34:04'),
+	(335111, 332123, 322107, NULL, NULL, '2019-07-30 12:34:04', '2019-07-30 12:34:04'),
+	(335112, 332124, 322107, NULL, NULL, '2019-07-30 12:34:04', '2019-07-30 12:34:04'),
+	(335113, 332127, 322106, NULL, NULL, '2019-07-30 12:34:04', '2019-07-30 12:34:04'),
+	(335114, 332128, 322106, NULL, NULL, '2019-07-30 12:34:04', '2019-07-30 12:34:04'),
+	(335115, 332129, 322108, NULL, NULL, '2019-07-30 12:34:04', '2019-07-30 12:34:04'),
+	(335116, 332130, 322108, NULL, NULL, '2019-07-30 12:34:04', '2019-07-30 12:34:04'),
+	(335117, 332131, 322109, NULL, NULL, '2019-07-30 12:34:04', '2019-07-30 12:34:04');
 /*!40000 ALTER TABLE `__resource_action_lists` ENABLE KEYS */;
 
 -- Dumping structure for table ssdb.__resource_action_methods
@@ -1669,37 +1670,37 @@ CREATE TABLE IF NOT EXISTS `__resource_action_methods` (
 -- Dumping data for table ssdb.__resource_action_methods: ~31 rows (approximately)
 /*!40000 ALTER TABLE `__resource_action_methods` DISABLE KEYS */;
 INSERT INTO `__resource_action_methods` (`id`, `resource_action`, `type`, `method`, `idn1`, `idn2`, `idn3`, `idn4`, `idn5`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(333101, 332101, 'Form', NULL, '309101', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:53', '2019-07-22 06:01:53'),
-	(333102, 332102, 'List', NULL, '322101', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:53', '2019-07-22 06:01:53'),
-	(333103, 332103, 'Form', NULL, '309101', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:53', '2019-07-22 06:01:53'),
-	(333104, 332104, 'List', NULL, '322102', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:53', '2019-07-22 06:01:53'),
-	(333105, 332105, 'FormWithData', NULL, '309101', '327101', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:53', '2019-07-22 06:01:53'),
-	(333106, 332106, 'FormWithData', NULL, '309102', '327102', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:53', '2019-07-22 06:01:53'),
-	(333107, 332107, 'Form', NULL, '309103', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:53', '2019-07-22 06:01:53'),
-	(333108, 332108, 'List', NULL, '322103', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:53', '2019-07-22 06:01:53'),
-	(333109, 332109, 'Data', NULL, '327103', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:53', '2019-07-22 06:01:53'),
-	(333110, 332110, 'FormWithData', NULL, '309103', '327103', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:53', '2019-07-22 06:01:53'),
-	(333111, 332111, 'List', NULL, '322104', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:53', '2019-07-22 06:01:53'),
-	(333112, 332112, 'ListRelation', NULL, '308137', '322105', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:54', '2019-07-22 06:01:54'),
-	(333113, 332113, 'List', NULL, '322106', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:54', '2019-07-22 06:01:54'),
-	(333114, 332114, 'Form', NULL, '309104', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:54', '2019-07-22 06:01:54'),
-	(333115, 332115, 'AddRelation', NULL, '308137', '309104', '310109', NULL, NULL, NULL, NULL, '2019-07-22 06:01:54', '2019-07-22 06:01:54'),
-	(333116, 332116, 'ListRelation', NULL, '308134', '322105', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:54', '2019-07-22 06:01:54'),
-	(333117, 332117, 'AddRelation', NULL, '308134', '309104', '310110', NULL, NULL, NULL, NULL, '2019-07-22 06:01:54', '2019-07-22 06:01:54'),
-	(333118, 332118, 'List', NULL, '322105', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:54', '2019-07-22 06:01:54'),
-	(333119, 332119, 'FormWithData', NULL, '309105', '327104', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:54', '2019-07-22 06:01:54'),
-	(333120, 332120, 'Data', NULL, '327104', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:54', '2019-07-22 06:01:54'),
-	(333121, 332121, 'Form', NULL, '309106', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:54', '2019-07-22 06:01:54'),
-	(333122, 332122, 'List', NULL, '322107', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:54', '2019-07-22 06:01:54'),
-	(333123, 332123, 'Data', NULL, '327105', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:54', '2019-07-22 06:01:54'),
-	(333124, 332124, 'FormWithData', NULL, '309106', '327105', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:54', '2019-07-22 06:01:54'),
-	(333125, 332125, 'List', NULL, '322108', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:54', '2019-07-22 06:01:54'),
-	(333126, 332126, 'List', NULL, '322109', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:54', '2019-07-22 06:01:54'),
-	(333127, 332127, 'ListRelation', NULL, '308139', '322107', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:54', '2019-07-22 06:01:54'),
-	(333128, 332128, 'AddRelation', NULL, '308139', '309106', '310113', NULL, NULL, NULL, NULL, '2019-07-22 06:01:54', '2019-07-22 06:01:54'),
-	(333129, 332129, 'ListRelation', NULL, '308144', '322107', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:54', '2019-07-22 06:01:54'),
-	(333130, 332130, 'AddRelation', NULL, '308144', '309106', '310115', NULL, NULL, NULL, NULL, '2019-07-22 06:01:54', '2019-07-22 06:01:54'),
-	(333131, 332131, 'ManageRelation', NULL, '308143', '322106', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:54', '2019-07-22 06:01:54');
+	(333101, 332101, 'Form', NULL, '309101', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:03', '2019-07-30 12:34:03'),
+	(333102, 332102, 'List', NULL, '322101', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:03', '2019-07-30 12:34:03'),
+	(333103, 332103, 'Form', NULL, '309101', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:03', '2019-07-30 12:34:03'),
+	(333104, 332104, 'List', NULL, '322102', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:03', '2019-07-30 12:34:03'),
+	(333105, 332105, 'FormWithData', NULL, '309101', '327101', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:03', '2019-07-30 12:34:03'),
+	(333106, 332106, 'FormWithData', NULL, '309102', '327102', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:03', '2019-07-30 12:34:03'),
+	(333107, 332107, 'Form', NULL, '309103', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:04', '2019-07-30 12:34:04'),
+	(333108, 332108, 'List', NULL, '322103', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:04', '2019-07-30 12:34:04'),
+	(333109, 332109, 'Data', NULL, '327103', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:04', '2019-07-30 12:34:04'),
+	(333110, 332110, 'FormWithData', NULL, '309103', '327103', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:04', '2019-07-30 12:34:04'),
+	(333111, 332111, 'List', NULL, '322104', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:04', '2019-07-30 12:34:04'),
+	(333112, 332112, 'ListRelation', NULL, '308137', '322105', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:04', '2019-07-30 12:34:04'),
+	(333113, 332113, 'List', NULL, '322106', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:04', '2019-07-30 12:34:04'),
+	(333114, 332114, 'Form', NULL, '309104', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:04', '2019-07-30 12:34:04'),
+	(333115, 332115, 'AddRelation', NULL, '308137', '309104', '310109', NULL, NULL, NULL, NULL, '2019-07-30 12:34:04', '2019-07-30 12:34:04'),
+	(333116, 332116, 'ListRelation', NULL, '308134', '322105', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:04', '2019-07-30 12:34:04'),
+	(333117, 332117, 'AddRelation', NULL, '308134', '309104', '310110', NULL, NULL, NULL, NULL, '2019-07-30 12:34:04', '2019-07-30 12:34:04'),
+	(333118, 332118, 'List', NULL, '322105', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:04', '2019-07-30 12:34:04'),
+	(333119, 332119, 'FormWithData', NULL, '309105', '327104', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:04', '2019-07-30 12:34:04'),
+	(333120, 332120, 'Data', NULL, '327104', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:04', '2019-07-30 12:34:04'),
+	(333121, 332121, 'Form', NULL, '309106', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:04', '2019-07-30 12:34:04'),
+	(333122, 332122, 'List', NULL, '322107', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:04', '2019-07-30 12:34:04'),
+	(333123, 332123, 'Data', NULL, '327105', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:04', '2019-07-30 12:34:04'),
+	(333124, 332124, 'FormWithData', NULL, '309106', '327105', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:04', '2019-07-30 12:34:04'),
+	(333125, 332125, 'List', NULL, '322108', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:04', '2019-07-30 12:34:04'),
+	(333126, 332126, 'List', NULL, '322109', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:04', '2019-07-30 12:34:04'),
+	(333127, 332127, 'ListRelation', NULL, '308139', '322107', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:04', '2019-07-30 12:34:04'),
+	(333128, 332128, 'AddRelation', NULL, '308139', '309106', '310113', NULL, NULL, NULL, NULL, '2019-07-30 12:34:04', '2019-07-30 12:34:04'),
+	(333129, 332129, 'ListRelation', NULL, '308144', '322107', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:04', '2019-07-30 12:34:04'),
+	(333130, 332130, 'AddRelation', NULL, '308144', '309106', '310115', NULL, NULL, NULL, NULL, '2019-07-30 12:34:04', '2019-07-30 12:34:04'),
+	(333131, 332131, 'ManageRelation', NULL, '308143', '322106', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:04', '2019-07-30 12:34:04');
 /*!40000 ALTER TABLE `__resource_action_methods` ENABLE KEYS */;
 
 -- Dumping structure for table ssdb.__resource_dashboard
@@ -1808,11 +1809,11 @@ CREATE TABLE IF NOT EXISTS `__resource_data` (
 -- Dumping data for table ssdb.__resource_data: ~5 rows (approximately)
 /*!40000 ALTER TABLE `__resource_data` DISABLE KEYS */;
 INSERT INTO `__resource_data` (`id`, `resource`, `name`, `description`, `title_field`, `method`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(327101, 305118, 'TransactionProductNatureView', 'View details of a product transaction nature', 'name', NULL, NULL, NULL, '2019-07-22 06:01:52', '2019-07-22 06:01:52'),
-	(327102, 305119, 'TransactionProductTypeView', 'View details of a product transaction type', 'name', NULL, NULL, NULL, '2019-07-22 06:01:52', '2019-07-22 06:01:52'),
-	(327103, 305103, 'SettingsView', 'View details of a settings', 'name', NULL, NULL, NULL, '2019-07-22 06:01:52', '2019-07-22 06:01:52'),
-	(327104, 305115, 'UserSettingsView', 'View details of a user setting', 'user.name', NULL, NULL, NULL, '2019-07-22 06:01:52', '2019-07-22 06:01:52'),
-	(327105, 305116, 'UserStoreAreaView', 'View details of user store area', 'user.name', NULL, NULL, NULL, '2019-07-22 06:01:52', '2019-07-22 06:01:52');
+	(327101, 305118, 'TransactionProductNatureView', 'View details of a product transaction nature', 'name', NULL, NULL, NULL, '2019-07-30 12:34:02', '2019-07-30 12:34:02'),
+	(327102, 305119, 'TransactionProductTypeView', 'View details of a product transaction type', 'name', NULL, NULL, NULL, '2019-07-30 12:34:02', '2019-07-30 12:34:02'),
+	(327103, 305103, 'SettingsView', 'View details of a settings', 'name', NULL, NULL, NULL, '2019-07-30 12:34:02', '2019-07-30 12:34:02'),
+	(327104, 305115, 'UserSettingsView', 'View details of a user setting', 'user.name', NULL, NULL, NULL, '2019-07-30 12:34:02', '2019-07-30 12:34:02'),
+	(327105, 305116, 'UserStoreAreaView', 'View details of user store area', 'user.name', NULL, NULL, NULL, '2019-07-30 12:34:02', '2019-07-30 12:34:02');
 /*!40000 ALTER TABLE `__resource_data` ENABLE KEYS */;
 
 -- Dumping structure for table ssdb.__resource_data_relations
@@ -1854,11 +1855,11 @@ CREATE TABLE IF NOT EXISTS `__resource_data_relations` (
 -- Dumping data for table ssdb.__resource_data_relations: ~5 rows (approximately)
 /*!40000 ALTER TABLE `__resource_data_relations` DISABLE KEYS */;
 INSERT INTO `__resource_data_relations` (`id`, `resource_data`, `relation`, `nest_relation1`, `nest_relation2`, `nest_relation3`, `nest_relation4`, `nest_relation5`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(329101, 327104, 308138, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:52', '2019-07-22 06:01:52'),
-	(329102, 327104, 308136, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:52', '2019-07-22 06:01:52'),
-	(329103, 327105, 308140, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:52', '2019-07-22 06:01:52'),
-	(329104, 327105, 308141, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:52', '2019-07-22 06:01:52'),
-	(329105, 327105, 308142, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:52', '2019-07-22 06:01:52');
+	(329101, 327104, 308138, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:02', '2019-07-30 12:34:02'),
+	(329102, 327104, 308136, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:02', '2019-07-30 12:34:02'),
+	(329103, 327105, 308140, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:02', '2019-07-30 12:34:02'),
+	(329104, 327105, 308141, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:02', '2019-07-30 12:34:02'),
+	(329105, 327105, 308142, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:02', '2019-07-30 12:34:02');
 /*!40000 ALTER TABLE `__resource_data_relations` ENABLE KEYS */;
 
 -- Dumping structure for table ssdb.__resource_data_scopes
@@ -1913,12 +1914,12 @@ CREATE TABLE IF NOT EXISTS `__resource_data_view_sections` (
 -- Dumping data for table ssdb.__resource_data_view_sections: ~6 rows (approximately)
 /*!40000 ALTER TABLE `__resource_data_view_sections` DISABLE KEYS */;
 INSERT INTO `__resource_data_view_sections` (`id`, `resource_data`, `title`, `title_field`, `relation`, `colspan`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(330101, 327101, NULL, 'name', NULL, 12, NULL, NULL, '2019-07-22 06:01:52', '2019-07-22 06:01:52'),
-	(330102, 327102, NULL, 'name', NULL, 12, NULL, NULL, '2019-07-22 06:01:52', '2019-07-22 06:01:52'),
-	(330103, 327103, 'Basic', NULL, NULL, 4, NULL, NULL, '2019-07-22 06:01:52', '2019-07-22 06:01:52'),
-	(330104, 327103, 'Detail', NULL, NULL, 12, NULL, NULL, '2019-07-22 06:01:52', '2019-07-22 06:01:52'),
-	(330105, 327104, 'User Settings Details', NULL, NULL, 12, NULL, NULL, '2019-07-22 06:01:52', '2019-07-22 06:01:52'),
-	(330106, 327105, 'Details', NULL, NULL, 12, NULL, NULL, '2019-07-22 06:01:52', '2019-07-22 06:01:52');
+	(330101, 327101, NULL, 'name', NULL, 12, NULL, NULL, '2019-07-30 12:34:02', '2019-07-30 12:34:02'),
+	(330102, 327102, NULL, 'name', NULL, 12, NULL, NULL, '2019-07-30 12:34:02', '2019-07-30 12:34:02'),
+	(330103, 327103, 'Basic', NULL, NULL, 4, NULL, NULL, '2019-07-30 12:34:02', '2019-07-30 12:34:02'),
+	(330104, 327103, 'Detail', NULL, NULL, 12, NULL, NULL, '2019-07-30 12:34:02', '2019-07-30 12:34:02'),
+	(330105, 327104, 'User Settings Details', NULL, NULL, 12, NULL, NULL, '2019-07-30 12:34:02', '2019-07-30 12:34:02'),
+	(330106, 327105, 'Details', NULL, NULL, 12, NULL, NULL, '2019-07-30 12:34:02', '2019-07-30 12:34:02');
 /*!40000 ALTER TABLE `__resource_data_view_sections` ENABLE KEYS */;
 
 -- Dumping structure for table ssdb.__resource_data_view_section_items
@@ -1947,22 +1948,22 @@ CREATE TABLE IF NOT EXISTS `__resource_data_view_section_items` (
 -- Dumping data for table ssdb.__resource_data_view_section_items: ~16 rows (approximately)
 /*!40000 ALTER TABLE `__resource_data_view_section_items` DISABLE KEYS */;
 INSERT INTO `__resource_data_view_section_items` (`id`, `section`, `label`, `attribute`, `relation`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(331101, 330101, 'Name', 'name', NULL, NULL, NULL, '2019-07-22 06:01:52', '2019-07-22 06:01:52'),
-	(331102, 330101, 'Status', 'status', NULL, NULL, NULL, '2019-07-22 06:01:52', '2019-07-22 06:01:52'),
-	(331103, 330102, 'Name', 'name', NULL, NULL, NULL, '2019-07-22 06:01:52', '2019-07-22 06:01:52'),
-	(331104, 330102, 'Status', 'status', NULL, NULL, NULL, '2019-07-22 06:01:52', '2019-07-22 06:01:52'),
-	(331105, 330103, 'Name', 'name', NULL, NULL, NULL, '2019-07-22 06:01:52', '2019-07-22 06:01:52'),
-	(331106, 330103, 'Default Value', 'value', NULL, NULL, NULL, '2019-07-22 06:01:52', '2019-07-22 06:01:52'),
-	(331107, 330103, 'Status', 'status', NULL, NULL, NULL, '2019-07-22 06:01:52', '2019-07-22 06:01:52'),
-	(331108, 330104, 'Details', 'description', NULL, NULL, NULL, '2019-07-22 06:01:52', '2019-07-22 06:01:52'),
-	(331109, 330105, 'User', 'name', 308138, NULL, NULL, '2019-07-22 06:01:52', '2019-07-22 06:01:52'),
-	(331110, 330105, 'Setings', 'name', 308136, NULL, NULL, '2019-07-22 06:01:52', '2019-07-22 06:01:52'),
-	(331111, 330105, 'Value', 'value', NULL, NULL, NULL, '2019-07-22 06:01:52', '2019-07-22 06:01:52'),
-	(331112, 330105, 'Status', 'status', NULL, NULL, NULL, '2019-07-22 06:01:52', '2019-07-22 06:01:52'),
-	(331113, 330106, 'Executive', 'name', 308142, NULL, NULL, '2019-07-22 06:01:52', '2019-07-22 06:01:52'),
-	(331114, 330106, 'Store', 'name', 308141, NULL, NULL, '2019-07-22 06:01:52', '2019-07-22 06:01:52'),
-	(331115, 330106, 'Area', 'name', 308140, NULL, NULL, '2019-07-22 06:01:52', '2019-07-22 06:01:52'),
-	(331116, 330106, 'Status', 'status', NULL, NULL, NULL, '2019-07-22 06:01:52', '2019-07-22 06:01:52');
+	(331101, 330101, 'Name', 'name', NULL, NULL, NULL, '2019-07-30 12:34:02', '2019-07-30 12:34:02'),
+	(331102, 330101, 'Status', 'status', NULL, NULL, NULL, '2019-07-30 12:34:02', '2019-07-30 12:34:02'),
+	(331103, 330102, 'Name', 'name', NULL, NULL, NULL, '2019-07-30 12:34:02', '2019-07-30 12:34:02'),
+	(331104, 330102, 'Status', 'status', NULL, NULL, NULL, '2019-07-30 12:34:02', '2019-07-30 12:34:02'),
+	(331105, 330103, 'Name', 'name', NULL, NULL, NULL, '2019-07-30 12:34:02', '2019-07-30 12:34:02'),
+	(331106, 330103, 'Default Value', 'value', NULL, NULL, NULL, '2019-07-30 12:34:02', '2019-07-30 12:34:02'),
+	(331107, 330103, 'Status', 'status', NULL, NULL, NULL, '2019-07-30 12:34:02', '2019-07-30 12:34:02'),
+	(331108, 330104, 'Details', 'description', NULL, NULL, NULL, '2019-07-30 12:34:02', '2019-07-30 12:34:02'),
+	(331109, 330105, 'User', 'name', 308138, NULL, NULL, '2019-07-30 12:34:02', '2019-07-30 12:34:02'),
+	(331110, 330105, 'Setings', 'name', 308136, NULL, NULL, '2019-07-30 12:34:03', '2019-07-30 12:34:03'),
+	(331111, 330105, 'Value', 'value', NULL, NULL, NULL, '2019-07-30 12:34:03', '2019-07-30 12:34:03'),
+	(331112, 330105, 'Status', 'status', NULL, NULL, NULL, '2019-07-30 12:34:03', '2019-07-30 12:34:03'),
+	(331113, 330106, 'Executive', 'name', 308142, NULL, NULL, '2019-07-30 12:34:03', '2019-07-30 12:34:03'),
+	(331114, 330106, 'Store', 'name', 308141, NULL, NULL, '2019-07-30 12:34:03', '2019-07-30 12:34:03'),
+	(331115, 330106, 'Area', 'name', 308140, NULL, NULL, '2019-07-30 12:34:03', '2019-07-30 12:34:03'),
+	(331116, 330106, 'Status', 'status', NULL, NULL, NULL, '2019-07-30 12:34:03', '2019-07-30 12:34:03');
 /*!40000 ALTER TABLE `__resource_data_view_section_items` ENABLE KEYS */;
 
 -- Dumping structure for table ssdb.__resource_defaults
@@ -1998,11 +1999,11 @@ CREATE TABLE IF NOT EXISTS `__resource_defaults` (
 -- Dumping data for table ssdb.__resource_defaults: ~5 rows (approximately)
 /*!40000 ALTER TABLE `__resource_defaults` DISABLE KEYS */;
 INSERT INTO `__resource_defaults` (`id`, `resource`, `list`, `create`, `read`, `update`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(337101, 305118, 332102, 332101, NULL, 332105, NULL, NULL, '2019-07-22 06:01:55', '2019-07-22 06:01:55'),
-	(337102, 305119, 332104, 332103, NULL, 332106, NULL, NULL, '2019-07-22 06:01:55', '2019-07-22 06:01:55'),
-	(337103, 305103, 332108, 332107, 332109, 332110, NULL, NULL, '2019-07-22 06:01:55', '2019-07-22 06:01:55'),
-	(337104, 305115, 332118, 332114, 332120, 332119, NULL, NULL, '2019-07-22 06:01:55', '2019-07-22 06:01:55'),
-	(337105, 305116, 332122, 332121, 332123, 332124, NULL, NULL, '2019-07-22 06:01:55', '2019-07-22 06:01:55');
+	(337101, 305118, 332102, 332101, NULL, 332105, NULL, NULL, '2019-07-30 12:34:05', '2019-07-30 12:34:05'),
+	(337102, 305119, 332104, 332103, NULL, 332106, NULL, NULL, '2019-07-30 12:34:05', '2019-07-30 12:34:05'),
+	(337103, 305103, 332108, 332107, 332109, 332110, NULL, NULL, '2019-07-30 12:34:05', '2019-07-30 12:34:05'),
+	(337104, 305115, 332118, 332114, 332120, 332119, NULL, NULL, '2019-07-30 12:34:05', '2019-07-30 12:34:05'),
+	(337105, 305116, 332122, 332121, 332123, 332124, NULL, NULL, '2019-07-30 12:34:05', '2019-07-30 12:34:05');
 /*!40000 ALTER TABLE `__resource_defaults` ENABLE KEYS */;
 
 -- Dumping structure for table ssdb.__resource_forms
@@ -2031,12 +2032,12 @@ CREATE TABLE IF NOT EXISTS `__resource_forms` (
 -- Dumping data for table ssdb.__resource_forms: ~6 rows (approximately)
 /*!40000 ALTER TABLE `__resource_forms` DISABLE KEYS */;
 INSERT INTO `__resource_forms` (`id`, `resource`, `name`, `description`, `title`, `action_text`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(309101, 305118, 'NewTransactionProductNature', 'Enter a new nature of a product transaction', 'New Nature of Product in Transaction', 'Save', NULL, NULL, '2019-07-22 06:01:48', '2019-07-22 06:01:48'),
-	(309102, 305119, 'NewProductTransactionType', 'Enter a new type of product transaction', 'New Type of Product Transaction', 'Save', NULL, NULL, '2019-07-22 06:01:48', '2019-07-22 06:01:48'),
-	(309103, 305103, 'AddNewSetting', 'Add a new setting, the value mentioned will be deault to all users', 'Settings', 'Save', NULL, NULL, '2019-07-22 06:01:48', '2019-07-22 06:01:48'),
-	(309104, 305115, 'AddNewUserSetting', 'Add new user setting', 'User Setting', 'Save', NULL, NULL, '2019-07-22 06:01:48', '2019-07-22 06:01:48'),
-	(309105, 305115, 'ChangeUserSettingStatus', 'Form to update user settings status', 'Change Status', 'Save', NULL, NULL, '2019-07-22 06:01:48', '2019-07-22 06:01:48'),
-	(309106, 305116, 'AddUserStoreAreaForm', 'Form to add user store area', 'User, Store and Area', 'Save', NULL, NULL, '2019-07-22 06:01:48', '2019-07-22 06:01:48');
+	(309101, 305118, 'NewTransactionProductNature', 'Enter a new nature of a product transaction', 'New Nature of Product in Transaction', 'Save', NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(309102, 305119, 'NewProductTransactionType', 'Enter a new type of product transaction', 'New Type of Product Transaction', 'Save', NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(309103, 305103, 'AddNewSetting', 'Add a new setting, the value mentioned will be deault to all users', 'Settings', 'Save', NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(309104, 305115, 'AddNewUserSetting', 'Add new user setting', 'User Setting', 'Save', NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(309105, 305115, 'ChangeUserSettingStatus', 'Form to update user settings status', 'Change Status', 'Save', NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(309106, 305116, 'AddUserStoreAreaForm', 'Form to add user store area', 'User, Store and Area', 'Save', NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00');
 /*!40000 ALTER TABLE `__resource_forms` ENABLE KEYS */;
 
 -- Dumping structure for table ssdb.__resource_form_collection
@@ -2181,22 +2182,22 @@ CREATE TABLE IF NOT EXISTS `__resource_form_fields` (
 -- Dumping data for table ssdb.__resource_form_fields: ~16 rows (approximately)
 /*!40000 ALTER TABLE `__resource_form_fields` DISABLE KEYS */;
 INSERT INTO `__resource_form_fields` (`id`, `resource_form`, `name`, `type`, `label`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(310101, 309101, 'name', 'text', 'Nature Name', NULL, NULL, '2019-07-22 06:01:48', '2019-07-22 06:01:48'),
-	(310102, 309101, 'status', 'select', 'Status', NULL, NULL, '2019-07-22 06:01:49', '2019-07-22 06:01:49'),
-	(310103, 309102, 'name', 'text', 'Type Name', NULL, NULL, '2019-07-22 06:01:49', '2019-07-22 06:01:49'),
-	(310104, 309102, 'status', 'select', 'Status', NULL, NULL, '2019-07-22 06:01:49', '2019-07-22 06:01:49'),
-	(310105, 309103, 'name', 'text', 'Name of Settings', NULL, NULL, '2019-07-22 06:01:49', '2019-07-22 06:01:49'),
-	(310106, 309103, 'value', 'text', 'Default Value', NULL, NULL, '2019-07-22 06:01:49', '2019-07-22 06:01:49'),
-	(310107, 309103, 'status', 'select', 'Status', NULL, NULL, '2019-07-22 06:01:49', '2019-07-22 06:01:49'),
-	(310108, 309103, 'description', 'textarea', 'Description', NULL, NULL, '2019-07-22 06:01:49', '2019-07-22 06:01:49'),
-	(310109, 309104, 'user', 'select', 'User', NULL, NULL, '2019-07-22 06:01:49', '2019-07-22 06:01:49'),
-	(310110, 309104, 'setting', 'select', 'Setting', NULL, NULL, '2019-07-22 06:01:49', '2019-07-22 06:01:49'),
-	(310111, 309104, 'value', 'text', 'Value', NULL, NULL, '2019-07-22 06:01:49', '2019-07-22 06:01:49'),
-	(310112, 309105, 'status', 'select', 'Change Status to', NULL, NULL, '2019-07-22 06:01:49', '2019-07-22 06:01:49'),
-	(310113, 309106, 'user', 'select', 'Sales Executive', NULL, NULL, '2019-07-22 06:01:49', '2019-07-22 06:01:49'),
-	(310114, 309106, 'store', 'select', 'Store', NULL, NULL, '2019-07-22 06:01:49', '2019-07-22 06:01:49'),
-	(310115, 309106, 'area', 'select', 'Area', NULL, NULL, '2019-07-22 06:01:49', '2019-07-22 06:01:49'),
-	(310116, 309106, 'status', 'select', 'Status', NULL, NULL, '2019-07-22 06:01:49', '2019-07-22 06:01:49');
+	(310101, 309101, 'name', 'text', 'Nature Name', NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(310102, 309101, 'status', 'select', 'Status', NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(310103, 309102, 'name', 'text', 'Type Name', NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(310104, 309102, 'status', 'select', 'Status', NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(310105, 309103, 'name', 'text', 'Name of Settings', NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(310106, 309103, 'value', 'text', 'Default Value', NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(310107, 309103, 'status', 'select', 'Status', NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(310108, 309103, 'description', 'textarea', 'Description', NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(310109, 309104, 'user', 'select', 'User', NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(310110, 309104, 'setting', 'select', 'Setting', NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(310111, 309104, 'value', 'text', 'Value', NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(310112, 309105, 'status', 'select', 'Change Status to', NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(310113, 309106, 'user', 'select', 'Sales Executive', NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(310114, 309106, 'store', 'select', 'Store', NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(310115, 309106, 'area', 'select', 'Area', NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(310116, 309106, 'status', 'select', 'Status', NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00');
 /*!40000 ALTER TABLE `__resource_form_fields` ENABLE KEYS */;
 
 -- Dumping structure for table ssdb.__resource_form_field_attrs
@@ -2222,10 +2223,10 @@ CREATE TABLE IF NOT EXISTS `__resource_form_field_attrs` (
 -- Dumping data for table ssdb.__resource_form_field_attrs: ~4 rows (approximately)
 /*!40000 ALTER TABLE `__resource_form_field_attrs` DISABLE KEYS */;
 INSERT INTO `__resource_form_field_attrs` (`id`, `form_field`, `name`, `value`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(313101, 310113, 'inline', '4', NULL, NULL, '2019-07-22 06:01:49', '2019-07-22 06:01:49'),
-	(313102, 310114, 'inline', '4', NULL, NULL, '2019-07-22 06:01:49', '2019-07-22 06:01:49'),
-	(313103, 310115, 'inline', '4', NULL, NULL, '2019-07-22 06:01:49', '2019-07-22 06:01:49'),
-	(313104, 310116, 'inline', '4', NULL, NULL, '2019-07-22 06:01:49', '2019-07-22 06:01:49');
+	(313101, 310113, 'inline', '4', NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(313102, 310114, 'inline', '4', NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(313103, 310115, 'inline', '4', NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(313104, 310116, 'inline', '4', NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00');
 /*!40000 ALTER TABLE `__resource_form_field_attrs` ENABLE KEYS */;
 
 -- Dumping structure for table ssdb.__resource_form_field_data
@@ -2262,22 +2263,22 @@ CREATE TABLE IF NOT EXISTS `__resource_form_field_data` (
 -- Dumping data for table ssdb.__resource_form_field_data: ~16 rows (approximately)
 /*!40000 ALTER TABLE `__resource_form_field_data` DISABLE KEYS */;
 INSERT INTO `__resource_form_field_data` (`id`, `form_field`, `relation`, `nest_relation1`, `nest_relation2`, `nest_relation3`, `attribute`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(311101, 310101, NULL, NULL, NULL, NULL, 'name', NULL, NULL, '2019-07-22 06:01:49', '2019-07-22 06:01:49'),
-	(311102, 310102, NULL, NULL, NULL, NULL, 'status', NULL, NULL, '2019-07-22 06:01:49', '2019-07-22 06:01:49'),
-	(311103, 310103, NULL, NULL, NULL, NULL, 'name', NULL, NULL, '2019-07-22 06:01:49', '2019-07-22 06:01:49'),
-	(311104, 310104, NULL, NULL, NULL, NULL, 'status', NULL, NULL, '2019-07-22 06:01:49', '2019-07-22 06:01:49'),
-	(311105, 310105, NULL, NULL, NULL, NULL, 'name', NULL, NULL, '2019-07-22 06:01:49', '2019-07-22 06:01:49'),
-	(311106, 310106, NULL, NULL, NULL, NULL, 'value', NULL, NULL, '2019-07-22 06:01:49', '2019-07-22 06:01:49'),
-	(311107, 310107, NULL, NULL, NULL, NULL, 'status', NULL, NULL, '2019-07-22 06:01:49', '2019-07-22 06:01:49'),
-	(311108, 310108, NULL, NULL, NULL, NULL, 'description', NULL, NULL, '2019-07-22 06:01:49', '2019-07-22 06:01:49'),
-	(311109, 310109, NULL, NULL, NULL, NULL, 'user', NULL, NULL, '2019-07-22 06:01:49', '2019-07-22 06:01:49'),
-	(311110, 310110, NULL, NULL, NULL, NULL, 'setting', NULL, NULL, '2019-07-22 06:01:49', '2019-07-22 06:01:49'),
-	(311111, 310111, NULL, NULL, NULL, NULL, 'value', NULL, NULL, '2019-07-22 06:01:49', '2019-07-22 06:01:49'),
-	(311112, 310112, NULL, NULL, NULL, NULL, 'status', NULL, NULL, '2019-07-22 06:01:49', '2019-07-22 06:01:49'),
-	(311113, 310113, NULL, NULL, NULL, NULL, 'user', NULL, NULL, '2019-07-22 06:01:49', '2019-07-22 06:01:49'),
-	(311114, 310114, NULL, NULL, NULL, NULL, 'store', NULL, NULL, '2019-07-22 06:01:49', '2019-07-22 06:01:49'),
-	(311115, 310115, NULL, NULL, NULL, NULL, 'area', NULL, NULL, '2019-07-22 06:01:49', '2019-07-22 06:01:49'),
-	(311116, 310116, NULL, NULL, NULL, NULL, 'status', NULL, NULL, '2019-07-22 06:01:49', '2019-07-22 06:01:49');
+	(311101, 310101, NULL, NULL, NULL, NULL, 'name', NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(311102, 310102, NULL, NULL, NULL, NULL, 'status', NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(311103, 310103, NULL, NULL, NULL, NULL, 'name', NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(311104, 310104, NULL, NULL, NULL, NULL, 'status', NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(311105, 310105, NULL, NULL, NULL, NULL, 'name', NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(311106, 310106, NULL, NULL, NULL, NULL, 'value', NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(311107, 310107, NULL, NULL, NULL, NULL, 'status', NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(311108, 310108, NULL, NULL, NULL, NULL, 'description', NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(311109, 310109, NULL, NULL, NULL, NULL, 'user', NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(311110, 310110, NULL, NULL, NULL, NULL, 'setting', NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(311111, 310111, NULL, NULL, NULL, NULL, 'value', NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(311112, 310112, NULL, NULL, NULL, NULL, 'status', NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(311113, 310113, NULL, NULL, NULL, NULL, 'user', NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(311114, 310114, NULL, NULL, NULL, NULL, 'store', NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(311115, 310115, NULL, NULL, NULL, NULL, 'area', NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(311116, 310116, NULL, NULL, NULL, NULL, 'status', NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01');
 /*!40000 ALTER TABLE `__resource_form_field_data` ENABLE KEYS */;
 
 -- Dumping structure for table ssdb.__resource_form_field_depends
@@ -2366,16 +2367,16 @@ CREATE TABLE IF NOT EXISTS `__resource_form_field_options` (
 -- Dumping data for table ssdb.__resource_form_field_options: ~10 rows (approximately)
 /*!40000 ALTER TABLE `__resource_form_field_options` DISABLE KEYS */;
 INSERT INTO `__resource_form_field_options` (`id`, `form_field`, `type`, `detail`, `value_attr`, `label_attr`, `preload`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(312101, 310102, 'Enum', NULL, NULL, NULL, 'Yes', NULL, NULL, '2019-07-22 06:01:50', '2019-07-22 06:01:50'),
-	(312102, 310104, 'Enum', NULL, NULL, NULL, 'Yes', NULL, NULL, '2019-07-22 06:01:50', '2019-07-22 06:01:50'),
-	(312103, 310107, 'Enum', NULL, NULL, NULL, 'Yes', NULL, NULL, '2019-07-22 06:01:50', '2019-07-22 06:01:50'),
-	(312104, 310109, 'List', '322106', 'id', 'name', 'Yes', NULL, NULL, '2019-07-22 06:01:50', '2019-07-22 06:01:50'),
-	(312105, 310110, 'Foreign', NULL, 'id', 'name', 'Yes', NULL, NULL, '2019-07-22 06:01:50', '2019-07-22 06:01:50'),
-	(312106, 310112, 'Enum', NULL, NULL, NULL, 'Yes', NULL, NULL, '2019-07-22 06:01:50', '2019-07-22 06:01:50'),
-	(312107, 310113, 'List', '322106', 'id', 'name', 'Yes', NULL, NULL, '2019-07-22 06:01:50', '2019-07-22 06:01:50'),
-	(312108, 310114, 'Foreign', NULL, 'id', 'name', 'Yes', NULL, NULL, '2019-07-22 06:01:50', '2019-07-22 06:01:50'),
-	(312109, 310115, 'Foreign', NULL, 'id', 'name', 'Yes', NULL, NULL, '2019-07-22 06:01:50', '2019-07-22 06:01:50'),
-	(312110, 310116, 'Enum', NULL, NULL, NULL, 'Yes', NULL, NULL, '2019-07-22 06:01:50', '2019-07-22 06:01:50');
+	(312101, 310102, 'Enum', NULL, NULL, NULL, 'Yes', NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(312102, 310104, 'Enum', NULL, NULL, NULL, 'Yes', NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(312103, 310107, 'Enum', NULL, NULL, NULL, 'Yes', NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(312104, 310109, 'List', '322106', 'id', 'name', 'Yes', NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(312105, 310110, 'Foreign', NULL, 'id', 'name', 'Yes', NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(312106, 310112, 'Enum', NULL, NULL, NULL, 'Yes', NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(312107, 310113, 'List', '322106', 'id', 'name', 'Yes', NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(312108, 310114, 'Foreign', NULL, 'id', 'name', 'Yes', NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(312109, 310115, 'Foreign', NULL, 'id', 'name', 'Yes', NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(312110, 310116, 'Enum', NULL, NULL, NULL, 'Yes', NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01');
 /*!40000 ALTER TABLE `__resource_form_field_options` ENABLE KEYS */;
 
 -- Dumping structure for table ssdb.__resource_form_field_validations
@@ -2406,9 +2407,9 @@ CREATE TABLE IF NOT EXISTS `__resource_form_field_validations` (
 -- Dumping data for table ssdb.__resource_form_field_validations: ~3 rows (approximately)
 /*!40000 ALTER TABLE `__resource_form_field_validations` DISABLE KEYS */;
 INSERT INTO `__resource_form_field_validations` (`id`, `form_field`, `rule`, `message`, `arg1`, `arg2`, `arg3`, `arg4`, `arg5`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(315101, 310101, 'required', 'Name is mandatory', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:49', '2019-07-22 06:01:49'),
-	(315102, 310103, 'required', 'Name is mandatory', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:49', '2019-07-22 06:01:49'),
-	(315103, 310105, 'required', 'Name is mandatory', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:50', '2019-07-22 06:01:50');
+	(315101, 310101, 'required', 'Name is mandatory', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(315102, 310103, 'required', 'Name is mandatory', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(315103, 310105, 'required', 'Name is mandatory', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01');
 /*!40000 ALTER TABLE `__resource_form_field_validations` ENABLE KEYS */;
 
 -- Dumping structure for table ssdb.__resource_form_layout
@@ -2436,13 +2437,13 @@ CREATE TABLE IF NOT EXISTS `__resource_form_layout` (
 -- Dumping data for table ssdb.__resource_form_layout: ~7 rows (approximately)
 /*!40000 ALTER TABLE `__resource_form_layout` DISABLE KEYS */;
 INSERT INTO `__resource_form_layout` (`id`, `resource_form`, `form_field`, `colspan`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(317101, 309103, 310105, 4, NULL, NULL, '2019-07-22 06:01:50', '2019-07-22 06:01:50'),
-	(317102, 309103, 310106, 4, NULL, NULL, '2019-07-22 06:01:50', '2019-07-22 06:01:50'),
-	(317103, 309103, 310107, 4, NULL, NULL, '2019-07-22 06:01:50', '2019-07-22 06:01:50'),
-	(317104, 309103, 310108, 12, NULL, NULL, '2019-07-22 06:01:50', '2019-07-22 06:01:50'),
-	(317105, 309104, 310109, 6, NULL, NULL, '2019-07-22 06:01:50', '2019-07-22 06:01:50'),
-	(317106, 309104, 310110, 6, NULL, NULL, '2019-07-22 06:01:50', '2019-07-22 06:01:50'),
-	(317107, 309104, 310111, 12, NULL, NULL, '2019-07-22 06:01:50', '2019-07-22 06:01:50');
+	(317101, 309103, 310105, 4, NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(317102, 309103, 310106, 4, NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(317103, 309103, 310107, 4, NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(317104, 309103, 310108, 12, NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(317105, 309104, 310109, 6, NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(317106, 309104, 310110, 6, NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(317107, 309104, 310111, 12, NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01');
 /*!40000 ALTER TABLE `__resource_form_layout` ENABLE KEYS */;
 
 -- Dumping structure for table ssdb.__resource_form_upload
@@ -2501,15 +2502,15 @@ CREATE TABLE IF NOT EXISTS `__resource_lists` (
 -- Dumping data for table ssdb.__resource_lists: ~9 rows (approximately)
 /*!40000 ALTER TABLE `__resource_lists` DISABLE KEYS */;
 INSERT INTO `__resource_lists` (`id`, `resource`, `name`, `description`, `title`, `identity`, `items_per_page`, `method`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(322101, 305118, 'TransactionProductNature', 'Nature of the product in a transaction', 'Product Nature', 'name', 20, NULL, NULL, NULL, '2019-07-22 06:01:50', '2019-07-22 06:01:50'),
-	(322102, 305119, 'TransactionProductType', 'Type of transaction whether is load, unload etc', 'Transaction Types', 'name', 20, NULL, NULL, NULL, '2019-07-22 06:01:50', '2019-07-22 06:01:50'),
-	(322103, 305103, 'Settings', 'List all available Settings', 'Settings', 'name', 20, NULL, NULL, NULL, '2019-07-22 06:01:50', '2019-07-22 06:01:50'),
-	(322104, 305101, 'ListAllUsers', 'List all available users', 'Users', 'name', 50, NULL, NULL, NULL, '2019-07-22 06:01:50', '2019-07-22 06:01:50'),
-	(322105, 305115, 'ListAllUserSetting', 'List all user setting and value', 'User Settings', 'user.name', 50, NULL, NULL, NULL, '2019-07-22 06:01:50', '2019-07-22 06:01:50'),
-	(322106, 305101, 'SalesExecutiveUserList', 'List all sales executives from users', 'Sales Executives', 'name', 50, NULL, NULL, NULL, '2019-07-22 06:01:50', '2019-07-22 06:01:50'),
-	(322107, 305116, 'UserStoreAreaList', 'List all records in User Store Area', 'User, Store and Area', 'user.name', 50, NULL, NULL, NULL, '2019-07-22 06:01:50', '2019-07-22 06:01:50'),
-	(322108, 305113, 'AreaList', 'List all areas', 'Area', 'name', 50, NULL, NULL, NULL, '2019-07-22 06:01:50', '2019-07-22 06:01:50'),
-	(322109, 305112, 'StoresList', 'List all stores', 'Stores', 'name', 50, NULL, NULL, NULL, '2019-07-22 06:01:50', '2019-07-22 06:01:50');
+	(322101, 305118, 'TransactionProductNature', 'Nature of the product in a transaction', 'Product Nature', 'name', 20, NULL, NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(322102, 305119, 'TransactionProductType', 'Type of transaction whether is load, unload etc', 'Transaction Types', 'name', 20, NULL, NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(322103, 305103, 'Settings', 'List all available Settings', 'Settings', 'name', 20, NULL, NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(322104, 305101, 'ListAllUsers', 'List all available users', 'Users', 'name', 50, NULL, NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(322105, 305115, 'ListAllUserSetting', 'List all user setting and value', 'User Settings', 'user.name', 50, NULL, NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(322106, 305101, 'SalesExecutiveUserList', 'List all sales executives from users', 'Sales Executives', 'name', 50, NULL, NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(322107, 305116, 'UserStoreAreaList', 'List all records in User Store Area', 'User, Store and Area', 'user.name', 50, NULL, NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(322108, 305113, 'AreaList', 'List all areas', 'Area', 'name', 50, NULL, NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(322109, 305112, 'StoresList', 'List all stores', 'Stores', 'name', 50, NULL, NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01');
 /*!40000 ALTER TABLE `__resource_lists` ENABLE KEYS */;
 
 -- Dumping structure for table ssdb.__resource_list_layout
@@ -2544,35 +2545,35 @@ CREATE TABLE IF NOT EXISTS `__resource_list_layout` (
 -- Dumping data for table ssdb.__resource_list_layout: ~29 rows (approximately)
 /*!40000 ALTER TABLE `__resource_list_layout` DISABLE KEYS */;
 INSERT INTO `__resource_list_layout` (`id`, `resource_list`, `label`, `field`, `relation`, `nest_relation1`, `nest_relation2`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(325101, 322101, 'Name', 'name', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:50', '2019-07-22 06:01:50'),
-	(325102, 322101, 'Status', 'status', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:51', '2019-07-22 06:01:51'),
-	(325103, 322102, 'Name', 'name', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:51', '2019-07-22 06:01:51'),
-	(325104, 322102, 'Status', 'status', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:51', '2019-07-22 06:01:51'),
-	(325105, 322103, 'Name', 'name', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:51', '2019-07-22 06:01:51'),
-	(325106, 322103, 'Default Value', 'value', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:51', '2019-07-22 06:01:51'),
-	(325107, 322103, 'Status', 'status', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:51', '2019-07-22 06:01:51'),
-	(325108, 322104, 'Name', 'name', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:51', '2019-07-22 06:01:51'),
-	(325109, 322104, 'Reference', 'reference', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:51', '2019-07-22 06:01:51'),
-	(325110, 322104, 'Email', 'email', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:51', '2019-07-22 06:01:51'),
-	(325111, 322105, 'User', 'name', 308138, NULL, NULL, NULL, NULL, '2019-07-22 06:01:51', '2019-07-22 06:01:51'),
-	(325112, 322105, 'Settings', 'name', 308136, NULL, NULL, NULL, NULL, '2019-07-22 06:01:51', '2019-07-22 06:01:51'),
-	(325113, 322105, 'Value', 'value', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:51', '2019-07-22 06:01:51'),
-	(325114, 322105, 'Status', 'status', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:51', '2019-07-22 06:01:51'),
-	(325115, 322106, 'Name', 'name', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:51', '2019-07-22 06:01:51'),
-	(325116, 322106, 'Email', 'email', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:51', '2019-07-22 06:01:51'),
-	(325117, 322106, 'Reference', 'reference', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:51', '2019-07-22 06:01:51'),
-	(325118, 322107, 'Executive', 'name', 308142, NULL, NULL, NULL, NULL, '2019-07-22 06:01:51', '2019-07-22 06:01:51'),
-	(325119, 322107, 'Store', 'name', 308141, NULL, NULL, NULL, NULL, '2019-07-22 06:01:51', '2019-07-22 06:01:51'),
-	(325120, 322107, 'Area', 'name', 308140, NULL, NULL, NULL, NULL, '2019-07-22 06:01:51', '2019-07-22 06:01:51'),
-	(325121, 322107, 'Status', 'status', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:51', '2019-07-22 06:01:51'),
-	(325122, 322108, 'Code', 'code', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:51', '2019-07-22 06:01:51'),
-	(325123, 322108, 'Name', 'name', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:51', '2019-07-22 06:01:51'),
-	(325124, 322108, 'Type', 'type', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:51', '2019-07-22 06:01:51'),
-	(325125, 322108, 'Status', 'status', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:51', '2019-07-22 06:01:51'),
-	(325126, 322109, 'Code', 'code', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:51', '2019-07-22 06:01:51'),
-	(325127, 322109, 'Name', 'name', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:51', '2019-07-22 06:01:51'),
-	(325128, 322109, 'Company Code', 'cocode', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:51', '2019-07-22 06:01:51'),
-	(325129, 322109, 'Branch Code', 'brcode', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:51', '2019-07-22 06:01:51');
+	(325101, 322101, 'Name', 'name', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(325102, 322101, 'Status', 'status', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(325103, 322102, 'Name', 'name', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(325104, 322102, 'Status', 'status', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(325105, 322103, 'Name', 'name', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(325106, 322103, 'Default Value', 'value', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(325107, 322103, 'Status', 'status', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(325108, 322104, 'Name', 'name', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(325109, 322104, 'Reference', 'reference', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(325110, 322104, 'Email', 'email', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(325111, 322105, 'User', 'name', 308138, NULL, NULL, NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(325112, 322105, 'Settings', 'name', 308136, NULL, NULL, NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(325113, 322105, 'Value', 'value', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(325114, 322105, 'Status', 'status', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(325115, 322106, 'Name', 'name', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(325116, 322106, 'Email', 'email', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(325117, 322106, 'Reference', 'reference', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:02', '2019-07-30 12:34:02'),
+	(325118, 322107, 'Executive', 'name', 308142, NULL, NULL, NULL, NULL, '2019-07-30 12:34:02', '2019-07-30 12:34:02'),
+	(325119, 322107, 'Store', 'name', 308141, NULL, NULL, NULL, NULL, '2019-07-30 12:34:02', '2019-07-30 12:34:02'),
+	(325120, 322107, 'Area', 'name', 308140, NULL, NULL, NULL, NULL, '2019-07-30 12:34:02', '2019-07-30 12:34:02'),
+	(325121, 322107, 'Status', 'status', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:02', '2019-07-30 12:34:02'),
+	(325122, 322108, 'Code', 'code', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:02', '2019-07-30 12:34:02'),
+	(325123, 322108, 'Name', 'name', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:02', '2019-07-30 12:34:02'),
+	(325124, 322108, 'Type', 'type', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:02', '2019-07-30 12:34:02'),
+	(325125, 322108, 'Status', 'status', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:02', '2019-07-30 12:34:02'),
+	(325126, 322109, 'Code', 'code', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:02', '2019-07-30 12:34:02'),
+	(325127, 322109, 'Name', 'name', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:02', '2019-07-30 12:34:02'),
+	(325128, 322109, 'Company Code', 'cocode', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:02', '2019-07-30 12:34:02'),
+	(325129, 322109, 'Branch Code', 'brcode', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:02', '2019-07-30 12:34:02');
 /*!40000 ALTER TABLE `__resource_list_layout` ENABLE KEYS */;
 
 -- Dumping structure for table ssdb.__resource_list_relations
@@ -2614,11 +2615,11 @@ CREATE TABLE IF NOT EXISTS `__resource_list_relations` (
 -- Dumping data for table ssdb.__resource_list_relations: ~5 rows (approximately)
 /*!40000 ALTER TABLE `__resource_list_relations` DISABLE KEYS */;
 INSERT INTO `__resource_list_relations` (`id`, `resource_list`, `relation`, `nest_relation1`, `nest_relation2`, `nest_relation3`, `nest_relation4`, `nest_relation5`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(324101, 322105, 308136, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:50', '2019-07-22 06:01:50'),
-	(324102, 322105, 308138, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:50', '2019-07-22 06:01:50'),
-	(324103, 322107, 308140, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:50', '2019-07-22 06:01:50'),
-	(324104, 322107, 308141, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:50', '2019-07-22 06:01:50'),
-	(324105, 322107, 308142, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:50', '2019-07-22 06:01:50');
+	(324101, 322105, 308136, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(324102, 322105, 308138, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(324103, 322107, 308140, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(324104, 322107, 308141, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01'),
+	(324105, 322107, 308142, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01');
 /*!40000 ALTER TABLE `__resource_list_relations` ENABLE KEYS */;
 
 -- Dumping structure for table ssdb.__resource_list_scopes
@@ -2645,7 +2646,7 @@ CREATE TABLE IF NOT EXISTS `__resource_list_scopes` (
 -- Dumping data for table ssdb.__resource_list_scopes: ~1 rows (approximately)
 /*!40000 ALTER TABLE `__resource_list_scopes` DISABLE KEYS */;
 INSERT INTO `__resource_list_scopes` (`id`, `resource_list`, `scope`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(323101, 322106, 307101, NULL, NULL, '2019-07-22 06:01:50', '2019-07-22 06:01:50');
+	(323101, 322106, 307101, NULL, NULL, '2019-07-30 12:34:01', '2019-07-30 12:34:01');
 /*!40000 ALTER TABLE `__resource_list_scopes` ENABLE KEYS */;
 
 -- Dumping structure for table ssdb.__resource_list_search
@@ -2682,21 +2683,21 @@ CREATE TABLE IF NOT EXISTS `__resource_list_search` (
 -- Dumping data for table ssdb.__resource_list_search: ~15 rows (approximately)
 /*!40000 ALTER TABLE `__resource_list_search` DISABLE KEYS */;
 INSERT INTO `__resource_list_search` (`id`, `resource_list`, `field`, `relation`, `nest_relation1`, `nest_relation2`, `nest_relation3`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(326101, 322101, 'name', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:51', '2019-07-22 06:01:51'),
-	(326102, 322102, 'name', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:51', '2019-07-22 06:01:51'),
-	(326103, 322103, 'name', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:51', '2019-07-22 06:01:51'),
-	(326104, 322103, 'description', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:51', '2019-07-22 06:01:51'),
-	(326105, 322104, 'name', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:51', '2019-07-22 06:01:51'),
-	(326106, 322104, 'reference', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:51', '2019-07-22 06:01:51'),
-	(326107, 322104, 'email', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:51', '2019-07-22 06:01:51'),
-	(326108, 322105, 'name', 308138, NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:51', '2019-07-22 06:01:51'),
-	(326109, 322105, 'name', 308136, NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:51', '2019-07-22 06:01:51'),
-	(326110, 322106, 'name', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:51', '2019-07-22 06:01:51'),
-	(326111, 322107, 'name', 308140, NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:51', '2019-07-22 06:01:51'),
-	(326112, 322107, 'name', 308141, NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:51', '2019-07-22 06:01:51'),
-	(326113, 322107, 'name', 308142, NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:51', '2019-07-22 06:01:51'),
-	(326114, 322108, 'name', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:52', '2019-07-22 06:01:52'),
-	(326115, 322109, 'name', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:52', '2019-07-22 06:01:52');
+	(326101, 322101, 'name', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:02', '2019-07-30 12:34:02'),
+	(326102, 322102, 'name', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:02', '2019-07-30 12:34:02'),
+	(326103, 322103, 'name', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:02', '2019-07-30 12:34:02'),
+	(326104, 322103, 'description', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:02', '2019-07-30 12:34:02'),
+	(326105, 322104, 'name', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:02', '2019-07-30 12:34:02'),
+	(326106, 322104, 'reference', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:02', '2019-07-30 12:34:02'),
+	(326107, 322104, 'email', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:02', '2019-07-30 12:34:02'),
+	(326108, 322105, 'name', 308138, NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:02', '2019-07-30 12:34:02'),
+	(326109, 322105, 'name', 308136, NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:02', '2019-07-30 12:34:02'),
+	(326110, 322106, 'name', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:02', '2019-07-30 12:34:02'),
+	(326111, 322107, 'name', 308140, NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:02', '2019-07-30 12:34:02'),
+	(326112, 322107, 'name', 308141, NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:02', '2019-07-30 12:34:02'),
+	(326113, 322107, 'name', 308142, NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:02', '2019-07-30 12:34:02'),
+	(326114, 322108, 'name', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:02', '2019-07-30 12:34:02'),
+	(326115, 322109, 'name', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:02', '2019-07-30 12:34:02');
 /*!40000 ALTER TABLE `__resource_list_search` ENABLE KEYS */;
 
 -- Dumping structure for table ssdb.__resource_metrics
@@ -2758,77 +2759,80 @@ CREATE TABLE IF NOT EXISTS `__resource_relations` (
   CONSTRAINT `__resource_relations_relate_resource_foreign` FOREIGN KEY (`relate_resource`) REFERENCES `__resources` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `__resource_relations_resource_foreign` FOREIGN KEY (`resource`) REFERENCES `__resources` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `__resource_relations_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=308167 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=308170 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table ssdb.__resource_relations: ~66 rows (approximately)
+-- Dumping data for table ssdb.__resource_relations: ~69 rows (approximately)
 /*!40000 ALTER TABLE `__resource_relations` DISABLE KEYS */;
 INSERT INTO `__resource_relations` (`id`, `resource`, `name`, `description`, `method`, `type`, `relate_resource`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(308101, 305104, 'TaxDetail', 'Details and sub taxes', 'Detail', 'hasMany', 305105, NULL, NULL, '2019-07-22 06:01:47', '2019-07-22 06:01:47'),
-	(308102, 305105, 'Tax', 'Detail of Tax', 'Tax', 'belongsTo', 305104, NULL, NULL, '2019-07-22 06:01:47', '2019-07-22 06:01:47'),
-	(308103, 305107, 'Tax', 'Detail of Tax', 'Tax', 'belongsTo', 305104, NULL, NULL, '2019-07-22 06:01:47', '2019-07-22 06:01:47'),
-	(308104, 305108, 'Belongs', 'Detail of main group this group belongs', 'Belongs', 'belongsTo', 305108, NULL, NULL, '2019-07-22 06:01:47', '2019-07-22 06:01:47'),
-	(308105, 305108, 'Parent', 'The parent group details of this group', 'Parent', 'belongsTo', 305108, NULL, NULL, '2019-07-22 06:01:47', '2019-07-22 06:01:47'),
-	(308106, 305108, 'Tax01', 'Details of Tax for this group', 'Tax', 'belongsTo', 305104, NULL, NULL, '2019-07-22 06:01:47', '2019-07-22 06:01:47'),
-	(308107, 305108, 'Tax02', 'Details of Sub Tax for this group', 'Tax2', 'belongsTo', 305104, NULL, NULL, '2019-07-22 06:01:47', '2019-07-22 06:01:47'),
-	(308108, 305109, 'Group01', 'Detail of group this product belongs to via group 01', 'Group01', 'belongsTo', 305108, NULL, NULL, '2019-07-22 06:01:47', '2019-07-22 06:01:47'),
-	(308109, 305109, 'Group02', 'Detail of group this product belongs to via group 02', 'Group02', 'belongsTo', 305108, NULL, NULL, '2019-07-22 06:01:47', '2019-07-22 06:01:47'),
-	(308110, 305109, 'Group03', 'Detail of group this product belongs to via group 03', 'Group03', 'belongsTo', 305108, NULL, NULL, '2019-07-22 06:01:47', '2019-07-22 06:01:47'),
-	(308111, 305109, 'Group04', 'Detail of group this product belongs to via group 04', 'Group04', 'belongsTo', 305108, NULL, NULL, '2019-07-22 06:01:47', '2019-07-22 06:01:47'),
-	(308112, 305109, 'Group05', 'Detail of group this product belongs to via group 05', 'Group05', 'belongsTo', 305108, NULL, NULL, '2019-07-22 06:01:47', '2019-07-22 06:01:47'),
-	(308113, 305109, 'Group06', 'Detail of group this product belongs to via group 06', 'Group06', 'belongsTo', 305108, NULL, NULL, '2019-07-22 06:01:47', '2019-07-22 06:01:47'),
-	(308114, 305109, 'Group07', 'Detail of group this product belongs to via group 07', 'Group07', 'belongsTo', 305108, NULL, NULL, '2019-07-22 06:01:47', '2019-07-22 06:01:47'),
-	(308115, 305109, 'Group08', 'Detail of group this product belongs to via group 08', 'Group08', 'belongsTo', 305108, NULL, NULL, '2019-07-22 06:01:47', '2019-07-22 06:01:47'),
-	(308116, 305109, 'Group09', 'Detail of group this product belongs to via group 09', 'Group09', 'belongsTo', 305108, NULL, NULL, '2019-07-22 06:01:47', '2019-07-22 06:01:47'),
-	(308117, 305109, 'Group10', 'Detail of group this product belongs to via group 10', 'Group10', 'belongsTo', 305108, NULL, NULL, '2019-07-22 06:01:47', '2019-07-22 06:01:47'),
-	(308118, 305108, 'ProductsAsOfGroup01', 'Products belongs to this group via group 01', 'ProductsAsOfGroup01', 'hasMany', 305109, NULL, NULL, '2019-07-22 06:01:47', '2019-07-22 06:01:47'),
-	(308119, 305108, 'ProductsAsOfGroup02', 'Products belongs to this group via group 02', 'ProductsAsOfGroup02', 'hasMany', 305109, NULL, NULL, '2019-07-22 06:01:47', '2019-07-22 06:01:47'),
-	(308120, 305108, 'ProductsAsOfGroup03', 'Products belongs to this group via group 03', 'ProductsAsOfGroup03', 'hasMany', 305109, NULL, NULL, '2019-07-22 06:01:47', '2019-07-22 06:01:47'),
-	(308121, 305108, 'ProductsAsOfGroup04', 'Products belongs to this group via group 04', 'ProductsAsOfGroup04', 'hasMany', 305109, NULL, NULL, '2019-07-22 06:01:47', '2019-07-22 06:01:47'),
-	(308122, 305108, 'ProductsAsOfGroup05', 'Products belongs to this group via group 05', 'ProductsAsOfGroup05', 'hasMany', 305109, NULL, NULL, '2019-07-22 06:01:47', '2019-07-22 06:01:47'),
-	(308123, 305108, 'ProductsAsOfGroup06', 'Products belongs to this group via group 06', 'ProductsAsOfGroup06', 'hasMany', 305109, NULL, NULL, '2019-07-22 06:01:47', '2019-07-22 06:01:47'),
-	(308124, 305108, 'ProductsAsOfGroup07', 'Products belongs to this group via group 07', 'ProductsAsOfGroup07', 'hasMany', 305109, NULL, NULL, '2019-07-22 06:01:47', '2019-07-22 06:01:47'),
-	(308125, 305108, 'ProductsAsOfGroup08', 'Products belongs to this group via group 08', 'ProductsAsOfGroup08', 'hasMany', 305109, NULL, NULL, '2019-07-22 06:01:47', '2019-07-22 06:01:47'),
-	(308126, 305108, 'ProductsAsOfGroup09', 'Products belongs to this group via group 09', 'ProductsAsOfGroup09', 'hasMany', 305109, NULL, NULL, '2019-07-22 06:01:47', '2019-07-22 06:01:47'),
-	(308127, 305108, 'ProductsAsOfGroup10', 'Products belongs to this group via group 10', 'ProductsAsOfGroup10', 'hasMany', 305109, NULL, NULL, '2019-07-22 06:01:47', '2019-07-22 06:01:47'),
-	(308128, 305110, 'Items', 'Each items of this pricelist', 'Items', 'hasMany', 305111, NULL, NULL, '2019-07-22 06:01:47', '2019-07-22 06:01:47'),
-	(308129, 305111, 'Pricelist', 'Details of pricelist this item belongs to', 'Pricelist', 'belongsTo', 305110, NULL, NULL, '2019-07-22 06:01:47', '2019-07-22 06:01:47'),
-	(308130, 305111, 'Product', 'Details of product this item consist of', 'Product', 'belongsTo', 305109, NULL, NULL, '2019-07-22 06:01:47', '2019-07-22 06:01:47'),
-	(308131, 305114, 'Area', 'Details of area', 'Area', 'belongsTo', 305113, NULL, NULL, '2019-07-22 06:01:47', '2019-07-22 06:01:47'),
-	(308132, 305114, 'Customer', 'Details of customer', 'Customer', 'belongsTo', 305101, NULL, NULL, '2019-07-22 06:01:47', '2019-07-22 06:01:47'),
-	(308133, 305113, 'User', 'Details of user', 'User', 'belongsToMany', 305101, NULL, NULL, '2019-07-22 06:01:47', '2019-07-22 06:01:47'),
-	(308134, 305103, 'Users', 'Users list corresponding to a settings', 'Users', 'hasMany', 305115, NULL, NULL, '2019-07-22 06:01:47', '2019-07-22 06:01:47'),
-	(308135, 305101, 'Area', 'Details of area', 'Area', 'belongsToMany', 305113, NULL, NULL, '2019-07-22 06:01:47', '2019-07-22 06:01:47'),
-	(308136, 305115, 'Settings', 'Details of settings this setting belongs to', 'Settings', 'belongsTo', 305103, NULL, NULL, '2019-07-22 06:01:47', '2019-07-22 06:01:47'),
-	(308137, 305101, 'Settings', 'Settings assigned for a user', 'Settings', 'hasMany', 305115, NULL, NULL, '2019-07-22 06:01:47', '2019-07-22 06:01:47'),
-	(308138, 305115, 'User', 'Details of user this settings belongs to', 'User', 'belongsTo', 305101, NULL, NULL, '2019-07-22 06:01:47', '2019-07-22 06:01:47'),
-	(308139, 305101, 'StoreAndArea', 'Store and Areas assigned for a user', 'StoreAndArea', 'hasMany', 305116, NULL, NULL, '2019-07-22 06:01:47', '2019-07-22 06:01:47'),
-	(308140, 305116, 'Area', 'Area details', 'Area', 'belongsTo', 305113, NULL, NULL, '2019-07-22 06:01:47', '2019-07-22 06:01:47'),
-	(308141, 305116, 'Store', 'Store Details', 'Store', 'belongsTo', 305112, NULL, NULL, '2019-07-22 06:01:47', '2019-07-22 06:01:47'),
-	(308142, 305116, 'User', 'User Details', 'User', 'belongsTo', 305101, NULL, NULL, '2019-07-22 06:01:48', '2019-07-22 06:01:48'),
-	(308143, 305112, 'Users', 'Users assigned to this store', 'Users', 'belongsToMany', 305101, NULL, NULL, '2019-07-22 06:01:48', '2019-07-22 06:01:48'),
-	(308144, 305113, 'StoreAndUser', 'Store and Users assigned to a area', 'StoreAndUser', 'hasMany', 305116, NULL, NULL, '2019-07-22 06:01:48', '2019-07-22 06:01:48'),
-	(308145, 305120, 'Product', 'Details of product', 'Product', 'belongsTo', 305109, NULL, NULL, '2019-07-22 06:01:48', '2019-07-22 06:01:48'),
-	(308146, 305120, 'Store', 'Details of store', 'Store', 'belongsTo', 305112, NULL, NULL, '2019-07-22 06:01:48', '2019-07-22 06:01:48'),
-	(308147, 305120, 'User', 'Details of user', 'User', 'belongsTo', 305101, NULL, NULL, '2019-07-22 06:01:48', '2019-07-22 06:01:48'),
-	(308148, 305120, 'Nature', 'Nature of transaction', 'Nature', 'belongsTo', 305118, NULL, NULL, '2019-07-22 06:01:48', '2019-07-22 06:01:48'),
-	(308149, 305120, 'Type', 'Type of transaction', 'Type', 'belongsTo', 305119, NULL, NULL, '2019-07-22 06:01:48', '2019-07-22 06:01:48'),
-	(308150, 305112, 'ProductTransaction', 'Product transaction of a store', 'ProductTransaction', 'hasMany', 305120, NULL, NULL, '2019-07-22 06:01:48', '2019-07-22 06:01:48'),
-	(308151, 305121, 'Details', 'Product wise details of transaction', 'Details', 'hasMany', 305122, NULL, NULL, '2019-07-22 06:01:48', '2019-07-22 06:01:48'),
-	(308152, 305121, 'Products', 'Product transactions', 'Products', 'belongsToMany', 305120, NULL, NULL, '2019-07-22 06:01:48', '2019-07-22 06:01:48'),
-	(308153, 305122, 'Product', 'Product and its transaction details', 'Product', 'belongsTo', 305120, NULL, NULL, '2019-07-22 06:01:48', '2019-07-22 06:01:48'),
-	(308154, 305126, 'Items', 'Items of a transaction', 'Items', 'hasMany', 305127, NULL, NULL, '2019-07-22 06:01:48', '2019-07-22 06:01:48'),
-	(308155, 305127, 'Product', 'Product details of an sales order item', 'Product', 'belongsTo', 305109, NULL, NULL, '2019-07-22 06:01:48', '2019-07-22 06:01:48'),
-	(308156, 305128, 'IN', 'Stock in transactions', 'IN', 'belongsTo', 305121, NULL, NULL, '2019-07-22 06:01:48', '2019-07-22 06:01:48'),
-	(308157, 305128, 'OUT', 'Stock out transactions', 'OUT', 'belongsTo', 305121, NULL, NULL, '2019-07-22 06:01:48', '2019-07-22 06:01:48'),
-	(308158, 305126, 'Customer', 'The customer to which this sales order belongs', 'Customer', 'belongsTo', 305101, NULL, NULL, '2019-07-22 06:01:48', '2019-07-22 06:01:48'),
-	(308159, 305116, 'AssignedAreas', 'The user_areas which assigned to this record', 'AssignedAreas', 'hasMany', 305114, NULL, NULL, '2019-07-22 06:01:48', '2019-07-22 06:01:48'),
-	(308160, 305114, 'Users', 'The executives assigned to a area_user', 'Users', 'hasMany', 305116, NULL, NULL, '2019-07-22 06:01:48', '2019-07-22 06:01:48'),
-	(308161, 305116, 'Customers', 'Customers who are in selected records area', 'Customers', 'belongsToMany', 305101, NULL, NULL, '2019-07-22 06:01:48', '2019-07-22 06:01:48'),
-	(308162, 305101, 'AreaCustomers', 'List of customers belongs to the area which are assigned to a user', 'AreaCustomers', 'hasManyThrough', 305114, NULL, NULL, '2019-07-22 06:01:48', '2019-07-22 06:01:48'),
-	(308163, 305127, 'SalesOrder', 'Sales order details for a so item', 'SalesOrder', 'belongsTo', 305126, NULL, NULL, '2019-07-22 06:01:48', '2019-07-22 06:01:48'),
-	(308164, 305122, 'Transaction', 'Detail of transaction header', 'Transaction', 'belongsTo', 305121, NULL, NULL, '2019-07-22 06:01:48', '2019-07-22 06:01:48'),
-	(308165, 305132, 'SalesOrder', 'Sales order details', 'SalesOrder', 'belongsTo', 305126, NULL, NULL, '2019-07-22 06:01:48', '2019-07-22 06:01:48'),
-	(308166, 305132, 'Transaction', 'Detail of transaction', 'Transaction', 'belongsTo', 305121, NULL, NULL, '2019-07-22 06:01:48', '2019-07-22 06:01:48');
+	(308101, 305104, 'TaxDetail', 'Details and sub taxes', 'Detail', 'hasMany', 305105, NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(308102, 305105, 'Tax', 'Detail of Tax', 'Tax', 'belongsTo', 305104, NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(308103, 305107, 'Tax', 'Detail of Tax', 'Tax', 'belongsTo', 305104, NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(308104, 305108, 'Belongs', 'Detail of main group this group belongs', 'Belongs', 'belongsTo', 305108, NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(308105, 305108, 'Parent', 'The parent group details of this group', 'Parent', 'belongsTo', 305108, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308106, 305108, 'Tax01', 'Details of Tax for this group', 'Tax', 'belongsTo', 305104, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308107, 305108, 'Tax02', 'Details of Sub Tax for this group', 'Tax2', 'belongsTo', 305104, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308108, 305109, 'Group01', 'Detail of group this product belongs to via group 01', 'Group01', 'belongsTo', 305108, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308109, 305109, 'Group02', 'Detail of group this product belongs to via group 02', 'Group02', 'belongsTo', 305108, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308110, 305109, 'Group03', 'Detail of group this product belongs to via group 03', 'Group03', 'belongsTo', 305108, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308111, 305109, 'Group04', 'Detail of group this product belongs to via group 04', 'Group04', 'belongsTo', 305108, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308112, 305109, 'Group05', 'Detail of group this product belongs to via group 05', 'Group05', 'belongsTo', 305108, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308113, 305109, 'Group06', 'Detail of group this product belongs to via group 06', 'Group06', 'belongsTo', 305108, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308114, 305109, 'Group07', 'Detail of group this product belongs to via group 07', 'Group07', 'belongsTo', 305108, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308115, 305109, 'Group08', 'Detail of group this product belongs to via group 08', 'Group08', 'belongsTo', 305108, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308116, 305109, 'Group09', 'Detail of group this product belongs to via group 09', 'Group09', 'belongsTo', 305108, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308117, 305109, 'Group10', 'Detail of group this product belongs to via group 10', 'Group10', 'belongsTo', 305108, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308118, 305108, 'ProductsAsOfGroup01', 'Products belongs to this group via group 01', 'ProductsAsOfGroup01', 'hasMany', 305109, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308119, 305108, 'ProductsAsOfGroup02', 'Products belongs to this group via group 02', 'ProductsAsOfGroup02', 'hasMany', 305109, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308120, 305108, 'ProductsAsOfGroup03', 'Products belongs to this group via group 03', 'ProductsAsOfGroup03', 'hasMany', 305109, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308121, 305108, 'ProductsAsOfGroup04', 'Products belongs to this group via group 04', 'ProductsAsOfGroup04', 'hasMany', 305109, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308122, 305108, 'ProductsAsOfGroup05', 'Products belongs to this group via group 05', 'ProductsAsOfGroup05', 'hasMany', 305109, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308123, 305108, 'ProductsAsOfGroup06', 'Products belongs to this group via group 06', 'ProductsAsOfGroup06', 'hasMany', 305109, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308124, 305108, 'ProductsAsOfGroup07', 'Products belongs to this group via group 07', 'ProductsAsOfGroup07', 'hasMany', 305109, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308125, 305108, 'ProductsAsOfGroup08', 'Products belongs to this group via group 08', 'ProductsAsOfGroup08', 'hasMany', 305109, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308126, 305108, 'ProductsAsOfGroup09', 'Products belongs to this group via group 09', 'ProductsAsOfGroup09', 'hasMany', 305109, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308127, 305108, 'ProductsAsOfGroup10', 'Products belongs to this group via group 10', 'ProductsAsOfGroup10', 'hasMany', 305109, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308128, 305110, 'Items', 'Each items of this pricelist', 'Items', 'hasMany', 305111, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308129, 305111, 'Pricelist', 'Details of pricelist this item belongs to', 'Pricelist', 'belongsTo', 305110, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308130, 305111, 'Product', 'Details of product this item consist of', 'Product', 'belongsTo', 305109, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308131, 305114, 'Area', 'Details of area', 'Area', 'belongsTo', 305113, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308132, 305114, 'Customer', 'Details of customer', 'Customer', 'belongsTo', 305101, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308133, 305113, 'User', 'Details of user', 'User', 'belongsToMany', 305101, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308134, 305103, 'Users', 'Users list corresponding to a settings', 'Users', 'hasMany', 305115, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308135, 305101, 'Area', 'Details of area', 'Area', 'belongsToMany', 305113, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308136, 305115, 'Settings', 'Details of settings this setting belongs to', 'Settings', 'belongsTo', 305103, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308137, 305101, 'Settings', 'Settings assigned for a user', 'Settings', 'hasMany', 305115, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308138, 305115, 'User', 'Details of user this settings belongs to', 'User', 'belongsTo', 305101, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308139, 305101, 'StoreAndArea', 'Store and Areas assigned for a user', 'StoreAndArea', 'hasMany', 305116, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308140, 305116, 'Area', 'Area details', 'Area', 'belongsTo', 305113, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308141, 305116, 'Store', 'Store Details', 'Store', 'belongsTo', 305112, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308142, 305116, 'User', 'User Details', 'User', 'belongsTo', 305101, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308143, 305112, 'Users', 'Users assigned to this store', 'Users', 'belongsToMany', 305101, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308144, 305113, 'StoreAndUser', 'Store and Users assigned to a area', 'StoreAndUser', 'hasMany', 305116, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308145, 305120, 'Product', 'Details of product', 'Product', 'belongsTo', 305109, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308146, 305120, 'Store', 'Details of store', 'Store', 'belongsTo', 305112, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308147, 305120, 'User', 'Details of user', 'User', 'belongsTo', 305101, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308148, 305120, 'Nature', 'Nature of transaction', 'Nature', 'belongsTo', 305118, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308149, 305120, 'Type', 'Type of transaction', 'Type', 'belongsTo', 305119, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308150, 305112, 'ProductTransaction', 'Product transaction of a store', 'ProductTransaction', 'hasMany', 305120, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308151, 305121, 'Details', 'Product wise details of transaction', 'Details', 'hasMany', 305122, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308152, 305121, 'Products', 'Product transactions', 'Products', 'belongsToMany', 305120, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308153, 305122, 'Product', 'Product and its transaction details', 'Product', 'belongsTo', 305120, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308154, 305126, 'Items', 'Items of a transaction', 'Items', 'hasMany', 305127, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308155, 305127, 'Product', 'Product details of an sales order item', 'Product', 'belongsTo', 305109, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308156, 305128, 'IN', 'Stock in transactions', 'IN', 'belongsTo', 305121, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308157, 305128, 'OUT', 'Stock out transactions', 'OUT', 'belongsTo', 305121, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308158, 305126, 'Customer', 'The customer to which this sales order belongs', 'Customer', 'belongsTo', 305101, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308159, 305116, 'AssignedAreas', 'The user_areas which assigned to this record', 'AssignedAreas', 'hasMany', 305114, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308160, 305114, 'Users', 'The executives assigned to a area_user', 'Users', 'hasMany', 305116, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308161, 305116, 'Customers', 'Customers who are in selected records area', 'Customers', 'belongsToMany', 305101, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308162, 305101, 'AreaCustomers', 'List of customers belongs to the area which are assigned to a user', 'AreaCustomers', 'hasManyThrough', 305114, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308163, 305127, 'SalesOrder', 'Sales order details for a so item', 'SalesOrder', 'belongsTo', 305126, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308164, 305122, 'Transaction', 'Detail of transaction header', 'Transaction', 'belongsTo', 305121, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308165, 305132, 'SalesOrder', 'Sales order details', 'SalesOrder', 'belongsTo', 305126, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308166, 305132, 'Transaction', 'Detail of transaction', 'Transaction', 'belongsTo', 305121, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308167, 305121, 'StockOutTransactions', 'TransferOut transactions', 'STOut', 'hasMany', 305128, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308168, 305121, 'StockInTransactions', 'TransferIn transactions', 'STIn', 'hasMany', 305128, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(308169, 305120, 'TransactionDetail', 'Detail of Transaction of a Stock product transaction', 'TransactionDetail', 'hasOne', 305122, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00');
 /*!40000 ALTER TABLE `__resource_relations` ENABLE KEYS */;
 
 -- Dumping structure for table ssdb.__resource_roles
@@ -2857,37 +2861,37 @@ CREATE TABLE IF NOT EXISTS `__resource_roles` (
 -- Dumping data for table ssdb.__resource_roles: ~31 rows (approximately)
 /*!40000 ALTER TABLE `__resource_roles` DISABLE KEYS */;
 INSERT INTO `__resource_roles` (`id`, `resource`, `role`, `actions_availability`, `actions`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(306101, 305101, 303101, 'All', NULL, NULL, NULL, '2019-07-22 06:01:46', '2019-07-22 06:01:46'),
-	(306102, 305102, 303101, 'All', NULL, NULL, NULL, '2019-07-22 06:01:46', '2019-07-22 06:01:46'),
-	(306103, 305103, 303101, 'All', NULL, NULL, NULL, '2019-07-22 06:01:46', '2019-07-22 06:01:46'),
-	(306104, 305104, 303101, 'All', NULL, NULL, NULL, '2019-07-22 06:01:46', '2019-07-22 06:01:46'),
-	(306105, 305105, 303101, 'All', NULL, NULL, NULL, '2019-07-22 06:01:46', '2019-07-22 06:01:46'),
-	(306106, 305106, 303101, 'All', NULL, NULL, NULL, '2019-07-22 06:01:46', '2019-07-22 06:01:46'),
-	(306107, 305107, 303101, 'All', NULL, NULL, NULL, '2019-07-22 06:01:46', '2019-07-22 06:01:46'),
-	(306108, 305108, 303101, 'All', NULL, NULL, NULL, '2019-07-22 06:01:46', '2019-07-22 06:01:46'),
-	(306109, 305109, 303101, 'All', NULL, NULL, NULL, '2019-07-22 06:01:46', '2019-07-22 06:01:46'),
-	(306110, 305110, 303101, 'All', NULL, NULL, NULL, '2019-07-22 06:01:46', '2019-07-22 06:01:46'),
-	(306111, 305111, 303101, 'All', NULL, NULL, NULL, '2019-07-22 06:01:46', '2019-07-22 06:01:46'),
-	(306112, 305112, 303101, 'All', NULL, NULL, NULL, '2019-07-22 06:01:46', '2019-07-22 06:01:46'),
-	(306113, 305113, 303101, 'All', NULL, NULL, NULL, '2019-07-22 06:01:46', '2019-07-22 06:01:46'),
-	(306114, 305114, 303101, 'All', NULL, NULL, NULL, '2019-07-22 06:01:46', '2019-07-22 06:01:46'),
-	(306115, 305115, 303101, 'All', NULL, NULL, NULL, '2019-07-22 06:01:46', '2019-07-22 06:01:46'),
-	(306116, 305116, 303101, 'All', NULL, NULL, NULL, '2019-07-22 06:01:46', '2019-07-22 06:01:46'),
-	(306117, 305117, 303101, 'All', NULL, NULL, NULL, '2019-07-22 06:01:46', '2019-07-22 06:01:46'),
-	(306118, 305118, 303101, 'All', NULL, NULL, NULL, '2019-07-22 06:01:46', '2019-07-22 06:01:46'),
-	(306119, 305119, 303101, 'All', NULL, NULL, NULL, '2019-07-22 06:01:46', '2019-07-22 06:01:46'),
-	(306120, 305120, 303101, 'All', NULL, NULL, NULL, '2019-07-22 06:01:46', '2019-07-22 06:01:46'),
-	(306121, 305121, 303101, 'All', NULL, NULL, NULL, '2019-07-22 06:01:46', '2019-07-22 06:01:46'),
-	(306122, 305122, 303101, 'All', NULL, NULL, NULL, '2019-07-22 06:01:46', '2019-07-22 06:01:46'),
-	(306123, 305123, 303101, 'All', NULL, NULL, NULL, '2019-07-22 06:01:46', '2019-07-22 06:01:46'),
-	(306124, 305124, 303101, 'All', NULL, NULL, NULL, '2019-07-22 06:01:46', '2019-07-22 06:01:46'),
-	(306125, 305125, 303101, 'All', NULL, NULL, NULL, '2019-07-22 06:01:46', '2019-07-22 06:01:46'),
-	(306126, 305126, 303101, 'All', NULL, NULL, NULL, '2019-07-22 06:01:46', '2019-07-22 06:01:46'),
-	(306127, 305127, 303101, 'All', NULL, NULL, NULL, '2019-07-22 06:01:46', '2019-07-22 06:01:46'),
-	(306128, 305128, 303101, 'All', NULL, NULL, NULL, '2019-07-22 06:01:46', '2019-07-22 06:01:46'),
-	(306129, 305129, 303101, 'All', NULL, NULL, NULL, '2019-07-22 06:01:46', '2019-07-22 06:01:46'),
-	(306130, 305130, 303101, 'All', NULL, NULL, NULL, '2019-07-22 06:01:46', '2019-07-22 06:01:46'),
-	(306131, 305131, 303101, 'All', NULL, NULL, NULL, '2019-07-22 06:01:46', '2019-07-22 06:01:46');
+	(306101, 305101, 303101, 'All', NULL, NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(306102, 305102, 303101, 'All', NULL, NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(306103, 305103, 303101, 'All', NULL, NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(306104, 305104, 303101, 'All', NULL, NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(306105, 305105, 303101, 'All', NULL, NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(306106, 305106, 303101, 'All', NULL, NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(306107, 305107, 303101, 'All', NULL, NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(306108, 305108, 303101, 'All', NULL, NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(306109, 305109, 303101, 'All', NULL, NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(306110, 305110, 303101, 'All', NULL, NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(306111, 305111, 303101, 'All', NULL, NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(306112, 305112, 303101, 'All', NULL, NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(306113, 305113, 303101, 'All', NULL, NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(306114, 305114, 303101, 'All', NULL, NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(306115, 305115, 303101, 'All', NULL, NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(306116, 305116, 303101, 'All', NULL, NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(306117, 305117, 303101, 'All', NULL, NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(306118, 305118, 303101, 'All', NULL, NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(306119, 305119, 303101, 'All', NULL, NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(306120, 305120, 303101, 'All', NULL, NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(306121, 305121, 303101, 'All', NULL, NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(306122, 305122, 303101, 'All', NULL, NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(306123, 305123, 303101, 'All', NULL, NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(306124, 305124, 303101, 'All', NULL, NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(306125, 305125, 303101, 'All', NULL, NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(306126, 305126, 303101, 'All', NULL, NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(306127, 305127, 303101, 'All', NULL, NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(306128, 305128, 303101, 'All', NULL, NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(306129, 305129, 303101, 'All', NULL, NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(306130, 305130, 303101, 'All', NULL, NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(306131, 305131, 303101, 'All', NULL, NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59');
 /*!40000 ALTER TABLE `__resource_roles` ENABLE KEYS */;
 
 -- Dumping structure for table ssdb.__resource_scopes
@@ -2913,18 +2917,21 @@ CREATE TABLE IF NOT EXISTS `__resource_scopes` (
   CONSTRAINT `__resource_scopes_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `__resource_scopes_resource_foreign` FOREIGN KEY (`resource`) REFERENCES `__resources` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `__resource_scopes_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=307108 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=307111 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table ssdb.__resource_scopes: ~7 rows (approximately)
+-- Dumping data for table ssdb.__resource_scopes: ~10 rows (approximately)
 /*!40000 ALTER TABLE `__resource_scopes` DISABLE KEYS */;
 INSERT INTO `__resource_scopes` (`id`, `resource`, `name`, `description`, `method`, `arg1`, `arg2`, `arg3`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(307101, 305101, 'SalesExecutives', 'User where has group reference as SLS', 'salesExecutive', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:48', '2019-07-22 06:01:48'),
-	(307102, 305116, 'Assigned', 'The store and area whih is assigned to the requesting user', 'assigned', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:48', '2019-07-22 06:01:48'),
-	(307103, 305114, 'Assigned', 'The records where area is assigned to the requester', 'assigned', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:48', '2019-07-22 06:01:48'),
-	(307104, 305126, 'AssignedAreaCustomer', 'Sales orders of customers belongs to a area which assigned to a executive', 'assignedAreaCustomer', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:48', '2019-07-22 06:01:48'),
-	(307105, 305121, 'AssignedCustomerTransactions', 'Transactions related to customers who are assigned to the requesting executive', 'assignedCustomerTransactions', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:48', '2019-07-22 06:01:48'),
-	(307106, 305130, 'AssignedCustomerReceipts', 'Receipts related to customers who are assigned to the requesting executive', 'assignedCustomerReceipts', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:48', '2019-07-22 06:01:48'),
-	(307107, 305132, 'AssignedCustomerSalesOrder', 'The records of sales order in which sales order belongs to any assigned customer', 'assignedCustomerSalesOrder', NULL, NULL, NULL, NULL, NULL, '2019-07-22 06:01:48', '2019-07-22 06:01:48');
+	(307101, 305101, 'SalesExecutives', 'User where has group reference as SLS', 'salesExecutive', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(307102, 305116, 'Assigned', 'The store and area whih is assigned to the requesting user', 'assigned', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(307103, 305114, 'Assigned', 'The records where area is assigned to the requester', 'assigned', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(307104, 305126, 'AssignedAreaCustomer', 'Sales orders of customers belongs to a area which assigned to a executive', 'assignedAreaCustomer', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(307105, 305121, 'AssignedCustomerTransactions', 'Transactions related to customers who are assigned to the requesting executive', 'assignedCustomerTransactions', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(307106, 305130, 'AssignedCustomerReceipts', 'Receipts related to customers who are assigned to the requesting executive', 'assignedCustomerReceipts', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(307107, 305132, 'AssignedCustomerSalesOrder', 'The records of sales order in which sales order belongs to any assigned customer', 'assignedCustomerSalesOrder', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(307108, 305121, 'StockTransferPending', 'The transactions which are all pending stock transafer', 'sTPending', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(307109, 305128, 'PendingStockTransfer', 'Stock transafers which are pending', 'pending', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00'),
+	(307110, 305120, 'PendingStockTransferOut', 'The store product transaction of a pending stock transfer out', 'pendingSTOut', NULL, NULL, NULL, NULL, NULL, '2019-07-30 12:34:00', '2019-07-30 12:34:00');
 /*!40000 ALTER TABLE `__resource_scopes` ENABLE KEYS */;
 
 -- Dumping structure for table ssdb.__roles
@@ -2949,9 +2956,9 @@ CREATE TABLE IF NOT EXISTS `__roles` (
 -- Dumping data for table ssdb.__roles: ~3 rows (approximately)
 /*!40000 ALTER TABLE `__roles` DISABLE KEYS */;
 INSERT INTO `__roles` (`id`, `name`, `description`, `title`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(303101, 'eplus_administrators', 'ePlus administrators role', 'ePlus Administrator', NULL, NULL, '2019-07-22 06:01:45', '2019-07-22 06:01:45'),
-	(303102, 'eplus_accountant', 'ePlus accountant role', 'ePlus Accountant', NULL, NULL, '2019-07-22 06:01:45', '2019-07-22 06:01:45'),
-	(303103, 'eplus_salesExecutive', 'ePlus sales executive', 'ePlus Sales Executive', NULL, NULL, '2019-07-22 06:01:45', '2019-07-22 06:01:45');
+	(303101, 'eplus_administrators', 'ePlus administrators role', 'ePlus Administrator', NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(303102, 'eplus_accountant', 'ePlus accountant role', 'ePlus Accountant', NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59'),
+	(303103, 'eplus_salesExecutive', 'ePlus sales executive', 'ePlus Sales Executive', NULL, NULL, '2019-07-30 12:33:59', '2019-07-30 12:33:59');
 /*!40000 ALTER TABLE `__roles` ENABLE KEYS */;
 
 -- Dumping structure for function ssdb.GETDECIMALRESULT
@@ -3187,10 +3194,10 @@ DECLARE V_DOCDATE DATETIME;
 DECLARE V_PROCESSEDDATE DATETIME;
 	SELECT TYPE,DOCDATE INTO V_TYPE,V_DOCDATE FROM d_data WHERE COCODE = V_COCODE AND BRCODE = V_BRCODE
 		AND FYCODE = V_FYCODE AND FNCODE = V_FNCODE AND DOCNO = V_DOCNO AND SRNO =V_SRNO;
-	IF V_TYPE = 'System' OR V_TYPE = 'Normal' THEN 
+	IF V_TYPE = 'System' OR V_TYPE = 'Normal' THEN
 		RETURN V_DOCDATE;
 	END IF;
-	
+
 	SELECT CHQ_STATUS,PROCESSEDDATE INTO V_CHQSTATUS,V_PROCESSEDDATE FROM cheque_details WHERE COCODE = V_COCODE AND BRCODE = V_BRCODE
 		AND FYCODE = V_FYCODE AND FNCODE = V_FNCODE AND DOCNO = V_DOCNO AND SRNO =V_SRNO
 		ORDER BY VERSION DESC LIMIT 1;
