@@ -142,34 +142,32 @@
                 'REFNO' => 'getRefNo',
                 'REFDATE' => 'getRefDate',
                 'SIGN' => 'getSign',
+                'CURRENCY' => 'getCurrency',
             ];
         }
 
         public function getExportAttributes()
         {
-            return ['COCODE','BRCODE','FYCODE','FNCODE','DOCNO','DOCDATE','CO','BR','ACCCODE','PAYMENTMODE','ANALYSISCATCODE','ANALYSISCODE','AREA','STRSRCCAT','STRSRC','STRDSTCAT','STRDST','REFNO','REFDATE','SIGN'];
+            return ['COCODE','BRCODE','FYCODE','FNCODE','DOCNO','DOCDATE','CO','BR','ACCCODE','PAYMENTMODE','ANALYSISCATCODE','ANALYSISCODE','AREA','STRSRCCAT','STRSRC','STRDSTCAT','STRDST','REFNO','REFDATE','SIGN','CURRENCY'];
         }
 
         public function preExportGet($query){ return $query->with(['Details','Products']); }
         public function preExportUpdate($query){ return $query->with(['Details','Products']); }
 
-        public function cacheStore(){ $this->cache['store'] = Store::all()->mapWithKeys(function($item){ return [$item->id => ['CO' => $item->cocode,'BR' => $item->brcode, 'CODE' => $item->code]]; })->toArray(); }
+        public function cacheStore(){ $this->cache['store'] = Store::all()->mapWithKeys(function($item){ return [$item->id => $item]; })->toArray(); }
         public function cacheUsers(){ $this->cache['users'] = User::all()->keyBy(function($item){ return $item->id; })->toArray(); }
         public function cacheAreas(){ $this->cache['areas'] = AreaUser::with('Area')->get()->mapWithKeys(function($item){ return [$item->user => $item->Area->code]; })->toArray(); }
 
         public function getStoreId($data){
             return Arr::get($data,'Products.0.store') ?: Arr::get(Store::first(),'id');
         }
-        public function getCOCode($data){
-            $store_id = $this->getStoreId($data);
+        public function getStoreProp($data,$prop){
             if(empty($this->cache['store'])) $this->cacheStore();
-            return Arr::get($this->cache['store'],"{$store_id}.CO");
-        }
-        public function getBRCode($data){
             $store_id = $this->getStoreId($data);
-            if(empty($this->cache['store'])) $this->cacheStore();
-            return Arr::get($this->cache['store'],"{$store_id}.BR");
+            return Arr::get($this->cache['store'],"{$store_id}.{$prop}");
         }
+        public function getCOCode($data){ return $this->getStoreProp($data,'cocode'); }
+        public function getBRCode($data){ return $this->getStoreProp($data,'brcode'); }
         public function getACCCode($data){
             $customer_id = Arr::get($data,'customer'); if(!$customer_id) return null;
             if(empty($this->cache['users'])) $this->cacheUsers();
@@ -199,15 +197,10 @@
             $fncode = $data['fncode'];
             return ($fncode === $this->fn_in || in_array(substr($fncode,0,2),['SR'])) ? 'INV' : null;
         }
-        public function getSrcStore($data){
-            if(!$this->getSrcStoreCat($data)) return null; $store_id = $this->getStoreId($data);
-            if(empty($this->cache['store'])) $this->cacheStore();
-            return Arr::get($this->cache['store'],"{$store_id}.CODE");
-        }
+        public function getSrcStore($data){ return $this->getStoreProp($data,'code'); }
         public function getDstStore($data){
-            if(!$this->getDstStoreCat($data)) return null; $store_id = $this->getStoreId($data);
-            if(empty($this->cache['store'])) $this->cacheStore();
-            return Arr::get($this->cache['store'],"{$store_id}.CODE");
+            if(!$this->getDstStoreCat($data)) return null;
+            return $this->getStoreProp($data,'code');
         }
         public function getRefNo($data){
             $fncode = $data['fncode'];
@@ -229,6 +222,9 @@
         public function getSign($data){
             $fncode = $data['fncode'];
             return ($fncode === $this->fn_in || in_array(substr($fncode,0,2),['SR'])) ? -1 : 1;
+        }
+        public function getCurrency($data){
+            return $this->getStoreProp($data,'currency');
         }
 
     }
