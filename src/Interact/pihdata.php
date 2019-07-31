@@ -77,11 +77,12 @@
                 'ANALYSISCATCODE' => 'getAnalysisCatCode',
                 'ANALYSISCODE' => 'getAnalysisCode',
                 'STRSRCCAT' => 'getStrSrcCode',
-                'REFDATE' => 'date'];
+                'REFDATE' => 'date',
+                'CURRENCY' => 'getCurrency'];
         }
         public function getExportAttributes()
         {
-            return ['COCODE','BRCODE','FYCODE','FNCODE','DOCNO','DOCDATE','CO','BR','ACCCODE','PAYMENTMODE','ANALYSISCATCODE','ANALYSISCODE','STRSRCCAT','REFDATE'];
+            return ['COCODE','BRCODE','FYCODE','FNCODE','DOCNO','DOCDATE','CO','BR','ACCCODE','PAYMENTMODE','ANALYSISCATCODE','ANALYSISCODE','STRSRCCAT','REFDATE','CURRENCY'];
         }
 
         public function getUserProp($data,$prop){
@@ -98,4 +99,5 @@
         public function getAnalysisCatCode(){ return 'SE'; }
         public function getAnalysisCode($data){ return str_ireplace($this->getAnalysisCatCode(),'',$this->getUserProp($data,'reference')); }
         public function getStrSrcCode(){ return 'INV'; }
+        public function getCurrency($data){ return $this->getUserProp($data,'currency'); }
     }
