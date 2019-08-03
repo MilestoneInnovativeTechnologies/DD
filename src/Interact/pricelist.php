@@ -10,6 +10,11 @@
     class pricelist implements Table
     {
         private $price_list_cache = [];
+        private $products_cache = [];
+        private $price_list_records = [];
+        private $PPStringDelimiter = '|';
+
+
         public function getModel()
         {
             return PricelistProduct::class;
@@ -33,19 +38,30 @@
             ];
         }
 
+        public function preImport(){
+            $this->price_list_records = PricelistProduct::all()->map(function($item){ return $this->PPString($item->pricelist,$item->product); })->toArray();
+            $this->price_list_cache = \Milestone\SS\Model\Pricelist::all()->keyBy('code')->toArray();
+            $this->products_cache = Product::all()->keyBy('code');
+        }
+        private function PPString($PL,$PRD){
+            return implode($this->PPStringDelimiter,[$PL,$PRD]);
+        }
+        public function isValidImportRecord($record){
+            return !in_array($this->PPString($this->getPriceList($record),$this->getProductId($record)),$this->price_list_records);
+        }
+
         public function getPriceList($data){
-            if(!Arr::has($this->price_list_cache,$data['CODE'])){
-                $pricelist = \Milestone\SS\Model\Pricelist::where('code',$data['CODE'])->first();
-                $this->price_list_cache[$data['CODE']] = ($pricelist) ? $pricelist->id : null;
-            }
-            return Arr::get($this->price_list_cache,$data['CODE']);
+            return Arr::get($this->price_list_cache,"{$data['CODE']}.id",null);
         }
 
         public function getProductId($data){
-            $product = Product::where('code',$data['ITEMCODE'])->first();
-            if(!$product) return null;
-            $product->uom = $data['UNITCODE']; $product->partcode = $data['PARTCODE']; $product->save();
-            return $product->id;
+            $product = Arr::get($this->products_cache,$data['ITEMCODE'],null);
+            if($product && (!$product->uom || !$product->partcode)) {
+                $product->uom = $data['UNITCODE'];
+                $product->partcode = $data['PARTCODE'];
+                $product->save();
+            }
+            return $product ? $product->id : null;
         }
 
         public function getPrimaryIdFromImportRecord($data)
