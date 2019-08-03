@@ -10,7 +10,8 @@
 
     class areaaccount implements Table
     {
-        private $area_cache = null, $user_cache = null;
+        private $area_cache = null, $user_cache = null, $area_user_cache = null;
+        private $implode_delimiter = '|';
 
         public function getModel()
         {
@@ -39,6 +40,10 @@
         public function preImport(){
             $this->area_cache = Area::pluck('id','code')->toArray();
             $this->user_cache = User::pluck('id','reference')->toArray();
+            $this->area_user_cache = AreaUser::all()->map(function ($item){ return $this->AreaUserStr($item->area,$item->user); })->toArray();
+        }
+        public function isValidImportRecord($record){
+            return !in_array($this->AreaUserStr($this->getAreaID($record),$this->getUserID($record)),$this->area_user_cache);
         }
 
         public function getAreaID($record){
@@ -48,6 +53,10 @@
         public function getUserID($record){
             $user_code = $record['ACCCODE'];
             return Arr::get($this->user_cache,$user_code);
+        }
+
+        private function AreaUserStr($area,$user){
+            return implode($this->implode_delimiter,[$area,$user]);
         }
 
         public function getExportMappings()
