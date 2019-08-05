@@ -236,10 +236,11 @@
             return Arr::get($this->cache['store'],"{$store_id}.{$prop}",null);
         }
         public function getTransactionProp($data,$prop){
-            $TD = TransactionDetail::with('Transaction')->where('spt',$data['id'])->get(); if($TD->isEmpty()) return null; $TD1 = $TD->first();
-            if(!array_key_exists($TD1->transaction,$this->cache['detail'])) $this->cache['detail'][$TD1->transaction] = $TD->toArray();
-            if(!array_key_exists($TD1->transaction,$this->cache['transaction'])) $this->cache['transaction'][$TD1->transaction] = $TD->first()->Transaction->toArray();
-            return Arr::get($this->cache['transaction'],"{$TD1->transaction}.{$prop}",null);
+            $TR = Transaction::with('Details')->find(Arr::get(TransactionDetail::where('spt',$data['id'])->get(),'0.transaction'));
+            $TD = Arr::get($TR,'Details');
+            if(!array_key_exists($TR->id,$this->cache['detail'])) $this->cache['detail'][$TR->id] = $TD->toArray();
+            if(!array_key_exists($TR->id,$this->cache['transaction'])) $this->cache['transaction'][$TR->id] = $TR->toArray();
+            return Arr::get($this->cache['transaction'],"{$TR->id}.{$prop}",null);
         }
         public function getProdProp($data, $prop){
             $product_id = $data['product']['id'];
@@ -277,7 +278,7 @@
         public function getUnitCode($data){ return $this->getProdProp($data,'uom'); }
         public function getPartCode($data){ return $this->getProdProp($data,'partcode'); }
         public function getUnitRate($data){ return $this->getTDProp($data,'amount'); }
-        public function getSign($data){ return ($data['direction'] === 'out') ? (-1) : 1; }
+        public function getSign($data){ return ($data['direction'] === 'Out') ? (-1) : 1; }
         public function getTaxRule($data){ return $this->getProdProp($data,'group01.tax.code'); }
         public function getTaxValue($data){ return $this->getTDProp($data,'tax'); }
         public function getRefCOCode($data){ return ($this->getRefProp($data,'fncode')) ? $this->getCOCode($data) : null; }
