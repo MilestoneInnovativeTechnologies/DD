@@ -143,12 +143,13 @@
                 'REFDATE' => 'getRefDate',
                 'SIGN' => 'getSign',
                 'CURRENCY' => 'getCurrency',
+                'DOCCURRENCY' => 'getCurrency'
             ];
         }
 
         public function getExportAttributes()
         {
-            return ['COCODE','BRCODE','FYCODE','FNCODE','DOCNO','DOCDATE','CO','BR','ACCCODE','PAYMENTMODE','ANALYSISCATCODE','ANALYSISCODE','AREA','STRSRCCAT','STRSRC','STRDSTCAT','STRDST','REFNO','REFDATE','SIGN','CURRENCY'];
+            return ['COCODE','BRCODE','FYCODE','FNCODE','DOCNO','DOCDATE','CO','BR','ACCCODE','PAYMENTMODE','ANALYSISCATCODE','ANALYSISCODE','AREA','STRSRCCAT','STRSRC','STRDSTCAT','STRDST','REFNO','REFDATE','SIGN','CURRENCY','DOCCURRENCY'];
         }
 
         public function preExportGet($query){ return $query->with(['Details','Products']); }
