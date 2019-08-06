@@ -2,6 +2,7 @@
 
     namespace Milestone\SS\Interact;
 
+    use Illuminate\Support\Arr;
     use Illuminate\Support\Facades\Auth;
     use Milestone\Interact\Table;
     use Milestone\SS\Model\SalesOrder;
@@ -26,8 +27,7 @@
 
         public function getPrimaryIdFromImportRecord($data)
         {
-            $SO = SalesOrder::where('_ref',$data['_ref'])->first();
-            return $SO ? $SO->id : null;
+            Arr::get(SalesOrderItem::where(['so' => $this->getSOId($data),'product' => $data['product'],'rate' => $data['rate']])->first(),'id',null);
         }
 
         public function getExportMappings()
@@ -45,7 +45,8 @@
         }
 
         public function getSOId($record){
-            return $this->getPrimaryIdFromImportRecord($record);
+            $ref = $this->recordReference($record);
+            return Arr::get(SalesOrder::where('_ref',$ref)->first(),'id',null);
         }
 
         public function preExportGet($query){

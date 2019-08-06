@@ -18,6 +18,7 @@
         private $cr = 'CR';
         private $br = 'BR';
         private $in_cache = [];
+        private $users_cache = [];
 
         private $cache = [
             'store' => [],
@@ -54,9 +55,18 @@
         public function getReference($data){
             return implode('',['U',$this->getUserID($data),'T',intval(microtime(true)*10000)]);
         }
+        public function preImport(){
+            $this->users_cache = User::pluck('id','reference')->toArray();
+        }
+        public function isValidImportRecord($record){
+            $fncode = $record['FNCODE'];
+            if(in_array(substr($fncode,0,2),[$this->cr,$this->br])) $this->addReceipt($record);
+            return (in_array(substr($fncode,0,2),['SL','SR']) || in_array($fncode,[$this->fn_out,$this->fn_in]));
+        }
         public function getUserID($data){
-            $user = User::where('reference',$data['CREATED_USER'])->first();
-            return $user ? $user->id : null;
+            if($data['ANALYSISCATCODE'] && $data['ANALYSISCODE']) return Arr::get($this->users_cache,implode('',[$data['ANALYSISCATCODE'],$data['ANALYSISCODE']]));
+            if($data['CREATED_USER'] && array_key_exists($data['CREATED_USER'],$this->users_cache)) return $this->users_cache[$data['CREATED_USER']];
+            return null;
         }
 
         public function getCustomerID($data){
@@ -81,8 +91,6 @@
             } elseif($fncode == $this->fn_in){
                 $docno = $record['REFNO']; $fycode = $record['FYCODE'];
                 $this->in_cache[$fycode][$docno] = $id;
-            } elseif (in_array(substr($fncode,0,2),[$this->cr,$this->br])){
-                $this->addReceipt($record);
             }
         }
 
@@ -160,7 +168,7 @@
         public function cacheAreas(){ $this->cache['areas'] = AreaUser::with('Area')->get()->mapWithKeys(function($item){ return [$item->user => $item->Area->code]; })->toArray(); }
 
         public function getStoreId($data){
-            return Arr::get($data,'Products.0.store') ?: Arr::get(Store::first(),'id');
+            return Arr::get($data,'products.0.store',Arr::get(Store::first(),'id'));
         }
         public function getStoreProp($data,$prop){
             if(empty($this->cache['store'])) $this->cacheStore();

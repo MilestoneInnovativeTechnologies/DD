@@ -39,12 +39,12 @@
         }
 
         public function preImport(){
-            $users = User::all();
-            $this->user_cache = $users->pluck('id','reference')->toArray();
+            $this->user_cache = User::pluck('id','reference')->toArray();
         }
-
-        public function getUserID($record){
-            return Arr::get($this->user_cache,$record['CREATED_USER']);
+        public function getUserID($data){
+            if($data['ANALYSISCATCODE'] && $data['ANALYSISCODE']) return Arr::get($this->user_cache,implode('',[$data['ANALYSISCATCODE'],$data['ANALYSISCODE']]));
+            if($data['CREATED_USER'] && array_key_exists($data['CREATED_USER'],$this->user_cache)) return $this->user_cache[$data['CREATED_USER']];
+            return null;
         }
         public function getCustomerID($record){
             return Arr::get($this->user_cache,$record['ACCCODE']);

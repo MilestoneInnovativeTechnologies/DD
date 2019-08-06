@@ -3,6 +3,7 @@
     namespace Milestone\SS\Interact;
 
     use Illuminate\Support\Arr;
+    use Illuminate\Support\Facades\Cache;
     use Milestone\Interact\Table;
     use Milestone\SS\Model\Product;
     use Milestone\SS\Model\SalesOrder;
@@ -13,7 +14,10 @@
     {
         public $product_cache = null;
         public $user_cache = null;
+        public $exists_cache = [];
         private $so_ref = [];
+        private $header_key_implode_delimiter = '|';
+        private $cache_key = 'piidata';
 
         public function getModel()
         {
@@ -68,8 +72,36 @@
             return $soi ? $soi->id : null;
         }
 
-        public function preImport(){
+        public function preImport($activity){
             $this->product_cache = Product::pluck('id','code')->toArray();
+            if($activity['mode'] === 'create') {
+                $cachedRecords = Cache::pull($this->cache_key,[]);
+                if(!empty($cachedRecords)) $activity['data'] = array_merge($cachedRecords,$activity['data']);
+            }
+            return $activity;
+        }
+        public function isValidImportRecord($record){
+            $exists = $this->isHeaderExists($record);
+            if(!$exists) $this->doCacheRecord($record);
+            return $exists;
+        }
+
+        private function isHeaderExists($record){
+            $headerId = $this->getHeaderId($record);
+            if(!array_key_exists($headerId,$this->exists_cache))
+                $this->exists_cache[$headerId] = SalesOrder::where(['fycode' => $record['FYCODE'],'fncode' => $record['FNCODE'],'docno' => $record['DOCNO']])->exists();
+            return $this->exists_cache[$headerId];
+        }
+        private function getHeaderId($record){
+            return implode($this->header_key_implode_delimiter,$this->headerKeys($record));
+        }
+        private function headerKeys($record){
+            return array_values(Arr::only($record,['COCODE','BRCODE','FYCODE','FNCODE','DOCNO']));
+        }
+        private function doCacheRecord($record){
+            $cacheKey = $this->cache_key;
+            $cache = Cache::get($cacheKey,[]); array_push($cache,$record);
+            Cache::put($cacheKey,$cache);
         }
 
         public function getExportMappings()
