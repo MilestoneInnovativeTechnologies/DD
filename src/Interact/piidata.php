@@ -122,8 +122,8 @@
                 'ITEMCODE' => 'getItemCode',
                 'UNITCODE' => 'getUnitCode',
                 'PARTCODE' => 'getPartCode',
-                'QTY' => 'getQuantity',
-                'RATE' => 'getRate',
+                'UNITQTY' => 'getQuantity',
+                'UNITRATE' => 'getRate',
                 'SIGN' => 'getSign',
                 'TAXRULE' => 'getTaxRule',
                 'TAX' => 'getTax'];
