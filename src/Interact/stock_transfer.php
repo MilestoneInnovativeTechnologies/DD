@@ -29,7 +29,7 @@
 
         public function getPrimaryIdFromImportRecord($data)
         {
-            Arr::get(StockTransfer::where(['out' => $this->getTransactionOutID($data),'in' => $this->getTransactionInID($data)])->first(),'id');
+            Arr::get(StockTransfer::where(['out' => $this->getTransactionOutID($data)])->first(),'id');
         }
 
         public function getExportMappings()
@@ -42,7 +42,7 @@
 
         public function getExportAttributes()
         {
-            return ['id','out','in','verified_by','verified_at'];
+            return ['out','in','verified_by','verified_at'];
         }
 
         public function getTransactionOutReference($record){ return Arr::get(Transaction::find($record['out']),'_ref'); }
