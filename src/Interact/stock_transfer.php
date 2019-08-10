@@ -9,6 +9,8 @@
 
     class stock_transfer implements Table
     {
+        public $mode = null;
+
         public function getModel()
         {
             return StockTransfer::class;
@@ -16,7 +18,7 @@
 
         public function getImportAttributes()
         {
-            return ['id','out','in','verified_by','verified_at'];
+            return ['out','in','verified_by','verified_at'];
         }
 
         public function getImportMappings()
@@ -29,7 +31,9 @@
 
         public function getPrimaryIdFromImportRecord($data)
         {
-            Arr::get(StockTransfer::where(['out' => $this->getTransactionOutID($data)])->first(),'id');
+            return ($this->mode === 'update')
+                ? Arr::get(StockTransfer::where(['out' => $this->getTransactionOutID($data)])->first(),'id')
+                : null;
         }
 
         public function getExportMappings()
