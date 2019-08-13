@@ -26,7 +26,6 @@ class CreateFunctiondetailsTable extends Migration
             $table->enum('tax', ['Yes','No'])->nullable()->default('No');
             $table->enum('taxselection', ['Tax01','Tax02','Select','Account','Auto'])->nullable()->default('Tax01');
             $table->enum('taxunique', ['Yes','No'])->nullable()->default('No');
-            $table->foreignNullable('taxrule', 'tax');
             $table->enum('ratewithtax', ['Yes','No'])->nullable()->default('No');
             $table->enum('discount01', ['NotRequired','Amount','Percentage'])->nullable()->default('NotRequired');
             $table->enum('discount02', ['NotRequired','Amount','Percentage'])->nullable()->default('NotRequired');

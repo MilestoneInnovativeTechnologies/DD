@@ -21,23 +21,12 @@
 
         public function getImportAttributes()
         {
-            return ['code','tax','taxselection','taxunique','taxrule','ratewithtax','discount01','discount02','discount02base','discount03','discountmode','discount'];
+            return ['code','tax','taxselection','taxunique','ratewithtax','discount01','discount02','discount02base','discount03','discountmode','discount'];
         }
 
         public function getImportMappings()
         {
-            return array_merge(
-                array_combine(
-                    Arr::except($this->getImportAttributes(),['4']),
-                    array_map('strtoupper',Arr::except($this->getImportAttributes(),['4']))
-                ),
-                ['taxrule' => 'getTaxID']
-            );
-        }
-
-        public function getTaxID($record){
-            $tax = Tax::where('code',$record['CODE'])->first();
-            return $tax ? $tax->id : null;
+            return array_map('strtoupper',$this->getImportAttributes());
         }
 
         public function getPrimaryIdFromImportRecord($data)
