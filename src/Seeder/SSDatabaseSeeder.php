@@ -33,7 +33,6 @@
                 TransactionTableSeeder::class,
                 TransactionDetailTableSeeder::class,
                 DDataTableSeeder::class,
-                ChequeDetailTableSeeder::class,
                 SalesOrderTableSeeder::class,
                 SalesOrderItemTableSeeder::class,
                 StockTransferTableSeeder::class,
