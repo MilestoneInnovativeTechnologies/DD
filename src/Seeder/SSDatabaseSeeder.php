@@ -18,7 +18,6 @@
                 SettingTableSeeder::class,
                 FiscalyearmasterTableSeeder::class,
                 FunctiondetailTableSeeder::class,
-                ProductgroupTableSeeder::class,
                 ProductTableSeeder::class,
                 PricelistTableSeeder::class,
                 PricelistProductTableSeeder::class,
