@@ -59,9 +59,9 @@
 
         public function recordImported($record){
             if(!in_array(substr($record['FNCODE'],0,2),[$this->cr,$this->br]) || $record['TYPE'] === 'System') return;
-            list('DOCNO' => $docno, 'FYCODE' => $fycode, 'FNCODE' => $fncode, 'NARRATION2' => $bank) = $record;
+            list('DOCNO' => $docno, 'FYCODE' => $fycode, 'FNCODE' => $fncode, 'NARRATION2' => $bank, 'REFNO' => $cheque, 'REFDATE' => $cheque_date) = $record;
             $customer = $this->getCustomerID($record);
-            $pri = compact('docno','fycode','fncode'); $data = compact('bank','customer');
+            $pri = compact('docno','fycode','fncode'); $data = compact('customer','bank','cheque','cheque_date');
             $receipt = Receipt::where($pri);
             if($receipt->exists()) $receipt->update($data);
             else $this->doCacheRecord($record);
