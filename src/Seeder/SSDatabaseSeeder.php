@@ -40,7 +40,6 @@
                 FnReserveTableSeeder::class,
                 SalesOrderSaleTableSeeder::class,
                 WBinTableSeeder::class,
-                ImportsaleTableSeeder::class,
             ]);
         }
     }
