@@ -33,7 +33,6 @@ Route::group([
     });
     Route::get('setup',function(){ return new \Milestone\SS\Resources\SetupResource(\Milestone\SS\Model\Setup::find(1)); });
     Route::get('settings',function(){ return \Milestone\SS\Resources\SettingResource::collection(\Milestone\SS\Model\Setting::active()->get()); });
-    Route::get('tax',function(){ return \Milestone\SS\Resources\TaxDetailResource::collection(\Milestone\SS\Model\TaxDetail::active()->get()); });
     Route::get('fiscal',function(){ return \Milestone\SS\Resources\FiscalResource::collection(\Milestone\SS\Model\Fiscalyearmaster::write()->get()); });
     Route::get('function',function(){ return \Milestone\SS\Resources\FunctionResource::collection(\Milestone\SS\Model\Functiondetail::all()); });
     Route::get('ptnature',function(){ return \Milestone\SS\Resources\ProductTransactionNatureResource::collection(\Milestone\SS\Model\ProductTransactionNature::active()->get()); });
