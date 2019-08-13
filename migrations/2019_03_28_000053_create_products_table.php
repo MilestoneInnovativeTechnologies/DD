@@ -23,7 +23,9 @@ class CreateProductsTable extends Migration
             $table->string('narration', '1024')->nullable();
             $table->string('narration2', '1024')->nullable();
             $table->decimal('taxfactor', 30,10)->default('0');
+            $table->decimal('subtaxfactor', 30,10)->default('0');
             $table->decimal('taxfactor02', 30,10)->default('0');
+            $table->decimal('subtaxfactor02', 30,10)->default('0');
             $table->enum('type', ['Public','Protected','System'])->nullable()->default('Public');
             $table->enum('status', ['Active','Inactive'])->nullable()->default('Active');
             $table->audit();
