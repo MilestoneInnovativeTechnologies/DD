@@ -32,7 +32,6 @@
                 StoreProductTransactionTableSeeder::class,
                 TransactionTableSeeder::class,
                 TransactionDetailTableSeeder::class,
-                BillDataTableSeeder::class,
                 DDataTableSeeder::class,
                 ChequeDetailTableSeeder::class,
                 SalesOrderTableSeeder::class,
