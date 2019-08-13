@@ -16,8 +16,6 @@
             $this->call([
                 SetupTableSeeder::class,
                 SettingTableSeeder::class,
-                TaxTableSeeder::class,
-                TaxDetailTableSeeder::class,
                 FiscalyearmasterTableSeeder::class,
                 FunctiondetailTableSeeder::class,
                 ProductgroupTableSeeder::class,
