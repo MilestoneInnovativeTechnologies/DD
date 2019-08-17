@@ -19,7 +19,7 @@
 
         public function getImportAttributes()
         {
-            return ['taxfactor','subtaxfactor','taxfactor02','subtaxfactor02'];
+            return ['taxfactor','taxfactor02'/*,'subtaxfactor02','subtaxfactor'*/];
         }
 
         public function getImportMappings()
