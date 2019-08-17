@@ -2,7 +2,6 @@
 
     namespace Milestone\SS\Interact;
 
-    use Illuminate\Support\Arr;
     use Milestone\Interact\Table;
     use Milestone\SS\Model\Functiondetail;
     use Milestone\SS\Model\Tax;
@@ -11,7 +10,6 @@
     {
 
         public $functions_cache = null;
-        public $mode = null;
         public $update_cache = [];
 
         public function getModel()
@@ -26,7 +24,7 @@
 
         public function getImportMappings()
         {
-            return array_map('strtoupper',$this->getImportAttributes());
+            return array_combine($this->getImportAttributes(),array_map('strtoupper',$this->getImportAttributes()));
         }
 
         public function getPrimaryIdFromImportRecord($data)
@@ -40,12 +38,10 @@
         }
 
         public function isValidImportRecord($record){
-            if(in_array($this->mode,['create','insert'])){
-                if(array_key_exists($record['CODE'],$this->functions_cache)){
-                    $this->update_cache[$this->functions_cache[$record['CODE']]] = array_map(function($key)use($record){ return $this->getKeyValue($key,$record); },$this->getImportMappings());
-                    return false;
-                }
-            } return true;
+            if(array_key_exists($record['CODE'],$this->functions_cache)){
+                $this->update_cache[$this->functions_cache[$record['CODE']]] = array_map(function($key)use($record){ return $this->getKeyValue($key,$record); },$this->getImportMappings());
+            }
+            return false;
         }
 
         private function getKeyValue($key,$record){
