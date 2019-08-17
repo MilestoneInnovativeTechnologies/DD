@@ -4,6 +4,7 @@
     namespace Milestone\SS\Interact;
 
     use Illuminate\Support\Arr;
+    use Milestone\Interact\Table;
     use Milestone\SS\Model\User;
 
     class billsummary implements Table
