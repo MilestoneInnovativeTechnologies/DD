@@ -17,8 +17,8 @@ class AddSsFieldsInUsersTable extends Migration
             $table->string('email',191)->change();
             $table->char('reference',15)->nullable()->index()->after('email');
             $table->string('api_token',128)->nullable()->index()->after('email');
-            $table->decimal('overdue',30,10)->default(0)->after('email');
-            $table->decimal('outstanding',30,10)->default(0)->after('email');
+            $table->decimal('overdue',30,10)->nullable()->default(0)->after('email');
+            $table->decimal('outstanding',30,10)->nullable()->default(0)->after('email');
             $table->string('address',512)->nullable()->after('email');
             $table->string('phone',128)->nullable()->index()->after('email');
         });
