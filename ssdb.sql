@@ -28,8 +28,8 @@ CREATE TABLE IF NOT EXISTS `areas` (
   KEY `areas_name_index` (`name`),
   KEY `areas_created_by_index` (`created_by`),
   KEY `areas_updated_by_index` (`updated_by`),
-  CONSTRAINT `areas_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `areas_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `areas_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `areas_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.areas: ~0 rows (approximately)
@@ -51,10 +51,10 @@ CREATE TABLE IF NOT EXISTS `area_users` (
   KEY `area_users_area_index` (`area`),
   KEY `area_users_created_by_index` (`created_by`),
   KEY `area_users_updated_by_index` (`updated_by`),
+  CONSTRAINT `area_users_user_foreign` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `area_users_area_foreign` FOREIGN KEY (`area`) REFERENCES `areas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `area_users_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `area_users_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `area_users_user_foreign` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `area_users_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.area_users: ~0 rows (approximately)
@@ -101,8 +101,8 @@ CREATE TABLE IF NOT EXISTS `d_data` (
   PRIMARY KEY (`id`),
   KEY `d_data_created_by_index` (`created_by`),
   KEY `d_data_updated_by_index` (`updated_by`),
-  CONSTRAINT `d_data_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `d_data_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `d_data_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `d_data_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.d_data: ~0 rows (approximately)
@@ -130,8 +130,8 @@ CREATE TABLE IF NOT EXISTS `fiscalyearmaster` (
   KEY `fiscalyearmaster_name_index` (`name`),
   KEY `fiscalyearmaster_created_by_index` (`created_by`),
   KEY `fiscalyearmaster_updated_by_index` (`updated_by`),
-  CONSTRAINT `fiscalyearmaster_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `fiscalyearmaster_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `fiscalyearmaster_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `fiscalyearmaster_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.fiscalyearmaster: ~0 rows (approximately)
@@ -161,9 +161,9 @@ CREATE TABLE IF NOT EXISTS `fn_reserves` (
   KEY `fn_reserves_store_index` (`store`),
   KEY `fn_reserves_created_by_index` (`created_by`),
   KEY `fn_reserves_updated_by_index` (`updated_by`),
+  CONSTRAINT `fn_reserves_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `fn_reserves_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `fn_reserves_store_foreign` FOREIGN KEY (`store`) REFERENCES `stores` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `fn_reserves_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `fn_reserves_user_foreign` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -203,8 +203,8 @@ CREATE TABLE IF NOT EXISTS `functiondetails` (
   KEY `functiondetails_wtype_index` (`wtype`),
   KEY `functiondetails_created_by_index` (`created_by`),
   KEY `functiondetails_updated_by_index` (`updated_by`),
-  CONSTRAINT `functiondetails_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `functiondetails_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `functiondetails_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `functiondetails_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.functiondetails: ~0 rows (approximately)
@@ -218,85 +218,85 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=202 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=276 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.migrations: ~74 rows (approximately)
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-	(128, '2014_10_12_000000_create_users_table', 1),
-	(129, '2014_10_12_100000_create_password_resets_table', 1),
-	(130, '2019_01_24_000002_create___groups_table', 1),
-	(131, '2019_01_24_000003_create___group_users_table', 1),
-	(132, '2019_01_24_000004_create___roles_table', 1),
-	(133, '2019_01_24_000005_create___group_roles_table', 1),
-	(134, '2019_01_24_000006_create___resources_table', 1),
-	(135, '2019_01_24_000007_create___resource_roles_table', 1),
-	(136, '2019_01_24_000008_create___resource_relations_table', 1),
-	(137, '2019_01_24_000009_create___resource_scopes_table', 1),
-	(138, '2019_01_24_000010_create___resource_forms_table', 1),
-	(139, '2019_01_24_000011_create___resource_form_fields_table', 1),
-	(140, '2019_01_24_000012_create___resource_form_field_attrs_table', 1),
-	(141, '2019_01_24_000013_create___resource_form_field_data_table', 1),
-	(142, '2019_01_24_000014_create___resource_form_field_validations_table', 1),
-	(143, '2019_01_24_000015_create___resource_form_field_options_table', 1),
-	(144, '2019_01_24_000016_create___resource_form_field_depends_table', 1),
-	(145, '2019_01_24_000017_create___resource_form_field_dynamic_table', 1),
-	(146, '2019_01_24_000018_create___resource_form_layout_table', 1),
-	(147, '2019_01_24_000019_create___resource_form_collection_table', 1),
-	(148, '2019_01_24_000020_create___resource_form_upload_table', 1),
-	(149, '2019_01_24_000021_create___resource_form_defaults_table', 1),
-	(150, '2019_01_24_000022_create___resource_lists_table', 1),
-	(151, '2019_01_24_000023_create___resource_list_relations_table', 1),
-	(152, '2019_01_24_000024_create___resource_list_scopes_table', 1),
-	(153, '2019_01_24_000025_create___resource_list_layout_table', 1),
-	(154, '2019_01_24_000026_create___resource_list_search_table', 1),
-	(155, '2019_01_24_000027_create___resource_data_table', 1),
-	(156, '2019_01_24_000028_create___resource_data_relations_table', 1),
-	(157, '2019_01_24_000029_create___resource_data_scopes_table', 1),
-	(158, '2019_01_24_000030_create___resource_data_view_sections_table', 1),
-	(159, '2019_01_24_000031_create___resource_data_view_section_items_table', 1),
-	(160, '2019_01_24_000032_create___resource_form_data_map_table', 1),
-	(161, '2019_01_24_000033_create___resource_actions_table', 1),
-	(162, '2019_01_24_000034_create___resource_action_attrs_table', 1),
-	(163, '2019_01_24_000035_create___resource_action_methods_table', 1),
-	(164, '2019_01_24_000036_create___resource_action_lists_table', 1),
-	(165, '2019_01_24_000037_create___resource_action_data_table', 1),
-	(166, '2019_01_24_000038_create___resource_defaults_table', 1),
-	(167, '2019_01_24_000039_create___resource_metrics_table', 1),
-	(168, '2019_01_24_000040_create___resource_dashboard_table', 1),
-	(169, '2019_01_24_000041_create___resource_dashboard_sections_table', 1),
-	(170, '2019_01_24_000042_create___resource_dashboard_section_items_table', 1),
-	(171, '2019_01_24_000043_create___organisation_table', 1),
-	(172, '2019_01_24_000044_create___organisation_contacts_table', 1),
-	(173, '2019_03_01_000001_add_ss_fields_in_users_table', 1),
-	(174, '2019_03_01_000002_add_ss_fields_in_groups_table', 1),
-	(175, '2019_03_01_000003_add_ss_fields_in_roles_table', 1),
-	(176, '2019_03_28_000046_create_setup_table', 1),
-	(177, '2019_03_28_000047_create_settings_table', 1),
-	(178, '2019_03_28_000048_create_fiscalyearmaster_table', 1),
-	(179, '2019_03_28_000049_create_functiondetails_table', 1),
-	(180, '2019_03_28_000050_create_products_table', 1),
-	(181, '2019_03_28_000051_create_pricelist_table', 1),
-	(182, '2019_03_28_000052_create_pricelist_products_table', 1),
-	(183, '2019_03_28_000053_create_stores_table', 1),
-	(184, '2019_03_28_000054_create_areas_table', 1),
-	(185, '2019_03_28_000055_create_area_users_table', 1),
-	(186, '2019_03_28_000056_create_user_settings_table', 1),
-	(187, '2019_03_28_000057_create_user_store_area_table', 1),
-	(188, '2019_03_28_000058_create_store_products_table', 1),
-	(189, '2019_03_28_000059_create_product_transaction_natures_table', 1),
-	(190, '2019_03_28_000060_create_product_transaction_types_table', 1),
-	(191, '2019_03_28_000061_create_store_product_transactions_table', 1),
-	(192, '2019_03_28_000062_create_transactions_table', 1),
-	(193, '2019_03_28_000063_create_transaction_details_table', 1),
-	(194, '2019_03_28_000064_create_d_data_table', 1),
-	(195, '2019_03_28_000065_create_sales_order_table', 1),
-	(196, '2019_03_28_000066_create_sales_order_items_table', 1),
-	(197, '2019_03_28_000067_create_stock_transfer_table', 1),
-	(198, '2019_03_28_000068_create_receipts_table', 1),
-	(199, '2019_03_28_000069_create_fn_reserves_table', 1),
-	(200, '2019_03_28_000070_create_sales_order_sales_table', 1),
-	(201, '2019_03_28_000071_create_w_bin_table', 1);
+	(202, '2014_10_12_000000_create_users_table', 1),
+	(203, '2014_10_12_100000_create_password_resets_table', 1),
+	(204, '2019_01_24_000002_create___groups_table', 1),
+	(205, '2019_01_24_000003_create___group_users_table', 1),
+	(206, '2019_01_24_000004_create___roles_table', 1),
+	(207, '2019_01_24_000005_create___group_roles_table', 1),
+	(208, '2019_01_24_000006_create___resources_table', 1),
+	(209, '2019_01_24_000007_create___resource_roles_table', 1),
+	(210, '2019_01_24_000008_create___resource_relations_table', 1),
+	(211, '2019_01_24_000009_create___resource_scopes_table', 1),
+	(212, '2019_01_24_000010_create___resource_forms_table', 1),
+	(213, '2019_01_24_000011_create___resource_form_fields_table', 1),
+	(214, '2019_01_24_000012_create___resource_form_field_attrs_table', 1),
+	(215, '2019_01_24_000013_create___resource_form_field_data_table', 1),
+	(216, '2019_01_24_000014_create___resource_form_field_validations_table', 1),
+	(217, '2019_01_24_000015_create___resource_form_field_options_table', 1),
+	(218, '2019_01_24_000016_create___resource_form_field_depends_table', 1),
+	(219, '2019_01_24_000017_create___resource_form_field_dynamic_table', 1),
+	(220, '2019_01_24_000018_create___resource_form_layout_table', 1),
+	(221, '2019_01_24_000019_create___resource_form_collection_table', 1),
+	(222, '2019_01_24_000020_create___resource_form_upload_table', 1),
+	(223, '2019_01_24_000021_create___resource_form_defaults_table', 1),
+	(224, '2019_01_24_000022_create___resource_lists_table', 1),
+	(225, '2019_01_24_000023_create___resource_list_relations_table', 1),
+	(226, '2019_01_24_000024_create___resource_list_scopes_table', 1),
+	(227, '2019_01_24_000025_create___resource_list_layout_table', 1),
+	(228, '2019_01_24_000026_create___resource_list_search_table', 1),
+	(229, '2019_01_24_000027_create___resource_data_table', 1),
+	(230, '2019_01_24_000028_create___resource_data_relations_table', 1),
+	(231, '2019_01_24_000029_create___resource_data_scopes_table', 1),
+	(232, '2019_01_24_000030_create___resource_data_view_sections_table', 1),
+	(233, '2019_01_24_000031_create___resource_data_view_section_items_table', 1),
+	(234, '2019_01_24_000032_create___resource_form_data_map_table', 1),
+	(235, '2019_01_24_000033_create___resource_actions_table', 1),
+	(236, '2019_01_24_000034_create___resource_action_attrs_table', 1),
+	(237, '2019_01_24_000035_create___resource_action_methods_table', 1),
+	(238, '2019_01_24_000036_create___resource_action_lists_table', 1),
+	(239, '2019_01_24_000037_create___resource_action_data_table', 1),
+	(240, '2019_01_24_000038_create___resource_defaults_table', 1),
+	(241, '2019_01_24_000039_create___resource_metrics_table', 1),
+	(242, '2019_01_24_000040_create___resource_dashboard_table', 1),
+	(243, '2019_01_24_000041_create___resource_dashboard_sections_table', 1),
+	(244, '2019_01_24_000042_create___resource_dashboard_section_items_table', 1),
+	(245, '2019_01_24_000043_create___organisation_table', 1),
+	(246, '2019_01_24_000044_create___organisation_contacts_table', 1),
+	(247, '2019_03_01_000001_add_ss_fields_in_users_table', 1),
+	(248, '2019_03_01_000002_add_ss_fields_in_groups_table', 1),
+	(249, '2019_03_01_000003_add_ss_fields_in_roles_table', 1),
+	(250, '2019_03_28_000046_create_setup_table', 1),
+	(251, '2019_03_28_000047_create_settings_table', 1),
+	(252, '2019_03_28_000048_create_fiscalyearmaster_table', 1),
+	(253, '2019_03_28_000049_create_functiondetails_table', 1),
+	(254, '2019_03_28_000050_create_products_table', 1),
+	(255, '2019_03_28_000051_create_pricelist_table', 1),
+	(256, '2019_03_28_000052_create_pricelist_products_table', 1),
+	(257, '2019_03_28_000053_create_stores_table', 1),
+	(258, '2019_03_28_000054_create_areas_table', 1),
+	(259, '2019_03_28_000055_create_area_users_table', 1),
+	(260, '2019_03_28_000056_create_user_settings_table', 1),
+	(261, '2019_03_28_000057_create_user_store_area_table', 1),
+	(262, '2019_03_28_000058_create_store_products_table', 1),
+	(263, '2019_03_28_000059_create_product_transaction_natures_table', 1),
+	(264, '2019_03_28_000060_create_product_transaction_types_table', 1),
+	(265, '2019_03_28_000061_create_store_product_transactions_table', 1),
+	(266, '2019_03_28_000062_create_transactions_table', 1),
+	(267, '2019_03_28_000063_create_transaction_details_table', 1),
+	(268, '2019_03_28_000064_create_d_data_table', 1),
+	(269, '2019_03_28_000065_create_sales_order_table', 1),
+	(270, '2019_03_28_000066_create_sales_order_items_table', 1),
+	(271, '2019_03_28_000067_create_stock_transfer_table', 1),
+	(272, '2019_03_28_000068_create_receipts_table', 1),
+	(273, '2019_03_28_000069_create_fn_reserves_table', 1),
+	(274, '2019_03_28_000070_create_sales_order_sales_table', 1),
+	(275, '2019_03_28_000071_create_w_bin_table', 1);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 
 -- Dumping structure for table appframe.password_resets
@@ -328,8 +328,8 @@ CREATE TABLE IF NOT EXISTS `pricelist` (
   KEY `pricelist_name_index` (`name`),
   KEY `pricelist_created_by_index` (`created_by`),
   KEY `pricelist_updated_by_index` (`updated_by`),
-  CONSTRAINT `pricelist_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `pricelist_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `pricelist_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `pricelist_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.pricelist: ~0 rows (approximately)
@@ -358,10 +358,10 @@ CREATE TABLE IF NOT EXISTS `pricelist_products` (
   KEY `pricelist_products_product_index` (`product`),
   KEY `pricelist_products_created_by_index` (`created_by`),
   KEY `pricelist_products_updated_by_index` (`updated_by`),
+  CONSTRAINT `pricelist_products_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `pricelist_products_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `pricelist_products_pricelist_foreign` FOREIGN KEY (`pricelist`) REFERENCES `pricelist` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `pricelist_products_product_foreign` FOREIGN KEY (`product`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `pricelist_products_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `pricelist_products_product_foreign` FOREIGN KEY (`product`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.pricelist_products: ~0 rows (approximately)
@@ -394,8 +394,8 @@ CREATE TABLE IF NOT EXISTS `products` (
   KEY `products_name_index` (`name`),
   KEY `products_created_by_index` (`created_by`),
   KEY `products_updated_by_index` (`updated_by`),
-  CONSTRAINT `products_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `products_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `products_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `products_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.products: ~0 rows (approximately)
@@ -416,18 +416,18 @@ CREATE TABLE IF NOT EXISTS `product_transaction_natures` (
   KEY `product_transaction_natures_name_index` (`name`),
   KEY `product_transaction_natures_created_by_index` (`created_by`),
   KEY `product_transaction_natures_updated_by_index` (`updated_by`),
-  CONSTRAINT `product_transaction_natures_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `product_transaction_natures_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `product_transaction_natures_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `product_transaction_natures_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.product_transaction_natures: ~5 rows (approximately)
 /*!40000 ALTER TABLE `product_transaction_natures` DISABLE KEYS */;
 INSERT INTO `product_transaction_natures` (`id`, `name`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(1, 'Fresh', 'Active', NULL, NULL, '2019-08-13 15:16:15', '2019-08-13 15:16:15'),
-	(2, 'Damaged', 'Active', NULL, NULL, '2019-08-13 15:16:16', '2019-08-13 15:16:16'),
-	(3, 'Expired', 'Active', NULL, NULL, '2019-08-13 15:16:16', '2019-08-13 15:16:16'),
-	(4, 'Unsold', 'Active', NULL, NULL, '2019-08-13 15:16:16', '2019-08-13 15:16:16'),
-	(5, 'Other', 'Active', NULL, NULL, '2019-08-13 15:16:16', '2019-08-13 15:16:16');
+	(1, 'Fresh', 'Active', NULL, NULL, '2019-08-31 07:57:11', '2019-08-31 07:57:11'),
+	(2, 'Damaged', 'Active', NULL, NULL, '2019-08-31 07:57:11', '2019-08-31 07:57:11'),
+	(3, 'Expired', 'Active', NULL, NULL, '2019-08-31 07:57:11', '2019-08-31 07:57:11'),
+	(4, 'Unsold', 'Active', NULL, NULL, '2019-08-31 07:57:11', '2019-08-31 07:57:11'),
+	(5, 'Other', 'Active', NULL, NULL, '2019-08-31 07:57:11', '2019-08-31 07:57:11');
 /*!40000 ALTER TABLE `product_transaction_natures` ENABLE KEYS */;
 
 -- Dumping structure for table appframe.product_transaction_types
@@ -444,19 +444,19 @@ CREATE TABLE IF NOT EXISTS `product_transaction_types` (
   KEY `product_transaction_types_name_index` (`name`),
   KEY `product_transaction_types_created_by_index` (`created_by`),
   KEY `product_transaction_types_updated_by_index` (`updated_by`),
-  CONSTRAINT `product_transaction_types_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `product_transaction_types_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `product_transaction_types_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `product_transaction_types_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.product_transaction_types: ~6 rows (approximately)
 /*!40000 ALTER TABLE `product_transaction_types` DISABLE KEYS */;
 INSERT INTO `product_transaction_types` (`id`, `name`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(1, 'Purchase', 'Active', NULL, NULL, '2019-08-13 15:16:16', '2019-08-13 15:16:16'),
-	(2, 'Sale', 'Active', NULL, NULL, '2019-08-13 15:16:16', '2019-08-13 15:16:16'),
-	(3, 'Return', 'Active', NULL, NULL, '2019-08-13 15:16:16', '2019-08-13 15:16:16'),
-	(4, 'Load', 'Active', NULL, NULL, '2019-08-13 15:16:16', '2019-08-13 15:16:16'),
-	(5, 'Unload', 'Active', NULL, NULL, '2019-08-13 15:16:16', '2019-08-13 15:16:16'),
-	(6, 'Other', 'Active', NULL, NULL, '2019-08-13 15:16:16', '2019-08-13 15:16:16');
+	(1, 'Purchase', 'Active', NULL, NULL, '2019-08-31 07:57:11', '2019-08-31 07:57:11'),
+	(2, 'Sale', 'Active', NULL, NULL, '2019-08-31 07:57:11', '2019-08-31 07:57:11'),
+	(3, 'Return', 'Active', NULL, NULL, '2019-08-31 07:57:11', '2019-08-31 07:57:11'),
+	(4, 'Load', 'Active', NULL, NULL, '2019-08-31 07:57:11', '2019-08-31 07:57:11'),
+	(5, 'Unload', 'Active', NULL, NULL, '2019-08-31 07:57:11', '2019-08-31 07:57:11'),
+	(6, 'Other', 'Active', NULL, NULL, '2019-08-31 07:57:12', '2019-08-31 07:57:12');
 /*!40000 ALTER TABLE `product_transaction_types` ENABLE KEYS */;
 
 -- Dumping structure for table appframe.receipts
@@ -489,9 +489,9 @@ CREATE TABLE IF NOT EXISTS `receipts` (
   KEY `receipts__ref_index` (`_ref`),
   KEY `receipts_created_by_index` (`created_by`),
   KEY `receipts_updated_by_index` (`updated_by`),
+  CONSTRAINT `receipts_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `receipts_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `receipts_customer_foreign` FOREIGN KEY (`customer`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `receipts_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `receipts_user_foreign` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -526,9 +526,9 @@ CREATE TABLE IF NOT EXISTS `sales_order` (
   KEY `sales_order__ref_index` (`_ref`),
   KEY `sales_order_created_by_index` (`created_by`),
   KEY `sales_order_updated_by_index` (`updated_by`),
+  CONSTRAINT `sales_order_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `sales_order_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `sales_order_customer_foreign` FOREIGN KEY (`customer`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `sales_order_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `sales_order_user_foreign` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -558,10 +558,10 @@ CREATE TABLE IF NOT EXISTS `sales_order_items` (
   KEY `sales_order_items__ref_index` (`_ref`),
   KEY `sales_order_items_created_by_index` (`created_by`),
   KEY `sales_order_items_updated_by_index` (`updated_by`),
+  CONSTRAINT `sales_order_items_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `sales_order_items_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `sales_order_items_product_foreign` FOREIGN KEY (`product`) REFERENCES `products` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `sales_order_items_so_foreign` FOREIGN KEY (`so`) REFERENCES `sales_order` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `sales_order_items_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `sales_order_items_so_foreign` FOREIGN KEY (`so`) REFERENCES `sales_order` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.sales_order_items: ~0 rows (approximately)
@@ -587,11 +587,11 @@ CREATE TABLE IF NOT EXISTS `sales_order_sales` (
   KEY `sales_order_sales_transaction_index` (`transaction`),
   KEY `sales_order_sales_created_by_index` (`created_by`),
   KEY `sales_order_sales_updated_by_index` (`updated_by`),
+  CONSTRAINT `sales_order_sales_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `sales_order_sales_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `sales_order_sales_product_foreign` FOREIGN KEY (`product`) REFERENCES `products` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `sales_order_sales_so_foreign` FOREIGN KEY (`so`) REFERENCES `sales_order` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `sales_order_sales_transaction_foreign` FOREIGN KEY (`transaction`) REFERENCES `transactions` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `sales_order_sales_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `sales_order_sales_transaction_foreign` FOREIGN KEY (`transaction`) REFERENCES `transactions` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.sales_order_sales: ~0 rows (approximately)
@@ -614,21 +614,21 @@ CREATE TABLE IF NOT EXISTS `settings` (
   KEY `settings_name_index` (`name`),
   KEY `settings_created_by_index` (`created_by`),
   KEY `settings_updated_by_index` (`updated_by`),
-  CONSTRAINT `settings_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `settings_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `settings_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `settings_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.settings: ~8 rows (approximately)
 /*!40000 ALTER TABLE `settings` DISABLE KEYS */;
 INSERT INTO `settings` (`id`, `name`, `description`, `value`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(1, 'SALESB2CFNCODE', 'Function code used in sales form', 'SL1', 'Active', NULL, NULL, '2019-08-13 15:16:14', '2019-08-13 15:16:14'),
-	(2, 'SALESB2BFNCODE', 'Function code used in sales form B2C', 'SL2', 'Active', NULL, NULL, '2019-08-13 15:16:14', '2019-08-13 15:16:14'),
-	(3, 'SALESRETURNFNCODE', 'Function code used in sales return form', 'SR1', 'Active', NULL, NULL, '2019-08-13 15:16:14', '2019-08-13 15:16:14'),
-	(4, 'SALESORDERFNCODE', 'Function code used in sales order form', 'SO1', 'Active', NULL, NULL, '2019-08-13 15:16:14', '2019-08-13 15:16:14'),
-	(5, 'CASHRECEIPTFNCODE', 'Function code used in cash receipt form', 'CR1', 'Active', NULL, NULL, '2019-08-13 15:16:15', '2019-08-13 15:16:15'),
-	(6, 'CHEQUERECEIPTFNCODE', 'Function code used in cheque receipt form', 'BR1', 'Active', NULL, NULL, '2019-08-13 15:16:15', '2019-08-13 15:16:15'),
-	(7, 'STOCKTRANSFERINFNCODE', 'Function code used in stock transfer IN form', 'MT1', 'Active', NULL, NULL, '2019-08-13 15:16:15', '2019-08-13 15:16:15'),
-	(8, 'STOCKTRANSFEROUTFNCODE', 'Function code used in stock transfer OUT form', 'MT2', 'Active', NULL, NULL, '2019-08-13 15:16:15', '2019-08-13 15:16:15');
+	(1, 'SALESB2CFNCODE', 'Function code used in sales form', 'SL1', 'Active', NULL, NULL, '2019-08-31 07:57:10', '2019-08-31 07:57:10'),
+	(2, 'SALESB2BFNCODE', 'Function code used in sales form B2C', 'SL2', 'Active', NULL, NULL, '2019-08-31 07:57:10', '2019-08-31 07:57:10'),
+	(3, 'SALESRETURNFNCODE', 'Function code used in sales return form', 'SR1', 'Active', NULL, NULL, '2019-08-31 07:57:10', '2019-08-31 07:57:10'),
+	(4, 'SALESORDERFNCODE', 'Function code used in sales order form', 'SO1', 'Active', NULL, NULL, '2019-08-31 07:57:10', '2019-08-31 07:57:10'),
+	(5, 'CASHRECEIPTFNCODE', 'Function code used in cash receipt form', 'CR1', 'Active', NULL, NULL, '2019-08-31 07:57:10', '2019-08-31 07:57:10'),
+	(6, 'CHEQUERECEIPTFNCODE', 'Function code used in cheque receipt form', 'BR1', 'Active', NULL, NULL, '2019-08-31 07:57:10', '2019-08-31 07:57:10'),
+	(7, 'STOCKTRANSFERINFNCODE', 'Function code used in stock transfer IN form', 'MT1', 'Active', NULL, NULL, '2019-08-31 07:57:10', '2019-08-31 07:57:10'),
+	(8, 'STOCKTRANSFEROUTFNCODE', 'Function code used in stock transfer OUT form', 'MT2', 'Active', NULL, NULL, '2019-08-31 07:57:10', '2019-08-31 07:57:10');
 /*!40000 ALTER TABLE `settings` ENABLE KEYS */;
 
 -- Dumping structure for table appframe.setup
@@ -713,8 +713,8 @@ CREATE TABLE IF NOT EXISTS `setup` (
   PRIMARY KEY (`id`),
   KEY `setup_created_by_index` (`created_by`),
   KEY `setup_updated_by_index` (`updated_by`),
-  CONSTRAINT `setup_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `setup_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `setup_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `setup_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.setup: ~0 rows (approximately)
@@ -739,10 +739,10 @@ CREATE TABLE IF NOT EXISTS `stock_transfer` (
   KEY `stock_transfer_verified_by_index` (`verified_by`),
   KEY `stock_transfer_created_by_index` (`created_by`),
   KEY `stock_transfer_updated_by_index` (`updated_by`),
+  CONSTRAINT `stock_transfer_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `stock_transfer_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `stock_transfer_in_foreign` FOREIGN KEY (`in`) REFERENCES `transactions` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `stock_transfer_out_foreign` FOREIGN KEY (`out`) REFERENCES `transactions` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `stock_transfer_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `stock_transfer_verified_by_foreign` FOREIGN KEY (`verified_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -776,8 +776,8 @@ CREATE TABLE IF NOT EXISTS `stores` (
   KEY `stores_brcode_index` (`brcode`),
   KEY `stores_created_by_index` (`created_by`),
   KEY `stores_updated_by_index` (`updated_by`),
-  CONSTRAINT `stores_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `stores_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `stores_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `stores_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.stores: ~0 rows (approximately)
@@ -799,10 +799,10 @@ CREATE TABLE IF NOT EXISTS `store_products` (
   KEY `store_products_product_index` (`product`),
   KEY `store_products_created_by_index` (`created_by`),
   KEY `store_products_updated_by_index` (`updated_by`),
+  CONSTRAINT `store_products_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `store_products_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `store_products_product_foreign` FOREIGN KEY (`product`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `store_products_store_foreign` FOREIGN KEY (`store`) REFERENCES `stores` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `store_products_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `store_products_store_foreign` FOREIGN KEY (`store`) REFERENCES `stores` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.store_products: ~0 rows (approximately)
@@ -836,13 +836,13 @@ CREATE TABLE IF NOT EXISTS `store_product_transactions` (
   KEY `store_product_transactions_type_index` (`type`),
   KEY `store_product_transactions_created_by_index` (`created_by`),
   KEY `store_product_transactions_updated_by_index` (`updated_by`),
+  CONSTRAINT `store_product_transactions_user_foreign` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `store_product_transactions_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `store_product_transactions_nature_foreign` FOREIGN KEY (`nature`) REFERENCES `product_transaction_natures` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `store_product_transactions_product_foreign` FOREIGN KEY (`product`) REFERENCES `products` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `store_product_transactions_store_foreign` FOREIGN KEY (`store`) REFERENCES `stores` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `store_product_transactions_type_foreign` FOREIGN KEY (`type`) REFERENCES `product_transaction_types` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `store_product_transactions_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `store_product_transactions_user_foreign` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `store_product_transactions_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.store_product_transactions: ~0 rows (approximately)
@@ -875,9 +875,9 @@ CREATE TABLE IF NOT EXISTS `transactions` (
   KEY `transactions_fncode_index` (`fncode`),
   KEY `transactions_created_by_index` (`created_by`),
   KEY `transactions_updated_by_index` (`updated_by`),
+  CONSTRAINT `transactions_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `transactions_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `transactions_customer_foreign` FOREIGN KEY (`customer`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `transactions_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `transactions_user_foreign` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -908,10 +908,10 @@ CREATE TABLE IF NOT EXISTS `transaction_details` (
   KEY `transaction_details__ref_spt_index` (`_ref_spt`),
   KEY `transaction_details_created_by_index` (`created_by`),
   KEY `transaction_details_updated_by_index` (`updated_by`),
+  CONSTRAINT `transaction_details_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `transaction_details_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `transaction_details_spt_foreign` FOREIGN KEY (`spt`) REFERENCES `store_product_transactions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `transaction_details_transaction_foreign` FOREIGN KEY (`transaction`) REFERENCES `transactions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `transaction_details_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `transaction_details_transaction_foreign` FOREIGN KEY (`transaction`) REFERENCES `transactions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.transaction_details: ~0 rows (approximately)
@@ -926,8 +926,8 @@ CREATE TABLE IF NOT EXISTS `users` (
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `phone` varchar(128) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `address` varchar(512) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `outstanding` decimal(30,10) NOT NULL DEFAULT '0.0000000000',
-  `overdue` decimal(30,10) NOT NULL DEFAULT '0.0000000000',
+  `outstanding` decimal(30,10) DEFAULT '0.0000000000',
+  `overdue` decimal(30,10) DEFAULT '0.0000000000',
   `api_token` varchar(128) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `reference` char(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
@@ -940,7 +940,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   KEY `users_reference_index` (`reference`),
   KEY `users_api_token_index` (`api_token`),
   KEY `users_phone_index` (`phone`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=300101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.users: ~0 rows (approximately)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
@@ -963,9 +963,9 @@ CREATE TABLE IF NOT EXISTS `user_settings` (
   KEY `user_settings_setting_index` (`setting`),
   KEY `user_settings_created_by_index` (`created_by`),
   KEY `user_settings_updated_by_index` (`updated_by`),
+  CONSTRAINT `user_settings_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `user_settings_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `user_settings_setting_foreign` FOREIGN KEY (`setting`) REFERENCES `settings` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `user_settings_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `user_settings_user_foreign` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -991,10 +991,10 @@ CREATE TABLE IF NOT EXISTS `user_store_area` (
   KEY `user_store_area_area_index` (`area`),
   KEY `user_store_area_created_by_index` (`created_by`),
   KEY `user_store_area_updated_by_index` (`updated_by`),
+  CONSTRAINT `user_store_area_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `user_store_area_area_foreign` FOREIGN KEY (`area`) REFERENCES `areas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `user_store_area_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `user_store_area_store_foreign` FOREIGN KEY (`store`) REFERENCES `stores` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `user_store_area_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `user_store_area_user_foreign` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -1014,8 +1014,8 @@ CREATE TABLE IF NOT EXISTS `w_bin` (
   PRIMARY KEY (`id`),
   KEY `w_bin_created_by_index` (`created_by`),
   KEY `w_bin_updated_by_index` (`updated_by`),
-  CONSTRAINT `w_bin_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `w_bin_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `w_bin_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `w_bin_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.w_bin: ~0 rows (approximately)
@@ -1046,10 +1046,10 @@ CREATE TABLE IF NOT EXISTS `__groups` (
 -- Dumping data for table appframe.__groups: ~4 rows (approximately)
 /*!40000 ALTER TABLE `__groups` DISABLE KEYS */;
 INSERT INTO `__groups` (`id`, `name`, `description`, `title`, `reference`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(301101, 'accountant', 'ePlus Accountant', 'Accountant', 'ACC', NULL, NULL, '2019-08-13 15:15:54', '2019-08-13 15:15:54'),
-	(301102, 'administrators', 'ePlus Administrator', 'Administators', 'ADM', NULL, NULL, '2019-08-13 15:15:55', '2019-08-13 15:15:55'),
-	(301103, 'salesExecutive', 'ePlus Sales Executives', 'Sales Executives', 'SLS', NULL, NULL, '2019-08-13 15:15:55', '2019-08-13 15:15:55'),
-	(301104, 'eplus_account', 'ePlus user accounts or customers', 'ePlus Accounts', NULL, NULL, NULL, '2019-08-13 15:15:55', '2019-08-13 15:15:55');
+	(301101, 'accountant', 'ePlus Accountant', 'Accountant', 'ACC', NULL, NULL, '2019-08-31 07:56:38', '2019-08-31 07:56:38'),
+	(301102, 'administrators', 'ePlus Administrator', 'Administators', 'ADM', NULL, NULL, '2019-08-31 07:56:38', '2019-08-31 07:56:38'),
+	(301103, 'salesExecutive', 'ePlus Sales Executives', 'Sales Executives', 'SLS', NULL, NULL, '2019-08-31 07:56:38', '2019-08-31 07:56:38'),
+	(301104, 'eplus_account', 'ePlus user accounts or customers', 'ePlus Accounts', NULL, NULL, NULL, '2019-08-31 07:56:38', '2019-08-31 07:56:38');
 /*!40000 ALTER TABLE `__groups` ENABLE KEYS */;
 
 -- Dumping structure for table appframe.__group_roles
@@ -1076,9 +1076,9 @@ CREATE TABLE IF NOT EXISTS `__group_roles` (
 -- Dumping data for table appframe.__group_roles: ~3 rows (approximately)
 /*!40000 ALTER TABLE `__group_roles` DISABLE KEYS */;
 INSERT INTO `__group_roles` (`id`, `group`, `role`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(304101, 301101, 303102, NULL, NULL, '2019-08-13 15:15:55', '2019-08-13 15:15:55'),
-	(304102, 301102, 303101, NULL, NULL, '2019-08-13 15:15:55', '2019-08-13 15:15:55'),
-	(304103, 301103, 303103, NULL, NULL, '2019-08-13 15:15:55', '2019-08-13 15:15:55');
+	(304101, 301101, 303102, NULL, NULL, '2019-08-31 07:56:39', '2019-08-31 07:56:39'),
+	(304102, 301102, 303101, NULL, NULL, '2019-08-31 07:56:39', '2019-08-31 07:56:39'),
+	(304103, 301103, 303103, NULL, NULL, '2019-08-31 07:56:39', '2019-08-31 07:56:39');
 /*!40000 ALTER TABLE `__group_roles` ENABLE KEYS */;
 
 -- Dumping structure for table appframe.__group_users
@@ -1100,7 +1100,7 @@ CREATE TABLE IF NOT EXISTS `__group_users` (
   CONSTRAINT `__group_users_group_foreign` FOREIGN KEY (`group`) REFERENCES `__groups` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `__group_users_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `__group_users_user_foreign` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=302101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.__group_users: ~0 rows (approximately)
 /*!40000 ALTER TABLE `__group_users` DISABLE KEYS */;
@@ -1125,8 +1125,8 @@ CREATE TABLE IF NOT EXISTS `__organisation` (
   KEY `__organisation_name_index` (`name`),
   KEY `__organisation_created_by_index` (`created_by`),
   KEY `__organisation_updated_by_index` (`updated_by`),
-  CONSTRAINT `__organisation_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `__organisation_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `__organisation_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `__organisation_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.__organisation: ~0 rows (approximately)
@@ -1149,8 +1149,8 @@ CREATE TABLE IF NOT EXISTS `__organisation_contacts` (
   KEY `__organisation_contacts_organisation_foreign` (`organisation`),
   KEY `__organisation_contacts_created_by_index` (`created_by`),
   KEY `__organisation_contacts_updated_by_index` (`updated_by`),
-  CONSTRAINT `__organisation_contacts_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `__organisation_contacts_organisation_foreign` FOREIGN KEY (`organisation`) REFERENCES `__organisation` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `__organisation_contacts_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `__organisation_contacts_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -1185,38 +1185,38 @@ CREATE TABLE IF NOT EXISTS `__resources` (
 -- Dumping data for table appframe.__resources: ~32 rows (approximately)
 /*!40000 ALTER TABLE `__resources` DISABLE KEYS */;
 INSERT INTO `__resources` (`id`, `name`, `description`, `title`, `namespace`, `table`, `controller`, `controller_namespace`, `development`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(305101, 'User', 'Users of Smart Sale', 'Users', 'Milestone\\SS\\Model', 'users', NULL, NULL, 'No', NULL, NULL, '2019-08-13 15:15:55', '2019-08-13 15:15:55'),
-	(305102, 'Setup', 'ePlus setup details', 'Setup', 'Milestone\\SS\\Model', 'setup', NULL, NULL, 'No', NULL, NULL, '2019-08-13 15:15:55', '2019-08-13 15:15:55'),
-	(305103, 'Setting', 'Settings available in web and mob interface', 'Settings', 'Milestone\\SS\\Model', 'settings', NULL, NULL, 'No', NULL, NULL, '2019-08-13 15:15:55', '2019-08-13 15:15:55'),
-	(305104, 'Tax', 'Tax master', 'Tax', 'Milestone\\SS\\Model', 'tax', NULL, NULL, 'No', NULL, NULL, '2019-08-13 15:15:55', '2019-08-13 15:15:55'),
-	(305105, 'TaxDetail', 'Tax details', 'Tax Details', 'Milestone\\SS\\Model', 'tax_details', NULL, NULL, 'No', NULL, NULL, '2019-08-13 15:15:55', '2019-08-13 15:15:55'),
-	(305106, 'Fiscalyearmaster', 'Financial Years', 'Fiscal Year', 'Milestone\\SS\\Model', 'fiscalyearmaster', NULL, NULL, 'No', NULL, NULL, '2019-08-13 15:15:55', '2019-08-13 15:15:55'),
-	(305107, 'Functiondetail', 'ePlus functions', 'ePlus Functions', 'Milestone\\SS\\Model', 'functiondetails', NULL, NULL, 'No', NULL, NULL, '2019-08-13 15:15:55', '2019-08-13 15:15:55'),
-	(305108, 'Productgroup', 'Product groups - item group and item group master', 'Product Group', 'Milestone\\SS\\Model', 'productgroups', NULL, NULL, 'No', NULL, NULL, '2019-08-13 15:15:55', '2019-08-13 15:15:55'),
-	(305109, 'Product', 'Products or Items', 'Products', 'Milestone\\SS\\Model', 'products', NULL, NULL, 'No', NULL, NULL, '2019-08-13 15:15:55', '2019-08-13 15:15:55'),
-	(305110, 'Pricelist', 'Price list header', 'Price List', 'Milestone\\SS\\Model', 'pricelist', NULL, NULL, 'No', NULL, NULL, '2019-08-13 15:15:55', '2019-08-13 15:15:55'),
-	(305111, 'PricelistProduct', 'Price list products', 'Price List Products', 'Milestone\\SS\\Model', 'pricelist_products', NULL, NULL, 'No', NULL, NULL, '2019-08-13 15:15:55', '2019-08-13 15:15:55'),
-	(305112, 'Store', 'Stores', 'Stores', 'Milestone\\SS\\Model', 'stores', NULL, NULL, 'No', NULL, NULL, '2019-08-13 15:15:55', '2019-08-13 15:15:55'),
-	(305113, 'Area', 'Areas', 'Areas', 'Milestone\\SS\\Model', 'areas', NULL, NULL, 'No', NULL, NULL, '2019-08-13 15:15:55', '2019-08-13 15:15:55'),
-	(305114, 'AreaUser', 'Users in an area', 'Area User', 'Milestone\\SS\\Model', 'area_users', NULL, NULL, 'No', NULL, NULL, '2019-08-13 15:15:56', '2019-08-13 15:15:56'),
-	(305115, 'UserSetting', 'Web and Mob settings for each user', 'User Settings', 'Milestone\\SS\\Model', 'user_settings', NULL, NULL, 'No', NULL, NULL, '2019-08-13 15:15:56', '2019-08-13 15:15:56'),
-	(305116, 'UserStoreArea', 'Stores and Areas assigned to a user (executive)', 'User Store and Area', 'Milestone\\SS\\Model', 'user_store_area', NULL, NULL, 'No', NULL, NULL, '2019-08-13 15:15:56', '2019-08-13 15:15:56'),
-	(305117, 'StoreProduct', 'Products in a store', 'Store Products', 'Milestone\\SS\\Model', 'store_products', NULL, NULL, 'No', NULL, NULL, '2019-08-13 15:15:56', '2019-08-13 15:15:56'),
-	(305118, 'ProductTransactionNature', 'Product transaction nature', 'Product Transaction Natures', 'Milestone\\SS\\Model', 'product_transaction_natures', NULL, NULL, 'No', NULL, NULL, '2019-08-13 15:15:56', '2019-08-13 15:15:56'),
-	(305119, 'ProductTransactionType', 'Product transaction types', 'Product Transaction Types', 'Milestone\\SS\\Model', 'product_transaction_types', NULL, NULL, 'No', NULL, NULL, '2019-08-13 15:15:56', '2019-08-13 15:15:56'),
-	(305120, 'StoreProductTransaction', 'Product transactions in a store - in and out', 'Product Transaction in Store', 'Milestone\\SS\\Model', 'store_product_transactions', NULL, NULL, 'No', NULL, NULL, '2019-08-13 15:15:56', '2019-08-13 15:15:56'),
-	(305121, 'Transaction', 'Transaction header - customer, date, document number', 'Transactions', 'Milestone\\SS\\Model', 'transactions', NULL, NULL, 'No', NULL, NULL, '2019-08-13 15:15:56', '2019-08-13 15:15:56'),
-	(305122, 'TransactionDetail', 'Products in a transaction, its price tax etc', 'Transaction Details', 'Milestone\\SS\\Model', 'transaction_details', NULL, NULL, 'No', NULL, NULL, '2019-08-13 15:15:56', '2019-08-13 15:15:56'),
-	(305123, 'BillData', 'Bills generated during transactions', 'Bill Data', 'Milestone\\SS\\Model', 'bill_data', NULL, NULL, 'No', NULL, NULL, '2019-08-13 15:15:56', '2019-08-13 15:15:56'),
-	(305124, 'DData', 'ePlus Ddata for detailed transaction bills', 'ePlus DData', 'Milestone\\SS\\Model', 'd_data', NULL, NULL, 'No', NULL, NULL, '2019-08-13 15:15:56', '2019-08-13 15:15:56'),
-	(305125, 'ChequeDetail', 'Cheque Details', 'Cheque Details', 'Milestone\\SS\\Model', 'cheque_details', NULL, NULL, 'No', NULL, NULL, '2019-08-13 15:15:56', '2019-08-13 15:15:56'),
-	(305126, 'SalesOrder', 'Sales orders', 'Sales Orders', 'Milestone\\SS\\Model', 'sales_order', NULL, NULL, 'No', NULL, NULL, '2019-08-13 15:15:56', '2019-08-13 15:15:56'),
-	(305127, 'SalesOrderItem', 'Sales order items', 'Sales Order Items', 'Milestone\\SS\\Model', 'sales_order_items', NULL, NULL, 'No', NULL, NULL, '2019-08-13 15:15:56', '2019-08-13 15:15:56'),
-	(305128, 'StockTransfer', 'Stock transfer from and to a store', 'Stock Transfers', 'Milestone\\SS\\Model', 'stock_transfer', NULL, NULL, 'No', NULL, NULL, '2019-08-13 15:15:56', '2019-08-13 15:15:56'),
-	(305129, 'WBin', 'Waste bin used while ePlus direct import', 'Waste Bin', 'Milestone\\SS\\Model', 'w_bin', NULL, NULL, 'No', NULL, NULL, '2019-08-13 15:15:56', '2019-08-13 15:15:56'),
-	(305130, 'Receipt', 'Receipts', 'Receipts', 'Milestone\\SS\\Model', 'receipts', NULL, NULL, 'No', NULL, NULL, '2019-08-13 15:15:56', '2019-08-13 15:15:56'),
-	(305131, 'FnReserve', 'Function Reserves', 'Function Reserves', 'Milestone\\SS\\Model', 'fn_reserves', NULL, NULL, 'No', NULL, NULL, '2019-08-13 15:15:56', '2019-08-13 15:15:56'),
-	(305132, 'SalesOrderSale', 'Sales which done on Sales Order', 'Sales Order Sales', 'Milestone\\SS\\Model', 'sales_order_sales', NULL, NULL, 'No', NULL, NULL, '2019-08-13 15:15:56', '2019-08-13 15:15:56');
+	(305101, 'User', 'Users of Smart Sale', 'Users', 'Milestone\\SS\\Model', 'users', NULL, NULL, 'No', NULL, NULL, '2019-08-31 07:56:39', '2019-08-31 07:56:39'),
+	(305102, 'Setup', 'ePlus setup details', 'Setup', 'Milestone\\SS\\Model', 'setup', NULL, NULL, 'No', NULL, NULL, '2019-08-31 07:56:39', '2019-08-31 07:56:39'),
+	(305103, 'Setting', 'Settings available in web and mob interface', 'Settings', 'Milestone\\SS\\Model', 'settings', NULL, NULL, 'No', NULL, NULL, '2019-08-31 07:56:39', '2019-08-31 07:56:39'),
+	(305104, 'Tax', 'Tax master', 'Tax', 'Milestone\\SS\\Model', 'tax', NULL, NULL, 'No', NULL, NULL, '2019-08-31 07:56:39', '2019-08-31 07:56:39'),
+	(305105, 'TaxDetail', 'Tax details', 'Tax Details', 'Milestone\\SS\\Model', 'tax_details', NULL, NULL, 'No', NULL, NULL, '2019-08-31 07:56:39', '2019-08-31 07:56:39'),
+	(305106, 'Fiscalyearmaster', 'Financial Years', 'Fiscal Year', 'Milestone\\SS\\Model', 'fiscalyearmaster', NULL, NULL, 'No', NULL, NULL, '2019-08-31 07:56:39', '2019-08-31 07:56:39'),
+	(305107, 'Functiondetail', 'ePlus functions', 'ePlus Functions', 'Milestone\\SS\\Model', 'functiondetails', NULL, NULL, 'No', NULL, NULL, '2019-08-31 07:56:39', '2019-08-31 07:56:39'),
+	(305108, 'Productgroup', 'Product groups - item group and item group master', 'Product Group', 'Milestone\\SS\\Model', 'productgroups', NULL, NULL, 'No', NULL, NULL, '2019-08-31 07:56:39', '2019-08-31 07:56:39'),
+	(305109, 'Product', 'Products or Items', 'Products', 'Milestone\\SS\\Model', 'products', NULL, NULL, 'No', NULL, NULL, '2019-08-31 07:56:39', '2019-08-31 07:56:39'),
+	(305110, 'Pricelist', 'Price list header', 'Price List', 'Milestone\\SS\\Model', 'pricelist', NULL, NULL, 'No', NULL, NULL, '2019-08-31 07:56:39', '2019-08-31 07:56:39'),
+	(305111, 'PricelistProduct', 'Price list products', 'Price List Products', 'Milestone\\SS\\Model', 'pricelist_products', NULL, NULL, 'No', NULL, NULL, '2019-08-31 07:56:39', '2019-08-31 07:56:39'),
+	(305112, 'Store', 'Stores', 'Stores', 'Milestone\\SS\\Model', 'stores', NULL, NULL, 'No', NULL, NULL, '2019-08-31 07:56:39', '2019-08-31 07:56:39'),
+	(305113, 'Area', 'Areas', 'Areas', 'Milestone\\SS\\Model', 'areas', NULL, NULL, 'No', NULL, NULL, '2019-08-31 07:56:39', '2019-08-31 07:56:39'),
+	(305114, 'AreaUser', 'Users in an area', 'Area User', 'Milestone\\SS\\Model', 'area_users', NULL, NULL, 'No', NULL, NULL, '2019-08-31 07:56:40', '2019-08-31 07:56:40'),
+	(305115, 'UserSetting', 'Web and Mob settings for each user', 'User Settings', 'Milestone\\SS\\Model', 'user_settings', NULL, NULL, 'No', NULL, NULL, '2019-08-31 07:56:40', '2019-08-31 07:56:40'),
+	(305116, 'UserStoreArea', 'Stores and Areas assigned to a user (executive)', 'User Store and Area', 'Milestone\\SS\\Model', 'user_store_area', NULL, NULL, 'No', NULL, NULL, '2019-08-31 07:56:40', '2019-08-31 07:56:40'),
+	(305117, 'StoreProduct', 'Products in a store', 'Store Products', 'Milestone\\SS\\Model', 'store_products', NULL, NULL, 'No', NULL, NULL, '2019-08-31 07:56:40', '2019-08-31 07:56:40'),
+	(305118, 'ProductTransactionNature', 'Product transaction nature', 'Product Transaction Natures', 'Milestone\\SS\\Model', 'product_transaction_natures', NULL, NULL, 'No', NULL, NULL, '2019-08-31 07:56:40', '2019-08-31 07:56:40'),
+	(305119, 'ProductTransactionType', 'Product transaction types', 'Product Transaction Types', 'Milestone\\SS\\Model', 'product_transaction_types', NULL, NULL, 'No', NULL, NULL, '2019-08-31 07:56:40', '2019-08-31 07:56:40'),
+	(305120, 'StoreProductTransaction', 'Product transactions in a store - in and out', 'Product Transaction in Store', 'Milestone\\SS\\Model', 'store_product_transactions', NULL, NULL, 'No', NULL, NULL, '2019-08-31 07:56:40', '2019-08-31 07:56:40'),
+	(305121, 'Transaction', 'Transaction header - customer, date, document number', 'Transactions', 'Milestone\\SS\\Model', 'transactions', NULL, NULL, 'No', NULL, NULL, '2019-08-31 07:56:40', '2019-08-31 07:56:40'),
+	(305122, 'TransactionDetail', 'Products in a transaction, its price tax etc', 'Transaction Details', 'Milestone\\SS\\Model', 'transaction_details', NULL, NULL, 'No', NULL, NULL, '2019-08-31 07:56:40', '2019-08-31 07:56:40'),
+	(305123, 'BillData', 'Bills generated during transactions', 'Bill Data', 'Milestone\\SS\\Model', 'bill_data', NULL, NULL, 'No', NULL, NULL, '2019-08-31 07:56:40', '2019-08-31 07:56:40'),
+	(305124, 'DData', 'ePlus Ddata for detailed transaction bills', 'ePlus DData', 'Milestone\\SS\\Model', 'd_data', NULL, NULL, 'No', NULL, NULL, '2019-08-31 07:56:40', '2019-08-31 07:56:40'),
+	(305125, 'ChequeDetail', 'Cheque Details', 'Cheque Details', 'Milestone\\SS\\Model', 'cheque_details', NULL, NULL, 'No', NULL, NULL, '2019-08-31 07:56:40', '2019-08-31 07:56:40'),
+	(305126, 'SalesOrder', 'Sales orders', 'Sales Orders', 'Milestone\\SS\\Model', 'sales_order', NULL, NULL, 'No', NULL, NULL, '2019-08-31 07:56:40', '2019-08-31 07:56:40'),
+	(305127, 'SalesOrderItem', 'Sales order items', 'Sales Order Items', 'Milestone\\SS\\Model', 'sales_order_items', NULL, NULL, 'No', NULL, NULL, '2019-08-31 07:56:40', '2019-08-31 07:56:40'),
+	(305128, 'StockTransfer', 'Stock transfer from and to a store', 'Stock Transfers', 'Milestone\\SS\\Model', 'stock_transfer', NULL, NULL, 'No', NULL, NULL, '2019-08-31 07:56:40', '2019-08-31 07:56:40'),
+	(305129, 'WBin', 'Waste bin used while ePlus direct import', 'Waste Bin', 'Milestone\\SS\\Model', 'w_bin', NULL, NULL, 'No', NULL, NULL, '2019-08-31 07:56:41', '2019-08-31 07:56:41'),
+	(305130, 'Receipt', 'Receipts', 'Receipts', 'Milestone\\SS\\Model', 'receipts', NULL, NULL, 'No', NULL, NULL, '2019-08-31 07:56:41', '2019-08-31 07:56:41'),
+	(305131, 'FnReserve', 'Function Reserves', 'Function Reserves', 'Milestone\\SS\\Model', 'fn_reserves', NULL, NULL, 'No', NULL, NULL, '2019-08-31 07:56:41', '2019-08-31 07:56:41'),
+	(305132, 'SalesOrderSale', 'Sales which done on Sales Order', 'Sales Order Sales', 'Milestone\\SS\\Model', 'sales_order_sales', NULL, NULL, 'No', NULL, NULL, '2019-08-31 07:56:41', '2019-08-31 07:56:41');
 /*!40000 ALTER TABLE `__resources` ENABLE KEYS */;
 
 -- Dumping structure for table appframe.__resource_actions
@@ -1251,37 +1251,37 @@ CREATE TABLE IF NOT EXISTS `__resource_actions` (
 -- Dumping data for table appframe.__resource_actions: ~31 rows (approximately)
 /*!40000 ALTER TABLE `__resource_actions` DISABLE KEYS */;
 INSERT INTO `__resource_actions` (`id`, `resource`, `name`, `description`, `title`, `type`, `menu`, `icon`, `set`, `on`, `confirm`, `handler`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(332101, 305115, 'ProductTransactionNewNature', 'Nature of the product in a transaction.. Fresh, Expired, Damaged etc', NULL, 'outline-info', 'New', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:06', '2019-08-13 15:16:06'),
-	(332102, 305115, 'ProductTransactionViewNature', 'List all natures a product transaction havs', NULL, 'outline-info', 'List', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:06', '2019-08-13 15:16:06'),
-	(332103, 305116, 'ProductTransactionNewType', 'Type of transaction like Loading, Unloading, Sales', NULL, 'outline-info', 'New', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:06', '2019-08-13 15:16:06'),
-	(332104, 305116, 'ProductTransactionViewTypes', 'List all available types of product transaction', NULL, 'outline-info', 'List', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:06', '2019-08-13 15:16:06'),
-	(332105, 305115, 'UpdateProductTransactionNature', 'Edit Nature details, change status', 'Update', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:06', '2019-08-13 15:16:06'),
-	(332106, 305116, 'UpdateProductTransactionType', 'Change type status, update name ', 'Update', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:06', '2019-08-13 15:16:06'),
-	(332107, 305103, 'NewSettings', 'Create new setting', NULL, 'outline-info', 'New', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:06', '2019-08-13 15:16:06'),
-	(332108, 305103, 'ListSettings', 'List all settings', NULL, 'outline-info', 'List All', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:06', '2019-08-13 15:16:06'),
-	(332109, 305103, 'ViewSettingsDetails', 'Data view of a settings', 'Details', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:06', '2019-08-13 15:16:06'),
-	(332110, 305103, 'UpdateSettings', 'Edit settings details', 'Edit', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:06', '2019-08-13 15:16:06'),
-	(332111, 305101, 'UsersList', 'List all available users', NULL, 'outline-info', 'List All', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:06', '2019-08-13 15:16:06'),
-	(332112, 305101, 'UserSettingsListAction', 'List all settings of a user', 'View Settings', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:06', '2019-08-13 15:16:06'),
-	(332113, 305101, 'ListSalesExecutiveAction', 'Action to list all sales executive', NULL, 'outline-info', 'Sales Executives', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:06', '2019-08-13 15:16:06'),
-	(332114, 305112, 'AddNewUserSettingAction', 'Action to call form to add user setting', NULL, 'outline-info', 'New User Setting', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:06', '2019-08-13 15:16:06'),
-	(332115, 305101, 'AddSettingsForSelectedUser', 'Action to call a form to add a setting for the selected user', 'Add Setting', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:06', '2019-08-13 15:16:06'),
-	(332116, 305103, 'SettingsUsersListAction', 'List all users having this setting', 'View Users', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:06', '2019-08-13 15:16:06'),
-	(332117, 305103, 'AddUserForSelectedSetting', 'Action to call a form to add a user for the selected setting', 'Add User', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:06', '2019-08-13 15:16:06'),
-	(332118, 305112, 'ListAllUserSettingsAction', 'Action to list all user settings', NULL, 'outline-info', 'List All', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:06', '2019-08-13 15:16:06'),
-	(332119, 305112, 'ChangeUserSettingStatusAction', 'Action to call the form to change user setting status', 'Change Status', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:06', '2019-08-13 15:16:06'),
-	(332120, 305112, 'ViewUserSettingsDetails', 'Action to call resource data of user settings', 'View Details', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:06', '2019-08-13 15:16:06'),
-	(332121, 305113, 'AddUserStoreAreaRecordAction', 'Action to call form to add user store area', NULL, 'outline-info', 'New', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:06', '2019-08-13 15:16:06'),
-	(332122, 305113, 'ListUserStoreAreaRecordAction', 'Action to list all user store area', NULL, 'outline-info', 'List All', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:06', '2019-08-13 15:16:06'),
-	(332123, 305113, 'ViewUserStoreAreaAction', 'Action to view user store and area', 'View Details', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:07', '2019-08-13 15:16:07'),
-	(332124, 305113, 'EditUserStoreAreaAction', 'Action to call a form to update user store area', 'Edit', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:07', '2019-08-13 15:16:07'),
-	(332125, 305110, 'ListAreaAction', 'Action to list all areas', NULL, 'outline-info', 'List All', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:07', '2019-08-13 15:16:07'),
-	(332126, 305109, 'ListStoreAction', 'Action to list all stores', NULL, 'outline-info', 'List All', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:07', '2019-08-13 15:16:07'),
-	(332127, 305101, 'ListStoreAreaOfUserAction', 'Action to list all store and area of the selected user', 'View Store and Area', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:07', '2019-08-13 15:16:07'),
-	(332128, 305101, 'AddStoreAreaForUser', 'Action to call the form to add store area for a user', 'Add Store and Area', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:07', '2019-08-13 15:16:07'),
-	(332129, 305110, 'ListStoreAndUserOfArea', 'Action to list all Store and User assigned to selected area', 'View Store and User', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:07', '2019-08-13 15:16:07'),
-	(332130, 305110, 'AssignStoreAndUserForArea', 'Action to call the form to assign store and user for an area', 'Assign Store and Executive', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:07', '2019-08-13 15:16:07'),
-	(332131, 305109, 'ListUsersAssigned', 'Action to list all users assigned to a store', 'Manage Executives Assigned', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:07', '2019-08-13 15:16:07');
+	(332101, 305115, 'ProductTransactionNewNature', 'Nature of the product in a transaction.. Fresh, Expired, Damaged etc', NULL, 'outline-info', 'New', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:56', '2019-08-31 07:56:56'),
+	(332102, 305115, 'ProductTransactionViewNature', 'List all natures a product transaction havs', NULL, 'outline-info', 'List', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:56', '2019-08-31 07:56:56'),
+	(332103, 305116, 'ProductTransactionNewType', 'Type of transaction like Loading, Unloading, Sales', NULL, 'outline-info', 'New', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:56', '2019-08-31 07:56:56'),
+	(332104, 305116, 'ProductTransactionViewTypes', 'List all available types of product transaction', NULL, 'outline-info', 'List', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:56', '2019-08-31 07:56:56'),
+	(332105, 305115, 'UpdateProductTransactionNature', 'Edit Nature details, change status', 'Update', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:56', '2019-08-31 07:56:56'),
+	(332106, 305116, 'UpdateProductTransactionType', 'Change type status, update name ', 'Update', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:56', '2019-08-31 07:56:56'),
+	(332107, 305103, 'NewSettings', 'Create new setting', NULL, 'outline-info', 'New', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:56', '2019-08-31 07:56:56'),
+	(332108, 305103, 'ListSettings', 'List all settings', NULL, 'outline-info', 'List All', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:56', '2019-08-31 07:56:56'),
+	(332109, 305103, 'ViewSettingsDetails', 'Data view of a settings', 'Details', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:56', '2019-08-31 07:56:56'),
+	(332110, 305103, 'UpdateSettings', 'Edit settings details', 'Edit', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:56', '2019-08-31 07:56:56'),
+	(332111, 305101, 'UsersList', 'List all available users', NULL, 'outline-info', 'List All', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:56', '2019-08-31 07:56:56'),
+	(332112, 305101, 'UserSettingsListAction', 'List all settings of a user', 'View Settings', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:56', '2019-08-31 07:56:56'),
+	(332113, 305101, 'ListSalesExecutiveAction', 'Action to list all sales executive', NULL, 'outline-info', 'Sales Executives', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:57', '2019-08-31 07:56:57'),
+	(332114, 305112, 'AddNewUserSettingAction', 'Action to call form to add user setting', NULL, 'outline-info', 'New User Setting', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:57', '2019-08-31 07:56:57'),
+	(332115, 305101, 'AddSettingsForSelectedUser', 'Action to call a form to add a setting for the selected user', 'Add Setting', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:57', '2019-08-31 07:56:57'),
+	(332116, 305103, 'SettingsUsersListAction', 'List all users having this setting', 'View Users', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:57', '2019-08-31 07:56:57'),
+	(332117, 305103, 'AddUserForSelectedSetting', 'Action to call a form to add a user for the selected setting', 'Add User', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:57', '2019-08-31 07:56:57'),
+	(332118, 305112, 'ListAllUserSettingsAction', 'Action to list all user settings', NULL, 'outline-info', 'List All', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:57', '2019-08-31 07:56:57'),
+	(332119, 305112, 'ChangeUserSettingStatusAction', 'Action to call the form to change user setting status', 'Change Status', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:57', '2019-08-31 07:56:57'),
+	(332120, 305112, 'ViewUserSettingsDetails', 'Action to call resource data of user settings', 'View Details', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:57', '2019-08-31 07:56:57'),
+	(332121, 305113, 'AddUserStoreAreaRecordAction', 'Action to call form to add user store area', NULL, 'outline-info', 'New', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:57', '2019-08-31 07:56:57'),
+	(332122, 305113, 'ListUserStoreAreaRecordAction', 'Action to list all user store area', NULL, 'outline-info', 'List All', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:57', '2019-08-31 07:56:57'),
+	(332123, 305113, 'ViewUserStoreAreaAction', 'Action to view user store and area', 'View Details', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:57', '2019-08-31 07:56:57'),
+	(332124, 305113, 'EditUserStoreAreaAction', 'Action to call a form to update user store area', 'Edit', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:57', '2019-08-31 07:56:57'),
+	(332125, 305110, 'ListAreaAction', 'Action to list all areas', NULL, 'outline-info', 'List All', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:57', '2019-08-31 07:56:57'),
+	(332126, 305109, 'ListStoreAction', 'Action to list all stores', NULL, 'outline-info', 'List All', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:57', '2019-08-31 07:56:57'),
+	(332127, 305101, 'ListStoreAreaOfUserAction', 'Action to list all store and area of the selected user', 'View Store and Area', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:57', '2019-08-31 07:56:57'),
+	(332128, 305101, 'AddStoreAreaForUser', 'Action to call the form to add store area for a user', 'Add Store and Area', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:58', '2019-08-31 07:56:58'),
+	(332129, 305110, 'ListStoreAndUserOfArea', 'Action to list all Store and User assigned to selected area', 'View Store and User', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:58', '2019-08-31 07:56:58'),
+	(332130, 305110, 'AssignStoreAndUserForArea', 'Action to call the form to assign store and user for an area', 'Assign Store and Executive', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:58', '2019-08-31 07:56:58'),
+	(332131, 305109, 'ListUsersAssigned', 'Action to list all users assigned to a store', 'Manage Executives Assigned', 'primary', NULL, NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:58', '2019-08-31 07:56:58');
 /*!40000 ALTER TABLE `__resource_actions` ENABLE KEYS */;
 
 -- Dumping structure for table appframe.__resource_action_attrs
@@ -1302,7 +1302,7 @@ CREATE TABLE IF NOT EXISTS `__resource_action_attrs` (
   CONSTRAINT `__resource_action_attrs_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `__resource_action_attrs_resource_action_foreign` FOREIGN KEY (`resource_action`) REFERENCES `__resource_actions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `__resource_action_attrs_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=334101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.__resource_action_attrs: ~0 rows (approximately)
 /*!40000 ALTER TABLE `__resource_action_attrs` DISABLE KEYS */;
@@ -1332,11 +1332,11 @@ CREATE TABLE IF NOT EXISTS `__resource_action_data` (
 -- Dumping data for table appframe.__resource_action_data: ~5 rows (approximately)
 /*!40000 ALTER TABLE `__resource_action_data` DISABLE KEYS */;
 INSERT INTO `__resource_action_data` (`id`, `resource_action`, `resource_data`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(336101, 332105, 327101, NULL, NULL, '2019-08-13 15:16:09', '2019-08-13 15:16:09'),
-	(336102, 332106, 327102, NULL, NULL, '2019-08-13 15:16:09', '2019-08-13 15:16:09'),
-	(336103, 332110, 327103, NULL, NULL, '2019-08-13 15:16:09', '2019-08-13 15:16:09'),
-	(336104, 332119, 327104, NULL, NULL, '2019-08-13 15:16:09', '2019-08-13 15:16:09'),
-	(336105, 332124, 327105, NULL, NULL, '2019-08-13 15:16:09', '2019-08-13 15:16:09');
+	(336101, 332105, 327101, NULL, NULL, '2019-08-31 07:57:01', '2019-08-31 07:57:01'),
+	(336102, 332106, 327102, NULL, NULL, '2019-08-31 07:57:01', '2019-08-31 07:57:01'),
+	(336103, 332110, 327103, NULL, NULL, '2019-08-31 07:57:02', '2019-08-31 07:57:02'),
+	(336104, 332119, 327104, NULL, NULL, '2019-08-31 07:57:02', '2019-08-31 07:57:02'),
+	(336105, 332124, 327105, NULL, NULL, '2019-08-31 07:57:02', '2019-08-31 07:57:02');
 /*!40000 ALTER TABLE `__resource_action_data` ENABLE KEYS */;
 
 -- Dumping structure for table appframe.__resource_action_lists
@@ -1363,23 +1363,23 @@ CREATE TABLE IF NOT EXISTS `__resource_action_lists` (
 -- Dumping data for table appframe.__resource_action_lists: ~17 rows (approximately)
 /*!40000 ALTER TABLE `__resource_action_lists` DISABLE KEYS */;
 INSERT INTO `__resource_action_lists` (`id`, `resource_action`, `resource_list`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(335101, 332105, 322101, NULL, NULL, '2019-08-13 15:16:08', '2019-08-13 15:16:08'),
-	(335102, 332106, 322102, NULL, NULL, '2019-08-13 15:16:08', '2019-08-13 15:16:08'),
-	(335103, 332109, 322103, NULL, NULL, '2019-08-13 15:16:08', '2019-08-13 15:16:08'),
-	(335104, 332110, 322103, NULL, NULL, '2019-08-13 15:16:08', '2019-08-13 15:16:08'),
-	(335105, 332112, 322106, NULL, NULL, '2019-08-13 15:16:08', '2019-08-13 15:16:08'),
-	(335106, 332115, 322106, NULL, NULL, '2019-08-13 15:16:08', '2019-08-13 15:16:08'),
-	(335107, 332116, 322103, NULL, NULL, '2019-08-13 15:16:08', '2019-08-13 15:16:08'),
-	(335108, 332117, 322103, NULL, NULL, '2019-08-13 15:16:08', '2019-08-13 15:16:08'),
-	(335109, 332120, 322105, NULL, NULL, '2019-08-13 15:16:08', '2019-08-13 15:16:08'),
-	(335110, 332119, 322105, NULL, NULL, '2019-08-13 15:16:08', '2019-08-13 15:16:08'),
-	(335111, 332123, 322107, NULL, NULL, '2019-08-13 15:16:09', '2019-08-13 15:16:09'),
-	(335112, 332124, 322107, NULL, NULL, '2019-08-13 15:16:09', '2019-08-13 15:16:09'),
-	(335113, 332127, 322106, NULL, NULL, '2019-08-13 15:16:09', '2019-08-13 15:16:09'),
-	(335114, 332128, 322106, NULL, NULL, '2019-08-13 15:16:09', '2019-08-13 15:16:09'),
-	(335115, 332129, 322108, NULL, NULL, '2019-08-13 15:16:09', '2019-08-13 15:16:09'),
-	(335116, 332130, 322108, NULL, NULL, '2019-08-13 15:16:09', '2019-08-13 15:16:09'),
-	(335117, 332131, 322109, NULL, NULL, '2019-08-13 15:16:09', '2019-08-13 15:16:09');
+	(335101, 332105, 322101, NULL, NULL, '2019-08-31 07:57:00', '2019-08-31 07:57:00'),
+	(335102, 332106, 322102, NULL, NULL, '2019-08-31 07:57:00', '2019-08-31 07:57:00'),
+	(335103, 332109, 322103, NULL, NULL, '2019-08-31 07:57:00', '2019-08-31 07:57:00'),
+	(335104, 332110, 322103, NULL, NULL, '2019-08-31 07:57:00', '2019-08-31 07:57:00'),
+	(335105, 332112, 322106, NULL, NULL, '2019-08-31 07:57:01', '2019-08-31 07:57:01'),
+	(335106, 332115, 322106, NULL, NULL, '2019-08-31 07:57:01', '2019-08-31 07:57:01'),
+	(335107, 332116, 322103, NULL, NULL, '2019-08-31 07:57:01', '2019-08-31 07:57:01'),
+	(335108, 332117, 322103, NULL, NULL, '2019-08-31 07:57:01', '2019-08-31 07:57:01'),
+	(335109, 332120, 322105, NULL, NULL, '2019-08-31 07:57:01', '2019-08-31 07:57:01'),
+	(335110, 332119, 322105, NULL, NULL, '2019-08-31 07:57:01', '2019-08-31 07:57:01'),
+	(335111, 332123, 322107, NULL, NULL, '2019-08-31 07:57:01', '2019-08-31 07:57:01'),
+	(335112, 332124, 322107, NULL, NULL, '2019-08-31 07:57:01', '2019-08-31 07:57:01'),
+	(335113, 332127, 322106, NULL, NULL, '2019-08-31 07:57:01', '2019-08-31 07:57:01'),
+	(335114, 332128, 322106, NULL, NULL, '2019-08-31 07:57:01', '2019-08-31 07:57:01'),
+	(335115, 332129, 322108, NULL, NULL, '2019-08-31 07:57:01', '2019-08-31 07:57:01'),
+	(335116, 332130, 322108, NULL, NULL, '2019-08-31 07:57:01', '2019-08-31 07:57:01'),
+	(335117, 332131, 322109, NULL, NULL, '2019-08-31 07:57:01', '2019-08-31 07:57:01');
 /*!40000 ALTER TABLE `__resource_action_lists` ENABLE KEYS */;
 
 -- Dumping structure for table appframe.__resource_action_methods
@@ -1410,37 +1410,37 @@ CREATE TABLE IF NOT EXISTS `__resource_action_methods` (
 -- Dumping data for table appframe.__resource_action_methods: ~31 rows (approximately)
 /*!40000 ALTER TABLE `__resource_action_methods` DISABLE KEYS */;
 INSERT INTO `__resource_action_methods` (`id`, `resource_action`, `type`, `method`, `idn1`, `idn2`, `idn3`, `idn4`, `idn5`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(333101, 332101, 'Form', NULL, '309101', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:07', '2019-08-13 15:16:07'),
-	(333102, 332102, 'List', NULL, '322101', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:07', '2019-08-13 15:16:07'),
-	(333103, 332103, 'Form', NULL, '309101', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:07', '2019-08-13 15:16:07'),
-	(333104, 332104, 'List', NULL, '322102', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:07', '2019-08-13 15:16:07'),
-	(333105, 332105, 'FormWithData', NULL, '309101', '327101', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:07', '2019-08-13 15:16:07'),
-	(333106, 332106, 'FormWithData', NULL, '309102', '327102', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:07', '2019-08-13 15:16:07'),
-	(333107, 332107, 'Form', NULL, '309103', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:07', '2019-08-13 15:16:07'),
-	(333108, 332108, 'List', NULL, '322103', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:07', '2019-08-13 15:16:07'),
-	(333109, 332109, 'Data', NULL, '327103', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:07', '2019-08-13 15:16:07'),
-	(333110, 332110, 'FormWithData', NULL, '309103', '327103', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:07', '2019-08-13 15:16:07'),
-	(333111, 332111, 'List', NULL, '322104', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:07', '2019-08-13 15:16:07'),
-	(333112, 332112, 'ListRelation', NULL, '308137', '322105', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:07', '2019-08-13 15:16:07'),
-	(333113, 332113, 'List', NULL, '322106', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:07', '2019-08-13 15:16:07'),
-	(333114, 332114, 'Form', NULL, '309104', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:07', '2019-08-13 15:16:07'),
-	(333115, 332115, 'AddRelation', NULL, '308137', '309104', '310109', NULL, NULL, NULL, NULL, '2019-08-13 15:16:07', '2019-08-13 15:16:07'),
-	(333116, 332116, 'ListRelation', NULL, '308134', '322105', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:07', '2019-08-13 15:16:07'),
-	(333117, 332117, 'AddRelation', NULL, '308134', '309104', '310110', NULL, NULL, NULL, NULL, '2019-08-13 15:16:08', '2019-08-13 15:16:08'),
-	(333118, 332118, 'List', NULL, '322105', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:08', '2019-08-13 15:16:08'),
-	(333119, 332119, 'FormWithData', NULL, '309105', '327104', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:08', '2019-08-13 15:16:08'),
-	(333120, 332120, 'Data', NULL, '327104', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:08', '2019-08-13 15:16:08'),
-	(333121, 332121, 'Form', NULL, '309106', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:08', '2019-08-13 15:16:08'),
-	(333122, 332122, 'List', NULL, '322107', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:08', '2019-08-13 15:16:08'),
-	(333123, 332123, 'Data', NULL, '327105', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:08', '2019-08-13 15:16:08'),
-	(333124, 332124, 'FormWithData', NULL, '309106', '327105', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:08', '2019-08-13 15:16:08'),
-	(333125, 332125, 'List', NULL, '322108', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:08', '2019-08-13 15:16:08'),
-	(333126, 332126, 'List', NULL, '322109', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:08', '2019-08-13 15:16:08'),
-	(333127, 332127, 'ListRelation', NULL, '308139', '322107', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:08', '2019-08-13 15:16:08'),
-	(333128, 332128, 'AddRelation', NULL, '308139', '309106', '310113', NULL, NULL, NULL, NULL, '2019-08-13 15:16:08', '2019-08-13 15:16:08'),
-	(333129, 332129, 'ListRelation', NULL, '308144', '322107', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:08', '2019-08-13 15:16:08'),
-	(333130, 332130, 'AddRelation', NULL, '308144', '309106', '310115', NULL, NULL, NULL, NULL, '2019-08-13 15:16:08', '2019-08-13 15:16:08'),
-	(333131, 332131, 'ManageRelation', NULL, '308143', '322106', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:08', '2019-08-13 15:16:08');
+	(333101, 332101, 'Form', NULL, '309101', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:58', '2019-08-31 07:56:58'),
+	(333102, 332102, 'List', NULL, '322101', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:58', '2019-08-31 07:56:58'),
+	(333103, 332103, 'Form', NULL, '309101', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:58', '2019-08-31 07:56:58'),
+	(333104, 332104, 'List', NULL, '322102', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:58', '2019-08-31 07:56:58'),
+	(333105, 332105, 'FormWithData', NULL, '309101', '327101', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:58', '2019-08-31 07:56:58'),
+	(333106, 332106, 'FormWithData', NULL, '309102', '327102', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:59', '2019-08-31 07:56:59'),
+	(333107, 332107, 'Form', NULL, '309103', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:59', '2019-08-31 07:56:59'),
+	(333108, 332108, 'List', NULL, '322103', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:59', '2019-08-31 07:56:59'),
+	(333109, 332109, 'Data', NULL, '327103', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:59', '2019-08-31 07:56:59'),
+	(333110, 332110, 'FormWithData', NULL, '309103', '327103', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:59', '2019-08-31 07:56:59'),
+	(333111, 332111, 'List', NULL, '322104', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:59', '2019-08-31 07:56:59'),
+	(333112, 332112, 'ListRelation', NULL, '308137', '322105', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:59', '2019-08-31 07:56:59'),
+	(333113, 332113, 'List', NULL, '322106', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:59', '2019-08-31 07:56:59'),
+	(333114, 332114, 'Form', NULL, '309104', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:59', '2019-08-31 07:56:59'),
+	(333115, 332115, 'AddRelation', NULL, '308137', '309104', '310109', NULL, NULL, NULL, NULL, '2019-08-31 07:56:59', '2019-08-31 07:56:59'),
+	(333116, 332116, 'ListRelation', NULL, '308134', '322105', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:59', '2019-08-31 07:56:59'),
+	(333117, 332117, 'AddRelation', NULL, '308134', '309104', '310110', NULL, NULL, NULL, NULL, '2019-08-31 07:56:59', '2019-08-31 07:56:59'),
+	(333118, 332118, 'List', NULL, '322105', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:59', '2019-08-31 07:56:59'),
+	(333119, 332119, 'FormWithData', NULL, '309105', '327104', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:57:00', '2019-08-31 07:57:00'),
+	(333120, 332120, 'Data', NULL, '327104', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:57:00', '2019-08-31 07:57:00'),
+	(333121, 332121, 'Form', NULL, '309106', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:57:00', '2019-08-31 07:57:00'),
+	(333122, 332122, 'List', NULL, '322107', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:57:00', '2019-08-31 07:57:00'),
+	(333123, 332123, 'Data', NULL, '327105', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:57:00', '2019-08-31 07:57:00'),
+	(333124, 332124, 'FormWithData', NULL, '309106', '327105', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:57:00', '2019-08-31 07:57:00'),
+	(333125, 332125, 'List', NULL, '322108', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:57:00', '2019-08-31 07:57:00'),
+	(333126, 332126, 'List', NULL, '322109', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:57:00', '2019-08-31 07:57:00'),
+	(333127, 332127, 'ListRelation', NULL, '308139', '322107', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:57:00', '2019-08-31 07:57:00'),
+	(333128, 332128, 'AddRelation', NULL, '308139', '309106', '310113', NULL, NULL, NULL, NULL, '2019-08-31 07:57:00', '2019-08-31 07:57:00'),
+	(333129, 332129, 'ListRelation', NULL, '308144', '322107', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:57:00', '2019-08-31 07:57:00'),
+	(333130, 332130, 'AddRelation', NULL, '308144', '309106', '310115', NULL, NULL, NULL, NULL, '2019-08-31 07:57:00', '2019-08-31 07:57:00'),
+	(333131, 332131, 'ManageRelation', NULL, '308143', '322106', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:57:00', '2019-08-31 07:57:00');
 /*!40000 ALTER TABLE `__resource_action_methods` ENABLE KEYS */;
 
 -- Dumping structure for table appframe.__resource_dashboard
@@ -1464,7 +1464,7 @@ CREATE TABLE IF NOT EXISTS `__resource_dashboard` (
   CONSTRAINT `__resource_dashboard_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `__resource_dashboard_resource_foreign` FOREIGN KEY (`resource`) REFERENCES `__resources` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `__resource_dashboard_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=339101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.__resource_dashboard: ~0 rows (approximately)
 /*!40000 ALTER TABLE `__resource_dashboard` DISABLE KEYS */;
@@ -1490,7 +1490,7 @@ CREATE TABLE IF NOT EXISTS `__resource_dashboard_sections` (
   CONSTRAINT `__resource_dashboard_sections_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `__resource_dashboard_sections_resource_dashboard_foreign` FOREIGN KEY (`resource_dashboard`) REFERENCES `__resource_dashboard` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `__resource_dashboard_sections_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=340101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.__resource_dashboard_sections: ~0 rows (approximately)
 /*!40000 ALTER TABLE `__resource_dashboard_sections` DISABLE KEYS */;
@@ -1517,7 +1517,7 @@ CREATE TABLE IF NOT EXISTS `__resource_dashboard_section_items` (
   CONSTRAINT `__resource_dashboard_section_items_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `__resource_dashboard_section_items_section_foreign` FOREIGN KEY (`section`) REFERENCES `__resource_dashboard_sections` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `__resource_dashboard_section_items_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=341101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.__resource_dashboard_section_items: ~0 rows (approximately)
 /*!40000 ALTER TABLE `__resource_dashboard_section_items` DISABLE KEYS */;
@@ -1549,11 +1549,11 @@ CREATE TABLE IF NOT EXISTS `__resource_data` (
 -- Dumping data for table appframe.__resource_data: ~5 rows (approximately)
 /*!40000 ALTER TABLE `__resource_data` DISABLE KEYS */;
 INSERT INTO `__resource_data` (`id`, `resource`, `name`, `description`, `title_field`, `method`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(327101, 305115, 'TransactionProductNatureView', 'View details of a product transaction nature', 'name', NULL, NULL, NULL, '2019-08-13 15:16:04', '2019-08-13 15:16:04'),
-	(327102, 305116, 'TransactionProductTypeView', 'View details of a product transaction type', 'name', NULL, NULL, NULL, '2019-08-13 15:16:04', '2019-08-13 15:16:04'),
-	(327103, 305103, 'SettingsView', 'View details of a settings', 'name', NULL, NULL, NULL, '2019-08-13 15:16:04', '2019-08-13 15:16:04'),
-	(327104, 305112, 'UserSettingsView', 'View details of a user setting', 'user.name', NULL, NULL, NULL, '2019-08-13 15:16:04', '2019-08-13 15:16:04'),
-	(327105, 305113, 'UserStoreAreaView', 'View details of user store area', 'user.name', NULL, NULL, NULL, '2019-08-13 15:16:04', '2019-08-13 15:16:04');
+	(327101, 305115, 'TransactionProductNatureView', 'View details of a product transaction nature', 'name', NULL, NULL, NULL, '2019-08-31 07:56:54', '2019-08-31 07:56:54'),
+	(327102, 305116, 'TransactionProductTypeView', 'View details of a product transaction type', 'name', NULL, NULL, NULL, '2019-08-31 07:56:54', '2019-08-31 07:56:54'),
+	(327103, 305103, 'SettingsView', 'View details of a settings', 'name', NULL, NULL, NULL, '2019-08-31 07:56:54', '2019-08-31 07:56:54'),
+	(327104, 305112, 'UserSettingsView', 'View details of a user setting', 'user.name', NULL, NULL, NULL, '2019-08-31 07:56:54', '2019-08-31 07:56:54'),
+	(327105, 305113, 'UserStoreAreaView', 'View details of user store area', 'user.name', NULL, NULL, NULL, '2019-08-31 07:56:54', '2019-08-31 07:56:54');
 /*!40000 ALTER TABLE `__resource_data` ENABLE KEYS */;
 
 -- Dumping structure for table appframe.__resource_data_relations
@@ -1595,11 +1595,11 @@ CREATE TABLE IF NOT EXISTS `__resource_data_relations` (
 -- Dumping data for table appframe.__resource_data_relations: ~5 rows (approximately)
 /*!40000 ALTER TABLE `__resource_data_relations` DISABLE KEYS */;
 INSERT INTO `__resource_data_relations` (`id`, `resource_data`, `relation`, `nest_relation1`, `nest_relation2`, `nest_relation3`, `nest_relation4`, `nest_relation5`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(329101, 327104, 308138, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:04', '2019-08-13 15:16:04'),
-	(329102, 327104, 308136, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:04', '2019-08-13 15:16:04'),
-	(329103, 327105, 308140, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:04', '2019-08-13 15:16:04'),
-	(329104, 327105, 308141, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:04', '2019-08-13 15:16:04'),
-	(329105, 327105, 308142, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:04', '2019-08-13 15:16:04');
+	(329101, 327104, 308138, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:54', '2019-08-31 07:56:54'),
+	(329102, 327104, 308136, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:54', '2019-08-31 07:56:54'),
+	(329103, 327105, 308140, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:54', '2019-08-31 07:56:54'),
+	(329104, 327105, 308141, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:54', '2019-08-31 07:56:54'),
+	(329105, 327105, 308142, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:54', '2019-08-31 07:56:54');
 /*!40000 ALTER TABLE `__resource_data_relations` ENABLE KEYS */;
 
 -- Dumping structure for table appframe.__resource_data_scopes
@@ -1621,7 +1621,7 @@ CREATE TABLE IF NOT EXISTS `__resource_data_scopes` (
   CONSTRAINT `__resource_data_scopes_resource_data_foreign` FOREIGN KEY (`resource_data`) REFERENCES `__resource_data` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `__resource_data_scopes_scope_foreign` FOREIGN KEY (`scope`) REFERENCES `__resource_scopes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `__resource_data_scopes_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=328101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.__resource_data_scopes: ~0 rows (approximately)
 /*!40000 ALTER TABLE `__resource_data_scopes` DISABLE KEYS */;
@@ -1654,12 +1654,12 @@ CREATE TABLE IF NOT EXISTS `__resource_data_view_sections` (
 -- Dumping data for table appframe.__resource_data_view_sections: ~6 rows (approximately)
 /*!40000 ALTER TABLE `__resource_data_view_sections` DISABLE KEYS */;
 INSERT INTO `__resource_data_view_sections` (`id`, `resource_data`, `title`, `title_field`, `relation`, `colspan`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(330101, 327101, NULL, 'name', NULL, 12, NULL, NULL, '2019-08-13 15:16:05', '2019-08-13 15:16:05'),
-	(330102, 327102, NULL, 'name', NULL, 12, NULL, NULL, '2019-08-13 15:16:05', '2019-08-13 15:16:05'),
-	(330103, 327103, 'Basic', NULL, NULL, 4, NULL, NULL, '2019-08-13 15:16:05', '2019-08-13 15:16:05'),
-	(330104, 327103, 'Detail', NULL, NULL, 12, NULL, NULL, '2019-08-13 15:16:05', '2019-08-13 15:16:05'),
-	(330105, 327104, 'User Settings Details', NULL, NULL, 12, NULL, NULL, '2019-08-13 15:16:05', '2019-08-13 15:16:05'),
-	(330106, 327105, 'Details', NULL, NULL, 12, NULL, NULL, '2019-08-13 15:16:05', '2019-08-13 15:16:05');
+	(330101, 327101, NULL, 'name', NULL, 12, NULL, NULL, '2019-08-31 07:56:55', '2019-08-31 07:56:55'),
+	(330102, 327102, NULL, 'name', NULL, 12, NULL, NULL, '2019-08-31 07:56:55', '2019-08-31 07:56:55'),
+	(330103, 327103, 'Basic', NULL, NULL, 4, NULL, NULL, '2019-08-31 07:56:55', '2019-08-31 07:56:55'),
+	(330104, 327103, 'Detail', NULL, NULL, 12, NULL, NULL, '2019-08-31 07:56:55', '2019-08-31 07:56:55'),
+	(330105, 327104, 'User Settings Details', NULL, NULL, 12, NULL, NULL, '2019-08-31 07:56:55', '2019-08-31 07:56:55'),
+	(330106, 327105, 'Details', NULL, NULL, 12, NULL, NULL, '2019-08-31 07:56:55', '2019-08-31 07:56:55');
 /*!40000 ALTER TABLE `__resource_data_view_sections` ENABLE KEYS */;
 
 -- Dumping structure for table appframe.__resource_data_view_section_items
@@ -1688,22 +1688,22 @@ CREATE TABLE IF NOT EXISTS `__resource_data_view_section_items` (
 -- Dumping data for table appframe.__resource_data_view_section_items: ~16 rows (approximately)
 /*!40000 ALTER TABLE `__resource_data_view_section_items` DISABLE KEYS */;
 INSERT INTO `__resource_data_view_section_items` (`id`, `section`, `label`, `attribute`, `relation`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(331101, 330101, 'Name', 'name', NULL, NULL, NULL, '2019-08-13 15:16:05', '2019-08-13 15:16:05'),
-	(331102, 330101, 'Status', 'status', NULL, NULL, NULL, '2019-08-13 15:16:05', '2019-08-13 15:16:05'),
-	(331103, 330102, 'Name', 'name', NULL, NULL, NULL, '2019-08-13 15:16:05', '2019-08-13 15:16:05'),
-	(331104, 330102, 'Status', 'status', NULL, NULL, NULL, '2019-08-13 15:16:05', '2019-08-13 15:16:05'),
-	(331105, 330103, 'Name', 'name', NULL, NULL, NULL, '2019-08-13 15:16:05', '2019-08-13 15:16:05'),
-	(331106, 330103, 'Default Value', 'value', NULL, NULL, NULL, '2019-08-13 15:16:05', '2019-08-13 15:16:05'),
-	(331107, 330103, 'Status', 'status', NULL, NULL, NULL, '2019-08-13 15:16:05', '2019-08-13 15:16:05'),
-	(331108, 330104, 'Details', 'description', NULL, NULL, NULL, '2019-08-13 15:16:05', '2019-08-13 15:16:05'),
-	(331109, 330105, 'User', 'name', 308138, NULL, NULL, '2019-08-13 15:16:05', '2019-08-13 15:16:05'),
-	(331110, 330105, 'Setings', 'name', 308136, NULL, NULL, '2019-08-13 15:16:05', '2019-08-13 15:16:05'),
-	(331111, 330105, 'Value', 'value', NULL, NULL, NULL, '2019-08-13 15:16:05', '2019-08-13 15:16:05'),
-	(331112, 330105, 'Status', 'status', NULL, NULL, NULL, '2019-08-13 15:16:05', '2019-08-13 15:16:05'),
-	(331113, 330106, 'Executive', 'name', 308142, NULL, NULL, '2019-08-13 15:16:05', '2019-08-13 15:16:05'),
-	(331114, 330106, 'Store', 'name', 308141, NULL, NULL, '2019-08-13 15:16:05', '2019-08-13 15:16:05'),
-	(331115, 330106, 'Area', 'name', 308140, NULL, NULL, '2019-08-13 15:16:06', '2019-08-13 15:16:06'),
-	(331116, 330106, 'Status', 'status', NULL, NULL, NULL, '2019-08-13 15:16:06', '2019-08-13 15:16:06');
+	(331101, 330101, 'Name', 'name', NULL, NULL, NULL, '2019-08-31 07:56:55', '2019-08-31 07:56:55'),
+	(331102, 330101, 'Status', 'status', NULL, NULL, NULL, '2019-08-31 07:56:55', '2019-08-31 07:56:55'),
+	(331103, 330102, 'Name', 'name', NULL, NULL, NULL, '2019-08-31 07:56:55', '2019-08-31 07:56:55'),
+	(331104, 330102, 'Status', 'status', NULL, NULL, NULL, '2019-08-31 07:56:55', '2019-08-31 07:56:55'),
+	(331105, 330103, 'Name', 'name', NULL, NULL, NULL, '2019-08-31 07:56:55', '2019-08-31 07:56:55'),
+	(331106, 330103, 'Default Value', 'value', NULL, NULL, NULL, '2019-08-31 07:56:55', '2019-08-31 07:56:55'),
+	(331107, 330103, 'Status', 'status', NULL, NULL, NULL, '2019-08-31 07:56:55', '2019-08-31 07:56:55'),
+	(331108, 330104, 'Details', 'description', NULL, NULL, NULL, '2019-08-31 07:56:55', '2019-08-31 07:56:55'),
+	(331109, 330105, 'User', 'name', 308138, NULL, NULL, '2019-08-31 07:56:55', '2019-08-31 07:56:55'),
+	(331110, 330105, 'Setings', 'name', 308136, NULL, NULL, '2019-08-31 07:56:55', '2019-08-31 07:56:55'),
+	(331111, 330105, 'Value', 'value', NULL, NULL, NULL, '2019-08-31 07:56:55', '2019-08-31 07:56:55'),
+	(331112, 330105, 'Status', 'status', NULL, NULL, NULL, '2019-08-31 07:56:55', '2019-08-31 07:56:55'),
+	(331113, 330106, 'Executive', 'name', 308142, NULL, NULL, '2019-08-31 07:56:55', '2019-08-31 07:56:55'),
+	(331114, 330106, 'Store', 'name', 308141, NULL, NULL, '2019-08-31 07:56:56', '2019-08-31 07:56:56'),
+	(331115, 330106, 'Area', 'name', 308140, NULL, NULL, '2019-08-31 07:56:56', '2019-08-31 07:56:56'),
+	(331116, 330106, 'Status', 'status', NULL, NULL, NULL, '2019-08-31 07:56:56', '2019-08-31 07:56:56');
 /*!40000 ALTER TABLE `__resource_data_view_section_items` ENABLE KEYS */;
 
 -- Dumping structure for table appframe.__resource_defaults
@@ -1739,11 +1739,11 @@ CREATE TABLE IF NOT EXISTS `__resource_defaults` (
 -- Dumping data for table appframe.__resource_defaults: ~5 rows (approximately)
 /*!40000 ALTER TABLE `__resource_defaults` DISABLE KEYS */;
 INSERT INTO `__resource_defaults` (`id`, `resource`, `list`, `create`, `read`, `update`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(337101, 305118, 332102, 332101, NULL, 332105, NULL, NULL, '2019-08-13 15:16:09', '2019-08-13 15:16:09'),
-	(337102, 305119, 332104, 332103, NULL, 332106, NULL, NULL, '2019-08-13 15:16:09', '2019-08-13 15:16:09'),
-	(337103, 305103, 332108, 332107, 332109, 332110, NULL, NULL, '2019-08-13 15:16:09', '2019-08-13 15:16:09'),
-	(337104, 305115, 332118, 332114, 332120, 332119, NULL, NULL, '2019-08-13 15:16:09', '2019-08-13 15:16:09'),
-	(337105, 305116, 332122, 332121, 332123, 332124, NULL, NULL, '2019-08-13 15:16:09', '2019-08-13 15:16:09');
+	(337101, 305118, 332102, 332101, NULL, 332105, NULL, NULL, '2019-08-31 07:57:02', '2019-08-31 07:57:02'),
+	(337102, 305119, 332104, 332103, NULL, 332106, NULL, NULL, '2019-08-31 07:57:02', '2019-08-31 07:57:02'),
+	(337103, 305103, 332108, 332107, 332109, 332110, NULL, NULL, '2019-08-31 07:57:02', '2019-08-31 07:57:02'),
+	(337104, 305115, 332118, 332114, 332120, 332119, NULL, NULL, '2019-08-31 07:57:02', '2019-08-31 07:57:02'),
+	(337105, 305116, 332122, 332121, 332123, 332124, NULL, NULL, '2019-08-31 07:57:02', '2019-08-31 07:57:02');
 /*!40000 ALTER TABLE `__resource_defaults` ENABLE KEYS */;
 
 -- Dumping structure for table appframe.__resource_forms
@@ -1772,12 +1772,12 @@ CREATE TABLE IF NOT EXISTS `__resource_forms` (
 -- Dumping data for table appframe.__resource_forms: ~6 rows (approximately)
 /*!40000 ALTER TABLE `__resource_forms` DISABLE KEYS */;
 INSERT INTO `__resource_forms` (`id`, `resource`, `name`, `description`, `title`, `action_text`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(309101, 305115, 'NewTransactionProductNature', 'Enter a new nature of a product transaction', 'New Nature of Product in Transaction', 'Save', NULL, NULL, '2019-08-13 15:15:59', '2019-08-13 15:15:59'),
-	(309102, 305116, 'NewProductTransactionType', 'Enter a new type of product transaction', 'New Type of Product Transaction', 'Save', NULL, NULL, '2019-08-13 15:15:59', '2019-08-13 15:15:59'),
-	(309103, 305103, 'AddNewSetting', 'Add a new setting, the value mentioned will be deault to all users', 'Settings', 'Save', NULL, NULL, '2019-08-13 15:15:59', '2019-08-13 15:15:59'),
-	(309104, 305112, 'AddNewUserSetting', 'Add new user setting', 'User Setting', 'Save', NULL, NULL, '2019-08-13 15:15:59', '2019-08-13 15:15:59'),
-	(309105, 305112, 'ChangeUserSettingStatus', 'Form to update user settings status', 'Change Status', 'Save', NULL, NULL, '2019-08-13 15:15:59', '2019-08-13 15:15:59'),
-	(309106, 305113, 'AddUserStoreAreaForm', 'Form to add user store area', 'User, Store and Area', 'Save', NULL, NULL, '2019-08-13 15:15:59', '2019-08-13 15:15:59');
+	(309101, 305115, 'NewTransactionProductNature', 'Enter a new nature of a product transaction', 'New Nature of Product in Transaction', 'Save', NULL, NULL, '2019-08-31 07:56:46', '2019-08-31 07:56:46'),
+	(309102, 305116, 'NewProductTransactionType', 'Enter a new type of product transaction', 'New Type of Product Transaction', 'Save', NULL, NULL, '2019-08-31 07:56:46', '2019-08-31 07:56:46'),
+	(309103, 305103, 'AddNewSetting', 'Add a new setting, the value mentioned will be deault to all users', 'Settings', 'Save', NULL, NULL, '2019-08-31 07:56:46', '2019-08-31 07:56:46'),
+	(309104, 305112, 'AddNewUserSetting', 'Add new user setting', 'User Setting', 'Save', NULL, NULL, '2019-08-31 07:56:46', '2019-08-31 07:56:46'),
+	(309105, 305112, 'ChangeUserSettingStatus', 'Form to update user settings status', 'Change Status', 'Save', NULL, NULL, '2019-08-31 07:56:46', '2019-08-31 07:56:46'),
+	(309106, 305113, 'AddUserStoreAreaForm', 'Form to add user store area', 'User, Store and Area', 'Save', NULL, NULL, '2019-08-31 07:56:46', '2019-08-31 07:56:46');
 /*!40000 ALTER TABLE `__resource_forms` ENABLE KEYS */;
 
 -- Dumping structure for table appframe.__resource_form_collection
@@ -1805,7 +1805,7 @@ CREATE TABLE IF NOT EXISTS `__resource_form_collection` (
   CONSTRAINT `__resource_form_collection_relation_foreign` FOREIGN KEY (`relation`) REFERENCES `__resource_relations` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `__resource_form_collection_resource_form_foreign` FOREIGN KEY (`resource_form`) REFERENCES `__resource_forms` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `__resource_form_collection_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=320101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.__resource_form_collection: ~0 rows (approximately)
 /*!40000 ALTER TABLE `__resource_form_collection` DISABLE KEYS */;
@@ -1852,7 +1852,7 @@ CREATE TABLE IF NOT EXISTS `__resource_form_data_map` (
   CONSTRAINT `__resource_form_data_map_resource_data_foreign` FOREIGN KEY (`resource_data`) REFERENCES `__resource_data` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `__resource_form_data_map_resource_form_foreign` FOREIGN KEY (`resource_form`) REFERENCES `__resource_forms` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `__resource_form_data_map_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=318101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.__resource_form_data_map: ~0 rows (approximately)
 /*!40000 ALTER TABLE `__resource_form_data_map` DISABLE KEYS */;
@@ -1891,7 +1891,7 @@ CREATE TABLE IF NOT EXISTS `__resource_form_defaults` (
   CONSTRAINT `__resource_form_defaults_relation_foreign` FOREIGN KEY (`relation`) REFERENCES `__resource_relations` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `__resource_form_defaults_resource_form_foreign` FOREIGN KEY (`resource_form`) REFERENCES `__resource_forms` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `__resource_form_defaults_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=319101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.__resource_form_defaults: ~0 rows (approximately)
 /*!40000 ALTER TABLE `__resource_form_defaults` DISABLE KEYS */;
@@ -1922,22 +1922,22 @@ CREATE TABLE IF NOT EXISTS `__resource_form_fields` (
 -- Dumping data for table appframe.__resource_form_fields: ~16 rows (approximately)
 /*!40000 ALTER TABLE `__resource_form_fields` DISABLE KEYS */;
 INSERT INTO `__resource_form_fields` (`id`, `resource_form`, `name`, `type`, `label`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(310101, 309101, 'name', 'text', 'Nature Name', NULL, NULL, '2019-08-13 15:15:59', '2019-08-13 15:15:59'),
-	(310102, 309101, 'status', 'select', 'Status', NULL, NULL, '2019-08-13 15:15:59', '2019-08-13 15:15:59'),
-	(310103, 309102, 'name', 'text', 'Type Name', NULL, NULL, '2019-08-13 15:15:59', '2019-08-13 15:15:59'),
-	(310104, 309102, 'status', 'select', 'Status', NULL, NULL, '2019-08-13 15:15:59', '2019-08-13 15:15:59'),
-	(310105, 309103, 'name', 'text', 'Name of Settings', NULL, NULL, '2019-08-13 15:15:59', '2019-08-13 15:15:59'),
-	(310106, 309103, 'value', 'text', 'Default Value', NULL, NULL, '2019-08-13 15:15:59', '2019-08-13 15:15:59'),
-	(310107, 309103, 'status', 'select', 'Status', NULL, NULL, '2019-08-13 15:15:59', '2019-08-13 15:15:59'),
-	(310108, 309103, 'description', 'textarea', 'Description', NULL, NULL, '2019-08-13 15:15:59', '2019-08-13 15:15:59'),
-	(310109, 309104, 'user', 'select', 'User', NULL, NULL, '2019-08-13 15:16:00', '2019-08-13 15:16:00'),
-	(310110, 309104, 'setting', 'select', 'Setting', NULL, NULL, '2019-08-13 15:16:00', '2019-08-13 15:16:00'),
-	(310111, 309104, 'value', 'text', 'Value', NULL, NULL, '2019-08-13 15:16:00', '2019-08-13 15:16:00'),
-	(310112, 309105, 'status', 'select', 'Change Status to', NULL, NULL, '2019-08-13 15:16:00', '2019-08-13 15:16:00'),
-	(310113, 309106, 'user', 'select', 'Sales Executive', NULL, NULL, '2019-08-13 15:16:00', '2019-08-13 15:16:00'),
-	(310114, 309106, 'store', 'select', 'Store', NULL, NULL, '2019-08-13 15:16:00', '2019-08-13 15:16:00'),
-	(310115, 309106, 'area', 'select', 'Area', NULL, NULL, '2019-08-13 15:16:00', '2019-08-13 15:16:00'),
-	(310116, 309106, 'status', 'select', 'Status', NULL, NULL, '2019-08-13 15:16:00', '2019-08-13 15:16:00');
+	(310101, 309101, 'name', 'text', 'Nature Name', NULL, NULL, '2019-08-31 07:56:46', '2019-08-31 07:56:46'),
+	(310102, 309101, 'status', 'select', 'Status', NULL, NULL, '2019-08-31 07:56:46', '2019-08-31 07:56:46'),
+	(310103, 309102, 'name', 'text', 'Type Name', NULL, NULL, '2019-08-31 07:56:46', '2019-08-31 07:56:46'),
+	(310104, 309102, 'status', 'select', 'Status', NULL, NULL, '2019-08-31 07:56:46', '2019-08-31 07:56:46'),
+	(310105, 309103, 'name', 'text', 'Name of Settings', NULL, NULL, '2019-08-31 07:56:46', '2019-08-31 07:56:46'),
+	(310106, 309103, 'value', 'text', 'Default Value', NULL, NULL, '2019-08-31 07:56:46', '2019-08-31 07:56:46'),
+	(310107, 309103, 'status', 'select', 'Status', NULL, NULL, '2019-08-31 07:56:47', '2019-08-31 07:56:47'),
+	(310108, 309103, 'description', 'textarea', 'Description', NULL, NULL, '2019-08-31 07:56:47', '2019-08-31 07:56:47'),
+	(310109, 309104, 'user', 'select', 'User', NULL, NULL, '2019-08-31 07:56:47', '2019-08-31 07:56:47'),
+	(310110, 309104, 'setting', 'select', 'Setting', NULL, NULL, '2019-08-31 07:56:47', '2019-08-31 07:56:47'),
+	(310111, 309104, 'value', 'text', 'Value', NULL, NULL, '2019-08-31 07:56:47', '2019-08-31 07:56:47'),
+	(310112, 309105, 'status', 'select', 'Change Status to', NULL, NULL, '2019-08-31 07:56:47', '2019-08-31 07:56:47'),
+	(310113, 309106, 'user', 'select', 'Sales Executive', NULL, NULL, '2019-08-31 07:56:47', '2019-08-31 07:56:47'),
+	(310114, 309106, 'store', 'select', 'Store', NULL, NULL, '2019-08-31 07:56:47', '2019-08-31 07:56:47'),
+	(310115, 309106, 'area', 'select', 'Area', NULL, NULL, '2019-08-31 07:56:47', '2019-08-31 07:56:47'),
+	(310116, 309106, 'status', 'select', 'Status', NULL, NULL, '2019-08-31 07:56:47', '2019-08-31 07:56:47');
 /*!40000 ALTER TABLE `__resource_form_fields` ENABLE KEYS */;
 
 -- Dumping structure for table appframe.__resource_form_field_attrs
@@ -1963,10 +1963,10 @@ CREATE TABLE IF NOT EXISTS `__resource_form_field_attrs` (
 -- Dumping data for table appframe.__resource_form_field_attrs: ~4 rows (approximately)
 /*!40000 ALTER TABLE `__resource_form_field_attrs` DISABLE KEYS */;
 INSERT INTO `__resource_form_field_attrs` (`id`, `form_field`, `name`, `value`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(313101, 310113, 'inline', '4', NULL, NULL, '2019-08-13 15:16:00', '2019-08-13 15:16:00'),
-	(313102, 310114, 'inline', '4', NULL, NULL, '2019-08-13 15:16:00', '2019-08-13 15:16:00'),
-	(313103, 310115, 'inline', '4', NULL, NULL, '2019-08-13 15:16:00', '2019-08-13 15:16:00'),
-	(313104, 310116, 'inline', '4', NULL, NULL, '2019-08-13 15:16:00', '2019-08-13 15:16:00');
+	(313101, 310113, 'inline', '4', NULL, NULL, '2019-08-31 07:56:48', '2019-08-31 07:56:48'),
+	(313102, 310114, 'inline', '4', NULL, NULL, '2019-08-31 07:56:48', '2019-08-31 07:56:48'),
+	(313103, 310115, 'inline', '4', NULL, NULL, '2019-08-31 07:56:48', '2019-08-31 07:56:48'),
+	(313104, 310116, 'inline', '4', NULL, NULL, '2019-08-31 07:56:48', '2019-08-31 07:56:48');
 /*!40000 ALTER TABLE `__resource_form_field_attrs` ENABLE KEYS */;
 
 -- Dumping structure for table appframe.__resource_form_field_data
@@ -2003,22 +2003,22 @@ CREATE TABLE IF NOT EXISTS `__resource_form_field_data` (
 -- Dumping data for table appframe.__resource_form_field_data: ~16 rows (approximately)
 /*!40000 ALTER TABLE `__resource_form_field_data` DISABLE KEYS */;
 INSERT INTO `__resource_form_field_data` (`id`, `form_field`, `relation`, `nest_relation1`, `nest_relation2`, `nest_relation3`, `attribute`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(311101, 310101, NULL, NULL, NULL, NULL, 'name', NULL, NULL, '2019-08-13 15:16:00', '2019-08-13 15:16:00'),
-	(311102, 310102, NULL, NULL, NULL, NULL, 'status', NULL, NULL, '2019-08-13 15:16:00', '2019-08-13 15:16:00'),
-	(311103, 310103, NULL, NULL, NULL, NULL, 'name', NULL, NULL, '2019-08-13 15:16:00', '2019-08-13 15:16:00'),
-	(311104, 310104, NULL, NULL, NULL, NULL, 'status', NULL, NULL, '2019-08-13 15:16:00', '2019-08-13 15:16:00'),
-	(311105, 310105, NULL, NULL, NULL, NULL, 'name', NULL, NULL, '2019-08-13 15:16:00', '2019-08-13 15:16:00'),
-	(311106, 310106, NULL, NULL, NULL, NULL, 'value', NULL, NULL, '2019-08-13 15:16:00', '2019-08-13 15:16:00'),
-	(311107, 310107, NULL, NULL, NULL, NULL, 'status', NULL, NULL, '2019-08-13 15:16:00', '2019-08-13 15:16:00'),
-	(311108, 310108, NULL, NULL, NULL, NULL, 'description', NULL, NULL, '2019-08-13 15:16:00', '2019-08-13 15:16:00'),
-	(311109, 310109, NULL, NULL, NULL, NULL, 'user', NULL, NULL, '2019-08-13 15:16:00', '2019-08-13 15:16:00'),
-	(311110, 310110, NULL, NULL, NULL, NULL, 'setting', NULL, NULL, '2019-08-13 15:16:00', '2019-08-13 15:16:00'),
-	(311111, 310111, NULL, NULL, NULL, NULL, 'value', NULL, NULL, '2019-08-13 15:16:00', '2019-08-13 15:16:00'),
-	(311112, 310112, NULL, NULL, NULL, NULL, 'status', NULL, NULL, '2019-08-13 15:16:00', '2019-08-13 15:16:00'),
-	(311113, 310113, NULL, NULL, NULL, NULL, 'user', NULL, NULL, '2019-08-13 15:16:00', '2019-08-13 15:16:00'),
-	(311114, 310114, NULL, NULL, NULL, NULL, 'store', NULL, NULL, '2019-08-13 15:16:01', '2019-08-13 15:16:01'),
-	(311115, 310115, NULL, NULL, NULL, NULL, 'area', NULL, NULL, '2019-08-13 15:16:01', '2019-08-13 15:16:01'),
-	(311116, 310116, NULL, NULL, NULL, NULL, 'status', NULL, NULL, '2019-08-13 15:16:01', '2019-08-13 15:16:01');
+	(311101, 310101, NULL, NULL, NULL, NULL, 'name', NULL, NULL, '2019-08-31 07:56:48', '2019-08-31 07:56:48'),
+	(311102, 310102, NULL, NULL, NULL, NULL, 'status', NULL, NULL, '2019-08-31 07:56:48', '2019-08-31 07:56:48'),
+	(311103, 310103, NULL, NULL, NULL, NULL, 'name', NULL, NULL, '2019-08-31 07:56:48', '2019-08-31 07:56:48'),
+	(311104, 310104, NULL, NULL, NULL, NULL, 'status', NULL, NULL, '2019-08-31 07:56:48', '2019-08-31 07:56:48'),
+	(311105, 310105, NULL, NULL, NULL, NULL, 'name', NULL, NULL, '2019-08-31 07:56:48', '2019-08-31 07:56:48'),
+	(311106, 310106, NULL, NULL, NULL, NULL, 'value', NULL, NULL, '2019-08-31 07:56:48', '2019-08-31 07:56:48'),
+	(311107, 310107, NULL, NULL, NULL, NULL, 'status', NULL, NULL, '2019-08-31 07:56:48', '2019-08-31 07:56:48'),
+	(311108, 310108, NULL, NULL, NULL, NULL, 'description', NULL, NULL, '2019-08-31 07:56:48', '2019-08-31 07:56:48'),
+	(311109, 310109, NULL, NULL, NULL, NULL, 'user', NULL, NULL, '2019-08-31 07:56:48', '2019-08-31 07:56:48'),
+	(311110, 310110, NULL, NULL, NULL, NULL, 'setting', NULL, NULL, '2019-08-31 07:56:48', '2019-08-31 07:56:48'),
+	(311111, 310111, NULL, NULL, NULL, NULL, 'value', NULL, NULL, '2019-08-31 07:56:49', '2019-08-31 07:56:49'),
+	(311112, 310112, NULL, NULL, NULL, NULL, 'status', NULL, NULL, '2019-08-31 07:56:49', '2019-08-31 07:56:49'),
+	(311113, 310113, NULL, NULL, NULL, NULL, 'user', NULL, NULL, '2019-08-31 07:56:49', '2019-08-31 07:56:49'),
+	(311114, 310114, NULL, NULL, NULL, NULL, 'store', NULL, NULL, '2019-08-31 07:56:49', '2019-08-31 07:56:49'),
+	(311115, 310115, NULL, NULL, NULL, NULL, 'area', NULL, NULL, '2019-08-31 07:56:49', '2019-08-31 07:56:49'),
+	(311116, 310116, NULL, NULL, NULL, NULL, 'status', NULL, NULL, '2019-08-31 07:56:49', '2019-08-31 07:56:49');
 /*!40000 ALTER TABLE `__resource_form_field_data` ENABLE KEYS */;
 
 -- Dumping structure for table appframe.__resource_form_field_depends
@@ -2045,7 +2045,7 @@ CREATE TABLE IF NOT EXISTS `__resource_form_field_depends` (
   CONSTRAINT `__resource_form_field_depends_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `__resource_form_field_depends_form_field_foreign` FOREIGN KEY (`form_field`) REFERENCES `__resource_form_fields` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `__resource_form_field_depends_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=316101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.__resource_form_field_depends: ~0 rows (approximately)
 /*!40000 ALTER TABLE `__resource_form_field_depends` DISABLE KEYS */;
@@ -2075,7 +2075,7 @@ CREATE TABLE IF NOT EXISTS `__resource_form_field_dynamic` (
   CONSTRAINT `__resource_form_field_dynamic_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `__resource_form_field_dynamic_form_field_foreign` FOREIGN KEY (`form_field`) REFERENCES `__resource_form_fields` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `__resource_form_field_dynamic_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=314101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.__resource_form_field_dynamic: ~0 rows (approximately)
 /*!40000 ALTER TABLE `__resource_form_field_dynamic` DISABLE KEYS */;
@@ -2107,16 +2107,16 @@ CREATE TABLE IF NOT EXISTS `__resource_form_field_options` (
 -- Dumping data for table appframe.__resource_form_field_options: ~10 rows (approximately)
 /*!40000 ALTER TABLE `__resource_form_field_options` DISABLE KEYS */;
 INSERT INTO `__resource_form_field_options` (`id`, `form_field`, `type`, `detail`, `value_attr`, `label_attr`, `preload`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(312101, 310102, 'Enum', NULL, NULL, NULL, 'Yes', NULL, NULL, '2019-08-13 15:16:01', '2019-08-13 15:16:01'),
-	(312102, 310104, 'Enum', NULL, NULL, NULL, 'Yes', NULL, NULL, '2019-08-13 15:16:01', '2019-08-13 15:16:01'),
-	(312103, 310107, 'Enum', NULL, NULL, NULL, 'Yes', NULL, NULL, '2019-08-13 15:16:01', '2019-08-13 15:16:01'),
-	(312104, 310109, 'List', '322106', 'id', 'name', 'Yes', NULL, NULL, '2019-08-13 15:16:01', '2019-08-13 15:16:01'),
-	(312105, 310110, 'Foreign', NULL, 'id', 'name', 'Yes', NULL, NULL, '2019-08-13 15:16:01', '2019-08-13 15:16:01'),
-	(312106, 310112, 'Enum', NULL, NULL, NULL, 'Yes', NULL, NULL, '2019-08-13 15:16:01', '2019-08-13 15:16:01'),
-	(312107, 310113, 'List', '322106', 'id', 'name', 'Yes', NULL, NULL, '2019-08-13 15:16:01', '2019-08-13 15:16:01'),
-	(312108, 310114, 'Foreign', NULL, 'id', 'name', 'Yes', NULL, NULL, '2019-08-13 15:16:01', '2019-08-13 15:16:01'),
-	(312109, 310115, 'Foreign', NULL, 'id', 'name', 'Yes', NULL, NULL, '2019-08-13 15:16:01', '2019-08-13 15:16:01'),
-	(312110, 310116, 'Enum', NULL, NULL, NULL, 'Yes', NULL, NULL, '2019-08-13 15:16:01', '2019-08-13 15:16:01');
+	(312101, 310102, 'Enum', NULL, NULL, NULL, 'Yes', NULL, NULL, '2019-08-31 07:56:49', '2019-08-31 07:56:49'),
+	(312102, 310104, 'Enum', NULL, NULL, NULL, 'Yes', NULL, NULL, '2019-08-31 07:56:49', '2019-08-31 07:56:49'),
+	(312103, 310107, 'Enum', NULL, NULL, NULL, 'Yes', NULL, NULL, '2019-08-31 07:56:49', '2019-08-31 07:56:49'),
+	(312104, 310109, 'List', '322106', 'id', 'name', 'Yes', NULL, NULL, '2019-08-31 07:56:49', '2019-08-31 07:56:49'),
+	(312105, 310110, 'Foreign', NULL, 'id', 'name', 'Yes', NULL, NULL, '2019-08-31 07:56:49', '2019-08-31 07:56:49'),
+	(312106, 310112, 'Enum', NULL, NULL, NULL, 'Yes', NULL, NULL, '2019-08-31 07:56:49', '2019-08-31 07:56:49'),
+	(312107, 310113, 'List', '322106', 'id', 'name', 'Yes', NULL, NULL, '2019-08-31 07:56:49', '2019-08-31 07:56:49'),
+	(312108, 310114, 'Foreign', NULL, 'id', 'name', 'Yes', NULL, NULL, '2019-08-31 07:56:50', '2019-08-31 07:56:50'),
+	(312109, 310115, 'Foreign', NULL, 'id', 'name', 'Yes', NULL, NULL, '2019-08-31 07:56:50', '2019-08-31 07:56:50'),
+	(312110, 310116, 'Enum', NULL, NULL, NULL, 'Yes', NULL, NULL, '2019-08-31 07:56:50', '2019-08-31 07:56:50');
 /*!40000 ALTER TABLE `__resource_form_field_options` ENABLE KEYS */;
 
 -- Dumping structure for table appframe.__resource_form_field_validations
@@ -2147,9 +2147,9 @@ CREATE TABLE IF NOT EXISTS `__resource_form_field_validations` (
 -- Dumping data for table appframe.__resource_form_field_validations: ~3 rows (approximately)
 /*!40000 ALTER TABLE `__resource_form_field_validations` DISABLE KEYS */;
 INSERT INTO `__resource_form_field_validations` (`id`, `form_field`, `rule`, `message`, `arg1`, `arg2`, `arg3`, `arg4`, `arg5`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(315101, 310101, 'required', 'Name is mandatory', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:01', '2019-08-13 15:16:01'),
-	(315102, 310103, 'required', 'Name is mandatory', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:01', '2019-08-13 15:16:01'),
-	(315103, 310105, 'required', 'Name is mandatory', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:01', '2019-08-13 15:16:01');
+	(315101, 310101, 'required', 'Name is mandatory', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:49', '2019-08-31 07:56:49'),
+	(315102, 310103, 'required', 'Name is mandatory', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:49', '2019-08-31 07:56:49'),
+	(315103, 310105, 'required', 'Name is mandatory', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:49', '2019-08-31 07:56:49');
 /*!40000 ALTER TABLE `__resource_form_field_validations` ENABLE KEYS */;
 
 -- Dumping structure for table appframe.__resource_form_layout
@@ -2177,13 +2177,13 @@ CREATE TABLE IF NOT EXISTS `__resource_form_layout` (
 -- Dumping data for table appframe.__resource_form_layout: ~7 rows (approximately)
 /*!40000 ALTER TABLE `__resource_form_layout` DISABLE KEYS */;
 INSERT INTO `__resource_form_layout` (`id`, `resource_form`, `form_field`, `colspan`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(317101, 309103, 310105, 4, NULL, NULL, '2019-08-13 15:16:01', '2019-08-13 15:16:01'),
-	(317102, 309103, 310106, 4, NULL, NULL, '2019-08-13 15:16:01', '2019-08-13 15:16:01'),
-	(317103, 309103, 310107, 4, NULL, NULL, '2019-08-13 15:16:01', '2019-08-13 15:16:01'),
-	(317104, 309103, 310108, 12, NULL, NULL, '2019-08-13 15:16:01', '2019-08-13 15:16:01'),
-	(317105, 309104, 310109, 6, NULL, NULL, '2019-08-13 15:16:01', '2019-08-13 15:16:01'),
-	(317106, 309104, 310110, 6, NULL, NULL, '2019-08-13 15:16:01', '2019-08-13 15:16:01'),
-	(317107, 309104, 310111, 12, NULL, NULL, '2019-08-13 15:16:01', '2019-08-13 15:16:01');
+	(317101, 309103, 310105, 4, NULL, NULL, '2019-08-31 07:56:50', '2019-08-31 07:56:50'),
+	(317102, 309103, 310106, 4, NULL, NULL, '2019-08-31 07:56:50', '2019-08-31 07:56:50'),
+	(317103, 309103, 310107, 4, NULL, NULL, '2019-08-31 07:56:50', '2019-08-31 07:56:50'),
+	(317104, 309103, 310108, 12, NULL, NULL, '2019-08-31 07:56:50', '2019-08-31 07:56:50'),
+	(317105, 309104, 310109, 6, NULL, NULL, '2019-08-31 07:56:50', '2019-08-31 07:56:50'),
+	(317106, 309104, 310110, 6, NULL, NULL, '2019-08-31 07:56:50', '2019-08-31 07:56:50'),
+	(317107, 309104, 310111, 12, NULL, NULL, '2019-08-31 07:56:50', '2019-08-31 07:56:50');
 /*!40000 ALTER TABLE `__resource_form_layout` ENABLE KEYS */;
 
 -- Dumping structure for table appframe.__resource_form_upload
@@ -2208,7 +2208,7 @@ CREATE TABLE IF NOT EXISTS `__resource_form_upload` (
   KEY `__resource_form_upload_updated_by_index` (`updated_by`),
   CONSTRAINT `__resource_form_upload_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `__resource_form_upload_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=321101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.__resource_form_upload: ~0 rows (approximately)
 /*!40000 ALTER TABLE `__resource_form_upload` DISABLE KEYS */;
@@ -2242,15 +2242,15 @@ CREATE TABLE IF NOT EXISTS `__resource_lists` (
 -- Dumping data for table appframe.__resource_lists: ~9 rows (approximately)
 /*!40000 ALTER TABLE `__resource_lists` DISABLE KEYS */;
 INSERT INTO `__resource_lists` (`id`, `resource`, `name`, `description`, `title`, `identity`, `items_per_page`, `method`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(322101, 305115, 'TransactionProductNature', 'Nature of the product in a transaction', 'Product Nature', 'name', 20, NULL, NULL, NULL, '2019-08-13 15:16:01', '2019-08-13 15:16:01'),
-	(322102, 305116, 'TransactionProductType', 'Type of transaction whether is load, unload etc', 'Transaction Types', 'name', 20, NULL, NULL, NULL, '2019-08-13 15:16:02', '2019-08-13 15:16:02'),
-	(322103, 305103, 'Settings', 'List all available Settings', 'Settings', 'name', 20, NULL, NULL, NULL, '2019-08-13 15:16:02', '2019-08-13 15:16:02'),
-	(322104, 305101, 'ListAllUsers', 'List all available users', 'Users', 'name', 50, NULL, NULL, NULL, '2019-08-13 15:16:02', '2019-08-13 15:16:02'),
-	(322105, 305112, 'ListAllUserSetting', 'List all user setting and value', 'User Settings', 'user.name', 50, NULL, NULL, NULL, '2019-08-13 15:16:02', '2019-08-13 15:16:02'),
-	(322106, 305101, 'SalesExecutiveUserList', 'List all sales executives from users', 'Sales Executives', 'name', 50, NULL, NULL, NULL, '2019-08-13 15:16:02', '2019-08-13 15:16:02'),
-	(322107, 305113, 'UserStoreAreaList', 'List all records in User Store Area', 'User, Store and Area', 'user.name', 50, NULL, NULL, NULL, '2019-08-13 15:16:02', '2019-08-13 15:16:02'),
-	(322108, 305110, 'AreaList', 'List all areas', 'Area', 'name', 50, NULL, NULL, NULL, '2019-08-13 15:16:02', '2019-08-13 15:16:02'),
-	(322109, 305109, 'StoresList', 'List all stores', 'Stores', 'name', 50, NULL, NULL, NULL, '2019-08-13 15:16:02', '2019-08-13 15:16:02');
+	(322101, 305115, 'TransactionProductNature', 'Nature of the product in a transaction', 'Product Nature', 'name', 20, NULL, NULL, NULL, '2019-08-31 07:56:50', '2019-08-31 07:56:50'),
+	(322102, 305116, 'TransactionProductType', 'Type of transaction whether is load, unload etc', 'Transaction Types', 'name', 20, NULL, NULL, NULL, '2019-08-31 07:56:50', '2019-08-31 07:56:50'),
+	(322103, 305103, 'Settings', 'List all available Settings', 'Settings', 'name', 20, NULL, NULL, NULL, '2019-08-31 07:56:50', '2019-08-31 07:56:50'),
+	(322104, 305101, 'ListAllUsers', 'List all available users', 'Users', 'name', 50, NULL, NULL, NULL, '2019-08-31 07:56:50', '2019-08-31 07:56:50'),
+	(322105, 305112, 'ListAllUserSetting', 'List all user setting and value', 'User Settings', 'user.name', 50, NULL, NULL, NULL, '2019-08-31 07:56:50', '2019-08-31 07:56:50'),
+	(322106, 305101, 'SalesExecutiveUserList', 'List all sales executives from users', 'Sales Executives', 'name', 50, NULL, NULL, NULL, '2019-08-31 07:56:50', '2019-08-31 07:56:50'),
+	(322107, 305113, 'UserStoreAreaList', 'List all records in User Store Area', 'User, Store and Area', 'user.name', 50, NULL, NULL, NULL, '2019-08-31 07:56:50', '2019-08-31 07:56:50'),
+	(322108, 305110, 'AreaList', 'List all areas', 'Area', 'name', 50, NULL, NULL, NULL, '2019-08-31 07:56:51', '2019-08-31 07:56:51'),
+	(322109, 305109, 'StoresList', 'List all stores', 'Stores', 'name', 50, NULL, NULL, NULL, '2019-08-31 07:56:51', '2019-08-31 07:56:51');
 /*!40000 ALTER TABLE `__resource_lists` ENABLE KEYS */;
 
 -- Dumping structure for table appframe.__resource_list_layout
@@ -2285,35 +2285,35 @@ CREATE TABLE IF NOT EXISTS `__resource_list_layout` (
 -- Dumping data for table appframe.__resource_list_layout: ~29 rows (approximately)
 /*!40000 ALTER TABLE `__resource_list_layout` DISABLE KEYS */;
 INSERT INTO `__resource_list_layout` (`id`, `resource_list`, `label`, `field`, `relation`, `nest_relation1`, `nest_relation2`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(325101, 322101, 'Name', 'name', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:02', '2019-08-13 15:16:02'),
-	(325102, 322101, 'Status', 'status', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:02', '2019-08-13 15:16:02'),
-	(325103, 322102, 'Name', 'name', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:02', '2019-08-13 15:16:02'),
-	(325104, 322102, 'Status', 'status', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:02', '2019-08-13 15:16:02'),
-	(325105, 322103, 'Name', 'name', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:02', '2019-08-13 15:16:02'),
-	(325106, 322103, 'Default Value', 'value', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:02', '2019-08-13 15:16:02'),
-	(325107, 322103, 'Status', 'status', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:02', '2019-08-13 15:16:02'),
-	(325108, 322104, 'Name', 'name', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:02', '2019-08-13 15:16:02'),
-	(325109, 322104, 'Reference', 'reference', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:02', '2019-08-13 15:16:02'),
-	(325110, 322104, 'Email', 'email', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:02', '2019-08-13 15:16:02'),
-	(325111, 322105, 'User', 'name', 308138, NULL, NULL, NULL, NULL, '2019-08-13 15:16:02', '2019-08-13 15:16:02'),
-	(325112, 322105, 'Settings', 'name', 308136, NULL, NULL, NULL, NULL, '2019-08-13 15:16:02', '2019-08-13 15:16:02'),
-	(325113, 322105, 'Value', 'value', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:03', '2019-08-13 15:16:03'),
-	(325114, 322105, 'Status', 'status', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:03', '2019-08-13 15:16:03'),
-	(325115, 322106, 'Name', 'name', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:03', '2019-08-13 15:16:03'),
-	(325116, 322106, 'Email', 'email', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:03', '2019-08-13 15:16:03'),
-	(325117, 322106, 'Reference', 'reference', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:03', '2019-08-13 15:16:03'),
-	(325118, 322107, 'Executive', 'name', 308142, NULL, NULL, NULL, NULL, '2019-08-13 15:16:03', '2019-08-13 15:16:03'),
-	(325119, 322107, 'Store', 'name', 308141, NULL, NULL, NULL, NULL, '2019-08-13 15:16:03', '2019-08-13 15:16:03'),
-	(325120, 322107, 'Area', 'name', 308140, NULL, NULL, NULL, NULL, '2019-08-13 15:16:03', '2019-08-13 15:16:03'),
-	(325121, 322107, 'Status', 'status', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:03', '2019-08-13 15:16:03'),
-	(325122, 322108, 'Code', 'code', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:03', '2019-08-13 15:16:03'),
-	(325123, 322108, 'Name', 'name', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:03', '2019-08-13 15:16:03'),
-	(325124, 322108, 'Type', 'type', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:03', '2019-08-13 15:16:03'),
-	(325125, 322108, 'Status', 'status', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:03', '2019-08-13 15:16:03'),
-	(325126, 322109, 'Code', 'code', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:03', '2019-08-13 15:16:03'),
-	(325127, 322109, 'Name', 'name', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:03', '2019-08-13 15:16:03'),
-	(325128, 322109, 'Company Code', 'cocode', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:03', '2019-08-13 15:16:03'),
-	(325129, 322109, 'Branch Code', 'brcode', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:03', '2019-08-13 15:16:03');
+	(325101, 322101, 'Name', 'name', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:51', '2019-08-31 07:56:51'),
+	(325102, 322101, 'Status', 'status', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:51', '2019-08-31 07:56:51'),
+	(325103, 322102, 'Name', 'name', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:51', '2019-08-31 07:56:51'),
+	(325104, 322102, 'Status', 'status', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:51', '2019-08-31 07:56:51'),
+	(325105, 322103, 'Name', 'name', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:51', '2019-08-31 07:56:51'),
+	(325106, 322103, 'Default Value', 'value', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:51', '2019-08-31 07:56:51'),
+	(325107, 322103, 'Status', 'status', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:51', '2019-08-31 07:56:51'),
+	(325108, 322104, 'Name', 'name', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:51', '2019-08-31 07:56:51'),
+	(325109, 322104, 'Reference', 'reference', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:52', '2019-08-31 07:56:52'),
+	(325110, 322104, 'Email', 'email', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:52', '2019-08-31 07:56:52'),
+	(325111, 322105, 'User', 'name', 308138, NULL, NULL, NULL, NULL, '2019-08-31 07:56:52', '2019-08-31 07:56:52'),
+	(325112, 322105, 'Settings', 'name', 308136, NULL, NULL, NULL, NULL, '2019-08-31 07:56:52', '2019-08-31 07:56:52'),
+	(325113, 322105, 'Value', 'value', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:52', '2019-08-31 07:56:52'),
+	(325114, 322105, 'Status', 'status', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:52', '2019-08-31 07:56:52'),
+	(325115, 322106, 'Name', 'name', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:52', '2019-08-31 07:56:52'),
+	(325116, 322106, 'Email', 'email', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:52', '2019-08-31 07:56:52'),
+	(325117, 322106, 'Reference', 'reference', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:52', '2019-08-31 07:56:52'),
+	(325118, 322107, 'Executive', 'name', 308142, NULL, NULL, NULL, NULL, '2019-08-31 07:56:52', '2019-08-31 07:56:52'),
+	(325119, 322107, 'Store', 'name', 308141, NULL, NULL, NULL, NULL, '2019-08-31 07:56:52', '2019-08-31 07:56:52'),
+	(325120, 322107, 'Area', 'name', 308140, NULL, NULL, NULL, NULL, '2019-08-31 07:56:52', '2019-08-31 07:56:52'),
+	(325121, 322107, 'Status', 'status', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:52', '2019-08-31 07:56:52'),
+	(325122, 322108, 'Code', 'code', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:52', '2019-08-31 07:56:52'),
+	(325123, 322108, 'Name', 'name', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:53', '2019-08-31 07:56:53'),
+	(325124, 322108, 'Type', 'type', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:53', '2019-08-31 07:56:53'),
+	(325125, 322108, 'Status', 'status', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:53', '2019-08-31 07:56:53'),
+	(325126, 322109, 'Code', 'code', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:53', '2019-08-31 07:56:53'),
+	(325127, 322109, 'Name', 'name', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:53', '2019-08-31 07:56:53'),
+	(325128, 322109, 'Company Code', 'cocode', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:53', '2019-08-31 07:56:53'),
+	(325129, 322109, 'Branch Code', 'brcode', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:53', '2019-08-31 07:56:53');
 /*!40000 ALTER TABLE `__resource_list_layout` ENABLE KEYS */;
 
 -- Dumping structure for table appframe.__resource_list_relations
@@ -2355,11 +2355,11 @@ CREATE TABLE IF NOT EXISTS `__resource_list_relations` (
 -- Dumping data for table appframe.__resource_list_relations: ~5 rows (approximately)
 /*!40000 ALTER TABLE `__resource_list_relations` DISABLE KEYS */;
 INSERT INTO `__resource_list_relations` (`id`, `resource_list`, `relation`, `nest_relation1`, `nest_relation2`, `nest_relation3`, `nest_relation4`, `nest_relation5`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(324101, 322105, 308136, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:02', '2019-08-13 15:16:02'),
-	(324102, 322105, 308138, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:02', '2019-08-13 15:16:02'),
-	(324103, 322107, 308140, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:02', '2019-08-13 15:16:02'),
-	(324104, 322107, 308141, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:02', '2019-08-13 15:16:02'),
-	(324105, 322107, 308142, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:02', '2019-08-13 15:16:02');
+	(324101, 322105, 308136, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:51', '2019-08-31 07:56:51'),
+	(324102, 322105, 308138, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:51', '2019-08-31 07:56:51'),
+	(324103, 322107, 308140, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:51', '2019-08-31 07:56:51'),
+	(324104, 322107, 308141, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:51', '2019-08-31 07:56:51'),
+	(324105, 322107, 308142, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:51', '2019-08-31 07:56:51');
 /*!40000 ALTER TABLE `__resource_list_relations` ENABLE KEYS */;
 
 -- Dumping structure for table appframe.__resource_list_scopes
@@ -2386,7 +2386,7 @@ CREATE TABLE IF NOT EXISTS `__resource_list_scopes` (
 -- Dumping data for table appframe.__resource_list_scopes: ~1 rows (approximately)
 /*!40000 ALTER TABLE `__resource_list_scopes` DISABLE KEYS */;
 INSERT INTO `__resource_list_scopes` (`id`, `resource_list`, `scope`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(323101, 322106, 307101, NULL, NULL, '2019-08-13 15:16:02', '2019-08-13 15:16:02');
+	(323101, 322106, 307101, NULL, NULL, '2019-08-31 07:56:51', '2019-08-31 07:56:51');
 /*!40000 ALTER TABLE `__resource_list_scopes` ENABLE KEYS */;
 
 -- Dumping structure for table appframe.__resource_list_search
@@ -2423,21 +2423,21 @@ CREATE TABLE IF NOT EXISTS `__resource_list_search` (
 -- Dumping data for table appframe.__resource_list_search: ~15 rows (approximately)
 /*!40000 ALTER TABLE `__resource_list_search` DISABLE KEYS */;
 INSERT INTO `__resource_list_search` (`id`, `resource_list`, `field`, `relation`, `nest_relation1`, `nest_relation2`, `nest_relation3`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(326101, 322101, 'name', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:03', '2019-08-13 15:16:03'),
-	(326102, 322102, 'name', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:03', '2019-08-13 15:16:03'),
-	(326103, 322103, 'name', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:03', '2019-08-13 15:16:03'),
-	(326104, 322103, 'description', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:03', '2019-08-13 15:16:03'),
-	(326105, 322104, 'name', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:03', '2019-08-13 15:16:03'),
-	(326106, 322104, 'reference', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:03', '2019-08-13 15:16:03'),
-	(326107, 322104, 'email', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:03', '2019-08-13 15:16:03'),
-	(326108, 322105, 'name', 308138, NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:03', '2019-08-13 15:16:03'),
-	(326109, 322105, 'name', 308136, NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:03', '2019-08-13 15:16:03'),
-	(326110, 322106, 'name', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:04', '2019-08-13 15:16:04'),
-	(326111, 322107, 'name', 308140, NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:04', '2019-08-13 15:16:04'),
-	(326112, 322107, 'name', 308141, NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:04', '2019-08-13 15:16:04'),
-	(326113, 322107, 'name', 308142, NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:04', '2019-08-13 15:16:04'),
-	(326114, 322108, 'name', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:04', '2019-08-13 15:16:04'),
-	(326115, 322109, 'name', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:16:04', '2019-08-13 15:16:04');
+	(326101, 322101, 'name', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:53', '2019-08-31 07:56:53'),
+	(326102, 322102, 'name', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:53', '2019-08-31 07:56:53'),
+	(326103, 322103, 'name', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:53', '2019-08-31 07:56:53'),
+	(326104, 322103, 'description', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:53', '2019-08-31 07:56:53'),
+	(326105, 322104, 'name', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:53', '2019-08-31 07:56:53'),
+	(326106, 322104, 'reference', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:53', '2019-08-31 07:56:53'),
+	(326107, 322104, 'email', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:53', '2019-08-31 07:56:53'),
+	(326108, 322105, 'name', 308138, NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:54', '2019-08-31 07:56:54'),
+	(326109, 322105, 'name', 308136, NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:54', '2019-08-31 07:56:54'),
+	(326110, 322106, 'name', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:54', '2019-08-31 07:56:54'),
+	(326111, 322107, 'name', 308140, NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:54', '2019-08-31 07:56:54'),
+	(326112, 322107, 'name', 308141, NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:54', '2019-08-31 07:56:54'),
+	(326113, 322107, 'name', 308142, NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:54', '2019-08-31 07:56:54'),
+	(326114, 322108, 'name', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:54', '2019-08-31 07:56:54'),
+	(326115, 322109, 'name', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:54', '2019-08-31 07:56:54');
 /*!40000 ALTER TABLE `__resource_list_search` ENABLE KEYS */;
 
 -- Dumping structure for table appframe.__resource_metrics
@@ -2469,7 +2469,7 @@ CREATE TABLE IF NOT EXISTS `__resource_metrics` (
   CONSTRAINT `__resource_metrics_resource_foreign` FOREIGN KEY (`resource`) REFERENCES `__resources` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `__resource_metrics_resource_list_foreign` FOREIGN KEY (`resource_list`) REFERENCES `__resource_lists` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `__resource_metrics_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=338101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.__resource_metrics: ~0 rows (approximately)
 /*!40000 ALTER TABLE `__resource_metrics` DISABLE KEYS */;
@@ -2504,48 +2504,48 @@ CREATE TABLE IF NOT EXISTS `__resource_relations` (
 -- Dumping data for table appframe.__resource_relations: ~42 rows (approximately)
 /*!40000 ALTER TABLE `__resource_relations` DISABLE KEYS */;
 INSERT INTO `__resource_relations` (`id`, `resource`, `name`, `description`, `method`, `type`, `relate_resource`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(308101, 305107, 'Items', 'Each items of this pricelist', 'Items', 'hasMany', 305108, NULL, NULL, '2019-08-13 15:15:57', '2019-08-13 15:15:57'),
-	(308102, 305108, 'Pricelist', 'Details of pricelist this item belongs to', 'Pricelist', 'belongsTo', 305107, NULL, NULL, '2019-08-13 15:15:57', '2019-08-13 15:15:57'),
-	(308103, 305108, 'Product', 'Details of product this item consist of', 'Product', 'belongsTo', 305106, NULL, NULL, '2019-08-13 15:15:57', '2019-08-13 15:15:57'),
-	(308104, 305111, 'Area', 'Details of area', 'Area', 'belongsTo', 305110, NULL, NULL, '2019-08-13 15:15:57', '2019-08-13 15:15:57'),
-	(308105, 305111, 'Customer', 'Details of customer', 'Customer', 'belongsTo', 305101, NULL, NULL, '2019-08-13 15:15:57', '2019-08-13 15:15:57'),
-	(308106, 305110, 'User', 'Details of user', 'User', 'belongsToMany', 305101, NULL, NULL, '2019-08-13 15:15:57', '2019-08-13 15:15:57'),
-	(308107, 305103, 'Users', 'Users list corresponding to a settings', 'Users', 'hasMany', 305112, NULL, NULL, '2019-08-13 15:15:57', '2019-08-13 15:15:57'),
-	(308108, 305101, 'Area', 'Details of area', 'Area', 'belongsToMany', 305110, NULL, NULL, '2019-08-13 15:15:57', '2019-08-13 15:15:57'),
-	(308109, 305112, 'Settings', 'Details of settings this setting belongs to', 'Settings', 'belongsTo', 305103, NULL, NULL, '2019-08-13 15:15:57', '2019-08-13 15:15:57'),
-	(308110, 305101, 'Settings', 'Settings assigned for a user', 'Settings', 'hasMany', 305112, NULL, NULL, '2019-08-13 15:15:57', '2019-08-13 15:15:57'),
-	(308111, 305112, 'User', 'Details of user this settings belongs to', 'User', 'belongsTo', 305101, NULL, NULL, '2019-08-13 15:15:57', '2019-08-13 15:15:57'),
-	(308112, 305101, 'StoreAndArea', 'Store and Areas assigned for a user', 'StoreAndArea', 'hasMany', 305113, NULL, NULL, '2019-08-13 15:15:57', '2019-08-13 15:15:57'),
-	(308113, 305113, 'Area', 'Area details', 'Area', 'belongsTo', 305110, NULL, NULL, '2019-08-13 15:15:57', '2019-08-13 15:15:57'),
-	(308114, 305113, 'Store', 'Store Details', 'Store', 'belongsTo', 305109, NULL, NULL, '2019-08-13 15:15:57', '2019-08-13 15:15:57'),
-	(308115, 305113, 'User', 'User Details', 'User', 'belongsTo', 305101, NULL, NULL, '2019-08-13 15:15:58', '2019-08-13 15:15:58'),
-	(308116, 305109, 'Users', 'Users assigned to this store', 'Users', 'belongsToMany', 305101, NULL, NULL, '2019-08-13 15:15:58', '2019-08-13 15:15:58'),
-	(308117, 305110, 'StoreAndUser', 'Store and Users assigned to a area', 'StoreAndUser', 'hasMany', 305113, NULL, NULL, '2019-08-13 15:15:58', '2019-08-13 15:15:58'),
-	(308118, 305117, 'Product', 'Details of product', 'Product', 'belongsTo', 305106, NULL, NULL, '2019-08-13 15:15:58', '2019-08-13 15:15:58'),
-	(308119, 305117, 'Store', 'Details of store', 'Store', 'belongsTo', 305109, NULL, NULL, '2019-08-13 15:15:58', '2019-08-13 15:15:58'),
-	(308120, 305117, 'User', 'Details of user', 'User', 'belongsTo', 305101, NULL, NULL, '2019-08-13 15:15:58', '2019-08-13 15:15:58'),
-	(308121, 305117, 'Nature', 'Nature of transaction', 'Nature', 'belongsTo', 305115, NULL, NULL, '2019-08-13 15:15:58', '2019-08-13 15:15:58'),
-	(308122, 305117, 'Type', 'Type of transaction', 'Type', 'belongsTo', 305116, NULL, NULL, '2019-08-13 15:15:58', '2019-08-13 15:15:58'),
-	(308123, 305109, 'ProductTransaction', 'Product transaction of a store', 'ProductTransaction', 'hasMany', 305117, NULL, NULL, '2019-08-13 15:15:58', '2019-08-13 15:15:58'),
-	(308124, 305118, 'Details', 'Product wise details of transaction', 'Details', 'hasMany', 305119, NULL, NULL, '2019-08-13 15:15:58', '2019-08-13 15:15:58'),
-	(308125, 305118, 'Products', 'Product transactions', 'Products', 'belongsToMany', 305117, NULL, NULL, '2019-08-13 15:15:58', '2019-08-13 15:15:58'),
-	(308126, 305119, 'Product', 'Product and its transaction details', 'Product', 'belongsTo', 305117, NULL, NULL, '2019-08-13 15:15:58', '2019-08-13 15:15:58'),
-	(308127, 305121, 'Items', 'Items of a transaction', 'Items', 'hasMany', 305122, NULL, NULL, '2019-08-13 15:15:58', '2019-08-13 15:15:58'),
-	(308128, 305122, 'Product', 'Product details of an sales order item', 'Product', 'belongsTo', 305106, NULL, NULL, '2019-08-13 15:15:58', '2019-08-13 15:15:58'),
-	(308129, 305123, 'IN', 'Stock in transactions', 'IN', 'belongsTo', 305118, NULL, NULL, '2019-08-13 15:15:58', '2019-08-13 15:15:58'),
-	(308130, 305123, 'OUT', 'Stock out transactions', 'OUT', 'belongsTo', 305118, NULL, NULL, '2019-08-13 15:15:58', '2019-08-13 15:15:58'),
-	(308131, 305121, 'Customer', 'The customer to which this sales order belongs', 'Customer', 'belongsTo', 305101, NULL, NULL, '2019-08-13 15:15:58', '2019-08-13 15:15:58'),
-	(308132, 305113, 'AssignedAreas', 'The user_areas which assigned to this record', 'AssignedAreas', 'hasMany', 305111, NULL, NULL, '2019-08-13 15:15:58', '2019-08-13 15:15:58'),
-	(308133, 305111, 'Users', 'The executives assigned to a area_user', 'Users', 'hasMany', 305113, NULL, NULL, '2019-08-13 15:15:58', '2019-08-13 15:15:58'),
-	(308134, 305113, 'Customers', 'Customers who are in selected records area', 'Customers', 'belongsToMany', 305101, NULL, NULL, '2019-08-13 15:15:58', '2019-08-13 15:15:58'),
-	(308135, 305101, 'AreaCustomers', 'List of customers belongs to the area which are assigned to a user', 'AreaCustomers', 'hasManyThrough', 305111, NULL, NULL, '2019-08-13 15:15:58', '2019-08-13 15:15:58'),
-	(308136, 305122, 'SalesOrder', 'Sales order details for a so item', 'SalesOrder', 'belongsTo', 305121, NULL, NULL, '2019-08-13 15:15:58', '2019-08-13 15:15:58'),
-	(308137, 305119, 'Transaction', 'Detail of transaction header', 'Transaction', 'belongsTo', 305118, NULL, NULL, '2019-08-13 15:15:58', '2019-08-13 15:15:58'),
-	(308138, 305127, 'SalesOrder', 'Sales order details', 'SalesOrder', 'belongsTo', 305121, NULL, NULL, '2019-08-13 15:15:58', '2019-08-13 15:15:58'),
-	(308139, 305127, 'Transaction', 'Detail of transaction', 'Transaction', 'belongsTo', 305118, NULL, NULL, '2019-08-13 15:15:59', '2019-08-13 15:15:59'),
-	(308140, 305118, 'StockOutTransactions', 'TransferOut transactions', 'STOut', 'hasOne', 305123, NULL, NULL, '2019-08-13 15:15:59', '2019-08-13 15:15:59'),
-	(308141, 305118, 'StockInTransactions', 'TransferIn transactions', 'STIn', 'hasOne', 305123, NULL, NULL, '2019-08-13 15:15:59', '2019-08-13 15:15:59'),
-	(308142, 305117, 'TransactionDetail', 'Detail of Transaction of a Stock product transaction', 'TransactionDetail', 'hasOne', 305119, NULL, NULL, '2019-08-13 15:15:59', '2019-08-13 15:15:59');
+	(308101, 305107, 'Items', 'Each items of this pricelist', 'Items', 'hasMany', 305108, NULL, NULL, '2019-08-31 07:56:42', '2019-08-31 07:56:42'),
+	(308102, 305108, 'Pricelist', 'Details of pricelist this item belongs to', 'Pricelist', 'belongsTo', 305107, NULL, NULL, '2019-08-31 07:56:42', '2019-08-31 07:56:42'),
+	(308103, 305108, 'Product', 'Details of product this item consist of', 'Product', 'belongsTo', 305106, NULL, NULL, '2019-08-31 07:56:42', '2019-08-31 07:56:42'),
+	(308104, 305111, 'Area', 'Details of area', 'Area', 'belongsTo', 305110, NULL, NULL, '2019-08-31 07:56:42', '2019-08-31 07:56:42'),
+	(308105, 305111, 'Customer', 'Details of customer', 'Customer', 'belongsTo', 305101, NULL, NULL, '2019-08-31 07:56:43', '2019-08-31 07:56:43'),
+	(308106, 305110, 'User', 'Details of user', 'User', 'belongsToMany', 305101, NULL, NULL, '2019-08-31 07:56:43', '2019-08-31 07:56:43'),
+	(308107, 305103, 'Users', 'Users list corresponding to a settings', 'Users', 'hasMany', 305112, NULL, NULL, '2019-08-31 07:56:43', '2019-08-31 07:56:43'),
+	(308108, 305101, 'Area', 'Details of area', 'Area', 'belongsToMany', 305110, NULL, NULL, '2019-08-31 07:56:43', '2019-08-31 07:56:43'),
+	(308109, 305112, 'Settings', 'Details of settings this setting belongs to', 'Settings', 'belongsTo', 305103, NULL, NULL, '2019-08-31 07:56:43', '2019-08-31 07:56:43'),
+	(308110, 305101, 'Settings', 'Settings assigned for a user', 'Settings', 'hasMany', 305112, NULL, NULL, '2019-08-31 07:56:43', '2019-08-31 07:56:43'),
+	(308111, 305112, 'User', 'Details of user this settings belongs to', 'User', 'belongsTo', 305101, NULL, NULL, '2019-08-31 07:56:43', '2019-08-31 07:56:43'),
+	(308112, 305101, 'StoreAndArea', 'Store and Areas assigned for a user', 'StoreAndArea', 'hasMany', 305113, NULL, NULL, '2019-08-31 07:56:43', '2019-08-31 07:56:43'),
+	(308113, 305113, 'Area', 'Area details', 'Area', 'belongsTo', 305110, NULL, NULL, '2019-08-31 07:56:43', '2019-08-31 07:56:43'),
+	(308114, 305113, 'Store', 'Store Details', 'Store', 'belongsTo', 305109, NULL, NULL, '2019-08-31 07:56:43', '2019-08-31 07:56:43'),
+	(308115, 305113, 'User', 'User Details', 'User', 'belongsTo', 305101, NULL, NULL, '2019-08-31 07:56:43', '2019-08-31 07:56:43'),
+	(308116, 305109, 'Users', 'Users assigned to this store', 'Users', 'belongsToMany', 305101, NULL, NULL, '2019-08-31 07:56:43', '2019-08-31 07:56:43'),
+	(308117, 305110, 'StoreAndUser', 'Store and Users assigned to a area', 'StoreAndUser', 'hasMany', 305113, NULL, NULL, '2019-08-31 07:56:43', '2019-08-31 07:56:43'),
+	(308118, 305117, 'Product', 'Details of product', 'Product', 'belongsTo', 305106, NULL, NULL, '2019-08-31 07:56:43', '2019-08-31 07:56:43'),
+	(308119, 305117, 'Store', 'Details of store', 'Store', 'belongsTo', 305109, NULL, NULL, '2019-08-31 07:56:44', '2019-08-31 07:56:44'),
+	(308120, 305117, 'User', 'Details of user', 'User', 'belongsTo', 305101, NULL, NULL, '2019-08-31 07:56:44', '2019-08-31 07:56:44'),
+	(308121, 305117, 'Nature', 'Nature of transaction', 'Nature', 'belongsTo', 305115, NULL, NULL, '2019-08-31 07:56:44', '2019-08-31 07:56:44'),
+	(308122, 305117, 'Type', 'Type of transaction', 'Type', 'belongsTo', 305116, NULL, NULL, '2019-08-31 07:56:44', '2019-08-31 07:56:44'),
+	(308123, 305109, 'ProductTransaction', 'Product transaction of a store', 'ProductTransaction', 'hasMany', 305117, NULL, NULL, '2019-08-31 07:56:44', '2019-08-31 07:56:44'),
+	(308124, 305118, 'Details', 'Product wise details of transaction', 'Details', 'hasMany', 305119, NULL, NULL, '2019-08-31 07:56:44', '2019-08-31 07:56:44'),
+	(308125, 305118, 'Products', 'Product transactions', 'Products', 'belongsToMany', 305117, NULL, NULL, '2019-08-31 07:56:44', '2019-08-31 07:56:44'),
+	(308126, 305119, 'Product', 'Product and its transaction details', 'Product', 'belongsTo', 305117, NULL, NULL, '2019-08-31 07:56:44', '2019-08-31 07:56:44'),
+	(308127, 305121, 'Items', 'Items of a transaction', 'Items', 'hasMany', 305122, NULL, NULL, '2019-08-31 07:56:44', '2019-08-31 07:56:44'),
+	(308128, 305122, 'Product', 'Product details of an sales order item', 'Product', 'belongsTo', 305106, NULL, NULL, '2019-08-31 07:56:44', '2019-08-31 07:56:44'),
+	(308129, 305123, 'IN', 'Stock in transactions', 'IN', 'belongsTo', 305118, NULL, NULL, '2019-08-31 07:56:44', '2019-08-31 07:56:44'),
+	(308130, 305123, 'OUT', 'Stock out transactions', 'OUT', 'belongsTo', 305118, NULL, NULL, '2019-08-31 07:56:44', '2019-08-31 07:56:44'),
+	(308131, 305121, 'Customer', 'The customer to which this sales order belongs', 'Customer', 'belongsTo', 305101, NULL, NULL, '2019-08-31 07:56:44', '2019-08-31 07:56:44'),
+	(308132, 305113, 'AssignedAreas', 'The user_areas which assigned to this record', 'AssignedAreas', 'hasMany', 305111, NULL, NULL, '2019-08-31 07:56:45', '2019-08-31 07:56:45'),
+	(308133, 305111, 'Users', 'The executives assigned to a area_user', 'Users', 'hasMany', 305113, NULL, NULL, '2019-08-31 07:56:45', '2019-08-31 07:56:45'),
+	(308134, 305113, 'Customers', 'Customers who are in selected records area', 'Customers', 'belongsToMany', 305101, NULL, NULL, '2019-08-31 07:56:45', '2019-08-31 07:56:45'),
+	(308135, 305101, 'AreaCustomers', 'List of customers belongs to the area which are assigned to a user', 'AreaCustomers', 'hasManyThrough', 305111, NULL, NULL, '2019-08-31 07:56:45', '2019-08-31 07:56:45'),
+	(308136, 305122, 'SalesOrder', 'Sales order details for a so item', 'SalesOrder', 'belongsTo', 305121, NULL, NULL, '2019-08-31 07:56:45', '2019-08-31 07:56:45'),
+	(308137, 305119, 'Transaction', 'Detail of transaction header', 'Transaction', 'belongsTo', 305118, NULL, NULL, '2019-08-31 07:56:45', '2019-08-31 07:56:45'),
+	(308138, 305127, 'SalesOrder', 'Sales order details', 'SalesOrder', 'belongsTo', 305121, NULL, NULL, '2019-08-31 07:56:45', '2019-08-31 07:56:45'),
+	(308139, 305127, 'Transaction', 'Detail of transaction', 'Transaction', 'belongsTo', 305118, NULL, NULL, '2019-08-31 07:56:45', '2019-08-31 07:56:45'),
+	(308140, 305118, 'StockOutTransactions', 'TransferOut transactions', 'STOut', 'hasOne', 305123, NULL, NULL, '2019-08-31 07:56:45', '2019-08-31 07:56:45'),
+	(308141, 305118, 'StockInTransactions', 'TransferIn transactions', 'STIn', 'hasOne', 305123, NULL, NULL, '2019-08-31 07:56:45', '2019-08-31 07:56:45'),
+	(308142, 305117, 'TransactionDetail', 'Detail of Transaction of a Stock product transaction', 'TransactionDetail', 'hasOne', 305119, NULL, NULL, '2019-08-31 07:56:45', '2019-08-31 07:56:45');
 /*!40000 ALTER TABLE `__resource_relations` ENABLE KEYS */;
 
 -- Dumping structure for table appframe.__resource_roles
@@ -2574,33 +2574,33 @@ CREATE TABLE IF NOT EXISTS `__resource_roles` (
 -- Dumping data for table appframe.__resource_roles: ~27 rows (approximately)
 /*!40000 ALTER TABLE `__resource_roles` DISABLE KEYS */;
 INSERT INTO `__resource_roles` (`id`, `resource`, `role`, `actions_availability`, `actions`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(306101, 305101, 303101, 'All', NULL, NULL, NULL, '2019-08-13 15:15:56', '2019-08-13 15:15:56'),
-	(306102, 305102, 303101, 'All', NULL, NULL, NULL, '2019-08-13 15:15:56', '2019-08-13 15:15:56'),
-	(306103, 305103, 303101, 'All', NULL, NULL, NULL, '2019-08-13 15:15:56', '2019-08-13 15:15:56'),
-	(306104, 305104, 303101, 'All', NULL, NULL, NULL, '2019-08-13 15:15:56', '2019-08-13 15:15:56'),
-	(306105, 305105, 303101, 'All', NULL, NULL, NULL, '2019-08-13 15:15:56', '2019-08-13 15:15:56'),
-	(306106, 305106, 303101, 'All', NULL, NULL, NULL, '2019-08-13 15:15:56', '2019-08-13 15:15:56'),
-	(306107, 305107, 303101, 'All', NULL, NULL, NULL, '2019-08-13 15:15:56', '2019-08-13 15:15:56'),
-	(306108, 305108, 303101, 'All', NULL, NULL, NULL, '2019-08-13 15:15:56', '2019-08-13 15:15:56'),
-	(306109, 305109, 303101, 'All', NULL, NULL, NULL, '2019-08-13 15:15:56', '2019-08-13 15:15:56'),
-	(306110, 305110, 303101, 'All', NULL, NULL, NULL, '2019-08-13 15:15:56', '2019-08-13 15:15:56'),
-	(306111, 305111, 303101, 'All', NULL, NULL, NULL, '2019-08-13 15:15:56', '2019-08-13 15:15:56'),
-	(306112, 305112, 303101, 'All', NULL, NULL, NULL, '2019-08-13 15:15:56', '2019-08-13 15:15:56'),
-	(306113, 305113, 303101, 'All', NULL, NULL, NULL, '2019-08-13 15:15:57', '2019-08-13 15:15:57'),
-	(306114, 305114, 303101, 'All', NULL, NULL, NULL, '2019-08-13 15:15:57', '2019-08-13 15:15:57'),
-	(306115, 305115, 303101, 'All', NULL, NULL, NULL, '2019-08-13 15:15:57', '2019-08-13 15:15:57'),
-	(306116, 305116, 303101, 'All', NULL, NULL, NULL, '2019-08-13 15:15:57', '2019-08-13 15:15:57'),
-	(306117, 305117, 303101, 'All', NULL, NULL, NULL, '2019-08-13 15:15:57', '2019-08-13 15:15:57'),
-	(306118, 305118, 303101, 'All', NULL, NULL, NULL, '2019-08-13 15:15:57', '2019-08-13 15:15:57'),
-	(306119, 305119, 303101, 'All', NULL, NULL, NULL, '2019-08-13 15:15:57', '2019-08-13 15:15:57'),
-	(306120, 305120, 303101, 'All', NULL, NULL, NULL, '2019-08-13 15:15:57', '2019-08-13 15:15:57'),
-	(306121, 305121, 303101, 'All', NULL, NULL, NULL, '2019-08-13 15:15:57', '2019-08-13 15:15:57'),
-	(306122, 305122, 303101, 'All', NULL, NULL, NULL, '2019-08-13 15:15:57', '2019-08-13 15:15:57'),
-	(306123, 305123, 303101, 'All', NULL, NULL, NULL, '2019-08-13 15:15:57', '2019-08-13 15:15:57'),
-	(306124, 305124, 303101, 'All', NULL, NULL, NULL, '2019-08-13 15:15:57', '2019-08-13 15:15:57'),
-	(306125, 305125, 303101, 'All', NULL, NULL, NULL, '2019-08-13 15:15:57', '2019-08-13 15:15:57'),
-	(306126, 305126, 303101, 'All', NULL, NULL, NULL, '2019-08-13 15:15:57', '2019-08-13 15:15:57'),
-	(306127, 305127, 303101, 'All', NULL, NULL, NULL, '2019-08-13 15:15:57', '2019-08-13 15:15:57');
+	(306101, 305101, 303101, 'All', NULL, NULL, NULL, '2019-08-31 07:56:41', '2019-08-31 07:56:41'),
+	(306102, 305102, 303101, 'All', NULL, NULL, NULL, '2019-08-31 07:56:41', '2019-08-31 07:56:41'),
+	(306103, 305103, 303101, 'All', NULL, NULL, NULL, '2019-08-31 07:56:41', '2019-08-31 07:56:41'),
+	(306104, 305104, 303101, 'All', NULL, NULL, NULL, '2019-08-31 07:56:41', '2019-08-31 07:56:41'),
+	(306105, 305105, 303101, 'All', NULL, NULL, NULL, '2019-08-31 07:56:41', '2019-08-31 07:56:41'),
+	(306106, 305106, 303101, 'All', NULL, NULL, NULL, '2019-08-31 07:56:41', '2019-08-31 07:56:41'),
+	(306107, 305107, 303101, 'All', NULL, NULL, NULL, '2019-08-31 07:56:41', '2019-08-31 07:56:41'),
+	(306108, 305108, 303101, 'All', NULL, NULL, NULL, '2019-08-31 07:56:41', '2019-08-31 07:56:41'),
+	(306109, 305109, 303101, 'All', NULL, NULL, NULL, '2019-08-31 07:56:41', '2019-08-31 07:56:41'),
+	(306110, 305110, 303101, 'All', NULL, NULL, NULL, '2019-08-31 07:56:41', '2019-08-31 07:56:41'),
+	(306111, 305111, 303101, 'All', NULL, NULL, NULL, '2019-08-31 07:56:41', '2019-08-31 07:56:41'),
+	(306112, 305112, 303101, 'All', NULL, NULL, NULL, '2019-08-31 07:56:41', '2019-08-31 07:56:41'),
+	(306113, 305113, 303101, 'All', NULL, NULL, NULL, '2019-08-31 07:56:42', '2019-08-31 07:56:42'),
+	(306114, 305114, 303101, 'All', NULL, NULL, NULL, '2019-08-31 07:56:42', '2019-08-31 07:56:42'),
+	(306115, 305115, 303101, 'All', NULL, NULL, NULL, '2019-08-31 07:56:42', '2019-08-31 07:56:42'),
+	(306116, 305116, 303101, 'All', NULL, NULL, NULL, '2019-08-31 07:56:42', '2019-08-31 07:56:42'),
+	(306117, 305117, 303101, 'All', NULL, NULL, NULL, '2019-08-31 07:56:42', '2019-08-31 07:56:42'),
+	(306118, 305118, 303101, 'All', NULL, NULL, NULL, '2019-08-31 07:56:42', '2019-08-31 07:56:42'),
+	(306119, 305119, 303101, 'All', NULL, NULL, NULL, '2019-08-31 07:56:42', '2019-08-31 07:56:42'),
+	(306120, 305120, 303101, 'All', NULL, NULL, NULL, '2019-08-31 07:56:42', '2019-08-31 07:56:42'),
+	(306121, 305121, 303101, 'All', NULL, NULL, NULL, '2019-08-31 07:56:42', '2019-08-31 07:56:42'),
+	(306122, 305122, 303101, 'All', NULL, NULL, NULL, '2019-08-31 07:56:42', '2019-08-31 07:56:42'),
+	(306123, 305123, 303101, 'All', NULL, NULL, NULL, '2019-08-31 07:56:42', '2019-08-31 07:56:42'),
+	(306124, 305124, 303101, 'All', NULL, NULL, NULL, '2019-08-31 07:56:42', '2019-08-31 07:56:42'),
+	(306125, 305125, 303101, 'All', NULL, NULL, NULL, '2019-08-31 07:56:42', '2019-08-31 07:56:42'),
+	(306126, 305126, 303101, 'All', NULL, NULL, NULL, '2019-08-31 07:56:42', '2019-08-31 07:56:42'),
+	(306127, 305127, 303101, 'All', NULL, NULL, NULL, '2019-08-31 07:56:42', '2019-08-31 07:56:42');
 /*!40000 ALTER TABLE `__resource_roles` ENABLE KEYS */;
 
 -- Dumping structure for table appframe.__resource_scopes
@@ -2631,16 +2631,16 @@ CREATE TABLE IF NOT EXISTS `__resource_scopes` (
 -- Dumping data for table appframe.__resource_scopes: ~10 rows (approximately)
 /*!40000 ALTER TABLE `__resource_scopes` DISABLE KEYS */;
 INSERT INTO `__resource_scopes` (`id`, `resource`, `name`, `description`, `method`, `arg1`, `arg2`, `arg3`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(307101, 305101, 'SalesExecutives', 'User where has group reference as SLS', 'salesExecutive', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:15:59', '2019-08-13 15:15:59'),
-	(307102, 305113, 'Assigned', 'The store and area whih is assigned to the requesting user', 'assigned', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:15:59', '2019-08-13 15:15:59'),
-	(307103, 305111, 'Assigned', 'The records where area is assigned to the requester', 'assigned', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:15:59', '2019-08-13 15:15:59'),
-	(307104, 305121, 'AssignedAreaCustomer', 'Sales orders of customers belongs to a area which assigned to a executive', 'assignedAreaCustomer', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:15:59', '2019-08-13 15:15:59'),
-	(307105, 305118, 'AssignedCustomerTransactions', 'Transactions related to customers who are assigned to the requesting executive', 'assignedCustomerTransactions', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:15:59', '2019-08-13 15:15:59'),
-	(307106, 305125, 'AssignedCustomerReceipts', 'Receipts related to customers who are assigned to the requesting executive', 'assignedCustomerReceipts', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:15:59', '2019-08-13 15:15:59'),
-	(307107, 305127, 'AssignedCustomerSalesOrder', 'The records of sales order in which sales order belongs to any assigned customer', 'assignedCustomerSalesOrder', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:15:59', '2019-08-13 15:15:59'),
-	(307108, 305118, 'StockTransferPending', 'The transactions which are all pending stock transfer', 'sTPending', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:15:59', '2019-08-13 15:15:59'),
-	(307109, 305123, 'PendingStockTransfer', 'Stock transfers which are pending', 'pending', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:15:59', '2019-08-13 15:15:59'),
-	(307110, 305117, 'PendingStockTransferOut', 'The store product transaction of a pending stock transfer out', 'pendingSTOut', NULL, NULL, NULL, NULL, NULL, '2019-08-13 15:15:59', '2019-08-13 15:15:59');
+	(307101, 305101, 'SalesExecutives', 'User where has group reference as SLS', 'salesExecutive', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:45', '2019-08-31 07:56:45'),
+	(307102, 305113, 'Assigned', 'The store and area whih is assigned to the requesting user', 'assigned', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:45', '2019-08-31 07:56:45'),
+	(307103, 305111, 'Assigned', 'The records where area is assigned to the requester', 'assigned', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:45', '2019-08-31 07:56:45'),
+	(307104, 305121, 'AssignedAreaCustomer', 'Sales orders of customers belongs to a area which assigned to a executive', 'assignedAreaCustomer', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:45', '2019-08-31 07:56:45'),
+	(307105, 305118, 'AssignedCustomerTransactions', 'Transactions related to customers who are assigned to the requesting executive', 'assignedCustomerTransactions', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:45', '2019-08-31 07:56:45'),
+	(307106, 305125, 'AssignedCustomerReceipts', 'Receipts related to customers who are assigned to the requesting executive', 'assignedCustomerReceipts', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:45', '2019-08-31 07:56:45'),
+	(307107, 305127, 'AssignedCustomerSalesOrder', 'The records of sales order in which sales order belongs to any assigned customer', 'assignedCustomerSalesOrder', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:46', '2019-08-31 07:56:46'),
+	(307108, 305118, 'StockTransferPending', 'The transactions which are all pending stock transfer', 'sTPending', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:46', '2019-08-31 07:56:46'),
+	(307109, 305123, 'PendingStockTransfer', 'Stock transfers which are pending', 'pending', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:46', '2019-08-31 07:56:46'),
+	(307110, 305117, 'PendingStockTransferOut', 'The store product transaction of a pending stock transfer out', 'pendingSTOut', NULL, NULL, NULL, NULL, NULL, '2019-08-31 07:56:46', '2019-08-31 07:56:46');
 /*!40000 ALTER TABLE `__resource_scopes` ENABLE KEYS */;
 
 -- Dumping structure for table appframe.__roles
@@ -2665,9 +2665,9 @@ CREATE TABLE IF NOT EXISTS `__roles` (
 -- Dumping data for table appframe.__roles: ~3 rows (approximately)
 /*!40000 ALTER TABLE `__roles` DISABLE KEYS */;
 INSERT INTO `__roles` (`id`, `name`, `description`, `title`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(303101, 'eplus_administrators', 'ePlus administrators role', 'ePlus Administrator', NULL, NULL, '2019-08-13 15:15:55', '2019-08-13 15:15:55'),
-	(303102, 'eplus_accountant', 'ePlus accountant role', 'ePlus Accountant', NULL, NULL, '2019-08-13 15:15:55', '2019-08-13 15:15:55'),
-	(303103, 'eplus_salesExecutive', 'ePlus sales executive', 'ePlus Sales Executive', NULL, NULL, '2019-08-13 15:15:55', '2019-08-13 15:15:55');
+	(303101, 'eplus_administrators', 'ePlus administrators role', 'ePlus Administrator', NULL, NULL, '2019-08-31 07:56:38', '2019-08-31 07:56:38'),
+	(303102, 'eplus_accountant', 'ePlus accountant role', 'ePlus Accountant', NULL, NULL, '2019-08-31 07:56:38', '2019-08-31 07:56:38'),
+	(303103, 'eplus_salesExecutive', 'ePlus sales executive', 'ePlus Sales Executive', NULL, NULL, '2019-08-31 07:56:38', '2019-08-31 07:56:38');
 /*!40000 ALTER TABLE `__roles` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
