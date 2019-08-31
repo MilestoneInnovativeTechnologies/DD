@@ -2,7 +2,9 @@
 
     namespace Milestone\SS\Interact;
 
+    use Illuminate\Support\Arr;
     use Milestone\Interact\Table;
+    use Milestone\SS\Model\UserStoreArea;
 
     class user_store_area implements Table
     {
@@ -13,7 +15,7 @@
 
         public function getImportAttributes()
         {
-            return [];
+            return ['user','store','area'];
         }
 
         public function getImportMappings()
@@ -23,6 +25,8 @@
 
         public function getPrimaryIdFromImportRecord($data)
         {
+            list($user,$store,$area) = array_values(Arr::only($data,['user','store','area']));
+            return Arr::get(UserStoreArea::where(compact('user','store','area')),'id',null);
         }
 
         public function getExportMappings()
