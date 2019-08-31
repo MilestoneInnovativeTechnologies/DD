@@ -165,6 +165,7 @@
         public function getQuantity($data){ return $data['quantity']; }
         public function getRate($data){ return $data['rate']; }
         public function getSign($data){ return '-1'; }
-        public function getTaxRule($data){  return $this->getProdProp($data,'group01.tax.code');  }
+//        public function getTaxRule($data){  return $this->getProdProp($data,'group01.tax.code');  }
+        public function getTaxRule($data){  return 'GST00';  }
         public function getTax($data){ return $data['tax']; }
     }

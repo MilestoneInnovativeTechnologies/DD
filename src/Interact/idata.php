@@ -309,7 +309,8 @@
         public function getPartCode($data){ return $this->getProdProp($data,'partcode'); }
         public function getUnitRate($data){ return $this->getTDProp($data,'amount'); }
         public function getSign($data){ return ($data['direction'] === 'Out') ? (-1) : 1; }
-        public function getTaxRule($data){ return $this->getProdProp($data,'group01.tax.code'); }
+//        public function getTaxRule($data){ return $this->getProdProp($data,'group01.tax.code'); }
+        public function getTaxRule($data){ return 'GST00'; }
         public function getTaxValue($data){ return $this->getTDProp($data,'tax'); }
         public function getRefCOCode($data){ return ($this->getRefProp($data,'fncode')) ? $this->getCOCode($data) : null; }
         public function getRefBRCode($data){ return ($this->getRefProp($data,'fncode')) ? $this->getBRCode($data) : null; }
