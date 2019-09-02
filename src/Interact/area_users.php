@@ -63,20 +63,22 @@
             if($Areas->isNotEmpty()) $this->cache['area'] = $Areas->pluck('id','code');
 
             $customerCodes = array_column($records,'ACCCODE');
-            $Customers = User::where('reference',$customerCodes);
+            $Customers = User::where('reference',$customerCodes)->get();
             if($Customers->isNotEmpty()) $this->cache['user'] = $Customers->pluck('id','reference');
         }
         public function getAreaId($record){
+            if(array_key_exists('area',$record)) return $record['area'];
             return array_key_exists($record['AREACODE'],$this->cache['area'])
                 ? $this->cache['area'][$record['AREACODE']]
                 : null;
         }
         public function getCustomerId($record){
+            if(array_key_exists('user',$record)) return $record['user'];
             return array_key_exists($record['ACCCODE'],$this->cache['user'])
                 ? $this->cache['user'][$record['ACCCODE']]
                 : null;
         }
         public function isValidImportRecord($record){
-            return (array_key_exists($record['AREACODE'],$this->cache['area']) && array_key_exists($record['ACCCODE'],$this->cache['user']));
+            return (array_key_exists('area',$record) && array_key_exists('user',$record)) || (array_key_exists($record['AREACODE'],$this->cache['area']) && array_key_exists($record['ACCCODE'],$this->cache['user']));
         }
     }
