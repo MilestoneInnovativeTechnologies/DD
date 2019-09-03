@@ -134,8 +134,8 @@
             return ['COCODE','BRCODE','FYCODE','FNCODE','DOCNO','SRNO','SLNO','CANCEL','DOCDATE','CO','BR','STRCATCODE','STRCODE','ITEMCODE','UNITCODE','PARTCODE','QTY','RATE','SIGN','TAXRULE','TAX'];
         }
 
-        public function preExportGet($query){ return $query->with(['SalesOrder.Items','Product.Group01.Tax']); }
-        public function preExportUpdate($query){ return $query->with(['SalesOrder.Items','Product.Group01.Tax']); }
+        public function preExportGet($query){ return $query->with(['SalesOrder.Items']); }
+        public function preExportUpdate($query){ return $query->with(['SalesOrder.Items']); }
 
         public function getUserProp($data,$prop){
             $user_id = $data['sales_order']['user'];
