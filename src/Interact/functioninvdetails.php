@@ -19,12 +19,12 @@
 
         public function getImportAttributes()
         {
-            return ['code','tax','taxselection','taxunique','ratewithtax','discount01','discount02','discount02base','discount03','discountmode','discount'];
+            return ['code','tax','taxselection','taxunique','ratewithtax','discount01','discount02','discount02base','discount03','discountmode','discount','list'];
         }
 
         public function getImportMappings()
         {
-            return array_combine($this->getImportAttributes(),array_map('strtoupper',$this->getImportAttributes()));
+            return array_merge(array_combine($this->getImportAttributes(),array_map('strtoupper',$this->getImportAttributes())),['list' => 'ITEMLISTCATEGORY']);
         }
 
         public function getPrimaryIdFromImportRecord($data)

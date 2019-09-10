@@ -2,12 +2,15 @@
 
 namespace Milestone\SS\Interact;
 
+use Illuminate\Support\Arr;
 use Milestone\SS\Model\Product;
-use Milestone\SS\Model\Productgroup;
+use Milestone\SS\Model\ProductGroup;
 use Milestone\Interact\Table;
+use Milestone\SS\Model\ProductGroupMaster;
 
 class itemmaster implements Table
 {
+    private $cache_pgm = [];
     public function getModel()
     {
         return Product::class;
@@ -22,36 +25,35 @@ class itemmaster implements Table
 
     public function getImportMappings()
     {
-        return array_merge([
+        return [
             'code' => 'CODE',
             'name' => 'NAME',
             'narration' => 'NARRATION',
             'narration2' => 'NARRATION2',
             'type' => 'TYPE',
             'status' => 'STATUS'
-        ],
-            array_combine(array_map(function($n){ return 'group' . $n; },range(1,10)),
-            array_map(function($n){ return 'getGroupValue' . $n; },range(1,10))));
+        ];
     }
 
-    public function __call($name, $arguments)
-    {
-        $num = str_replace('getGroupValue','',$name);
-        return $this->getGroupValue($num,$arguments[0]);
+    public function recordImported($record,$id){
+        $Array = ['01','02','03','04','05','06','07','08','09','10'];
+        foreach ($Array as $num){
+            if($record['CATCODE_' . $num] && $record['GCODE_' . $num]){
+                $g = $this->getPGMId($record['CATCODE_' . $num],$record['GCODE_' . $num]);
+                ProductGroup::updateOrCreate(['product' => $id],['g'.$num => $g]);
+            }
+        }
     }
 
-    private function getGroupValue($group,$row){
-        $belongs = $row['CATCODE_'.str_pad($group,2,"0",STR_PAD_LEFT)];
-        $code = $row['GCODE_'.str_pad($group,2,"0",STR_PAD_LEFT)];
-        if(is_null($belongs) || is_null($code)) return null;
-        $product_group = Productgroup::where(['igmref' => implode('-',[$belongs,$code])])->first();
-        return $product_group ? $product_group->id : null;
+    private function getPGMId($list,$code){
+        if(Arr::has($this->cache_pgm,["$list.$code"])) return Arr::get($this->cache_pgm,"$list.$code");
+        Arr::set($this->cache_pgm,"$list.$code",Arr::get(ProductGroupMaster::where(compact('code','list'))->first(),'id'));
+        return Arr::get($this->cache_pgm,"$list.$code");
     }
 
     public function getPrimaryIdFromImportRecord($data)
     {
-        $product = Product::where('code',$data['CODE'])->first();
-        return $product ? $product->id : null;
+        return Arr::get(Product::where('code',$data['CODE'])->first(),'id',null);
     }
 
 
