@@ -32,6 +32,6 @@
 
         public function getExportAttributes()
         {
-            return ['id','name','uom','narration','taxfactor','subtaxfactor','taxfactor02','subtaxfactor02'];
+            return ['id','name','uom','narration','taxcode01','taxfactor01','subtaxfactor01','taxcode02','taxfactor02','subtaxfactor02'];
         }
     }

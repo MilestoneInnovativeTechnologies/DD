@@ -22,9 +22,9 @@ class CreateProductsTable extends Migration
             $table->string('barcode', '128')->nullable();
             $table->string('narration', '1024')->nullable();
             $table->string('narration2', '1024')->nullable();
-            $table->char('taxcode', '15')->nullable()->index();
-            $table->decimal('taxfactor', 30,10)->default('0');
-            $table->decimal('subtaxfactor', 30,10)->default('0');
+            $table->char('taxcode01', '15')->nullable()->index();
+            $table->decimal('taxfactor01', 30,10)->default('0');
+            $table->decimal('subtaxfactor01', 30,10)->default('0');
             $table->char('taxcode02', '15')->nullable()->index();
             $table->decimal('taxfactor02', 30,10)->default('0');
             $table->decimal('subtaxfactor02', 30,10)->default('0');

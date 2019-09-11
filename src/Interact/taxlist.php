@@ -19,15 +19,15 @@
 
         public function getImportAttributes()
         {
-            return ['taxcode','taxfactor','subtaxfactor','taxcode02','taxfactor02','subtaxfactor02'];
+            return ['taxcode01','taxfactor01','subtaxfactor01','taxcode02','taxfactor02','subtaxfactor02'];
         }
 
         public function getImportMappings()
         {
             return [
-                'taxcode' => 'TAXCODE01',
-                'taxfactor' => 'TAXFACTOR01',
-                'subtaxfactor' => 'SUBTAXFACTOR01',
+                'taxcode01' => 'TAXCODE01',
+                'taxfactor01' => 'TAXFACTOR01',
+                'subtaxfactor01' => 'SUBTAXFACTOR01',
                 'taxcode02' => 'TAXCODE02',
                 'taxfactor02' => 'TAXFACTOR02',
                 'subtaxfactor02' => 'SUBTAXFACTOR02',
