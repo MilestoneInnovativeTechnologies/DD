@@ -13,7 +13,7 @@ class Product extends Model
 
     protected $table = 'products';
 
-    protected $appends =['price'];
+//    protected $appends =['price'];
     private $price_list_fetch_keys = ['price','price_min','price_max'];
 
     public function getPriceAttribute(){
