@@ -153,14 +153,14 @@
 
         public function recordImported($record,$id){
             list('DOCNO' => $docno,'FYCODE' => $fycode,'FNCODE' => $fncode,
-                'QTY' => $quantity, 'RATE' => $rate, 'TAX' => $tax,
+                'QTY' => $quantity, 'RATE' => $rate, 'TAXRULE' => $taxrule, 'TAX' => $tax,
                 'DISCOUNT01' => $discount1, 'DISCOUNT02' => $discount2, 'DISCOUNT03' => $discount3,
                 ) = $record;
             $transaction = Transaction::where(compact('docno','fncode','fycode'))->first();
             $_ref_spt = $this->cache['_ref_spt'];
             if($transaction){
                 $amount = $quantity * $rate; $discount = $discount1+$discount2+$discount3; $total = $amount+$tax-$discount; $_ref_trans = $transaction->_ref;
-                $transaction->Products()->attach([$id => compact('amount','tax','discount','total','_ref_trans','_ref_spt')]);
+                $transaction->Products()->attach([$id => compact('amount','taxrule','tax','discount','total','_ref_trans','_ref_spt')]);
             }
             $this->checkAndAddSalesOrderEntry($record);
         }
@@ -274,7 +274,7 @@
         }
         public function getProdProp($data, $prop){
             $product_id = $data['product']['id'];
-            if(!array_key_exists($product_id,$this->cache['product'])) $this->cache['product'][$product_id] = Product::with('Group01.Tax')->find($product_id)->toArray();
+            if(!array_key_exists($product_id,$this->cache['product'])) { $PRD = Product::find($product_id); $this->cache['product'][$product_id] = $PRD ? $PRD->toArray() : []; }
             return Arr::get($this->cache['product'][$product_id],"{$prop}",null);
         }
         public function getTDProp($data, $prop){
@@ -310,7 +310,7 @@
         public function getUnitRate($data){ return $this->getTDProp($data,'amount'); }
         public function getSign($data){ return ($data['direction'] === 'Out') ? (-1) : 1; }
 //        public function getTaxRule($data){ return $this->getProdProp($data,'group01.tax.code'); }
-        public function getTaxRule($data){ return 'GST00'; }
+        public function getTaxRule($data){ return $this->getTDProp($data,'taxrule'); }
         public function getTaxValue($data){ return $this->getTDProp($data,'tax'); }
         public function getRefCOCode($data){ return ($this->getRefProp($data,'fncode')) ? $this->getCOCode($data) : null; }
         public function getRefBRCode($data){ return ($this->getRefProp($data,'fncode')) ? $this->getBRCode($data) : null; }

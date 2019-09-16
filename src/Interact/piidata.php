@@ -26,7 +26,7 @@
 
         public function getImportAttributes()
         {
-            return ['so','product','rate','quantity','tax','discount','total','_ref'];
+            return ['so','product','rate','quantity','taxrule','tax','discount','total','_ref'];
         }
 
         public function getImportMappings()
@@ -34,6 +34,7 @@
             return [
                 'rate' => 'RATE',
                 'quantity' => 'QTY',
+                'taxrule' => 'TAXRULE',
                 'tax' => 'TAX',
                 'discount' => 'getDiscount',
                 'total' => 'getTotal',
@@ -122,8 +123,8 @@
                 'ITEMCODE' => 'getItemCode',
                 'UNITCODE' => 'getUnitCode',
                 'PARTCODE' => 'getPartCode',
-                'UNITQTY' => 'getQuantity',
-                'UNITRATE' => 'getRate',
+                'QTY' => 'getQuantity',
+                'RATE' => 'getRate',
                 'SIGN' => 'getSign',
                 'TAXRULE' => 'getTaxRule',
                 'TAX' => 'getTax'];
@@ -134,8 +135,8 @@
             return ['COCODE','BRCODE','FYCODE','FNCODE','DOCNO','SRNO','SLNO','CANCEL','DOCDATE','CO','BR','STRCATCODE','STRCODE','ITEMCODE','UNITCODE','PARTCODE','QTY','RATE','SIGN','TAXRULE','TAX'];
         }
 
-        public function preExportGet($query){ return $query->with(['SalesOrder.Items']); }
-        public function preExportUpdate($query){ return $query->with(['SalesOrder.Items']); }
+        public function preExportGet($query){ return $query->with(['Product','SalesOrder.Items']); }
+        public function preExportUpdate($query){ return $query->with(['Product','SalesOrder.Items']); }
 
         public function getUserProp($data,$prop){
             $user_id = $data['sales_order']['user'];
@@ -166,6 +167,6 @@
         public function getRate($data){ return $data['rate']; }
         public function getSign($data){ return '-1'; }
 //        public function getTaxRule($data){  return $this->getProdProp($data,'group01.tax.code');  }
-        public function getTaxRule($data){  return 'GST00';  }
+        public function getTaxRule($data){ return $data['taxrule']; }
         public function getTax($data){ return $data['tax']; }
     }
