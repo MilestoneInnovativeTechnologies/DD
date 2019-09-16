@@ -18,6 +18,7 @@ class CreateTransactionDetailsTable extends Migration
             $table->foreignCascade('transaction', 'transactions');
             $table->foreignCascade('spt', 'store_product_transactions');
             $table->decimal('amount', 30,10)->default(0);
+            $table->char('taxrule', '15')->nullable();
             $table->decimal('tax', 30,10)->default(0);
             $table->decimal('discount', 30,10)->default(0);
             $table->decimal('total', 30,10)->default(0);
