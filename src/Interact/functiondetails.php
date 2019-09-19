@@ -73,7 +73,7 @@ class functiondetails implements Table
 
     public function getExportAttributes()
     {
-        return ['id','code','format','digit_length','tax','taxselection','list'];
+        return ['id','code','format','digit_length','tax','taxselection','list','ratewithtax','discount01','discount02','discount02base','discount03','discountmode','discount'];
     }
 
 }
