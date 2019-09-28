@@ -21,3 +21,10 @@
 //        \Illuminate\Support\Facades\Artisan::call('db:seed',['--class' => 'Milestone\\SS\\Seeder\\SSDatabaseSeeder']);
         return 'DONE';
     });
+
+    Route::group([
+        'namespace' => 'Milestone\SS\Controller',
+        'middleware' => ['web']
+    ],function(){
+        Route::get('image/item/{id}','ProductImageController@image');
+    });
