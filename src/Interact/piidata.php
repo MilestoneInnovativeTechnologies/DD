@@ -123,8 +123,8 @@
                 'ITEMCODE' => 'getItemCode',
                 'UNITCODE' => 'getUnitCode',
                 'PARTCODE' => 'getPartCode',
-                'QTY' => 'getQuantity',
-                'RATE' => 'getRate',
+                'UNITQTY' => 'getQuantity',
+                'UNITRATE' => 'getRate',
                 'SIGN' => 'getSign',
                 'TAXRULE' => 'getTaxRule',
                 'TAX' => 'getTax'];
@@ -132,7 +132,7 @@
 
         public function getExportAttributes()
         {
-            return ['COCODE','BRCODE','FYCODE','FNCODE','DOCNO','SRNO','SLNO','CANCEL','DOCDATE','CO','BR','STRCATCODE','STRCODE','ITEMCODE','UNITCODE','PARTCODE','QTY','RATE','SIGN','TAXRULE','TAX'];
+            return ['COCODE','BRCODE','FYCODE','FNCODE','DOCNO','SRNO','SLNO','CANCEL','DOCDATE','CO','BR','STRCATCODE','STRCODE','ITEMCODE','UNITCODE','PARTCODE','UNITQTY','UNITRATE','SIGN','TAXRULE','TAX'];
         }
 
         public function preExportGet($query){ return $query->with(['Product','SalesOrder.Items']); }
@@ -166,7 +166,6 @@
         public function getQuantity($data){ return $data['quantity']; }
         public function getRate($data){ return $data['rate']; }
         public function getSign($data){ return '-1'; }
-//        public function getTaxRule($data){  return $this->getProdProp($data,'group01.tax.code');  }
         public function getTaxRule($data){ return $data['taxrule']; }
         public function getTax($data){ return $data['tax']; }
     }
