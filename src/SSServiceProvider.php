@@ -14,6 +14,7 @@ class SSServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->mergeConfigs();
         $this->registerBlueprintMacro();
     }
 
@@ -33,6 +34,7 @@ class SSServiceProvider extends ServiceProvider
     private function getRootPath(){ return __DIR__ . '/..'; }
     private function getProjectMigrationPath(){ return $this->getRootPath() . '/migrations/'; }
     private function getProjectRoutesPath(){ return $this->getRootPath() . '/routes/'; }
+    private function getProjectConfigPath(){ return $this->getRootPath() . '/config/'; }
 
 
 
@@ -48,6 +50,10 @@ class SSServiceProvider extends ServiceProvider
     }
 
 
+
+    private function mergeConfigs(){
+        $this->mergeConfigFrom($this->getProjectConfigPath() . 'filesystems.disks.php', 'filesystems.disks');
+    }
 
     private function loadMigrations(){
         $source = $this->getProjectMigrationPath();
