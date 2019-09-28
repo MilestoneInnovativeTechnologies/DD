@@ -17,12 +17,14 @@ class CreateFunctiondetailsTable extends Migration
             $table->bigIncrements('id');
             $table->char('code', '15')->nullable()->index();
             $table->string('abr', '15')->nullable();
+            $table->string('display_name', '128')->nullable();
             $table->char('category', '15')->nullable()->index();
             $table->string('wtype', '30')->nullable()->index();
             $table->string('format', '30')->nullable()->default('[BR][FN]-[FY]-[AI]');
             $table->decimal('digit_length', 2,0)->default(4);
             $table->enum('direction', ['Out','In'])->default('Out');
             $table->char('default_account', '15')->nullable();
+            $table->foreignNullable('pricelist', 'pricelist');
             $table->enum('tax', ['Yes','No'])->nullable()->default('No');
             $table->enum('taxselection', ['Tax01','Tax02','Select','Account','Auto'])->nullable()->default('Tax01');
             $table->enum('taxunique', ['Yes','No'])->nullable()->default('No');
@@ -34,6 +36,7 @@ class CreateFunctiondetailsTable extends Migration
             $table->enum('discountmode', ['None','PriceList','Custom','Buy_nX_Get_mY','Account','User','Branch'])->nullable()->default('None');
             $table->char('discount', '15')->nullable();
             $table->char('list', '15')->nullable()->default('01');
+            $table->enum('status', ['Active','Inactive'])->nullable()->default('Active');
             $table->audit();
         });
     }

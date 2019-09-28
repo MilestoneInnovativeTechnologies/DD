@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProductTransactionTypesTable extends Migration
+class CreateMenuTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateProductTransactionTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('product_transaction_types', function (Blueprint $table) {
+        Schema::create('menu_types', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name', '64')->nullable()->index();
-            $table->enum('status', ['Active','Inactive'])->nullable()->default('Active');
+            $table->string('display_name', '128')->nullable();
             $table->audit();
         });
     }
@@ -28,6 +28,6 @@ class CreateProductTransactionTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_transaction_types');
+        Schema::dropIfExists('menu_types');
     }
 }

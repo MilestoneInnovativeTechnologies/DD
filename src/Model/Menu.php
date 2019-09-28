@@ -4,7 +4,7 @@ namespace Milestone\SS\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class StoreProduct extends Model
+class Menu extends Model
 {
-    protected $table = 'store_products';
+    protected $table = 'menu';
 }

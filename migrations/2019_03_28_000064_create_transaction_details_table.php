@@ -16,14 +16,17 @@ class CreateTransactionDetailsTable extends Migration
         Schema::create('transaction_details', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->foreignCascade('transaction', 'transactions');
-            $table->foreignCascade('spt', 'store_product_transactions');
-            $table->decimal('amount', 30,10)->default(0);
+            $table->foreignNullable('store', 'stores');
+            $table->foreignNullable('product', 'products');
+            $table->enum('direction', ['Out','In'])->default('Out');
+            $table->decimal('quantity', 30,10)->default(1);
+            $table->decimal('rate', 30,10)->default(0);
             $table->char('taxrule', '15')->nullable();
             $table->decimal('tax', 30,10)->default(0);
-            $table->decimal('discount', 30,10)->default(0);
-            $table->decimal('total', 30,10)->default(0);
+            $table->decimal('discount01', 30,10)->default(0);
+            $table->decimal('discount02', 30,10)->default(0);
+            $table->foreignNullable('soi', 'sales_order_items');
             $table->char('_ref_trans', '30')->nullable()->index();
-            $table->char('_ref_spt', '30')->nullable()->index();
             $table->audit();
         });
     }

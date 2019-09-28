@@ -17,6 +17,7 @@ class CreateTransactionsTable extends Migration
             $table->bigIncrements('id');
             $table->char('_ref', '30')->nullable()->index();
             $table->foreignNullable('user', 'users');
+            $table->foreignNullable('store', 'stores');
             $table->char('docno', '20')->nullable()->index();
             $table->timestamp('date')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->foreignNullable('customer', 'users');

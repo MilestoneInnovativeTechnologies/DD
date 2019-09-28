@@ -18,7 +18,6 @@ class Transaction extends Model
     protected $table = 'transactions';
 
     public function Details(){ return $this->hasMany(TransactionDetail::class,'transaction','id')->with(['Product']); }
-    public function Products(){ return $this->belongsToMany(StoreProductTransaction::class,'transaction_details','transaction','spt')->withPivot(['amount','total','tax','discount'])->with(['Product'])->withTimestamps(); }
     public function STOut(){ return $this->hasOne(StockTransfer::class,'out','id'); }
     public function STIn(){ return $this->hasOne(StockTransfer::class,'in','id'); }
 
