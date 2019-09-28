@@ -4,7 +4,7 @@ namespace Milestone\SS\Seeder;
 
 use Illuminate\Database\Seeder;
 
-class StoreProductTableSeeder extends Seeder
+class ProductImageTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,7 +15,7 @@ class StoreProductTableSeeder extends Seeder
     {
         $_ = \DB::statement('SELECT @@GLOBAL.foreign_key_checks');
         \DB::statement('set foreign_key_checks = 0');
-        \Milestone\SS\Model\StoreProduct::truncate()
+        \Milestone\SS\Model\ProductImage::truncate()
         ;
         \DB::statement('set foreign_key_checks = ' . $_);
     }
