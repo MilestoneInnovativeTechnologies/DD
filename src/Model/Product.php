@@ -4,7 +4,6 @@ namespace Milestone\SS\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\DB;
 use Milestone\SS\ModelTraits\ScopeActive;
 
 class Product extends Model
@@ -34,6 +33,10 @@ class Product extends Model
     private function getProductPrices($id){
         $this->setPriceCache();
         return array_key_exists($id,$this->price_cache) ? array_map(function($item){ return Arr::only($item,$this->price_list_fetch_keys); },$this->price_cache[$id]) : null;
+    }
+
+    public function Images(){
+        return $this->hasOne(ProductImage::class,'product','id');
     }
 
 }
