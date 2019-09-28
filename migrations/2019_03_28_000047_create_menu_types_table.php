@@ -17,6 +17,7 @@ class CreateMenuTypesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name', '64')->nullable()->index();
             $table->string('display_name', '128')->nullable();
+            $table->string('fncodes', '256')->nullable();
             $table->audit();
         });
     }
