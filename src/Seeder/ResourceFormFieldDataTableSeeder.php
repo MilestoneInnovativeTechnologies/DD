@@ -32,6 +32,23 @@ class ResourceFormFieldDataTableSeeder extends Seeder
             ->create([	'id' => '311114', 	'form_field' => '310114', 	'attribute' => 'store', 													])
             ->create([	'id' => '311115', 	'form_field' => '310115', 	'attribute' => 'area', 													])
             ->create([	'id' => '311116', 	'form_field' => '310116', 	'attribute' => 'status', 													])
+            ->create([	'id' => '311117', 	'form_field' => '310117', 	'attribute' => 'product', 													])
+            ->create([	'id' => '311118', 	'form_field' => '310118', 	'attribute' => 'image01', 													])
+            ->create([	'id' => '311119', 	'form_field' => '310119', 	'attribute' => 'image02', 													])
+            ->create([	'id' => '311120', 	'form_field' => '310120', 	'attribute' => 'image03', 													])
+            ->create([	'id' => '311121', 	'form_field' => '310121', 	'attribute' => 'image04', 													])
+            ->create([	'id' => '311122', 	'form_field' => '310122', 	'attribute' => 'image05', 													])
+            ->create([	'id' => '311123', 	'form_field' => '310123', 	'attribute' => 'default', 													])
+            ->create([	'id' => '311124', 	'form_field' => '310124', 	'attribute' => 'fncode', 													])
+            ->create([	'id' => '311125', 	'form_field' => '310125', 	'attribute' => 'user', 													])
+            ->create([	'id' => '311126', 	'form_field' => '310126', 	'attribute' => 'store', 													])
+            ->create([	'id' => '311127', 	'form_field' => '310127', 	'attribute' => 'start_num', 													])
+            ->create([	'id' => '311128', 	'form_field' => '310128', 	'attribute' => 'end_num', 													])
+            ->create([	'id' => '311129', 	'form_field' => '310129', 	'attribute' => 'start_num', 													])
+            ->create([	'id' => '311130', 	'form_field' => '310130', 	'attribute' => 'end_num', 													])
+            ->create([	'id' => '311131', 	'form_field' => '310131', 	'attribute' => 'current', 													])
+            ->create([	'id' => '311132', 	'form_field' => '310132', 	'attribute' => 'progress', 													])
+            ->create([	'id' => '311133', 	'form_field' => '310133', 	'attribute' => 'status', 													])
         ;
         \DB::statement('set foreign_key_checks = ' . $_);
     }
