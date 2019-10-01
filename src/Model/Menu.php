@@ -3,19 +3,9 @@
 namespace Milestone\SS\Model;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Arr;
 
 class Menu extends Model
 {
-    protected static function boot(){
-        parent::boot();
-        static::saved(function($menu){
-            if(!$menu->icon) $menu->icon = Arr::get(self::$default_icons,$menu->fncode);
-            if(!$menu->home_display) $menu->home_display = $menu->name;
-            if(!$menu->drawer_display) $menu->drawer_display = $menu->name;
-            $menu->save();
-        });
-    }
     protected $table = 'menu';
     static public $default_icons = [
         'BR1' => 'attach_money',

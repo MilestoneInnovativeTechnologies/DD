@@ -41,7 +41,11 @@ class functionR implements Table
 
     public function recordImported($record,$id){
         ['CODE' => $fncode, 'DISPLAYNAME' => $name, 'STATUS' => $status] = $record;
-        Menu::updateOrCreate(compact('id'),compact('fncode','name','status'));
+        $menu = Menu::updateOrCreate(compact('fncode'),compact('name','status'));
+        if(!$menu->icon) $menu->icon = Arr::get(Menu::$default_icons,$fncode);
+        if(!$menu->home_display) $menu->home_display = $menu->name;
+        if(!$menu->drawer_display) $menu->drawer_display = $menu->name;
+        $menu->save();
     }
 
     public function getExportMappings()
