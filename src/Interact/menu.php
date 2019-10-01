@@ -33,7 +33,7 @@ class menu implements Table
 
     public function getExportAttributes()
     {
-        return ['fncode','category','category_display','order','icon','name_home','name_drawer','status'];
+        return ['fncode','category','category_display','order','icon','home_display','drawer_display','status'];
     }
 
     public function getExportMappings()
