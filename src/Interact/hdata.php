@@ -17,14 +17,16 @@
         private $fn_out = 'MT2';
         private $cr = 'CR';
         private $br = 'BR';
-        private $in_cache = [];
-        private $users_cache = [];
 
         private $cache = [
-            'store' => [],
-            'users' => [],
+            'store' => null,
+            'users' => null,
+            'rcpts' => [],
+            'stout' => [],
+            'stkin' => [],
             'areas' => [],
             'stfrs' => [],
+            'dstre' => null,
         ];
 
         public function getModel()
@@ -32,9 +34,8 @@
             return Transaction::class;
         }
 
-        public function getImportAttributes()
-        {
-            return ['_ref','user','fycode','fncode','docno','date','customer','payment_type','status'];
+        public function getImportAttributes(){
+            return ['_ref','docno','date','fycode','fncode','store','user','customer','payment_type','status'];
         }
 
         public function getImportMappings()
@@ -45,86 +46,86 @@
                 'date' => 'DOCDATE',
                 'fycode' => 'FYCODE',
                 'fncode' => 'FNCODE',
-                'user' => 'getUserID',
+                'store' => 'getStoreID',
+                'user' => 'getExecutiveID',
                 'customer' => 'getCustomerID',
                 'payment_type' => 'PAYMENTMODE',
                 'status' => 'getStatus'
             ];
         }
 
-        public function getReference($data){
-            return implode('',['U',$this->getUserID($data),'T',intval(microtime(true)*10000)]);
-        }
         public function preImport(){
-            $this->users_cache = User::pluck('id','reference')->toArray();
+            $this->cache['store'] = Store::pluck('id','code')->toArray();
+            $this->cache['users'] = User::whereNotNull('reference')->pluck('id','reference')->toArray();
+            $this->cache['dstre'] = Store::first()->id;
         }
+
+        public function getExecutiveID($data){ return Arr::get($this->cache['users'],$data['ANALYSISCATCODE'].$data['ANALYSISCODE'],Arr::get($this->cache['users'],$data['CREATED_USER'])); }
+        public function getReference($data){ return implode('',['U',$this->getExecutiveID($data),'T',intval(microtime(true)*10000)]); }
+        public function getStoreID($data){ return ($data['STRSRC']) ? Arr::get($this->cache['store'],$data['STRSRC']) : $this->cache['dstre']; }
+        public function getCustomerID($data){ return Arr::get($this->cache['users'],$data['ACCCODE']); }
+        public function getStatus($data){ return $data['CANCEL_USER'] ? 'Inactive' : 'Active'; }
+
+
         public function isValidImportRecord($record){
             $fncode = $record['FNCODE'];
-            if(in_array(substr($fncode,0,2),[$this->cr,$this->br])) $this->addReceipt($record);
+            if(in_array(substr($fncode,0,2),[$this->cr,$this->br])) $this->storeReceipt($record);
             return (in_array(substr($fncode,0,2),['SL','SR']) || in_array($fncode,[$this->fn_out,$this->fn_in]));
         }
-        public function getUserID($data){
-            if($data['ANALYSISCATCODE'] && $data['ANALYSISCODE']) return Arr::get($this->users_cache,implode('',[$data['ANALYSISCATCODE'],$data['ANALYSISCODE']]));
-            if($data['CREATED_USER'] && array_key_exists($data['CREATED_USER'],$this->users_cache)) return $this->users_cache[$data['CREATED_USER']];
-            return null;
-        }
 
-        public function getCustomerID($data){
-            $user = User::where('reference',$data['ACCCODE'])->first();
-            return $user ? $user->id : null;
-        }
-
-        public function getStatus($data){
-            return $data['CANCEL_USER'] ? 'Inactive' : 'Active';
-        }
-
-        public function getPrimaryIdFromImportRecord($data)
-        {
-            return $this->getTransactionID($data['DOCNO'],$data['FNCODE'],$data['FYCODE']);
+        private function storeReceipt($record){
+            list('DOCNO' => $docno,'FYCODE' => $fycode, 'FNCODE' => $fncode, 'DOCDATE' => $date, 'AMT' => $amount) = $record;
+            $user = $this->getExecutiveID($record); $mode = substr($fncode,0,2) == 'CR' ? 'Cash' : 'Cheque';
+            $status = $this->getStatus($record); $_ref = $this->getReference($record);
+            $primary = compact('docno','fycode','fncode'); $data = compact('user','mode','date','amount','status','_ref');
+            $this->cache['rcpts'][] = compact('primary','data');
         }
 
         public function recordImported($record,$id){
             $fncode = $record['FNCODE'];
-            if($fncode == $this->fn_out){
-                $stock_transfer = new StockTransfer;
-                $stock_transfer->create(['out' => $id]);
-            } elseif($fncode == $this->fn_in){
-                $docno = $record['REFNO']; $fycode = $record['FYCODE'];
-                $this->in_cache[$fycode][$docno] = $id;
-            }
-        }
-
-        private function getTransactionID($docno,$fncode,$fycode){
-            $transaction = Transaction::where(compact('docno','fncode','fycode'))->first();
-            return $transaction ? $transaction->id : null;
+            if($fncode == $this->fn_out) $this->cache['stout'][] = $id;
+            elseif($fncode == $this->fn_in) $this->cache['stkin'][$record['FYCODE']][$record['REFNO']] = $id;
         }
 
         public function postImport(){
-            $cache = $this->in_cache;
-            if(!empty($cache)){
-                $fncode = $this->fn_out;
-                foreach($cache as $fycode => $doc_in){
-                    if(!empty($doc_in)){
-                        $doc_out = Transaction::where(compact('fncode','fycode'))->whereIn('docno',array_keys($doc_in))->pluck('id','docno')->toArray();
-                        StockTransfer::whereIn('out',array_values($doc_out))->get()->each(function($stock_transfer)use($doc_out,$doc_in){
-                            $docno = array_search($stock_transfer->out,$doc_out);
-                            if($docno !== false) {
-                                $stock_transfer->in = $doc_in[$docno];
-                                $stock_transfer->save();
-                            }
-                        });
-                    }
-                }
-            }
-            return;
+            $this->AddReceipts($this->cache['rcpts']);
+            $this->AddStockIn($this->cache['stkin']);
+            $this->AddStockOut($this->cache['stout']);
         }
 
-        private function addReceipt($record){
-            list('DOCNO' => $docno,'FYCODE' => $fycode, 'FNCODE' => $fncode, 'DOCDATE' => $date, 'AMT' => $amount) = $record;
-            $user = $this->getUserID($record); $mode = substr($fncode,0,2) == 'CR' ? 'Cash' : 'Cheque';
-            $status = $this->getStatus($record); $_ref = $this->getReference($record);
-            $data_pri = compact('docno','fycode','fncode'); $data = compact('user','mode','date','amount','status','_ref');
-            Receipt::updateOrCreate($data_pri,$data);
+
+        public function AddReceipts($receipts){
+            if(empty($receipts) || count($receipts) === 0) return;
+            foreach ($receipts as $receipt){
+                Receipt::updateOrCreate($receipt['primary'],$receipt['data']);
+            }
+        }
+        public function AddStockIn($StkIns){
+            if(empty($StkIns) || count($StkIns) === 0) return; $fncode = $this->fn_out;
+            foreach($StkIns as $fycode => $doc_in){
+                if(!empty($doc_in)){
+                    $doc_out = Transaction::where(compact('fncode','fycode'))->whereIn('docno',array_keys($doc_in))->pluck('id','docno')->toArray();
+                    $out_doc = array_flip($doc_out);
+                    StockTransfer::whereNull('in')->whereIn('out',array_values($doc_out))->get()->each(function($stock_transfer) use($doc_in,$out_doc) {
+                        $inID = Arr::get($doc_in,Arr::get($out_doc,$stock_transfer->out));
+                        if($inID) { $stock_transfer->in = $inID; $stock_transfer->save(); }
+                    });
+                }
+            }
+        }
+        public function AddStockOut($StkOuts){
+            if(empty($StkOuts) || count($StkOuts) === 0) return; $created_at = $updated_at = now()->toDateTimeString(); $insData = [];
+            foreach ($StkOuts as $out) $insData[] = compact('out','created_at','updated_at');
+            StockTransfer::insert($insData);
+        }
+
+        public function getPrimaryIdFromImportRecord($data){ return $this->getTransactionID($data['DOCNO'],$data['FNCODE'],$data['FYCODE']); }
+
+        private function getTransactionID($docno,$fncode,$fycode){ return Arr::get(Transaction::where(compact('docno','fncode','fycode'))->first(),'id'); }
+
+        public function getExportAttributes()
+        {
+            return ['COCODE','BRCODE','FYCODE','FNCODE','DOCNO','DOCDATE','CO','BR','ACCCODE','PAYMENTMODE','ANALYSISCATCODE','ANALYSISCODE','AREA','STRSRCCAT','STRSRC','STRDSTCAT','STRDST','REFNO','REFDATE','SIGN','CURRENCY','DOCCURRENCY'];
         }
 
         public function getExportMappings()
@@ -155,32 +156,22 @@
             ];
         }
 
-        public function getExportAttributes()
-        {
-            return ['COCODE','BRCODE','FYCODE','FNCODE','DOCNO','DOCDATE','CO','BR','ACCCODE','PAYMENTMODE','ANALYSISCATCODE','ANALYSISCODE','AREA','STRSRCCAT','STRSRC','STRDSTCAT','STRDST','REFNO','REFDATE','SIGN','CURRENCY','DOCCURRENCY'];
-        }
-
-        public function preExportGet($query){ return $query->with(['Details','Products']); }
-        public function preExportUpdate($query){ return $query->with(['Details','Products']); }
-
-        public function cacheStore(){ $this->cache['store'] = Store::all()->mapWithKeys(function($item){ return [$item->id => $item]; })->toArray(); }
-        public function cacheUsers(){ $this->cache['users'] = User::all()->keyBy(function($item){ return $item->id; })->toArray(); }
+        public function cacheStore(){ $this->cache['store'] = Store::all()->mapWithKeys(function($item){ return [$item->id => $item->toArray()]; })->toArray(); }
+        public function cacheUsers(){ $this->cache['users'] = User::whereNotNull('reference')->pluck('reference','id')->toArray(); }
         public function cacheAreas(){ $this->cache['areas'] = AreaUser::with('Area')->get()->mapWithKeys(function($item){ return [$item->user => $item->Area->code]; })->toArray(); }
 
-        public function getStoreId($data){
-            return Arr::get($data,'products.0.store',Arr::get(Store::first(),'id'));
-        }
         public function getStoreProp($data,$prop){
-            if(empty($this->cache['store'])) $this->cacheStore();
-            $store_id = $this->getStoreId($data);
+            if($this->cache['store'] === null) $this->cacheStore();
+            $store_id = Arr::get($data,'store');
             return Arr::get($this->cache['store'],"{$store_id}.{$prop}");
         }
+
         public function getCOCode($data){ return $this->getStoreProp($data,'cocode'); }
         public function getBRCode($data){ return $this->getStoreProp($data,'brcode'); }
         public function getACCCode($data){
             $customer_id = Arr::get($data,'customer'); if(!$customer_id) return null;
-            if(empty($this->cache['users'])) $this->cacheUsers();
-            return Arr::get($this->cache['users'],"{$customer_id}.reference");
+            if($this->cache['users'] === null) $this->cacheUsers();
+            return Arr::get($this->cache['users'],"{$customer_id}");
         }
         public function getAnalysisCatCode($data){
             $fncode = $data['fncode'];
@@ -189,13 +180,13 @@
         public function getAnalysisCode($data){
             if(!$this->getAnalysisCatCode($data)) return null;
             $user_id = Arr::get($data,'user'); if(!$user_id) return null;
-            if(empty($this->cache['users'])) $this->cacheUsers();
-            $reference = Arr::get($this->cache['users'],"{$user_id}.reference");
+            if($this->cache['users']) $this->cacheUsers();
+            $reference = Arr::get($this->cache['users'],"{$user_id}");
             return str_ireplace($this->getAnalysisCatCode($data),'',$reference);
         }
         public function getAreaCode($data){
             $customer_id = Arr::get($data,'customer'); if(!$customer_id) return null;
-            if(empty($this->cache['areas'])) $this->cacheAreas();
+            if($this->cache['areas'] === null) $this->cacheAreas();
             return Arr::get($this->cache['areas'],$customer_id);
         }
         public function getSrcStoreCat($data){
@@ -212,10 +203,9 @@
             return $this->getStoreProp($data,'code');
         }
         public function getRefNo($data){
-            $fncode = $data['fncode'];
-            if(in_array(substr($fncode,0,2),['SL'])) return $data['docno'];
+            $fncode = $data['fncode']; if(in_array(substr($fncode,0,2),['SL'])) return $data['docno'];
             if($fncode === $this->fn_in){
-                if(!array_key_exists($data['id'],$this->cache['stfrs'])) $this->cache['stfrs'][$data['id']] = StockTransfer::where('in',$data['id'])->with('OUT')->first();
+                if(!array_key_exists($data['id'],$this->cache['stfrs'])) $this->cache['stfrs'][$data['id']] = StockTransfer::with('OUT')->where('in',$data['id'])->first();
                 return Arr::get($this->cache['stfrs'][$data['id']],"OUT.docno",null);
             }
             return null;
@@ -223,7 +213,7 @@
         public function getRefDate($data){
             $fncode = $data['fncode'];
             if($fncode === $this->fn_in){
-                if(!array_key_exists($data['id'],$this->cache['stfrs'])) $this->cache['stfrs'][$data['id']] = StockTransfer::where('in',$data['id'])->with('OUT')->first();
+                if(!array_key_exists($data['id'],$this->cache['stfrs'])) $this->cache['stfrs'][$data['id']] = StockTransfer::with('OUT')->where('in',$data['id'])->first();
                 return Arr::get($this->cache['stfrs'][$data['id']],"OUT.date",null);
             }
             return $data['date'];
@@ -232,8 +222,6 @@
             $fncode = $data['fncode'];
             return ($fncode === $this->fn_in || in_array(substr($fncode,0,2),['SR'])) ? -1 : 1;
         }
-        public function getCurrency($data){
-            return $this->getStoreProp($data,'currency');
-        }
+        public function getCurrency($data){ return $this->getStoreProp($data,'currency'); }
 
     }

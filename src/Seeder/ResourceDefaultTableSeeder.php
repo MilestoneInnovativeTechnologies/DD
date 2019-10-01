@@ -16,11 +16,9 @@ class ResourceDefaultTableSeeder extends Seeder
         $_ = \DB::statement('SELECT @@GLOBAL.foreign_key_checks');
         \DB::statement('set foreign_key_checks = 0');
         \Milestone\Appframe\Model\ResourceDefault::query()
-            ->create([	'id' => '337101', 	'resource' => '305117', 	'list' => '332102', 	'create' => '332101', 		'update' => '332105', 										])
-            ->create([	'id' => '337102', 	'resource' => '305118', 	'list' => '332104', 	'create' => '332103', 		'update' => '332106', 										])
-            ->create([	'id' => '337103', 	'resource' => '305103', 	'list' => '332108', 	'create' => '332107', 	'read' => '332109', 	'update' => '332110', 										])
-            ->create([	'id' => '337104', 	'resource' => '305115', 	'list' => '332118', 	'create' => '332114', 	'read' => '332120', 	'update' => '332119', 										])
-            ->create([	'id' => '337105', 	'resource' => '305116', 	'list' => '332122', 	'create' => '332121', 	'read' => '332123', 	'update' => '332124', 										])
+            ->create([	'id' => '337101', 	'resource' => '305105', 	'list' => '332102', 	'create' => '332101', 	'read' => '332103', 	'update' => '332104', 										])
+            ->create([	'id' => '337102', 	'resource' => '305117', 	'list' => '332112', 	'create' => '332108', 	'read' => '332114', 	'update' => '332113', 										])
+            ->create([	'id' => '337103', 	'resource' => '305118', 	'list' => '332116', 	'create' => '332115', 	'read' => '332117', 	'update' => '332118', 										])
         ;
         \DB::statement('set foreign_key_checks = ' . $_);
     }

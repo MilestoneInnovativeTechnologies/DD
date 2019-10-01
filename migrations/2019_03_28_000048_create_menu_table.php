@@ -18,8 +18,9 @@ class CreateMenuTable extends Migration
             $table->char('fncode', '5')->nullable()->index();
             $table->string('name', '64')->nullable()->index();
             $table->string('icon', '128')->nullable();
+            $table->string('home_display', '128')->nullable();
             $table->string('drawer_display', '128')->nullable();
-            $table->tinyint('order')->nullable()->default('1');
+            $table->tinyInteger('order')->nullable()->default('1');
             $table->enum('status', ['Active','Inactive'])->nullable()->default('Active');
             $table->audit();
         });

@@ -19,7 +19,7 @@
 
         public function getImportAttributes()
         {
-            return ['code','tax','taxselection','taxunique','ratewithtax','discount01','discount02','discount02base','discount03','discountmode','discount','list'];
+            return ['code','pricelist','tax','taxselection','taxunique','ratewithtax','discount01','discount02','discount02base','discount03','discountmode','discount','list'];
         }
 
         public function getImportMappings()

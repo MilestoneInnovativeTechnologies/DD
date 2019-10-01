@@ -18,14 +18,14 @@
 
         public function getImportAttributes()
         {
-            return ['transaction','spt','amount','taxrule','tax','discount','total'];
+            return ['transaction','store','product','direction','quantity','rate','taxrule','tax','discount01','discount02','soi'];
         }
 
         public function getImportMappings()
         {
             return [
                 'transaction' => 'getTransactionId',
-                'spt' => 'getSPTId'
+                'soi' => 'getSOIId',
             ];
         }
 
@@ -43,7 +43,7 @@
 
         public function getExportAttributes()
         {
-            return ['transaction','spt','amount','taxrule','tax','discount','total'];
+            return ['transaction','store','product','direction','quantity','rate','taxrule','tax','discount01','discount02','soi'];
         }
 
         public function getTransactionReference($record){

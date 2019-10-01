@@ -16,7 +16,7 @@
 
         public function getImportAttributes()
         {
-            return ['name','email','password','reference'];
+            return ['name','email','password','login','login_password','reference'];
         }
 
         public function getImportMappings()
@@ -26,6 +26,8 @@
                 'name' => 'getName',
                 'email' => 'getEmail',
                 'password' => 'getPassword',
+                'login' => 'CODE',
+                'login_password' => 'PASSWORD',
             ];
         }
 
