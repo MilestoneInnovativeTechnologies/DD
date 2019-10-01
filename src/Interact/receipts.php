@@ -16,13 +16,15 @@
 
         public function getImportAttributes()
         {
-            return ['docno','fycode','fncode','mode','customer','date','user','amount','bank','cheque','cheque_date','_ref','status'];
+            return ['docno','store','fycode','fncode','mode','customer','date','user','amount','bank','cheque','cheque_date','source','_ref','status'];
         }
 
         public function getImportMappings()
         {
-            //
+            return ['source' => 'getCreateSource'];
         }
+
+        public function getCreateSource($data){ return 'SS'; }
 
         public function getPrimaryIdFromImportRecord($data)
         {
@@ -36,7 +38,7 @@
 
         public function getExportAttributes()
         {
-            return ['docno','fycode','fncode','mode','customer','date','user','amount','bank','cheque','cheque_date','_ref','status'];
+            return ['docno','store','fycode','fncode','mode','customer','date','user','amount','bank','cheque','cheque_date','_ref','status'];
         }
 
         public function preExportGet($query){

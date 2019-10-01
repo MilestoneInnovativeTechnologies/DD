@@ -27,6 +27,7 @@ class CreateReceiptsTable extends Migration
             $table->string('bank', '60')->nullable();
             $table->string('cheque', '60')->nullable();
             $table->datetime('cheque_date')->nullable();
+            $table->enum('source', ['ePlus','SS'])->nullable()->default('ePlus');
             $table->char('_ref', '30')->nullable()->index();
             $table->enum('status', ['Active','Inactive'])->nullable()->default('Active');
             $table->audit();
