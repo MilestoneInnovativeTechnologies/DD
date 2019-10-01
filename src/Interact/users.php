@@ -35,7 +35,7 @@
 
         public function getExportAttributes()
         {
-            return ['id','name','code','phone','address','outstanding','overdue'];
+            return ['id','name','code','email','login','phone','address','outstanding','overdue'];
         }
 
         public function getPassword(){ return '123456'; }
