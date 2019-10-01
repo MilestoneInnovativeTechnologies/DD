@@ -16,6 +16,7 @@ class CreateReceiptsTable extends Migration
         Schema::create('receipts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->char('docno', '20')->nullable()->index();
+            $table->foreignNullable('store', 'stores');
             $table->char('fycode', '5')->nullable()->index();
             $table->char('fncode', '5')->nullable()->index();
             $table->foreignNullable('user', 'users');
