@@ -57,8 +57,12 @@
             ];
         }
 
+        public function preExportGet($query){ return $query->where('source','SS'); }
+        public function preExportUpdate($query){ return $this->preExportGet($query); }
+
         public function isValidExportGet($data){ return ($data->customer && $data->user); }
-        public function isValidExportUpdate($data){ return ($data->customer && $data->user); }
+        public function isValidExportUpdate($data){ return $this->isValidExportGet($data); }
+
         public function getUserProp($data,$prop){
             $user_id = $data['user'];
             if(!array_key_exists($user_id,$this->cache['user'])){ $this->cache['user'][$user_id] = UserStoreArea::where('user',$user_id)->with(['Store'])->first(); }
