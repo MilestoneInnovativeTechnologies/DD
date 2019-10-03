@@ -8,11 +8,11 @@ class Menu extends Model
 {
     protected $table = 'menu';
     static public $default_icons = [
-        'BR1' => 'attach_money',
-        'BR2' => 'account_balance',
-        'CR1' => 'money',
-        'MT1' => 'transit_enterexit',
-        'MT2' => 'transfer_within_a_station',
+        'BR1' => 'account_balance',
+        'BR2' => 'credit_card',
+        'CR1' => 'attach_money',
+        'MT1' => 'format_textdirection_r_to_l',
+        'MT2' => 'format_textdirection_l_to_r',
         'MT3' => 'trending_down',
         'MT4' => 'trending_up',
         'SL1' => 'shopping_cart',
