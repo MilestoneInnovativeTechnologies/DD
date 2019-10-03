@@ -5,12 +5,15 @@
     use Illuminate\Support\Arr;
     use Illuminate\Support\Facades\Auth;
     use Milestone\Interact\Table;
-    use Milestone\SS\Model\StoreProductTransaction;
     use Milestone\SS\Model\Transaction;
     use Milestone\SS\Model\TransactionDetail;
 
     class transaction_details implements Table
     {
+        private $cache = [
+            'trans' => []
+        ];
+
         public function getModel()
         {
             return TransactionDetail::class;
@@ -36,8 +39,7 @@
         public function getExportMappings()
         {
             return [
-                'transaction' => '_ref_trans',
-                'spt' => '_ref_spt'
+                'transaction' => 'getTransactionReference',
             ];
         }
 
@@ -47,10 +49,7 @@
         }
 
         public function getTransactionReference($record){
-            return Arr::get(Transaction::find($record['transaction']),'_ref');
-        }
-        public function getSPTReference($record){
-            return Arr::get(StoreProductTransaction::find($record['spt']),'_ref');
+            return Arr::get($this->cache['trans'],$record['transaction']['id']);
         }
 
         public function getTransactionId($record){
@@ -62,15 +61,17 @@
 
 
         public function preExportGet($query){
-            if (request()->_user) Auth::loginUsingId(request()->_user); else return $query;
-            return $query->whereHas('Transaction',function($Q){
-                $Q->assignedCustomerTransactions()->orWhere('fncode','like','MT%');
-            });
+            if (request()->_user) {
+                Auth::loginUsingId(request()->_user);
+                $query = $query->whereHas('Transaction',function($Q){
+                    $Q->assignedCustomerTransactions()->orWhere('fncode','like','MT%');
+                });
+            }
+            $this->cacheTransReferences($query);
+            return $query;
         }
-        public function preExportUpdate($query){
-            if (request()->_user) Auth::loginUsingId(request()->_user); else return $query;
-            return $query->whereHas('Transaction',function($Q){
-                $Q->assignedCustomerTransactions()->orWhere('fncode','like','MT%');
-            });
+        public function preExportUpdate($query){ return $this->preExportGet($query); }
+        private function cacheTransReferences($query){
+            $this->cache['trans'] = $query->with(['Transaction'])->get()->mapWithKeys(function($trans){ return [$trans->Transaction->id => $trans->Transaction->_ref]; })->toArray();
         }
     }
