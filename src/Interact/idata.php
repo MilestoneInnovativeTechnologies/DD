@@ -51,7 +51,7 @@
         public function getImportMappings(){
             return [
                 'transaction' => 'getTransactionID',
-                'store' => 'getStoreCode',
+                'store' => 'getStoreID',
                 'product' => 'getProductCode',
                 'direction' => 'getDirection',
                 'quantity' => 'UNITQTY',
@@ -74,7 +74,7 @@
             return Arr::get($transaction,$prop);
         }
         public function getTransactionID($data){ return $this->getTransactionProp($data,'id'); }
-        public function getStoreCode($data){ return Arr::get($this->cache['store'],$data['STRCODE']); }
+        public function getStoreID($data){ return Arr::get($this->cache['store'],$data['STRCODE']); }
         public function getProductCode($data){ return Arr::get($this->cache['product'],$data['ITEMCODE']); }
         public function getDirection($data){ return $data['SIGN'] == "1" ? "In" : "Out"; }
         public function getSOI($data){

@@ -8,6 +8,7 @@
     use Milestone\SS\Model\Product;
     use Milestone\SS\Model\SalesOrder;
     use Milestone\SS\Model\SalesOrderItem;
+    use Milestone\SS\Model\Store;
     use Milestone\SS\Model\UserStoreArea;
 
     class piidata implements Table
@@ -18,6 +19,9 @@
         private $so_ref = [];
         private $header_key_implode_delimiter = '|';
         private $cache_key = 'piidata';
+        private $cache = [
+            'store' => [],
+        ];
 
         public function getModel()
         {
@@ -26,7 +30,7 @@
 
         public function getImportAttributes()
         {
-            return ['so','product','rate','quantity','taxrule','tax','discount01','discount02','_ref'];
+            return ['so','product','store','fycode','fncode','rate','quantity','taxrule','tax','discount01','discount02','_ref'];
         }
 
         public function getImportMappings()
@@ -34,6 +38,9 @@
             return [
                 'so' => 'getSO',
                 'product' => 'getProductID',
+                'store' => 'getStoreID',
+                'fycode' => 'FYCODE',
+                'fncode' => 'FNCODE',
                 'rate' => 'UNITRATE',
                 'quantity' => 'UNITQTY',
                 'taxrule' => 'TAXRULE',
@@ -56,9 +63,8 @@
             return $this->so_ref[implode('-',[$fycode,$fncode,$docno])];
         }
 
-        public function getProductID($record){
-            return Arr::get($this->product_cache,$record['ITEMCODE']);
-        }
+        public function getProductID($record){ return Arr::get($this->product_cache,$record['ITEMCODE']); }
+        public function getStoreID($data){ return Arr::get($this->cache['store'],$data['STRCODE']); }
 
         public function getPrimaryIdFromImportRecord($data)
         {
@@ -69,6 +75,7 @@
 
         public function preImport($activity){
             $this->product_cache = Product::pluck('id','code')->toArray();
+            $this->cache['store'] = Store::pluck('id','code')->toArray();
             if($activity['mode'] === 'create') {
                 $cachedRecords = Cache::pull($this->cache_key,[]);
                 if(!empty($cachedRecords)) $activity['data'] = array_merge($cachedRecords,$activity['data']);

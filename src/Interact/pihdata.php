@@ -6,12 +6,17 @@
     use Milestone\Appframe\Model\User;
     use Milestone\Interact\Table;
     use Milestone\SS\Model\SalesOrder;
+    use Milestone\SS\Model\Store;
     use Milestone\SS\Model\UserStoreArea;
 
     class pihdata implements Table
     {
         private $user_cache = null;
         private $customer_cache = [];
+        private $cache = [
+            'store' => [],
+            'dstre' => null,
+        ];
 
         public function getModel()
         {
@@ -20,7 +25,7 @@
 
         public function getImportAttributes()
         {
-            return ['docno','date','user','customer','fycode','fncode','payment_type','status','_ref'];
+            return ['docno','date','user','customer','store','fycode','fncode','payment_type','status','_ref'];
         }
 
         public function getImportMappings()
@@ -28,6 +33,7 @@
             return [
                 'docno' => 'DOCNO',
                 'date' => 'DOCDATE',
+                'store' => 'DOCDATE',
                 'fycode' => 'FYCODE',
                 'fncode' => 'FNCODE',
                 'payment_type' => 'PAYMENTMODE',
@@ -40,6 +46,8 @@
 
         public function preImport(){
             $this->user_cache = User::pluck('id','reference')->toArray();
+            $this->cache['store'] = Store::pluck('id','code')->toArray();
+            $this->cache['dstre'] = Store::first()->id;
         }
         public function getUserID($data){
             if($data['ANALYSISCATCODE'] && $data['ANALYSISCODE']) return Arr::get($this->user_cache,implode('',[$data['ANALYSISCATCODE'],$data['ANALYSISCODE']]));
@@ -49,6 +57,7 @@
         public function getCustomerID($record){
             return Arr::get($this->user_cache,$record['ACCCODE']);
         }
+        public function getStoreID($data){ return ($data['STRSRC']) ? Arr::get($this->cache['store'],$data['STRSRC']) : $this->cache['dstre']; }
         public function getStatus($record){
             return $record['CANCEL'] === 'No' ? 'Active' : 'Inactive';
         }
