@@ -26,10 +26,9 @@ Route::group([
     'prefix' => 'api'
 ],function(){
     Route::post('login',function(Request $request){
-        if(\Illuminate\Support\Facades\Auth::attempt($request->only(['email', 'password']))){
-            return \Milestone\SS\Model\User::where($request->only(['email']))->first();
-        }
-        return [];
+        $login = $request->get('login'); $login_password = strtoupper(sha1($request->get('password')));
+        $user = \Milestone\SS\Model\User::where(compact('login','login_password'))->first();
+        return ($user) ? $user->toArray() : [];
     });
     Route::get('setup',function(){ return new \Milestone\SS\Resources\SetupResource(\Milestone\SS\Model\Setup::find(1)); });
     Route::get('settings',function(){ return \Milestone\SS\Resources\SettingResource::collection(\Milestone\SS\Model\Setting::active()->get()); });
