@@ -17,6 +17,7 @@ class CreateSetupTable extends Migration
             $table->bigIncrements('id');
             $table->char('CODE', '15')->nullable();
             $table->enum('DBTYPE', ['Normal','DistributedServer','DistributedClient'])->nullable()->default('Normal');
+            $table->enum('PASSWORDENCODING', ['Utf8','Utf16'])->default('Utf16');
             $table->decimal('QUANTITY_DECIMAL', 10,0)->nullable()->default('0');
             $table->decimal('RATE_DECIMAL', 10,0)->nullable()->default('2');
             $table->decimal('AMOUNT_DECIMAL', 10,0)->nullable()->default('2');
