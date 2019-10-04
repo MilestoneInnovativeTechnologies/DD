@@ -2,37 +2,38 @@
 
     namespace Milestone\SS\Interact;
 
+    use Illuminate\Support\Arr;
     use Milestone\SS\Model\Store;
-    use Milestone\SS\Model\WBin;
     use Milestone\Interact\Table;
 
     class branchstore implements Table
     {
+        private $cache = [
+            'store' => [],
+        ];
+
         public function getModel()
         {
-            return WBin::class;
+            return Store::class;
         }
 
         public function getImportAttributes()
         {
-            return ['bin'];
+            return ['cocode','brcode'];
         }
 
         public function getImportMappings()
         {
-            return ['bin' => 'doBin'];
+            return ['cocode' => 'COCODE','brcode' => 'BRCODE',];
         }
 
         public function getPrimaryIdFromImportRecord($data)
         {
-            return 1;
+            return Arr::get($this->cache['store'],$data['CATCODE'] . '-' . $data['CODE'],null);
         }
 
-        public function doBin($data){
-            $catcode = $data['STRCATCODE']; $code = $data['STRCODE'];
-            $store = Store::where(compact('catcode','code'))->first();
-            if($store) { $store->cocode = $data['COCODE']; $store->brcode = $data['BRCODE']; $store->save(); }
-            return 1;
+        public function preImport(){
+            $this->cache['store'] = Store::all()->mapWithKeys(function($store){ return [$store->catcode . '-' . $store->code => $store->id]; })->toArray();
         }
 
         public function getExportMappings()

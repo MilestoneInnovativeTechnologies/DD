@@ -2,12 +2,16 @@
 
     namespace Milestone\SS\Interact;
 
-    use Milestone\SS\Model\Store;
+    use Illuminate\Support\Facades\DB;
     use Milestone\SS\Model\WBin;
     use Milestone\Interact\Table;
 
     class companymaster implements Table
     {
+        private $cache = [
+            'abr' => [],
+        ];
+
         public function getModel()
         {
             return WBin::class;
@@ -29,13 +33,16 @@
         }
 
         public function doBin($data){
-            $code = $data['CODE']; $abr = $data['ABR'];
-            Store::where('cocode',$code)->each(function($store)use($abr){
-                $store->co_abr = $abr; $store->save();
-            });
+            $this->cache['abr'][$data['CODE']] = $data['ABR'];
             return 1;
         }
 
+        public function postImport($content,$result){
+            $abr =$this->cache['abr'];
+            if(empty($abr)) return; $updated_at = now()->toDateTimeString();
+            foreach ($abr as $cocode => $co_abr)
+                DB::table('stores')->where(compact('cocode'))->update(compact('co_abr','updated_at'));
+        }
         public function getExportMappings()
         {
             // TODO: Implement getExportMappings() method.
