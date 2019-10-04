@@ -36,7 +36,7 @@
 
         public function getExportAttributes()
         {
-            return ['user','store','docno','date','customer','fycode','fncode','payment_type','_ref'];
+            return ['user','store','docno','date','customer','fycode','fncode','payment_type','_ref','status'];
         }
 
         public function preExportGet($query){

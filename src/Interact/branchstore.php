@@ -29,7 +29,7 @@
 
         public function getPrimaryIdFromImportRecord($data)
         {
-            return Arr::get($this->cache['store'],$data['CATCODE'] . '-' . $data['CODE'],null);
+            return Arr::get($this->cache['store'],$data['STRCATCODE'] . '-' . $data['STRCODE'],null);
         }
 
         public function preImport(){

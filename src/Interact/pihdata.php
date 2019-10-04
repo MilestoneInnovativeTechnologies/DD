@@ -33,7 +33,7 @@
             return [
                 'docno' => 'DOCNO',
                 'date' => 'DOCDATE',
-                'store' => 'DOCDATE',
+                'store' => 'getStoreID',
                 'fycode' => 'FYCODE',
                 'fncode' => 'FNCODE',
                 'payment_type' => 'PAYMENTMODE',
