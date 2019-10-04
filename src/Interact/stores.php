@@ -32,6 +32,6 @@
 
         public function getExportAttributes()
         {
-            return ['id','name','cocode','co_abr','brcode','br_abr','currency'];
+            return ['id','name','code','cocode','co_abr','brcode','br_abr','currency'];
         }
     }
