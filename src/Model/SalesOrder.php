@@ -10,6 +10,7 @@ class SalesOrder extends Model
 
     public function Items(){ return $this->hasMany(SalesOrderItem::class,'so'); }
     public function Customer(){ return $this->belongsTo(User::class,'customer'); }
+    public function Store(){ return $this->belongsTo(Store::class,'store'); }
 
     public function scopeAssignedAreaCustomer($Q){
         return $Q->whereHas('Customer',function ($Q){

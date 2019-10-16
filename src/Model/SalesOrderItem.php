@@ -10,4 +10,5 @@ class SalesOrderItem extends Model
 
     public function Product(){ return $this->belongsTo(Product::class,'product'); }
     public function SalesOrder(){ return $this->belongsTo(SalesOrder::class,'so'); }
+    public function Store(){ return $this->belongsTo(Store::class,'store'); }
 }
