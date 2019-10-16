@@ -25,6 +25,8 @@ class ResourceScopeTableSeeder extends Seeder
             ->create([	'id' => '307107', 	'resource' => '305121', 	'name' => 'StockTransferPending', 	'description' => 'The transactions which are all pending stock transfer', 	'method' => 'sTPending', 											])
             ->create([	'id' => '307108', 	'resource' => '305124', 	'name' => 'PendingStockTransfer', 	'description' => 'Stock transfers which are pending', 	'method' => 'pending', 											])
             ->create([	'id' => '307109', 	'resource' => '305127', 	'name' => 'UncompletedReserves', 	'description' => 'Reserve entries which have progress not equal to Completed', 	'method' => 'unCompleted', 											])
+            ->create([	'id' => '307110', 	'resource' => '305101', 	'name' => 'LoginUsers', 	'description' => 'Users having login info', 	'method' => 'loginUsers', 											])
+            ->create([	'id' => '307111', 	'resource' => '305101', 	'name' => 'LoginExecutives', 	'description' => 'Sales Executives having logins', 	'method' => 'loginExecutives', 											])
         ;
         \DB::statement('set foreign_key_checks = ' . $_);
     }

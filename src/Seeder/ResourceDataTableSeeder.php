@@ -21,6 +21,7 @@ class ResourceDataTableSeeder extends Seeder
             ->create([	'id' => '327103', 	'resource' => '305118', 	'name' => 'UserStoreAreaView', 	'description' => 'View details of user store area', 	'title_field' => 'user.name', 											])
             ->create([	'id' => '327104', 	'resource' => '305110', 	'name' => 'ProductImageView', 	'description' => 'View images of a product', 	'title_field' => 'product.name', 											])
             ->create([	'id' => '327105', 	'resource' => '305127', 	'name' => 'ReserveView', 	'description' => 'View reserve details', 	'title_field' => 'code', 											])
+            ->create([	'id' => '327106', 	'resource' => '305104', 	'name' => 'MenuView', 	'description' => 'View menu details', 	'title_field' => 'name', 											])
         ;
         \DB::statement('set foreign_key_checks = ' . $_);
     }

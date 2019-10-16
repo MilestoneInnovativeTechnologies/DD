@@ -23,6 +23,7 @@ class ResourceDataViewSectionTableSeeder extends Seeder
             ->create([	'id' => '330105', 	'resource_data' => '327104', 		'title_field' => 'product.name', 		'colspan' => '12', 										])
             ->create([	'id' => '330106', 	'resource_data' => '327105', 				'colspan' => '9', 										])
             ->create([	'id' => '330107', 	'resource_data' => '327105', 	'title' => 'Progress', 			'colspan' => '3', 										])
+            ->create([	'id' => '330108', 	'resource_data' => '327106', 		'title_field' => 'fncode', 		'colspan' => '12', 										])
         ;
         \DB::statement('set foreign_key_checks = ' . $_);
     }

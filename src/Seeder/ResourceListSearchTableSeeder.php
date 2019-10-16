@@ -31,12 +31,18 @@ class ResourceListSearchTableSeeder extends Seeder
             ->create([	'id' => '326113', 	'resource_list' => '322107', 	'field' => 'name', 													])
             ->create([	'id' => '326114', 	'resource_list' => '322108', 	'field' => 'narration', 	'relation' => '308133', 												])
             ->create([	'id' => '326115', 	'resource_list' => '322109', 	'field' => 'code', 													])
-            ->create([	'id' => '326116', 	'resource_list' => '322110', 	'field' => 'code', 													])
+            ->create([	'id' => '326116', 	'resource_list' => '322110', 	'field' => 'fncode', 													])
             ->create([	'id' => '326117', 	'resource_list' => '322110', 	'field' => 'name', 	'relation' => '308134', 												])
             ->create([	'id' => '326118', 	'resource_list' => '322110', 	'field' => 'name', 	'relation' => '308135', 												])
-            ->create([	'id' => '326119', 	'resource_list' => '322111', 	'field' => 'code', 													])
+            ->create([	'id' => '326119', 	'resource_list' => '322111', 	'field' => 'fncode', 													])
             ->create([	'id' => '326120', 	'resource_list' => '322111', 	'field' => 'name', 	'relation' => '308134', 												])
             ->create([	'id' => '326121', 	'resource_list' => '322111', 	'field' => 'name', 	'relation' => '308135', 												])
+            ->create([	'id' => '326122', 	'resource_list' => '322112', 	'field' => 'name', 													])
+            ->create([	'id' => '326123', 	'resource_list' => '322112', 	'field' => 'login', 													])
+            ->create([	'id' => '326124', 	'resource_list' => '322112', 	'field' => 'reference', 													])
+            ->create([	'id' => '326125', 	'resource_list' => '322113', 	'field' => 'name', 													])
+            ->create([	'id' => '326126', 	'resource_list' => '322113', 	'field' => 'login', 													])
+            ->create([	'id' => '326127', 	'resource_list' => '322113', 	'field' => 'reference', 													])
         ;
         \DB::statement('set foreign_key_checks = ' . $_);
     }

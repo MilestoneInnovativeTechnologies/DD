@@ -40,6 +40,7 @@
                 ReceiptTableSeeder::class,
                 FnReserveTableSeeder::class,
                 WBinTableSeeder::class,
+                UserExecutiveTableSeeder::class,
             ]);
         }
     }

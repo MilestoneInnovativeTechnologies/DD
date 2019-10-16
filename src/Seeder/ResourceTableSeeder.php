@@ -19,7 +19,7 @@ class ResourceTableSeeder extends Seeder
             ->create([	'id' => '305101', 	'name' => 'User', 	'description' => 'Users of Smart Sale', 	'title' => 'Users', 	'namespace' => 'Milestone\SS\Model', 	'table' => 'users', 										])
             ->create([	'id' => '305102', 	'name' => 'Setup', 	'description' => 'ePlus setup details', 	'title' => 'Setup', 	'namespace' => 'Milestone\SS\Model', 	'table' => 'setup', 										])
             ->create([	'id' => '305103', 	'name' => 'MenuType', 	'description' => 'Menu group to display name mapper', 	'title' => 'Menu Group', 	'namespace' => 'Milestone\SS\Model', 	'table' => 'menu_types', 										])
-            ->create([	'id' => '305104', 	'name' => 'Menu', 	'description' => 'Menu details', 	'title' => 'Menu', 	'namespace' => 'Milestone\SS\Model', 	'table' => 'menu_types', 										])
+            ->create([	'id' => '305104', 	'name' => 'Menu', 	'description' => 'Menu details', 	'title' => 'Menu', 	'namespace' => 'Milestone\SS\Model', 	'table' => 'menu', 										])
             ->create([	'id' => '305105', 	'name' => 'Setting', 	'description' => 'Settings available in web and mob interface', 	'title' => 'Settings', 	'namespace' => 'Milestone\SS\Model', 	'table' => 'settings', 										])
             ->create([	'id' => '305106', 	'name' => 'Fiscalyearmaster', 	'description' => 'Financial Years', 	'title' => 'Fiscal Year', 	'namespace' => 'Milestone\SS\Model', 	'table' => 'fiscalyearmaster', 										])
             ->create([	'id' => '305107', 	'name' => 'ProductGroupMaster', 	'description' => 'Groups like Category, Brand etc', 	'title' => 'Product Group Masters', 	'namespace' => 'Milestone\SS\Model', 	'table' => 'product_group_master', 										])
@@ -43,6 +43,7 @@ class ResourceTableSeeder extends Seeder
             ->create([	'id' => '305125', 	'name' => 'WBin', 	'description' => 'Waste bin used while ePlus direct import', 	'title' => 'Waste Bin', 	'namespace' => 'Milestone\SS\Model', 	'table' => 'w_bin', 										])
             ->create([	'id' => '305126', 	'name' => 'Receipt', 	'description' => 'Receipts', 	'title' => 'Receipts', 	'namespace' => 'Milestone\SS\Model', 	'table' => 'receipts', 										])
             ->create([	'id' => '305127', 	'name' => 'FnReserve', 	'description' => 'Function Reserves', 	'title' => 'Function Reserves', 	'namespace' => 'Milestone\SS\Model', 	'table' => 'fn_reserves', 										])
+            ->create([	'id' => '305128', 	'name' => 'UserExecutive', 	'description' => 'User Executive Login Map', 	'title' => 'User Executive Map', 	'namespace' => 'Milestone\SS\Model', 	'table' => 'user_executive', 										])
         ;
         \DB::statement('set foreign_key_checks = ' . $_);
     }

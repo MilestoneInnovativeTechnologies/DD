@@ -42,6 +42,12 @@ class ResourceDataViewSectionItemTableSeeder extends Seeder
             ->create([	'id' => '331124', 	'section' => '330107', 	'label' => 'Current', 	'attribute' => 'current', 												])
             ->create([	'id' => '331125', 	'section' => '330107', 	'label' => 'Progress', 	'attribute' => 'progress', 												])
             ->create([	'id' => '331126', 	'section' => '330107', 	'label' => 'Status', 	'attribute' => 'status', 												])
+            ->create([	'id' => '331127', 	'section' => '330108', 	'label' => 'Name', 	'attribute' => 'name', 												])
+            ->create([	'id' => '331128', 	'section' => '330108', 	'label' => 'ICON', 	'attribute' => 'icon', 												])
+            ->create([	'id' => '331129', 	'section' => '330108', 	'label' => 'Home display text', 	'attribute' => 'home_display', 												])
+            ->create([	'id' => '331130', 	'section' => '330108', 	'label' => 'Drawer display text', 	'attribute' => 'drawer_display', 												])
+            ->create([	'id' => '331131', 	'section' => '330108', 	'label' => 'Display Order', 	'attribute' => 'order', 												])
+            ->create([	'id' => '331132', 	'section' => '330108', 	'label' => 'Status', 	'attribute' => 'status', 												])
         ;
         \DB::statement('set foreign_key_checks = ' . $_);
     }

@@ -22,7 +22,9 @@ class ResourceFormTableSeeder extends Seeder
             ->create([	'id' => '309104', 	'resource' => '305118', 	'name' => 'AddUserStoreAreaForm', 	'description' => 'Form to add user store area', 	'title' => 'User, Store and Area', 	'action_text' => 'Save', 										])
             ->create([	'id' => '309105', 	'resource' => '305110', 	'name' => 'AddProductImage', 	'description' => 'Form to add product images', 	'title' => 'Product Images', 	'action_text' => 'Save', 										])
             ->create([	'id' => '309106', 	'resource' => '305127', 	'name' => 'AddFNReserves', 	'description' => 'Form to add function reserves', 	'title' => 'Function Reserves', 	'action_text' => 'Save', 										])
-            ->create([	'id' => '309107', 	'resource' => '305127', 	'name' => 'UpdateReserves', 	'description' => 'Formt o update reserves', 	'title' => 'Function Reserves', 	'action_text' => 'Update', 										])
+            ->create([	'id' => '309107', 	'resource' => '305127', 	'name' => 'UpdateReserves', 	'description' => 'Form to update reserves', 	'title' => 'Function Reserves', 	'action_text' => 'Update', 										])
+            ->create([	'id' => '309108', 	'resource' => '305104', 	'name' => 'UpdateMenu', 	'description' => 'Form to update menu details', 	'title' => 'Menu', 	'action_text' => 'Update', 										])
+            ->create([	'id' => '309109', 	'resource' => '305128', 	'name' => 'NewExecutiveLoginMap', 	'description' => 'Form to map a user to login', 	'title' => 'Map Executive', 	'action_text' => 'Set', 										])
         ;
         \DB::statement('set foreign_key_checks = ' . $_);
     }

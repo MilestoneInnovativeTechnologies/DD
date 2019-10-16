@@ -45,7 +45,7 @@ class ResourceListLayoutTableSeeder extends Seeder
             ->create([	'id' => '325127', 	'resource_list' => '322109', 	'label' => 'Code', 	'field' => 'code', 												])
             ->create([	'id' => '325128', 	'resource_list' => '322109', 	'label' => 'Abbreviation', 	'field' => 'abr', 												])
             ->create([	'id' => '325129', 	'resource_list' => '322109', 	'label' => 'Digit Length', 	'field' => 'digit_length', 												])
-            ->create([	'id' => '325130', 	'resource_list' => '322110', 	'label' => 'Code', 	'field' => 'code', 												])
+            ->create([	'id' => '325130', 	'resource_list' => '322110', 	'label' => 'Code', 	'field' => 'fncode', 												])
             ->create([	'id' => '325131', 	'resource_list' => '322110', 	'label' => 'User', 	'field' => 'name', 	'relation' => '308134', 											])
             ->create([	'id' => '325132', 	'resource_list' => '322110', 	'label' => 'Store', 	'field' => 'name', 	'relation' => '308135', 											])
             ->create([	'id' => '325133', 	'resource_list' => '322110', 	'label' => 'Progress', 	'field' => 'progress', 												])
@@ -53,6 +53,18 @@ class ResourceListLayoutTableSeeder extends Seeder
             ->create([	'id' => '325135', 	'resource_list' => '322111', 	'label' => 'User', 	'field' => 'name', 	'relation' => '308134', 											])
             ->create([	'id' => '325136', 	'resource_list' => '322111', 	'label' => 'Store', 	'field' => 'name', 	'relation' => '308135', 											])
             ->create([	'id' => '325137', 	'resource_list' => '322111', 	'label' => 'Progress', 	'field' => 'progress', 												])
+            ->create([	'id' => '325138', 	'resource_list' => '322112', 	'label' => 'Name', 	'field' => 'name', 												])
+            ->create([	'id' => '325139', 	'resource_list' => '322112', 	'label' => 'Login', 	'field' => 'login', 												])
+            ->create([	'id' => '325140', 	'resource_list' => '322113', 	'label' => 'Name', 	'field' => 'name', 												])
+            ->create([	'id' => '325141', 	'resource_list' => '322113', 	'label' => 'Login', 	'field' => 'login', 												])
+            ->create([	'id' => '325142', 	'resource_list' => '322114', 	'label' => 'FN Code', 	'field' => 'fncode', 												])
+            ->create([	'id' => '325143', 	'resource_list' => '322114', 	'label' => 'Name', 	'field' => 'name', 												])
+            ->create([	'id' => '325144', 	'resource_list' => '322114', 	'label' => 'Home display', 	'field' => 'home_display', 												])
+            ->create([	'id' => '325145', 	'resource_list' => '322114', 	'label' => 'Drawer display', 	'field' => 'drawer_display', 												])
+            ->create([	'id' => '325146', 	'resource_list' => '322114', 	'label' => 'Status', 	'field' => 'status', 												])
+            ->create([	'id' => '325147', 	'resource_list' => '322115', 	'label' => 'Executive Name', 	'field' => 'name', 	'relation' => '308141', 											])
+            ->create([	'id' => '325148', 	'resource_list' => '322115', 	'label' => 'Login ID', 	'field' => 'login', 	'relation' => '308141', 											])
+            ->create([	'id' => '325149', 	'resource_list' => '322115', 	'label' => 'Reference', 	'field' => 'reference', 	'relation' => '308141', 											])
         ;
         \DB::statement('set foreign_key_checks = ' . $_);
     }

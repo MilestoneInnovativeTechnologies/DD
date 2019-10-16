@@ -51,6 +51,12 @@ class ResourceRelationTableSeeder extends Seeder
             ->create([	'id' => '308133', 	'resource' => '305110', 	'name' => 'ProductDetails', 	'description' => 'Product Details', 	'method' => 'Product', 	'type' => 'belongsTo', 	'relate_resource' => '305108', 									])
             ->create([	'id' => '308134', 	'resource' => '305127', 	'name' => 'ReserveUser', 	'description' => 'User details of reserve', 	'method' => 'User', 	'type' => 'belongsTo', 	'relate_resource' => '305101', 									])
             ->create([	'id' => '308135', 	'resource' => '305127', 	'name' => 'ReserveStore', 	'description' => 'Store details of reserve', 	'method' => 'Store', 	'type' => 'belongsTo', 	'relate_resource' => '305114', 									])
+            ->create([	'id' => '308136', 	'resource' => '305122', 	'name' => 'ProductDetails', 	'description' => 'Product Details', 	'method' => 'Product', 	'type' => 'belongsTo', 	'relate_resource' => '305108', 									])
+            ->create([	'id' => '308137', 	'resource' => '305122', 	'name' => 'StoreDetails', 	'description' => 'Store details of a transaction entry', 	'method' => 'Store', 	'type' => 'belongsTo', 	'relate_resource' => '305114', 									])
+            ->create([	'id' => '308138', 	'resource' => '305120', 	'name' => 'StoreDetails', 	'description' => 'Store details of a sales order entry', 	'method' => 'Store', 	'type' => 'belongsTo', 	'relate_resource' => '305114', 									])
+            ->create([	'id' => '308139', 	'resource' => '305119', 	'name' => 'StoreDetails', 	'description' => 'Store details of a sales order', 	'method' => 'Store', 	'type' => 'belongsTo', 	'relate_resource' => '305114', 									])
+            ->create([	'id' => '308140', 	'resource' => '305128', 	'name' => 'LoginUser', 	'description' => 'Login user details', 	'method' => 'User', 	'type' => 'belongsTo', 	'relate_resource' => '305101', 									])
+            ->create([	'id' => '308141', 	'resource' => '305128', 	'name' => 'ExecutiveUser', 	'description' => 'Executive user details', 	'method' => 'Executive', 	'type' => 'belongsTo', 	'relate_resource' => '305101', 									])
         ;
         \DB::statement('set foreign_key_checks = ' . $_);
     }

@@ -25,8 +25,12 @@ class ResourceListTableSeeder extends Seeder
             ->create([	'id' => '322107', 	'resource' => '305114', 	'name' => 'StoresList', 	'description' => 'List all stores', 	'title' => 'Stores', 	'identity' => 'name', 	'items_per_page' => '50', 									])
             ->create([	'id' => '322108', 	'resource' => '305110', 	'name' => 'ProductImageList', 	'description' => 'List All entries', 	'title' => 'Product Images', 	'identity' => 'product.narration', 	'items_per_page' => '15', 									])
             ->create([	'id' => '322109', 	'resource' => '305113', 	'name' => 'FunctionDetailList', 	'description' => 'List All functions available', 	'title' => 'Function details list', 	'identity' => 'code', 	'items_per_page' => '50', 									])
-            ->create([	'id' => '322110', 	'resource' => '305127', 	'name' => 'ReservesList', 	'description' => 'List all reserves', 	'title' => 'Function Reserves', 	'identity' => 'code', 	'items_per_page' => '50', 									])
-            ->create([	'id' => '322111', 	'resource' => '305127', 	'name' => 'UncompletedReservesList', 	'description' => 'List all reserve entries which are uncompleted', 	'title' => 'Function Reserves', 	'identity' => 'code', 	'items_per_page' => '50', 									])
+            ->create([	'id' => '322110', 	'resource' => '305127', 	'name' => 'ReservesList', 	'description' => 'List all reserves', 	'title' => 'Function Reserves', 	'identity' => 'fncode', 	'items_per_page' => '50', 									])
+            ->create([	'id' => '322111', 	'resource' => '305127', 	'name' => 'UncompletedReservesList', 	'description' => 'List all reserve entries which are uncompleted', 	'title' => 'Function Reserves', 	'identity' => 'fncode', 	'items_per_page' => '50', 									])
+            ->create([	'id' => '322112', 	'resource' => '305101', 	'name' => 'LoginUsers', 	'description' => 'Users having login details', 	'title' => 'Users', 	'identity' => 'name', 	'items_per_page' => '50', 									])
+            ->create([	'id' => '322113', 	'resource' => '305101', 	'name' => 'LoginSalesExecutives', 	'description' => 'Sales Executive having login details', 	'title' => 'Users', 	'identity' => 'name', 	'items_per_page' => '50', 									])
+            ->create([	'id' => '322114', 	'resource' => '305104', 	'name' => 'MenuList', 	'description' => 'List all menu', 	'title' => 'Menu', 	'identity' => 'name', 	'items_per_page' => '50', 									])
+            ->create([	'id' => '322115', 	'resource' => '305128', 	'name' => 'UserToExecutiveMapList', 	'description' => 'User to Executive maps', 	'title' => 'User Executive Map', 	'identity' => 'executive.name', 	'items_per_page' => '50', 									])
         ;
         \DB::statement('set foreign_key_checks = ' . $_);
     }

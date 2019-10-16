@@ -50,6 +50,13 @@ class ResourceActionTableSeeder extends Seeder
             ->create([	'id' => '332132', 	'resource' => '305127', 	'name' => 'ViewFnReserve', 	'description' => 'View details of reserve', 	'title' => 'Details', 	'type' => 'primary', 										])
             ->create([	'id' => '332133', 	'resource' => '305127', 	'name' => 'UpdateReserveAction', 	'description' => 'Update reserve details', 	'title' => 'Update', 	'type' => 'primary', 										])
             ->create([	'id' => '332134', 	'resource' => '305127', 	'name' => 'ListUncompletedReserves', 	'description' => 'List all uncompleted reserves', 			'menu' => 'Uncompleted', 									])
+            ->create([	'id' => '332135', 	'resource' => '305101', 	'name' => 'ListLoginUsers', 	'description' => 'Action to list all login users', 			'menu' => 'Login Users', 									])
+            ->create([	'id' => '332136', 	'resource' => '305101', 	'name' => 'ListLoginExecutives', 	'description' => 'Action to list all executives having login', 			'menu' => 'Login Executives', 									])
+            ->create([	'id' => '332137', 	'resource' => '305104', 	'name' => 'ListMenu', 	'description' => 'Action to list all menu', 			'menu' => 'List All', 									])
+            ->create([	'id' => '332138', 	'resource' => '305104', 	'name' => 'UpdateMenu', 	'description' => 'Action to update menu', 	'title' => 'Update', 	'type' => 'primary', 										])
+            ->create([	'id' => '332139', 	'resource' => '305104', 	'name' => 'MenuView', 	'description' => 'Action to view details', 	'title' => 'Details', 	'type' => 'primary', 										])
+            ->create([	'id' => '332140', 	'resource' => '305128', 	'name' => 'ListUserExecutiveEntries', 	'description' => 'Action to view User Executive entries', 			'menu' => 'List All', 									])
+            ->create([	'id' => '332141', 	'resource' => '305128', 	'name' => 'AddUserExecutiveEntries', 	'description' => 'Action to add User to Executive map', 			'menu' => 'Add New Map', 									])
         ;
         \DB::statement('set foreign_key_checks = ' . $_);
     }
