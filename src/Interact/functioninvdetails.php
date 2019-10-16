@@ -2,6 +2,7 @@
 
     namespace Milestone\SS\Interact;
 
+    use Illuminate\Support\Arr;
     use Milestone\Interact\Table;
     use Milestone\SS\Model\Functiondetail;
     use Milestone\SS\Model\Tax;
@@ -11,6 +12,11 @@
 
         public $functions_cache = null;
         public $update_cache = [];
+        private $cache = [
+            'pl' => [],
+            'upd' => [],
+            'fun' => [],
+        ];
 
         public function getModel()
         {
@@ -29,17 +35,17 @@
 
         public function getPrimaryIdFromImportRecord($data)
         {
-            $function = Functiondetail::where('code',$data['CODE'])->first();
-            return $function ? $function->id : null;
+            return Arr::get($this->cache['fun'],$data['CODE']);
         }
 
         public function preImport(){
-            $this->functions_cache = Functiondetail::pluck('id','code')->toArray();
+            $this->cache['fun'] = Functiondetail::pluck('id','code')->toArray();
+            $this->cache['pl'] = \Milestone\SS\Model\Pricelist::pluck('id','code')->toArray();
         }
 
         public function isValidImportRecord($record){
-            if(array_key_exists($record['CODE'],$this->functions_cache)){
-                $this->update_cache[$this->functions_cache[$record['CODE']]] = array_map(function($key)use($record){ return $this->getKeyValue($key,$record); },$this->getImportMappings());
+            if(array_key_exists($record['CODE'],$this->cache['fun'])){
+                $this->cache['upd'][$this->cache['fun'][$record['CODE']]] = array_map(function($key)use($record){ return $this->getKeyValue($key,$record); },$this->getImportMappings());
             }
             return false;
         }
@@ -50,9 +56,13 @@
             return null;
         }
 
+        private function PRICELIST($record){
+            return $record['PRICELIST'] ? Arr::get($this->cache['pl'],$record['PRICELIST']) : null;
+        }
+
         public function postImport(){
-            if(is_array($this->update_cache) && !empty($this->update_cache))
-                foreach($this->update_cache as $id => $update_array)
+            if(is_array($this->cache['upd']) && !empty($this->cache['upd']))
+                foreach($this->cache['upd'] as $id => $update_array)
                     Functiondetail::find($id)->update($update_array);
         }
 
