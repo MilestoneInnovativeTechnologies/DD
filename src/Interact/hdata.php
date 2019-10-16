@@ -3,6 +3,7 @@
     namespace Milestone\SS\Interact;
 
     use Illuminate\Support\Arr;
+    use Illuminate\Support\Facades\DB;
     use Milestone\Appframe\Model\User;
     use Milestone\SS\Model\AreaUser;
     use Milestone\SS\Model\Receipt;
@@ -27,6 +28,8 @@
             'areas' => [],
             'stfrs' => [],
             'dstre' => null,
+            'fndac' => null,
+            'cstmr' => null,
         ];
 
         public function getModel()
@@ -63,7 +66,7 @@
         public function getExecutiveID($data){ return Arr::get($this->cache['users'],$data['ANALYSISCATCODE'].$data['ANALYSISCODE'],Arr::get($this->cache['users'],$data['CREATED_USER'])); }
         public function getReference($data){ return implode('',['U',$this->getExecutiveID($data),'T',intval(microtime(true)*10000)]); }
         public function getStoreID($data){ return ($data['STRSRC']) ? Arr::get($this->cache['store'],$data['STRSRC']) : $this->cache['dstre']; }
-        public function getCustomerID($data){ return Arr::get($this->cache['users'],$data['ACCCODE']); }
+        public function getCustomerID($data){ return Arr::has($this->cache['users'],$data['ACCCODE']) ? Arr::get($this->cache['users'],$data['ACCCODE']) : null; }
         public function getStatus($data){ return $data['CANCEL_USER'] ? 'Inactive' : 'Active'; }
 
 
@@ -123,6 +126,17 @@
 
         private function getTransactionID($docno,$fncode,$fycode){ return Arr::get(Transaction::where(compact('docno','fncode','fycode'))->first(),'id'); }
 
+
+
+        public function preExportGet($query){
+//            $this->cache['cstmr'] = User::find($query->pluck('customer')->unique()->toArray())->pluck('reference','id')->toArray();
+            $queryResult = $query->get();
+            $refs = array_merge($queryResult->pluck('customer')->unique()->toArray(),$queryResult->pluck('user')->unique()->toArray());
+            $this->cache['cstmr'] = User::find($refs)->pluck('reference','id')->toArray();
+            return $query->with(['Store']);
+        }
+        public function preExportUpdate($query){ return $this->preExportGet($query); }
+
         public function getExportAttributes()
         {
             return ['COCODE','BRCODE','FYCODE','FNCODE','DOCNO','DOCDATE','CO','BR','ACCCODE','PAYMENTMODE','ANALYSISCATCODE','ANALYSISCODE','AREA','STRSRCCAT','STRSRC','STRDSTCAT','STRDST','REFNO','REFDATE','SIGN','CURRENCY','DOCCURRENCY'];
@@ -161,28 +175,26 @@
         public function cacheAreas(){ $this->cache['areas'] = AreaUser::with('Area')->get()->mapWithKeys(function($item){ return [$item->user => $item->Area->code]; })->toArray(); }
 
         public function getStoreProp($data,$prop){
-            if($this->cache['store'] === null) $this->cacheStore();
-            $store_id = Arr::get($data,'store');
+            return Arr::get($data['store'],$prop);
+//            if($this->cache['store'] === null) $this->cacheStore();
+//            $store_id = Arr::get($data,'store');
             return Arr::get($this->cache['store'],"{$store_id}.{$prop}");
         }
 
         public function getCOCode($data){ return $this->getStoreProp($data,'cocode'); }
         public function getBRCode($data){ return $this->getStoreProp($data,'brcode'); }
         public function getACCCode($data){
-            $customer_id = Arr::get($data,'customer'); if(!$customer_id) return null;
-            if($this->cache['users'] === null) $this->cacheUsers();
-            return Arr::get($this->cache['users'],"{$customer_id}");
+            if(!$this->cache['cstmr']) $this->cache['cstmr'] = User::all()->pluck('reference','id')->toArray();
+            return ($data['customer']) ? Arr::get($this->cache['cstmr'],$data['customer']) : $this->getFNDefaultAccount($data['fncode']);
         }
         public function getAnalysisCatCode($data){
             $fncode = $data['fncode'];
-            return (in_array(substr($fncode,0,2),['SR','SL'])) ? 'SE' : null;
+            return (in_array(substr($fncode,0,2),['SR','SL']) && $data['user']) ? 'SE' : null;
         }
         public function getAnalysisCode($data){
             if(!$this->getAnalysisCatCode($data)) return null;
-            $user_id = Arr::get($data,'user'); if(!$user_id) return null;
-            if($this->cache['users']) $this->cacheUsers();
-            $reference = Arr::get($this->cache['users'],"{$user_id}");
-            return str_ireplace($this->getAnalysisCatCode($data),'',$reference);
+            if(!$this->cache['cstmr']) $this->cache['cstmr'] = User::all()->pluck('reference','id')->toArray();
+            return str_ireplace($this->getAnalysisCatCode($data),'',Arr::get($this->cache['cstmr'],$data['user'],$data['user']));
         }
         public function getAreaCode($data){
             $customer_id = Arr::get($data,'customer'); if(!$customer_id) return null;
@@ -223,5 +235,10 @@
             return ($fncode === $this->fn_in || in_array(substr($fncode,0,2),['SR'])) ? -1 : 1;
         }
         public function getCurrency($data){ return $this->getStoreProp($data,'currency'); }
+        public function getFNDefaultAccount($fncode){
+            if(substr($fncode,0,2) === 'MT') return null;
+            if(!$this->cache['fndac']) $this->cache['fndac'] = DB::table('functiondetails')->pluck('default_account','code')->toArray();
+            return Arr::get($this->cache['fndac'],$fncode);
+        }
 
     }

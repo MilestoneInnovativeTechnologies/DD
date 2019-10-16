@@ -13,7 +13,6 @@
 
     class piidata implements Table
     {
-        public $product_cache = null;
         public $user_cache = null;
         public $exists_cache = [];
         private $so_ref = [];
@@ -21,6 +20,8 @@
         private $cache_key = 'piidata';
         private $cache = [
             'store' => [],
+            'product' => [],
+            'srno' => [],
         ];
 
         public function getModel()
@@ -63,18 +64,17 @@
             return $this->so_ref[implode('-',[$fycode,$fncode,$docno])];
         }
 
-        public function getProductID($record){ return Arr::get($this->product_cache,$record['ITEMCODE']); }
+        public function getProductID($record){ return Arr::get($this->cache['product'],$record['ITEMCODE']); }
         public function getStoreID($data){ return Arr::get($this->cache['store'],$data['STRCODE']); }
 
         public function getPrimaryIdFromImportRecord($data)
         {
-            $so = $this->getSO($data); $product = $data['ITEMCODE'];
-            $soi = SalesOrderItem::where(compact('so','product'))->first();
-            return $soi ? $soi->id : null;
+            $so = $this->getSO($data); $product = $this->getProductID($data);
+            return Arr::get(SalesOrderItem::where(compact('so','product'))->first(),'id');
         }
 
         public function preImport($activity){
-            $this->product_cache = Product::pluck('id','code')->toArray();
+            $this->cache['product'] = Product::whereIn('code',Arr::pluck($activity['data'],'ITEMCODE'))->pluck('id','code')->toArray();
             $this->cache['store'] = Store::pluck('id','code')->toArray();
             if($activity['mode'] === 'create') {
                 $cachedRecords = Cache::pull($this->cache_key,[]);
@@ -124,11 +124,11 @@
                 'ITEMCODE' => 'getItemCode',
                 'UNITCODE' => 'getUnitCode',
                 'PARTCODE' => 'getPartCode',
-                'UNITQTY' => 'getQuantity',
-                'UNITRATE' => 'getRate',
+                'UNITQTY' => 'quantity',
+                'UNITRATE' => 'rate',
                 'SIGN' => 'getSign',
-                'TAXRULE' => 'getTaxRule',
-                'TAX' => 'getTax'];
+                'TAXRULE' => 'taxrule',
+                'TAX' => 'tax'];
         }
 
         public function getExportAttributes()
@@ -136,37 +136,31 @@
             return ['COCODE','BRCODE','FYCODE','FNCODE','DOCNO','SRNO','SLNO','CANCEL','DOCDATE','CO','BR','STRCATCODE','STRCODE','ITEMCODE','UNITCODE','PARTCODE','UNITQTY','UNITRATE','SIGN','TAXRULE','TAX'];
         }
 
-        public function preExportGet($query){ return $query->with(['Product','SalesOrder.Items']); }
-        public function preExportUpdate($query){ return $query->with(['Product','SalesOrder.Items']); }
-
-        public function getUserProp($data,$prop){
-            $user_id = $data['sales_order']['user'];
-            if(!array_key_exists($user_id,(array) $this->user_cache)) $this->user_cache[$user_id] = UserStoreArea::where('user',$user_id)->with(['Store','User'])->first();
-            return Arr::get($this->user_cache[$user_id],$prop, Arr::get($this->user_cache[$user_id],"User.{$prop}", Arr::get($this->user_cache[$user_id],"Store.{$prop}",null)));
-        }
+        public function preExportGet($query){ return $query->with(['Product','SalesOrder','Store']); }
+        public function preExportUpdate($query){ return $this->preExportGet($query); }
         public function getSOProp($data,$prop){ return Arr::get($data['sales_order'],$prop); }
         public function getProdProp($data,$prop){ return Arr::get($data['product'],$prop,null); }
+        public function getStoreProp($data,$prop){ return Arr::get($data['store'],$prop,null); }
 
-        public function getCOCode($data){ return $this->getUserProp($data,'cocode'); }
-        public function getBRCode($data){ return $this->getUserProp($data,'brcode'); }
+        public function getCOCode($data){ return $this->getStoreProp($data,'cocode'); }
+        public function getBRCode($data){ return $this->getStoreProp($data,'brcode'); }
         public function getFYCode($data){ return $this->getSOProp($data,'fycode'); }
         public function getFNCode($data){ return $this->getSOProp($data,'fncode'); }
         public function getDocNo($data){ return $this->getSOProp($data,'docno'); }
         public function getSRNo($data){
-            $id = $data['id'];
-            return collect($data['sales_order']['items'])->search(function($item)use($id){ return $item['id'] == $id; })+1;
+            $so = $data['so']; if(!array_key_exists($so,$this->cache['srno'])) $this->cache['srno'][$so] = 0;
+            return ++$this->cache['srno'][$so];
         }
-        public function getSLNo($data){ return $this->getSRNo($data); }
+        public function getSLNo($data){
+            $so = $data['so']; if(!array_key_exists($so,$this->cache['srno'])) $this->cache['srno'][$so] = 1;
+            return $this->cache['srno'][$so];
+        }
         public function getCancelStatus($data){ return 'No'; }
         public function getDocDate($data){ return $this->getSOProp($data,'date'); }
         public function getStrCatCode($data){ return 'INV'; }
-        public function getStrCode($data){ return $this->getUserProp($data,'code'); }
+        public function getStrCode($data){ return $this->getStoreProp($data,'code'); }
         public function getItemCode($data){ return $this->getProdProp($data,'code'); }
         public function getUnitCode($data){ return $this->getProdProp($data,'uom'); }
         public function getPartCode($data){ return $this->getProdProp($data,'partcode'); }
-        public function getQuantity($data){ return $data['quantity']; }
-        public function getRate($data){ return $data['rate']; }
         public function getSign($data){ return '-1'; }
-        public function getTaxRule($data){ return $data['taxrule']; }
-        public function getTax($data){ return $data['tax']; }
     }

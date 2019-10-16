@@ -21,7 +21,7 @@
 
         public function getImportMappings()
         {
-            return ['source' => 'getCreateSource'];
+            //
         }
 
         public function getCreateSource($data){ return 'SS'; }
@@ -38,7 +38,7 @@
 
         public function getExportAttributes()
         {
-            return ['docno','store','fycode','fncode','mode','customer','date','user','amount','bank','cheque','cheque_date','_ref','status'];
+            return ['docno','store','fycode','fncode','mode','customer','date','user','amount','bank','cheque','cheque_date','_ref','source','status'];
         }
 
         public function preExportGet($query){

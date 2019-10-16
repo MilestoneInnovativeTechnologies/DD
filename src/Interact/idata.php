@@ -6,6 +6,7 @@
     use Illuminate\Support\Facades\Cache;
     use Milestone\SS\Model\Product;
     use Milestone\SS\Model\SalesOrder;
+    use Milestone\SS\Model\SalesOrderItem;
     use Milestone\SS\Model\StockTransfer;
     use Milestone\SS\Model\Store;
     use Milestone\SS\Model\Transaction;
@@ -24,6 +25,8 @@
             'product' => [],
             'soi' => [],
             'exists' => [],
+            'srno' => [],
+            'rfprp' => [],
         ];
 
         public function preImport($activity){
@@ -140,10 +143,10 @@
                 'UNITCODE' => 'getUnitCode',
                 'PARTCODE' => 'getPartCode',
                 'UNITQTY' => 'quantity',
-                'UNITRATE' => 'getUnitRate',
+                'UNITRATE' => 'rate',
                 'SIGN' => 'getSign',
-                'TAXRULE' => 'getTaxRule',
-                'TAX' => 'getTaxValue',
+                'TAXRULE' => 'taxrule',
+                'TAX' => 'tax',
                 'REFCOCODE' => 'getRefCOCode',
                 'REFBRCODE' => 'getRefBRCode',
                 'REFFYCODE' => 'getRefFYCode',
@@ -157,24 +160,22 @@
             return ['COCODE','BRCODE','FYCODE','FNCODE','DOCNO','SRNO','SLNO','TYPE','CANCEL','DOCDATE','CO','BR','STRCATCODE','STRCODE','ITEMCODE','UNITCODE','PARTCODE','UNITQTY','UNITRATE','SIGN','TAXRULE','TAX','REFCOCODE','REFBRCODE','REFFYCODE','REFFNCODE','REFDOCNO'];
         }
 
-        public function preExportGet($query){ return $query->with(['Product']); }
+        public function preExportGet($query){
+            $this->cache['soi'] = SalesOrderItem::with(['SalesOrder','Product','Store'])->find($query->get()->pluck('soi')->unique()->filter()->toArray())->keyBy->id->toArray();
+            return $query->with(['Product','Transaction','Store']);
+        }
+        public function preExportUpdate($query){
+            return $this->preExportGet($query);
+        }
 
         public function getStoreProp($data, $prop){
-            $store_id = $data['store'];
-            if(!array_key_exists($store_id,$this->cache['store'])) $this->cache['store'][$store_id] = Store::find($store_id)->toArray();
-            return Arr::get($this->cache['store'],"{$store_id}.{$prop}",null);
+            return Arr::get($data['store'],$prop);
         }
-        public function getTransactionProp2($data,$prop){
-            $TR = Transaction::with('Details')->find(Arr::get(TransactionDetail::where('spt',$data['id'])->get(),'0.transaction'));
-            $TD = Arr::get($TR,'Details');
-            if(!array_key_exists($TR->id,$this->cache['detail'])) $this->cache['detail'][$TR->id] = $TD->toArray();
-            if(!array_key_exists($TR->id,$this->cache['transaction'])) $this->cache['transaction'][$TR->id] = $TR->toArray();
-            return Arr::get($this->cache['transaction'],"{$TR->id}.{$prop}",null);
+        public function getExpTransactionProp($data,$prop){
+            return Arr::get($data['transaction'],$prop);
         }
         public function getProdProp($data, $prop){
-            $product_id = $data['product']['id'];
-            if(!array_key_exists($product_id,$this->cache['product'])) { $PRD = Product::find($product_id); $this->cache['product'][$product_id] = $PRD ? $PRD->toArray() : []; }
-            return Arr::get($this->cache['product'][$product_id],"{$prop}",null);
+            return Arr::get($data['product'],$prop);
         }
         public function getTDProp($data, $prop){
             $id = $this->getTransactionProp($data,'id'); $spt = $data['id'];
@@ -182,38 +183,34 @@
             return Arr::get($this->cache['detail'],"{$id}.{$idx}.{$prop}",null);
         }
         public function getRefProp($data, $prop){
-            $fncode = $this->getTransactionProp($data,'fncode'); if($fncode !== 'MT1') return null;
-            $id = $this->getTransactionProp($data,'id'); $out = StockTransfer::where('in',$id)->first()->out;
-            if(!array_key_exists($out,$this->cache['transaction'])) $this->cache['transaction'][$out] = Transaction::find($out)->toArray();
-            return Arr::get($this->cache['transaction'][$out],$prop,null);
+            return $data['soi'] ? Arr::get($this->cache['soi'][$data['soi']],$prop) : null;
         }
 
         public function getCOCode($data){ return $this->getStoreProp($data,'cocode'); }
         public function getBRCode($data){ return $this->getStoreProp($data,'brcode'); }
-        public function getFYCode($data){ return $this->getTransactionProp($data,'fycode'); }
-        public function getFNCode($data){ return $this->getTransactionProp($data,'fncode'); }
-        public function getDocNo($data){ return $this->getTransactionProp($data,'docno'); }
+        public function getFYCode($data){ return $this->getExpTransactionProp($data,'fycode'); }
+        public function getFNCode($data){ return $this->getExpTransactionProp($data,'fncode'); }
+        public function getDocNo($data){ return $this->getExpTransactionProp($data,'docno'); }
         public function getSRNo($data){
-            $id = $this->getTransactionProp($data,'id'); $spt = $data['id'];
-            return collect($this->cache['detail'][$id])->search(function ($item)use($spt){ return $item['spt'] == $spt; })+1;
+            $trans = $data['transaction']['id']; if(!array_key_exists($trans,$this->cache['srno'])) $this->cache['srno'][$trans] = 0;
+            return ++$this->cache['srno'][$trans];
         }
-        public function getSLNo($data){ return $this->getSRNo($data); }
+        public function getSLNo($data){
+            $trans = $data['transaction']['id']; if(!array_key_exists($trans,$this->cache['srno'])) $this->cache['srno'][$trans] = 1;
+            return $this->cache['srno'][$trans];
+        }
         public function getTransType($data){ return 'Normal'; }
-        public function getTransCancel($data){ return ($data['status'] === 'Active') ? 'No' : 'Yes'; }
-        public function getDocDate($data){ return $this->getTransactionProp($data,'date'); }
+        public function getTransCancel($data){ return 'No'; }
+        public function getDocDate($data){ return $this->getExpTransactionProp($data,'date'); }
         public function getStrCatCode($data){ return $this->getStoreProp($data,'catcode'); }
         public function getStrCode($data){ return $this->getStoreProp($data,'code'); }
         public function getItemCode($data){ return $this->getProdProp($data,'code'); }
         public function getUnitCode($data){ return $this->getProdProp($data,'uom'); }
         public function getPartCode($data){ return $this->getProdProp($data,'partcode'); }
-        public function getUnitRate($data){ return $this->getTDProp($data,'amount'); }
         public function getSign($data){ return ($data['direction'] === 'Out') ? (-1) : 1; }
-//        public function getTaxRule($data){ return $this->getProdProp($data,'group01.tax.code'); }
-        public function getTaxRule($data){ return $this->getTDProp($data,'taxrule'); }
-        public function getTaxValue($data){ return $this->getTDProp($data,'tax'); }
-        public function getRefCOCode($data){ return ($this->getRefProp($data,'fncode')) ? $this->getCOCode($data) : null; }
-        public function getRefBRCode($data){ return ($this->getRefProp($data,'fncode')) ? $this->getBRCode($data) : null; }
+        public function getRefCOCode($data){ return $this->getRefProp($data,'store.cocode'); }
+        public function getRefBRCode($data){ return $this->getRefProp($data,'store.brcode'); }
         public function getRefFYCode($data){ return $this->getRefProp($data,'fycode'); }
         public function getRefFNCode($data){ return $this->getRefProp($data,'fncode'); }
-        public function getRefDocNo($data){ return $this->getRefProp($data,'date'); }
+        public function getRefDocNo($data){ return $this->getRefProp($data,'sales_order.docno'); }
     }

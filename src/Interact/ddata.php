@@ -14,6 +14,9 @@
         private $cr = 'CR';
         private $br = 'BR';
         private $cache_key = 'ddata';
+        private $cache = [
+            'customer' => []
+        ];
 
         public function getModel()
         {
@@ -32,11 +35,9 @@
 
         public function getPrimaryIdFromImportRecord($data)
         {
-            return null;
-//            $pks = ['COCODE', 'BRCODE', 'FYCODE', 'FNCODE', 'DOCNO', 'SRNO'];
-//            $priData = Arr::only($data,$pks);
-//            $ddata = \Milestone\SS\Model\DData::where($priData)->first();
-//            return $ddata ? $ddata->id : null;
+            $pks = ['COCODE', 'BRCODE', 'FYCODE', 'FNCODE', 'DOCNO', 'SRNO'];
+            $priData = Arr::only($data,$pks);
+            return Arr::get(\Milestone\SS\Model\DData::where($priData)->first(),'id');
         }
 
         public function preImport($activity){
@@ -44,6 +45,7 @@
                 $cachedRecords = Cache::pull($this->cache_key,[]);
                 if(!empty($cachedRecords)) $activity['data'] = array_merge($cachedRecords,$activity['data']);
             }
+            if($activity['data'] && !empty($activity['data'])) $this->cache['customer'] = User::whereIn('reference',array_column($activity['data'],'ACCCODE'))->get()->pluck('id','reference')->toArray();
             return $activity;
         }
 
@@ -68,8 +70,7 @@
         }
 
         public function getCustomerID($data){
-            $user = User::where('reference',$data['ACCCODE'])->first();
-            return $user ? $user->id : null;
+            return Arr::get($this->cache['customer'],$data['ACCCODE']);
         }
 
         private function doCacheRecord($record){

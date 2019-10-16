@@ -32,7 +32,7 @@
 
         public function getExportMappings()
         {
-            return ['so' => 'recordReference'];
+            return ['so' => 'SOReference'];
         }
 
         public function getExportAttributes()
@@ -40,13 +40,12 @@
             return ['so','product','store','fycode','fncode','rate','quantity','taxrule','tax','discount01','discount01','_ref'];
         }
 
-        public function recordReference($record){
-            return $record['_ref'];
+        public function SOReference($record){
+            return Arr::get(SalesOrder::find($record['so']),'_ref',null);
         }
 
         public function getSOId($record){
-            $ref = $this->recordReference($record);
-            return Arr::get(SalesOrder::where('_ref',$ref)->first(),'id',null);
+            return Arr::get(SalesOrder::where('_ref',$record['so'])->first(),'id',null);
         }
 
         public function preExportGet($query){
@@ -55,7 +54,6 @@
             return $query->whereHas('SalesOrder',function ($Q){ $Q->assignedAreaCustomer(); });
         }
         public function preExportUpdate($query){
-            $query = $query->whereHas('SalesOrder',function ($Q){ $Q->where('progress','!=','Completed'); });
             if (request()->_user) Auth::loginUsingId(request()->_user); else return $query;
             return $query->whereHas('SalesOrder',function ($Q){ $Q->assignedAreaCustomer(); });
         }

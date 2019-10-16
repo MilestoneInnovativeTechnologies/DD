@@ -35,7 +35,7 @@
                 return [$user->id => ['store' => Arr::get($user,'Area.0.StoreAndUser.0.Store'),'area' => Arr::get($user,'Area.0')]];
             })->toArray();
         }
-        public function preExportUpdate(){ $this->preExportGet(); }
+        public function preExportUpdate(){ return $this->preExportGet(); }
 
         public function getExportMappings()
         {

@@ -3,8 +3,10 @@
     namespace Milestone\SS\Interact;
 
     use Illuminate\Support\Arr;
+    use Illuminate\Support\Facades\DB;
     use Milestone\Appframe\Model\User;
     use Milestone\Interact\Table;
+    use Milestone\SS\Model\Functiondetail;
     use Milestone\SS\Model\SalesOrder;
     use Milestone\SS\Model\Store;
     use Milestone\SS\Model\UserStoreArea;
@@ -12,10 +14,11 @@
     class pihdata implements Table
     {
         private $user_cache = null;
-        private $customer_cache = [];
         private $cache = [
             'store' => [],
             'dstre' => null,
+            'cstmr' => null,
+            'fndac' => null,
         ];
 
         public function getModel()
@@ -44,8 +47,8 @@
             ];
         }
 
-        public function preImport(){
-            $this->user_cache = User::pluck('id','reference')->toArray();
+        public function preImport($activity){
+            $this->cache['user'] = User::whereIn('reference',Arr::pluck($activity['data'],'ACCCODE'))->pluck('id','reference')->toArray();
             $this->cache['store'] = Store::pluck('id','code')->toArray();
             $this->cache['dstre'] = Store::first()->id;
         }
@@ -54,16 +57,10 @@
             if($data['CREATED_USER'] && array_key_exists($data['CREATED_USER'],$this->user_cache)) return $this->user_cache[$data['CREATED_USER']];
             return null;
         }
-        public function getCustomerID($record){
-            return Arr::get($this->user_cache,$record['ACCCODE']);
-        }
+        public function getCustomerID($record){ return Arr::has($this->cache['user'],$record['ACCCODE']) ? Arr::get($this->cache['user'],$record['ACCCODE']) : null; }
         public function getStoreID($data){ return ($data['STRSRC']) ? Arr::get($this->cache['store'],$data['STRSRC']) : $this->cache['dstre']; }
-        public function getStatus($record){
-            return $record['CANCEL'] === 'No' ? 'Active' : 'Inactive';
-        }
-        public function getReference($record){
-            return implode('',['U',$this->getUserID($record),'T',intval(microtime(true)*10000)]);
-        }
+        public function getStatus($record){ return $record['CANCEL'] === 'No' ? 'Active' : 'Inactive'; }
+        public function getReference($record){ return implode('',['U',$this->getUserID($record),'T',intval(microtime(true)*10000)]); }
 
         public function getPrimaryIdFromImportRecord($data)
         {
@@ -73,7 +70,8 @@
 
         public function getExportMappings()
         {
-            return ['COCODE' => 'getCOCode',
+            return [
+                'COCODE' => 'getCOCode',
                 'BRCODE' => 'getBRCode',
                 'FYCODE' => 'fycode',
                 'FNCODE' => 'fncode',
@@ -87,26 +85,41 @@
                 'ANALYSISCODE' => 'getAnalysisCode',
                 'STRSRCCAT' => 'getStrSrcCode',
                 'REFDATE' => 'date',
-                'CURRENCY' => 'getCurrency'];
+                'CURRENCY' => 'getCurrency'
+            ];
         }
         public function getExportAttributes()
         {
             return ['COCODE','BRCODE','FYCODE','FNCODE','DOCNO','DOCDATE','CO','BR','ACCCODE','PAYMENTMODE','ANALYSISCATCODE','ANALYSISCODE','STRSRCCAT','REFDATE','CURRENCY'];
         }
 
-        public function getUserProp($data,$prop){
-            if(!array_key_exists($data['user'],(array) $this->user_cache)) $this->user_cache[$data['user']] = UserStoreArea::where('user',$data['user'])->with(['Store','User'])->first();
-            return Arr::get($this->user_cache[$data['user']],$prop, Arr::get($this->user_cache[$data['user']],"User.{$prop}", Arr::get($this->user_cache[$data['user']],"Store.{$prop}",null)));
+        public function preExportGet($query){
+            $queryResult = $query->get();
+            $refs = array_merge($queryResult->pluck('customer')->unique()->toArray(),$queryResult->pluck('user')->unique()->toArray());
+            $this->cache['cstmr'] = User::find($refs)->pluck('reference','id')->toArray();
+            return $query->with(['Store']);
+        }
+        public function preExportUpdate($query){ return $this->preExportGet($query); }
+        public function getUserProp($data,$prop)
+        {
+            if (!array_key_exists($data['user'], (array)$this->user_cache)) $this->user_cache[$data['user']] = UserStoreArea::where('user', $data['user'])->with(['Store', 'User'])->first();
+            return Arr::get($this->user_cache[$data['user']], $prop, Arr::get($this->user_cache[$data['user']], "User.{$prop}", Arr::get($this->user_cache[$data['user']], "Store.{$prop}", null)));
+        }
+        public function getStoreProp($data,$prop){
+            return Arr::get($data['store'],$prop);
         }
 
-        public function getCOCode($data){ return $this->getUserProp($data,'cocode'); }
-        public function getBRCode($data){ return $this->getUserProp($data,'brcode'); }
+        public function getCOCode($data){ return $this->getStoreProp($data,'cocode'); }
+        public function getBRCode($data){ return $this->getStoreProp($data,'brcode'); }
         public function getACCCode($data){
-            if(!$this->customer_cache) $this->customer_cache = User::all()->pluck('reference','id')->toArray();
-            return Arr::get($this->customer_cache,$data['customer']);
+            return ($data['customer']) ? Arr::get($this->cache['cstmr'],$data['customer']) : $this->getFNDefaultAccount($data['fncode']);
         }
-        public function getAnalysisCatCode(){ return 'SE'; }
-        public function getAnalysisCode($data){ return str_ireplace($this->getAnalysisCatCode(),'',$this->getUserProp($data,'reference')); }
+        public function getAnalysisCatCode($data){ return ($data['user']) ? 'SE' : null; }
+        public function getAnalysisCode($data){ return ($data['user']) ? str_replace($this->getAnalysisCatCode($data),'',Arr::get($this->cache['cstmr'],$data['user'])) : null; }
         public function getStrSrcCode(){ return 'INV'; }
-        public function getCurrency($data){ return $this->getUserProp($data,'currency'); }
+        public function getCurrency($data){ return $this->getStoreProp($data,'currency'); }
+        public function getFNDefaultAccount($fncode){
+            if(!$this->cache['fndac']) $this->cache['fndac'] = DB::table('functiondetails')->pluck('default_account','code')->toArray();
+            return Arr::get($this->cache['fndac'],$fncode);
+        }
     }
