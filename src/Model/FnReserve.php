@@ -12,6 +12,7 @@ class FnReserve extends Model
     {
         parent::boot();
         static::saving(function($model){
+            if(!$model->end_num) $model->setAttribute('end_num',str_pad('9',Functiondetail::where('code',$model->fncode)->first()->digit_length,'9'));
             $start = intval($model->start_num); $end = intval($model->end_num);
             $model->setAttribute('quantity',$end - $start + 1);
         });
@@ -21,6 +22,6 @@ class FnReserve extends Model
         return $Q->where('progress','!=','Completed');
     }
 
-    public function User(){ return $this->belongsTo(User::class,'user','id'); }
+    public function User(){ return $this->belongsTo(User::class,'users','id'); }
     public function Store(){ return $this->belongsTo(Store::class,'store','id'); }
 }
