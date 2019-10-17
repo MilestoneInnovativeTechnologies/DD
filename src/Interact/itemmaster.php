@@ -37,6 +37,8 @@ class itemmaster implements Table
         return [
             'code' => 'CODE',
             'name' => 'NAME',
+            'partcode' => 'CODE',
+            'barcode' => 'CODE',
             'narration' => 'NARRATION',
             'narration2' => 'NARRATION2',
             'type' => 'TYPE',
@@ -51,8 +53,8 @@ class itemmaster implements Table
             $created_at = $updated_at = now()->toDateTimeString();
             $this->cache['products'] = array_map(function($data) use($created_at,$updated_at){
                 list('CODE' => $code,'NAME' => $name,'NARRATION' => $narration,'NARRATION2' => $narration2,'TYPE' => $type,'STATUS' => $status) = $data;
-                $this->cache['groups'][$code] = $this->getGroups($data,$created_at,$updated_at);
-                return compact('code','name','narration','narration2','type','status','created_at','updated_at');
+                $this->cache['groups'][$code] = $this->getGroups($data,$created_at,$updated_at); $partcode = $barcode = $code;
+                return compact('code','name','partcode','barcode','narration','narration2','type','status','created_at','updated_at');
             },$activity['data']);
         }
     }
