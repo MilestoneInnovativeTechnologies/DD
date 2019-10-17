@@ -17,9 +17,6 @@
             'plp' => [],
             'data' => [],
         ];
-        private $price_list_cache = [];
-        private $products_cache = [];
-        private $price_list_records = [];
         private $PPStringDelimiter = '|';
 
 
