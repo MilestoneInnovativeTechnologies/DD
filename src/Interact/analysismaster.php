@@ -31,15 +31,9 @@
             ];
         }
 
-        public function getEmail($record){
-            return implode('',[$this->getReference($record),'.','sls','@','temp.mail']);
-        }
-        public function getReference($record){
-            return implode('',[$record['CATCODE'],$record['CODE']]);
-        }
-        public function getPassword($record){
-            return Str::random(strlen($record['CODE']));
-        }
+        public function getEmail($record){ return implode('',[$this->getReference($record),'.','sls','@','temp.mail']); }
+        public function getReference($record){ return implode('',[$record['CATCODE'],$record['CODE']]); }
+        public function getPassword($record){ return ' '; }
 
         public function getPrimaryIdFromImportRecord($data)
         {
