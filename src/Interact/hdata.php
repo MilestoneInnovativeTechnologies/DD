@@ -78,6 +78,7 @@
 
         private function storeReceipt($record){
             list('DOCNO' => $docno,'FYCODE' => $fycode, 'FNCODE' => $fncode, 'DOCDATE' => $date, 'AMT' => $amount) = $record;
+            if(Receipt::where(compact('fycode','fncode','docno'))->exists()) return;
             $user = $this->getExecutiveID($record); $mode = substr($fncode,0,2) == 'CR' ? 'Cash' : 'Cheque';
             $status = $this->getStatus($record); $_ref = $this->getReference($record); $store = $this->getStoreID($record);
             $primary = compact('docno','store','fycode','fncode'); $data = compact('user','mode','date','amount','status','_ref');
