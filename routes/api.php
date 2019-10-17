@@ -27,7 +27,7 @@ Route::group([
 ],function(){
     Route::post('login',function(Request $request){
         $login = $request->get('login'); $login_password = strtoupper(sha1($request->get('password')));
-        $user = \Milestone\SS\Model\User::where(compact('login','login_password'))->first();
+        $user = \Milestone\SS\Model\User::where(compact('login','login_password'))->where('reference','like','SE%')->first();
         return ($user) ? $user->toArray() : [];
     });
     Route::get('setup',function(){ return new \Milestone\SS\Resources\SetupResource(\Milestone\SS\Model\Setup::find(1)); });
