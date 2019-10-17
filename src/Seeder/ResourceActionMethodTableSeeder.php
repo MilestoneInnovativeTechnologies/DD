@@ -44,7 +44,7 @@ class ResourceActionMethodTableSeeder extends Seeder
             ->create([	'id' => '333126', 	'resource_action' => '332126', 	'type' => 'Form', 	'idn1' => '309105', 												])
             ->create([	'id' => '333127', 	'resource_action' => '332127', 	'type' => 'FormWithData', 	'idn1' => '309105', 	'idn2' => '327104', 											])
             ->create([	'id' => '333128', 	'resource_action' => '332128', 	'type' => 'List', 	'idn1' => '322108', 												])
-            ->create([	'id' => '333129', 	'resource_action' => '332129', 	'type' => 'Data', 	'idn1' => '327105', 												])
+            ->create([	'id' => '333129', 	'resource_action' => '332129', 	'type' => 'Data', 	'idn1' => '327104', 												])
             ->create([	'id' => '333130', 	'resource_action' => '332130', 	'type' => 'List', 	'idn1' => '322110', 												])
             ->create([	'id' => '333131', 	'resource_action' => '332131', 	'type' => 'Form', 	'idn1' => '309106', 												])
             ->create([	'id' => '333132', 	'resource_action' => '332132', 	'type' => 'Data', 	'idn1' => '327105', 												])
