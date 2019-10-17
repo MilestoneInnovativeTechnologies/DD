@@ -2,29 +2,36 @@
 
     namespace Milestone\SS\Interact;
 
+    use Illuminate\Support\Arr;
     use Illuminate\Support\Facades\DB;
-    use Milestone\SS\Model\WBin;
+    use Milestone\SS\Model\Store;
     use Milestone\Interact\Table;
 
     class companymaster implements Table
     {
-        private $cache = [
-            'abr' => [],
-        ];
 
         public function getModel()
         {
-            return WBin::class;
+            return Store::class;
         }
+
+        public function preImport($activity){
+            $CoAbr = Arr::pluck($activity['data'],'ABR','CODE'); $updated_at = now()->toDateTimeString();
+            if(!empty($CoAbr))
+                foreach ($CoAbr as $cocode => $co_abr)
+                    DB::table('stores')->where(compact('cocode'))->update(compact('co_abr','updated_at'));
+        }
+
+        public function isValidImportRecord(){ return false; }
 
         public function getImportAttributes()
         {
-            return ['bin'];
+            return ['co_abr'];
         }
 
         public function getImportMappings()
         {
-            return ['bin' => 'doBin'];
+            return ['co_abr' => 'ABR'];
         }
 
         public function getPrimaryIdFromImportRecord($data)
@@ -32,25 +39,7 @@
             return 1;
         }
 
-        public function doBin($data){
-            $this->cache['abr'][$data['CODE']] = $data['ABR'];
-            return 1;
-        }
+        public function getExportMappings(){}
 
-        public function postImport($content,$result){
-            $abr =$this->cache['abr'];
-            if(empty($abr)) return; $updated_at = now()->toDateTimeString();
-            foreach ($abr as $cocode => $co_abr)
-                DB::table('stores')->where(compact('cocode'))->update(compact('co_abr','updated_at'));
-        }
-        public function getExportMappings()
-        {
-            // TODO: Implement getExportMappings() method.
-        }
-
-        public function getExportAttributes()
-        {
-            // TODO: Implement getExportAttributes() method.
-        }
-
+        public function getExportAttributes(){}
     }
