@@ -34,6 +34,7 @@
 
         public function getPrimaryIdFromImportRecord($data)
         {
+            return Arr::get(TransactionDetail::where(['transaction' => $this->getTransactionId($data),'store' => $data['store'],'product' => $data['product']])->first(),'id');
         }
 
         public function getExportMappings()
