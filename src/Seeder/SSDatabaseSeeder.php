@@ -41,6 +41,7 @@
                 FnReserveTableSeeder::class,
                 WBinTableSeeder::class,
                 UserExecutiveTableSeeder::class,
+                PrintingTableSeeder::class,
             ]);
         }
     }
