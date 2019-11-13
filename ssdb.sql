@@ -366,7 +366,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 	(1504, '2019_03_28_000070_create_fn_reserves_table', 1),
 	(1505, '2019_03_28_000071_create_w_bin_table', 1),
 	(1506, '2019_03_28_000072_create_user_executive_table', 1),
-	(1510, '2019_03_28_000073_create_printings_table', 2);
+	(1511, '2019_03_28_000073_create_printings_table', 2);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 
 -- Dumping structure for table appframe.password_resets
