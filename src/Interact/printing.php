@@ -22,7 +22,7 @@ class printing implements Table
     }
 
     public function getExportAttributes(){
-        return ['id','name','description','fncode','query1','query2','query3','query1_props','query2_props','query3_props','header1','header2','header3','footer1','footer2','footer3','object','status'];
+        return ['id','name','description','fncode','query1','query2','query3','query1_props','query2_props','query3_props','header1','header2','header3','footer1','footer2','footer3','template','object','status'];
     }
 
     public function getExportMappings(){
