@@ -22,7 +22,7 @@ class functionprint implements Table
     }
 
     public function getImportAttributes(){
-        return ['fncode','header1','header2','header3','footer1','footer2','footer3'];
+        return ['name','fncode','header1','header2','header3','footer1','footer2','footer3'];
     }
 
     public function getImportMappings(){
