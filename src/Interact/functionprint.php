@@ -27,7 +27,7 @@ class functionprint implements Table
 
     public function getImportMappings(){
         return [
-            'fncode' => 'CODE',
+            'fncode' => 'CODE','name' => 'PRINTNAME',
             'header1' => 'PRNHEADER1','header2' => 'PRNHEADER2','header3' => 'PRNHEADER3',
             'footer1' => 'PRNFOOTER1','footer2' => 'PRNFOOTER2','footer3' => 'PRNFOOTER3'
         ];

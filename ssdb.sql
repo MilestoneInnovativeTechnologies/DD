@@ -28,8 +28,8 @@ CREATE TABLE IF NOT EXISTS `areas` (
   KEY `areas_name_index` (`name`),
   KEY `areas_created_by_index` (`created_by`),
   KEY `areas_updated_by_index` (`updated_by`),
-  CONSTRAINT `areas_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `areas_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `areas_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `areas_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.areas: ~0 rows (approximately)
@@ -51,10 +51,10 @@ CREATE TABLE IF NOT EXISTS `area_users` (
   KEY `area_users_area_index` (`area`),
   KEY `area_users_created_by_index` (`created_by`),
   KEY `area_users_updated_by_index` (`updated_by`),
-  CONSTRAINT `area_users_user_foreign` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `area_users_area_foreign` FOREIGN KEY (`area`) REFERENCES `areas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `area_users_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `area_users_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `area_users_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `area_users_user_foreign` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.area_users: ~0 rows (approximately)
@@ -101,8 +101,8 @@ CREATE TABLE IF NOT EXISTS `d_data` (
   PRIMARY KEY (`id`),
   KEY `d_data_created_by_index` (`created_by`),
   KEY `d_data_updated_by_index` (`updated_by`),
-  CONSTRAINT `d_data_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `d_data_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `d_data_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `d_data_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.d_data: ~0 rows (approximately)
@@ -130,8 +130,8 @@ CREATE TABLE IF NOT EXISTS `fiscalyearmaster` (
   KEY `fiscalyearmaster_name_index` (`name`),
   KEY `fiscalyearmaster_created_by_index` (`created_by`),
   KEY `fiscalyearmaster_updated_by_index` (`updated_by`),
-  CONSTRAINT `fiscalyearmaster_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `fiscalyearmaster_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `fiscalyearmaster_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `fiscalyearmaster_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.fiscalyearmaster: ~0 rows (approximately)
@@ -161,9 +161,9 @@ CREATE TABLE IF NOT EXISTS `fn_reserves` (
   KEY `fn_reserves_store_index` (`store`),
   KEY `fn_reserves_created_by_index` (`created_by`),
   KEY `fn_reserves_updated_by_index` (`updated_by`),
-  CONSTRAINT `fn_reserves_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `fn_reserves_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `fn_reserves_store_foreign` FOREIGN KEY (`store`) REFERENCES `stores` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `fn_reserves_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `fn_reserves_user_foreign` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -208,9 +208,9 @@ CREATE TABLE IF NOT EXISTS `functiondetails` (
   KEY `functiondetails_pricelist_index` (`pricelist`),
   KEY `functiondetails_created_by_index` (`created_by`),
   KEY `functiondetails_updated_by_index` (`updated_by`),
-  CONSTRAINT `functiondetails_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `functiondetails_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `functiondetails_pricelist_foreign` FOREIGN KEY (`pricelist`) REFERENCES `pricelist` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `functiondetails_pricelist_foreign` FOREIGN KEY (`pricelist`) REFERENCES `pricelist` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `functiondetails_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.functiondetails: ~0 rows (approximately)
@@ -237,8 +237,8 @@ CREATE TABLE IF NOT EXISTS `menu` (
   KEY `menu_name_index` (`name`),
   KEY `menu_created_by_index` (`created_by`),
   KEY `menu_updated_by_index` (`updated_by`),
-  CONSTRAINT `menu_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `menu_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `menu_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `menu_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.menu: ~0 rows (approximately)
@@ -260,13 +260,13 @@ CREATE TABLE IF NOT EXISTS `menu_types` (
   KEY `menu_types_name_index` (`name`),
   KEY `menu_types_created_by_index` (`created_by`),
   KEY `menu_types_updated_by_index` (`updated_by`),
-  CONSTRAINT `menu_types_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `menu_types_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `menu_types_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `menu_types_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table appframe.menu_types: ~0 rows (approximately)
+-- Dumping data for table appframe.menu_types: ~10 rows (approximately)
 /*!40000 ALTER TABLE `menu_types` DISABLE KEYS */;
-REPLACE INTO `menu_types` (`id`, `name`, `display_name`, `fncodes`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+INSERT INTO `menu_types` (`id`, `name`, `display_name`, `fncodes`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 	(1, 'PURCHASE', 'PURCHASE', 'PUR1,PUR2,PUR3,PUR4,PUR5', NULL, NULL, '2019-11-12 13:13:16', '2019-11-12 13:13:16'),
 	(2, 'PURCHASE RETURN', 'PURCHASE RETURN', 'PR1,PR2,PR3', NULL, NULL, '2019-11-12 13:13:16', '2019-11-12 13:13:16'),
 	(3, 'PURCHASE ORDER', 'PURCHASE ORDER', 'PO1', NULL, NULL, '2019-11-12 13:13:16', '2019-11-12 13:13:16'),
@@ -286,11 +286,11 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1509 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1511 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.migrations: ~76 rows (approximately)
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-REPLACE INTO `migrations` (`id`, `migration`, `batch`) VALUES
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 	(1432, '2014_10_12_000000_create_users_table', 1),
 	(1433, '2014_10_12_100000_create_password_resets_table', 1),
 	(1434, '2019_01_24_000002_create___groups_table', 1),
@@ -366,7 +366,7 @@ REPLACE INTO `migrations` (`id`, `migration`, `batch`) VALUES
 	(1504, '2019_03_28_000070_create_fn_reserves_table', 1),
 	(1505, '2019_03_28_000071_create_w_bin_table', 1),
 	(1506, '2019_03_28_000072_create_user_executive_table', 1),
-	(1508, '2019_03_28_000073_create_printings_table', 2);
+	(1510, '2019_03_28_000073_create_printings_table', 2);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 
 -- Dumping structure for table appframe.password_resets
@@ -398,8 +398,8 @@ CREATE TABLE IF NOT EXISTS `pricelist` (
   KEY `pricelist_name_index` (`name`),
   KEY `pricelist_created_by_index` (`created_by`),
   KEY `pricelist_updated_by_index` (`updated_by`),
-  CONSTRAINT `pricelist_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `pricelist_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `pricelist_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `pricelist_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.pricelist: ~0 rows (approximately)
@@ -428,10 +428,10 @@ CREATE TABLE IF NOT EXISTS `pricelist_products` (
   KEY `pricelist_products_product_index` (`product`),
   KEY `pricelist_products_created_by_index` (`created_by`),
   KEY `pricelist_products_updated_by_index` (`updated_by`),
-  CONSTRAINT `pricelist_products_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `pricelist_products_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `pricelist_products_pricelist_foreign` FOREIGN KEY (`pricelist`) REFERENCES `pricelist` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `pricelist_products_product_foreign` FOREIGN KEY (`product`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `pricelist_products_product_foreign` FOREIGN KEY (`product`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `pricelist_products_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.pricelist_products: ~0 rows (approximately)
@@ -442,6 +442,8 @@ CREATE TABLE IF NOT EXISTS `pricelist_products` (
 DROP TABLE IF EXISTS `printings`;
 CREATE TABLE IF NOT EXISTS `printings` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(128) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` varchar(1024) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `fncode` char(5) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `query1` varchar(1024) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `query2` varchar(1024) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -455,6 +457,7 @@ CREATE TABLE IF NOT EXISTS `printings` (
   `footer1` varchar(512) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `footer2` varchar(512) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `footer3` varchar(512) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `template` text COLLATE utf8mb4_unicode_ci,
   `object` text COLLATE utf8mb4_unicode_ci,
   `status` enum('Active','Inactive') COLLATE utf8mb4_unicode_ci DEFAULT 'Active',
   `created_by` bigint(20) unsigned DEFAULT NULL,
@@ -462,6 +465,7 @@ CREATE TABLE IF NOT EXISTS `printings` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
+  KEY `printings_name_index` (`name`),
   KEY `printings_fncode_index` (`fncode`),
   KEY `printings_created_by_index` (`created_by`),
   KEY `printings_updated_by_index` (`updated_by`),
@@ -503,8 +507,8 @@ CREATE TABLE IF NOT EXISTS `products` (
   KEY `products_taxcode02_index` (`taxcode02`),
   KEY `products_created_by_index` (`created_by`),
   KEY `products_updated_by_index` (`updated_by`),
-  CONSTRAINT `products_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `products_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `products_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `products_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.products: ~0 rows (approximately)
@@ -544,7 +548,6 @@ CREATE TABLE IF NOT EXISTS `product_groups` (
   KEY `product_groups_g10_index` (`g10`),
   KEY `product_groups_created_by_index` (`created_by`),
   KEY `product_groups_updated_by_index` (`updated_by`),
-  CONSTRAINT `product_groups_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `product_groups_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `product_groups_g01_foreign` FOREIGN KEY (`g01`) REFERENCES `product_group_master` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `product_groups_g02_foreign` FOREIGN KEY (`g02`) REFERENCES `product_group_master` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
@@ -556,7 +559,8 @@ CREATE TABLE IF NOT EXISTS `product_groups` (
   CONSTRAINT `product_groups_g08_foreign` FOREIGN KEY (`g08`) REFERENCES `product_group_master` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `product_groups_g09_foreign` FOREIGN KEY (`g09`) REFERENCES `product_group_master` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `product_groups_g10_foreign` FOREIGN KEY (`g10`) REFERENCES `product_group_master` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `product_groups_product_foreign` FOREIGN KEY (`product`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `product_groups_product_foreign` FOREIGN KEY (`product`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `product_groups_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.product_groups: ~0 rows (approximately)
@@ -580,8 +584,8 @@ CREATE TABLE IF NOT EXISTS `product_group_master` (
   KEY `product_group_master_list_index` (`list`),
   KEY `product_group_master_created_by_index` (`created_by`),
   KEY `product_group_master_updated_by_index` (`updated_by`),
-  CONSTRAINT `product_group_master_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `product_group_master_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `product_group_master_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `product_group_master_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.product_group_master: ~0 rows (approximately)
@@ -607,9 +611,9 @@ CREATE TABLE IF NOT EXISTS `product_images` (
   KEY `product_images_product_index` (`product`),
   KEY `product_images_created_by_index` (`created_by`),
   KEY `product_images_updated_by_index` (`updated_by`),
-  CONSTRAINT `product_images_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `product_images_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `product_images_product_foreign` FOREIGN KEY (`product`) REFERENCES `products` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `product_images_product_foreign` FOREIGN KEY (`product`) REFERENCES `products` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `product_images_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.product_images: ~0 rows (approximately)
@@ -649,10 +653,10 @@ CREATE TABLE IF NOT EXISTS `receipts` (
   KEY `receipts__ref_index` (`_ref`),
   KEY `receipts_created_by_index` (`created_by`),
   KEY `receipts_updated_by_index` (`updated_by`),
-  CONSTRAINT `receipts_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `receipts_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `receipts_customer_foreign` FOREIGN KEY (`customer`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `receipts_store_foreign` FOREIGN KEY (`store`) REFERENCES `stores` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `receipts_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `receipts_user_foreign` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -689,10 +693,10 @@ CREATE TABLE IF NOT EXISTS `sales_order` (
   KEY `sales_order__ref_index` (`_ref`),
   KEY `sales_order_created_by_index` (`created_by`),
   KEY `sales_order_updated_by_index` (`updated_by`),
-  CONSTRAINT `sales_order_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `sales_order_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `sales_order_customer_foreign` FOREIGN KEY (`customer`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `sales_order_store_foreign` FOREIGN KEY (`store`) REFERENCES `stores` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `sales_order_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `sales_order_user_foreign` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -729,11 +733,11 @@ CREATE TABLE IF NOT EXISTS `sales_order_items` (
   KEY `sales_order_items__ref_index` (`_ref`),
   KEY `sales_order_items_created_by_index` (`created_by`),
   KEY `sales_order_items_updated_by_index` (`updated_by`),
-  CONSTRAINT `sales_order_items_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `sales_order_items_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `sales_order_items_product_foreign` FOREIGN KEY (`product`) REFERENCES `products` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `sales_order_items_so_foreign` FOREIGN KEY (`so`) REFERENCES `sales_order` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `sales_order_items_store_foreign` FOREIGN KEY (`store`) REFERENCES `stores` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `sales_order_items_store_foreign` FOREIGN KEY (`store`) REFERENCES `stores` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `sales_order_items_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.sales_order_items: ~0 rows (approximately)
@@ -756,8 +760,8 @@ CREATE TABLE IF NOT EXISTS `settings` (
   KEY `settings_name_index` (`name`),
   KEY `settings_created_by_index` (`created_by`),
   KEY `settings_updated_by_index` (`updated_by`),
-  CONSTRAINT `settings_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `settings_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `settings_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `settings_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.settings: ~0 rows (approximately)
@@ -847,8 +851,8 @@ CREATE TABLE IF NOT EXISTS `setup` (
   PRIMARY KEY (`id`),
   KEY `setup_created_by_index` (`created_by`),
   KEY `setup_updated_by_index` (`updated_by`),
-  CONSTRAINT `setup_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `setup_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `setup_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `setup_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.setup: ~0 rows (approximately)
@@ -873,10 +877,10 @@ CREATE TABLE IF NOT EXISTS `stock_transfer` (
   KEY `stock_transfer_verified_by_index` (`verified_by`),
   KEY `stock_transfer_created_by_index` (`created_by`),
   KEY `stock_transfer_updated_by_index` (`updated_by`),
-  CONSTRAINT `stock_transfer_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `stock_transfer_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `stock_transfer_in_foreign` FOREIGN KEY (`in`) REFERENCES `transactions` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `stock_transfer_out_foreign` FOREIGN KEY (`out`) REFERENCES `transactions` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `stock_transfer_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `stock_transfer_verified_by_foreign` FOREIGN KEY (`verified_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -910,8 +914,8 @@ CREATE TABLE IF NOT EXISTS `stores` (
   KEY `stores_brcode_index` (`brcode`),
   KEY `stores_created_by_index` (`created_by`),
   KEY `stores_updated_by_index` (`updated_by`),
-  CONSTRAINT `stores_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `stores_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `stores_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `stores_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.stores: ~0 rows (approximately)
@@ -946,10 +950,10 @@ CREATE TABLE IF NOT EXISTS `transactions` (
   KEY `transactions_fncode_index` (`fncode`),
   KEY `transactions_created_by_index` (`created_by`),
   KEY `transactions_updated_by_index` (`updated_by`),
-  CONSTRAINT `transactions_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `transactions_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `transactions_customer_foreign` FOREIGN KEY (`customer`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `transactions_store_foreign` FOREIGN KEY (`store`) REFERENCES `stores` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `transactions_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `transactions_user_foreign` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -983,12 +987,12 @@ CREATE TABLE IF NOT EXISTS `transaction_details` (
   KEY `transaction_details_soi_index` (`soi`),
   KEY `transaction_details_created_by_index` (`created_by`),
   KEY `transaction_details_updated_by_index` (`updated_by`),
-  CONSTRAINT `transaction_details_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `transaction_details_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `transaction_details_product_foreign` FOREIGN KEY (`product`) REFERENCES `products` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `transaction_details_soi_foreign` FOREIGN KEY (`soi`) REFERENCES `sales_order_items` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `transaction_details_store_foreign` FOREIGN KEY (`store`) REFERENCES `stores` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `transaction_details_transaction_foreign` FOREIGN KEY (`transaction`) REFERENCES `transactions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `transaction_details_transaction_foreign` FOREIGN KEY (`transaction`) REFERENCES `transactions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `transaction_details_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.transaction_details: ~0 rows (approximately)
@@ -1022,9 +1026,9 @@ CREATE TABLE IF NOT EXISTS `users` (
   KEY `users_login_index` (`login`)
 ) ENGINE=InnoDB AUTO_INCREMENT=300103 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table appframe.users: ~0 rows (approximately)
+-- Dumping data for table appframe.users: ~2 rows (approximately)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-REPLACE INTO `users` (`id`, `name`, `email`, `login`, `login_password`, `api_token`, `reference`, `phone`, `address`, `outstanding`, `overdue`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+INSERT INTO `users` (`id`, `name`, `email`, `login`, `login_password`, `api_token`, `reference`, `phone`, `address`, `outstanding`, `overdue`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 	(300101, 'Milestone Setup', 'setup@milestoneit.net', NULL, NULL, NULL, NULL, NULL, NULL, 0.0000000000, 0.0000000000, NULL, '$2y$10$LwRnThkJb8XyIvGDHBy/lO3qb46fKMt065L1lIgjZLWvmCBwzfj7q', NULL, '2019-11-12 13:12:54', '2019-11-12 13:12:54'),
 	(300102, 'Milestone Administrator', 'admin@milestoneit.net', NULL, NULL, NULL, NULL, NULL, NULL, 0.0000000000, 0.0000000000, NULL, '$2y$10$ZaAPkug18RtBVE9IVr9UguNr83hNN8kOnI5ZuoT2DfqlLwDwSx3J.', NULL, '2019-11-12 13:12:54', '2019-11-12 13:12:54');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
@@ -1044,10 +1048,10 @@ CREATE TABLE IF NOT EXISTS `user_executive` (
   KEY `user_executive_executive_user_index` (`executive_user`),
   KEY `user_executive_created_by_index` (`created_by`),
   KEY `user_executive_updated_by_index` (`updated_by`),
-  CONSTRAINT `user_executive_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `user_executive_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `user_executive_executive_user_foreign` FOREIGN KEY (`executive_user`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `user_executive_login_user_foreign` FOREIGN KEY (`login_user`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `user_executive_login_user_foreign` FOREIGN KEY (`login_user`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `user_executive_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.user_executive: ~0 rows (approximately)
@@ -1071,9 +1075,9 @@ CREATE TABLE IF NOT EXISTS `user_settings` (
   KEY `user_settings_setting_index` (`setting`),
   KEY `user_settings_created_by_index` (`created_by`),
   KEY `user_settings_updated_by_index` (`updated_by`),
-  CONSTRAINT `user_settings_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `user_settings_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `user_settings_setting_foreign` FOREIGN KEY (`setting`) REFERENCES `settings` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `user_settings_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `user_settings_user_foreign` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -1099,10 +1103,10 @@ CREATE TABLE IF NOT EXISTS `user_store_area` (
   KEY `user_store_area_area_index` (`area`),
   KEY `user_store_area_created_by_index` (`created_by`),
   KEY `user_store_area_updated_by_index` (`updated_by`),
-  CONSTRAINT `user_store_area_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `user_store_area_area_foreign` FOREIGN KEY (`area`) REFERENCES `areas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `user_store_area_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `user_store_area_store_foreign` FOREIGN KEY (`store`) REFERENCES `stores` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `user_store_area_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `user_store_area_user_foreign` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -1122,8 +1126,8 @@ CREATE TABLE IF NOT EXISTS `w_bin` (
   PRIMARY KEY (`id`),
   KEY `w_bin_created_by_index` (`created_by`),
   KEY `w_bin_updated_by_index` (`updated_by`),
-  CONSTRAINT `w_bin_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `w_bin_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `w_bin_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `w_bin_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.w_bin: ~0 rows (approximately)
@@ -1151,9 +1155,9 @@ CREATE TABLE IF NOT EXISTS `__groups` (
   CONSTRAINT `__groups_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=301105 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table appframe.__groups: ~0 rows (approximately)
+-- Dumping data for table appframe.__groups: ~7 rows (approximately)
 /*!40000 ALTER TABLE `__groups` DISABLE KEYS */;
-REPLACE INTO `__groups` (`id`, `name`, `description`, `title`, `reference`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+INSERT INTO `__groups` (`id`, `name`, `description`, `title`, `reference`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 	(1, 'setup_user', 'Users created initially to setup Module', 'Setup Users', NULL, NULL, NULL, '2019-11-12 13:12:06', '2019-11-12 13:12:06'),
 	(2, 'developers', 'Users in this group are responsible to build this module', 'Developers', NULL, NULL, NULL, '2019-11-12 13:12:06', '2019-11-12 13:12:06'),
 	(3, 'administrators', 'Administrators are responsible for managing users, groups, roles and their resources', 'Administrators', NULL, NULL, NULL, '2019-11-12 13:12:06', '2019-11-12 13:12:06'),
@@ -1184,9 +1188,9 @@ CREATE TABLE IF NOT EXISTS `__group_roles` (
   CONSTRAINT `__group_roles_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=304104 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table appframe.__group_roles: ~0 rows (approximately)
+-- Dumping data for table appframe.__group_roles: ~6 rows (approximately)
 /*!40000 ALTER TABLE `__group_roles` DISABLE KEYS */;
-REPLACE INTO `__group_roles` (`id`, `group`, `role`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+INSERT INTO `__group_roles` (`id`, `group`, `role`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 	(1, 1, 1, NULL, NULL, '2019-11-12 13:12:07', '2019-11-12 13:12:07'),
 	(2, 2, 2, NULL, NULL, '2019-11-12 13:12:07', '2019-11-12 13:12:07'),
 	(3, 3, 3, NULL, NULL, '2019-11-12 13:12:07', '2019-11-12 13:12:07'),
@@ -1216,9 +1220,9 @@ CREATE TABLE IF NOT EXISTS `__group_users` (
   CONSTRAINT `__group_users_user_foreign` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=302103 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table appframe.__group_users: ~0 rows (approximately)
+-- Dumping data for table appframe.__group_users: ~2 rows (approximately)
 /*!40000 ALTER TABLE `__group_users` DISABLE KEYS */;
-REPLACE INTO `__group_users` (`id`, `group`, `user`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+INSERT INTO `__group_users` (`id`, `group`, `user`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 	(302101, 1, 300101, NULL, NULL, '2019-11-12 13:12:54', '2019-11-12 13:12:54'),
 	(302102, 3, 300102, NULL, NULL, '2019-11-12 13:12:54', '2019-11-12 13:12:54');
 /*!40000 ALTER TABLE `__group_users` ENABLE KEYS */;
@@ -1242,8 +1246,8 @@ CREATE TABLE IF NOT EXISTS `__organisation` (
   KEY `__organisation_name_index` (`name`),
   KEY `__organisation_created_by_index` (`created_by`),
   KEY `__organisation_updated_by_index` (`updated_by`),
-  CONSTRAINT `__organisation_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `__organisation_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `__organisation_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `__organisation_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.__organisation: ~0 rows (approximately)
@@ -1266,8 +1270,8 @@ CREATE TABLE IF NOT EXISTS `__organisation_contacts` (
   KEY `__organisation_contacts_organisation_foreign` (`organisation`),
   KEY `__organisation_contacts_created_by_index` (`created_by`),
   KEY `__organisation_contacts_updated_by_index` (`updated_by`),
-  CONSTRAINT `__organisation_contacts_organisation_foreign` FOREIGN KEY (`organisation`) REFERENCES `__organisation` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `__organisation_contacts_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `__organisation_contacts_organisation_foreign` FOREIGN KEY (`organisation`) REFERENCES `__organisation` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `__organisation_contacts_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -1299,9 +1303,9 @@ CREATE TABLE IF NOT EXISTS `__resources` (
   CONSTRAINT `__resources_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=305130 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table appframe.__resources: ~0 rows (approximately)
+-- Dumping data for table appframe.__resources: ~70 rows (approximately)
 /*!40000 ALTER TABLE `__resources` DISABLE KEYS */;
-REPLACE INTO `__resources` (`id`, `name`, `description`, `title`, `namespace`, `table`, `controller`, `controller_namespace`, `development`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+INSERT INTO `__resources` (`id`, `name`, `description`, `title`, `namespace`, `table`, `controller`, `controller_namespace`, `development`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 	(1, 'User', 'All the users of this app', 'Users', 'Milestone\\Appframe\\Model', 'users', NULL, NULL, 'Yes', NULL, NULL, '2019-11-12 13:12:07', '2019-11-12 13:12:07'),
 	(2, 'Group', 'Groups for users. Every user belongs to any or multiple groups', 'Groups', 'Milestone\\Appframe\\Model', '__groups', NULL, NULL, 'Yes', NULL, NULL, '2019-11-12 13:12:07', '2019-11-12 13:12:07'),
 	(3, 'Role', 'Roles defines which resources should a group have access', 'Roles', 'Milestone\\Appframe\\Model', '__roles', NULL, NULL, 'Yes', NULL, NULL, '2019-11-12 13:12:07', '2019-11-12 13:12:07'),
@@ -1403,9 +1407,9 @@ CREATE TABLE IF NOT EXISTS `__resource_actions` (
   CONSTRAINT `__resource_actions_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=332142 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table appframe.__resource_actions: ~0 rows (approximately)
+-- Dumping data for table appframe.__resource_actions: ~94 rows (approximately)
 /*!40000 ALTER TABLE `__resource_actions` DISABLE KEYS */;
-REPLACE INTO `__resource_actions` (`id`, `resource`, `name`, `description`, `title`, `type`, `menu`, `icon`, `set`, `on`, `confirm`, `handler`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+INSERT INTO `__resource_actions` (`id`, `resource`, `name`, `description`, `title`, `type`, `menu`, `icon`, `set`, `on`, `confirm`, `handler`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 	(1, 1, 'NewAdministratorFormAction', 'Action to call a form to create a new administrator', 'New Administrator', 'outline-info', 'Create Administrator', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-11-12 13:12:27', '2019-11-12 13:12:27'),
 	(2, 1, 'NewDeveloperFormAction', 'Action to call a form to create a new developer', 'New Developer', 'outline-info', 'Create Developer', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-11-12 13:12:27', '2019-11-12 13:12:27'),
 	(3, 1, 'NewUserFormAction', 'Action to call a form to create a new user', 'New User', 'outline-info', 'Create User', NULL, 'far', NULL, NULL, NULL, NULL, NULL, '2019-11-12 13:12:27', '2019-11-12 13:12:27'),
@@ -1520,7 +1524,7 @@ CREATE TABLE IF NOT EXISTS `__resource_action_attrs` (
   CONSTRAINT `__resource_action_attrs_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `__resource_action_attrs_resource_action_foreign` FOREIGN KEY (`resource_action`) REFERENCES `__resource_actions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `__resource_action_attrs_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=334101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.__resource_action_attrs: ~0 rows (approximately)
 /*!40000 ALTER TABLE `__resource_action_attrs` DISABLE KEYS */;
@@ -1547,9 +1551,9 @@ CREATE TABLE IF NOT EXISTS `__resource_action_data` (
   CONSTRAINT `__resource_action_data_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=336107 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table appframe.__resource_action_data: ~0 rows (approximately)
+-- Dumping data for table appframe.__resource_action_data: ~6 rows (approximately)
 /*!40000 ALTER TABLE `__resource_action_data` DISABLE KEYS */;
-REPLACE INTO `__resource_action_data` (`id`, `resource_action`, `resource_data`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+INSERT INTO `__resource_action_data` (`id`, `resource_action`, `resource_data`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 	(336101, 332104, 327101, NULL, NULL, '2019-11-12 13:13:08', '2019-11-12 13:13:08'),
 	(336102, 332113, 327102, NULL, NULL, '2019-11-12 13:13:08', '2019-11-12 13:13:08'),
 	(336103, 332118, 327103, NULL, NULL, '2019-11-12 13:13:09', '2019-11-12 13:13:09'),
@@ -1579,9 +1583,9 @@ CREATE TABLE IF NOT EXISTS `__resource_action_lists` (
   CONSTRAINT `__resource_action_lists_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=335124 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table appframe.__resource_action_lists: ~0 rows (approximately)
+-- Dumping data for table appframe.__resource_action_lists: ~59 rows (approximately)
 /*!40000 ALTER TABLE `__resource_action_lists` DISABLE KEYS */;
-REPLACE INTO `__resource_action_lists` (`id`, `resource_action`, `resource_list`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+INSERT INTO `__resource_action_lists` (`id`, `resource_action`, `resource_list`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 	(1, 6, 1, NULL, NULL, '2019-11-12 13:12:30', '2019-11-12 13:12:30'),
 	(2, 7, 1, NULL, NULL, '2019-11-12 13:12:30', '2019-11-12 13:12:30'),
 	(3, 6, 2, NULL, NULL, '2019-11-12 13:12:30', '2019-11-12 13:12:30'),
@@ -1668,9 +1672,9 @@ CREATE TABLE IF NOT EXISTS `__resource_action_methods` (
   CONSTRAINT `__resource_action_methods_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=333142 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table appframe.__resource_action_methods: ~0 rows (approximately)
+-- Dumping data for table appframe.__resource_action_methods: ~94 rows (approximately)
 /*!40000 ALTER TABLE `__resource_action_methods` DISABLE KEYS */;
-REPLACE INTO `__resource_action_methods` (`id`, `resource_action`, `type`, `method`, `idn1`, `idn2`, `idn3`, `idn4`, `idn5`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+INSERT INTO `__resource_action_methods` (`id`, `resource_action`, `type`, `method`, `idn1`, `idn2`, `idn3`, `idn4`, `idn5`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 	(1, 1, 'Form', NULL, '1', NULL, NULL, NULL, NULL, NULL, NULL, '2019-11-12 13:12:29', '2019-11-12 13:12:29'),
 	(2, 2, 'Form', NULL, '2', NULL, NULL, NULL, NULL, NULL, NULL, '2019-11-12 13:12:29', '2019-11-12 13:12:29'),
 	(3, 3, 'Form', NULL, '3', NULL, NULL, NULL, NULL, NULL, NULL, '2019-11-12 13:12:29', '2019-11-12 13:12:29'),
@@ -1788,7 +1792,7 @@ CREATE TABLE IF NOT EXISTS `__resource_dashboard` (
   CONSTRAINT `__resource_dashboard_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `__resource_dashboard_resource_foreign` FOREIGN KEY (`resource`) REFERENCES `__resources` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `__resource_dashboard_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=339101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.__resource_dashboard: ~0 rows (approximately)
 /*!40000 ALTER TABLE `__resource_dashboard` DISABLE KEYS */;
@@ -1814,7 +1818,7 @@ CREATE TABLE IF NOT EXISTS `__resource_dashboard_sections` (
   CONSTRAINT `__resource_dashboard_sections_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `__resource_dashboard_sections_resource_dashboard_foreign` FOREIGN KEY (`resource_dashboard`) REFERENCES `__resource_dashboard` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `__resource_dashboard_sections_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=340101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.__resource_dashboard_sections: ~0 rows (approximately)
 /*!40000 ALTER TABLE `__resource_dashboard_sections` DISABLE KEYS */;
@@ -1841,7 +1845,7 @@ CREATE TABLE IF NOT EXISTS `__resource_dashboard_section_items` (
   CONSTRAINT `__resource_dashboard_section_items_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `__resource_dashboard_section_items_section_foreign` FOREIGN KEY (`section`) REFERENCES `__resource_dashboard_sections` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `__resource_dashboard_section_items_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=341101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.__resource_dashboard_section_items: ~0 rows (approximately)
 /*!40000 ALTER TABLE `__resource_dashboard_section_items` DISABLE KEYS */;
@@ -1870,9 +1874,9 @@ CREATE TABLE IF NOT EXISTS `__resource_data` (
   CONSTRAINT `__resource_data_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=327107 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table appframe.__resource_data: ~0 rows (approximately)
+-- Dumping data for table appframe.__resource_data: ~7 rows (approximately)
 /*!40000 ALTER TABLE `__resource_data` DISABLE KEYS */;
-REPLACE INTO `__resource_data` (`id`, `resource`, `name`, `description`, `title_field`, `method`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+INSERT INTO `__resource_data` (`id`, `resource`, `name`, `description`, `title_field`, `method`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 	(1, 1, 'UserDetailsData', 'View details of a user', 'name', NULL, NULL, NULL, '2019-11-12 13:12:27', '2019-11-12 13:12:27'),
 	(327101, 305105, 'SettingsView', 'View details of a settings', 'name', NULL, NULL, NULL, '2019-11-12 13:13:03', '2019-11-12 13:13:03'),
 	(327102, 305117, 'UserSettingsView', 'View details of a user setting', 'user.name', NULL, NULL, NULL, '2019-11-12 13:13:03', '2019-11-12 13:13:03'),
@@ -1918,9 +1922,9 @@ CREATE TABLE IF NOT EXISTS `__resource_data_relations` (
   CONSTRAINT `__resource_data_relations_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=329109 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table appframe.__resource_data_relations: ~0 rows (approximately)
+-- Dumping data for table appframe.__resource_data_relations: ~9 rows (approximately)
 /*!40000 ALTER TABLE `__resource_data_relations` DISABLE KEYS */;
-REPLACE INTO `__resource_data_relations` (`id`, `resource_data`, `relation`, `nest_relation1`, `nest_relation2`, `nest_relation3`, `nest_relation4`, `nest_relation5`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+INSERT INTO `__resource_data_relations` (`id`, `resource_data`, `relation`, `nest_relation1`, `nest_relation2`, `nest_relation3`, `nest_relation4`, `nest_relation5`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 	(1, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-11-12 13:12:27', '2019-11-12 13:12:27'),
 	(329101, 327102, 308111, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-11-12 13:13:03', '2019-11-12 13:13:03'),
 	(329102, 327102, 308109, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-11-12 13:13:03', '2019-11-12 13:13:03'),
@@ -1951,7 +1955,7 @@ CREATE TABLE IF NOT EXISTS `__resource_data_scopes` (
   CONSTRAINT `__resource_data_scopes_resource_data_foreign` FOREIGN KEY (`resource_data`) REFERENCES `__resource_data` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `__resource_data_scopes_scope_foreign` FOREIGN KEY (`scope`) REFERENCES `__resource_scopes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `__resource_data_scopes_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=328101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.__resource_data_scopes: ~0 rows (approximately)
 /*!40000 ALTER TABLE `__resource_data_scopes` DISABLE KEYS */;
@@ -1981,9 +1985,9 @@ CREATE TABLE IF NOT EXISTS `__resource_data_view_sections` (
   CONSTRAINT `__resource_data_view_sections_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=330109 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table appframe.__resource_data_view_sections: ~0 rows (approximately)
+-- Dumping data for table appframe.__resource_data_view_sections: ~8 rows (approximately)
 /*!40000 ALTER TABLE `__resource_data_view_sections` DISABLE KEYS */;
-REPLACE INTO `__resource_data_view_sections` (`id`, `resource_data`, `title`, `title_field`, `relation`, `colspan`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+INSERT INTO `__resource_data_view_sections` (`id`, `resource_data`, `title`, `title_field`, `relation`, `colspan`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 	(330101, 327101, 'Basic', NULL, NULL, 4, NULL, NULL, '2019-11-12 13:13:03', '2019-11-12 13:13:03'),
 	(330102, 327101, 'Detail', NULL, NULL, 12, NULL, NULL, '2019-11-12 13:13:03', '2019-11-12 13:13:03'),
 	(330103, 327102, 'User Settings Details', NULL, NULL, 12, NULL, NULL, '2019-11-12 13:13:03', '2019-11-12 13:13:03'),
@@ -2017,9 +2021,9 @@ CREATE TABLE IF NOT EXISTS `__resource_data_view_section_items` (
   CONSTRAINT `__resource_data_view_section_items_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=331133 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table appframe.__resource_data_view_section_items: ~0 rows (approximately)
+-- Dumping data for table appframe.__resource_data_view_section_items: ~32 rows (approximately)
 /*!40000 ALTER TABLE `__resource_data_view_section_items` DISABLE KEYS */;
-REPLACE INTO `__resource_data_view_section_items` (`id`, `section`, `label`, `attribute`, `relation`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+INSERT INTO `__resource_data_view_section_items` (`id`, `section`, `label`, `attribute`, `relation`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 	(331101, 330101, 'Name', 'name', NULL, NULL, NULL, '2019-11-12 13:13:04', '2019-11-12 13:13:04'),
 	(331102, 330101, 'Default Value', 'value', NULL, NULL, NULL, '2019-11-12 13:13:04', '2019-11-12 13:13:04'),
 	(331103, 330101, 'Status', 'status', NULL, NULL, NULL, '2019-11-12 13:13:04', '2019-11-12 13:13:04'),
@@ -2084,9 +2088,9 @@ CREATE TABLE IF NOT EXISTS `__resource_defaults` (
   CONSTRAINT `__resource_defaults_update_foreign` FOREIGN KEY (`update`) REFERENCES `__resource_actions` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=337104 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table appframe.__resource_defaults: ~0 rows (approximately)
+-- Dumping data for table appframe.__resource_defaults: ~3 rows (approximately)
 /*!40000 ALTER TABLE `__resource_defaults` DISABLE KEYS */;
-REPLACE INTO `__resource_defaults` (`id`, `resource`, `list`, `create`, `read`, `update`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+INSERT INTO `__resource_defaults` (`id`, `resource`, `list`, `create`, `read`, `update`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 	(337101, 305105, 332102, 332101, 332103, 332104, NULL, NULL, '2019-11-12 13:13:09', '2019-11-12 13:13:09'),
 	(337102, 305117, 332112, 332108, 332114, 332113, NULL, NULL, '2019-11-12 13:13:09', '2019-11-12 13:13:09'),
 	(337103, 305118, 332116, 332115, 332117, 332118, NULL, NULL, '2019-11-12 13:13:09', '2019-11-12 13:13:09');
@@ -2115,9 +2119,9 @@ CREATE TABLE IF NOT EXISTS `__resource_forms` (
   CONSTRAINT `__resource_forms_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=309110 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table appframe.__resource_forms: ~0 rows (approximately)
+-- Dumping data for table appframe.__resource_forms: ~27 rows (approximately)
 /*!40000 ALTER TABLE `__resource_forms` DISABLE KEYS */;
-REPLACE INTO `__resource_forms` (`id`, `resource`, `name`, `description`, `title`, `action_text`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+INSERT INTO `__resource_forms` (`id`, `resource`, `name`, `description`, `title`, `action_text`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 	(1, 1, 'NewAdministratorForm', 'Form to create a new administrator', 'New Administrator', 'Create Administrator', NULL, NULL, '2019-11-12 13:12:12', '2019-11-12 13:12:12'),
 	(2, 1, 'NewDeveloperForm', 'Form to create a new developer', 'New Developer', 'Create Developer', NULL, NULL, '2019-11-12 13:12:12', '2019-11-12 13:12:12'),
 	(3, 1, 'NewUserForm', 'Form to create a new user', 'New User', 'Create User', NULL, NULL, '2019-11-12 13:12:12', '2019-11-12 13:12:12'),
@@ -2172,11 +2176,11 @@ CREATE TABLE IF NOT EXISTS `__resource_form_collection` (
   CONSTRAINT `__resource_form_collection_relation_foreign` FOREIGN KEY (`relation`) REFERENCES `__resource_relations` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `__resource_form_collection_resource_form_foreign` FOREIGN KEY (`resource_form`) REFERENCES `__resource_forms` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `__resource_form_collection_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=320101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table appframe.__resource_form_collection: ~0 rows (approximately)
+-- Dumping data for table appframe.__resource_form_collection: ~2 rows (approximately)
 /*!40000 ALTER TABLE `__resource_form_collection` DISABLE KEYS */;
-REPLACE INTO `__resource_form_collection` (`id`, `resource_form`, `collection_form`, `relation`, `foreign_field`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+INSERT INTO `__resource_form_collection` (`id`, `resource_form`, `collection_form`, `relation`, `foreign_field`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 	(1, 10, 11, 15, 51, NULL, NULL, '2019-11-12 13:12:21', '2019-11-12 13:12:21'),
 	(2, 9, 11, 15, 51, NULL, NULL, '2019-11-12 13:12:21', '2019-11-12 13:12:21');
 /*!40000 ALTER TABLE `__resource_form_collection` ENABLE KEYS */;
@@ -2222,11 +2226,11 @@ CREATE TABLE IF NOT EXISTS `__resource_form_data_map` (
   CONSTRAINT `__resource_form_data_map_resource_data_foreign` FOREIGN KEY (`resource_data`) REFERENCES `__resource_data` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `__resource_form_data_map_resource_form_foreign` FOREIGN KEY (`resource_form`) REFERENCES `__resource_forms` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `__resource_form_data_map_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=318101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table appframe.__resource_form_data_map: ~0 rows (approximately)
+-- Dumping data for table appframe.__resource_form_data_map: ~1 rows (approximately)
 /*!40000 ALTER TABLE `__resource_form_data_map` DISABLE KEYS */;
-REPLACE INTO `__resource_form_data_map` (`id`, `resource_form`, `resource_data`, `form_field`, `attribute`, `relation`, `nest_relation1`, `nest_relation2`, `nest_relation3`, `nest_relation4`, `nest_relation5`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+INSERT INTO `__resource_form_data_map` (`id`, `resource_form`, `resource_data`, `form_field`, `attribute`, `relation`, `nest_relation1`, `nest_relation2`, `nest_relation3`, `nest_relation4`, `nest_relation5`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 	(1, 4, 1, 13, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-11-12 13:12:21', '2019-11-12 13:12:21');
 /*!40000 ALTER TABLE `__resource_form_data_map` ENABLE KEYS */;
 
@@ -2265,9 +2269,9 @@ CREATE TABLE IF NOT EXISTS `__resource_form_defaults` (
   CONSTRAINT `__resource_form_defaults_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=319102 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table appframe.__resource_form_defaults: ~0 rows (approximately)
+-- Dumping data for table appframe.__resource_form_defaults: ~3 rows (approximately)
 /*!40000 ALTER TABLE `__resource_form_defaults` DISABLE KEYS */;
-REPLACE INTO `__resource_form_defaults` (`id`, `resource_form`, `name`, `value`, `method`, `relation`, `nest_relation1`, `nest_relation2`, `nest_relation3`, `attribute`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+INSERT INTO `__resource_form_defaults` (`id`, `resource_form`, `name`, `value`, `method`, `relation`, `nest_relation1`, `nest_relation2`, `nest_relation3`, `attribute`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 	(1, 1, 'groups', '3', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, '2019-11-12 13:12:22', '2019-11-12 13:12:22'),
 	(2, 2, 'groups', '2', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, '2019-11-12 13:12:22', '2019-11-12 13:12:22'),
 	(319101, 309106, 'end_num', '0', NULL, NULL, NULL, NULL, NULL, 'end_num', NULL, NULL, '2019-11-12 13:13:00', '2019-11-12 13:13:00');
@@ -2295,9 +2299,9 @@ CREATE TABLE IF NOT EXISTS `__resource_form_fields` (
   CONSTRAINT `__resource_form_fields_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=310137 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table appframe.__resource_form_fields: ~0 rows (approximately)
+-- Dumping data for table appframe.__resource_form_fields: ~122 rows (approximately)
 /*!40000 ALTER TABLE `__resource_form_fields` DISABLE KEYS */;
-REPLACE INTO `__resource_form_fields` (`id`, `resource_form`, `name`, `type`, `label`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+INSERT INTO `__resource_form_fields` (`id`, `resource_form`, `name`, `type`, `label`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 	(1, 1, 'name', 'text', 'Name', NULL, NULL, '2019-11-12 13:12:13', '2019-11-12 13:12:13'),
 	(2, 1, 'email', 'text', 'Email', NULL, NULL, '2019-11-12 13:12:13', '2019-11-12 13:12:13'),
 	(3, 1, 'password', 'password', 'Password', NULL, NULL, '2019-11-12 13:12:13', '2019-11-12 13:12:13'),
@@ -2442,9 +2446,9 @@ CREATE TABLE IF NOT EXISTS `__resource_form_field_attrs` (
   CONSTRAINT `__resource_form_field_attrs_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=313106 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table appframe.__resource_form_field_attrs: ~0 rows (approximately)
+-- Dumping data for table appframe.__resource_form_field_attrs: ~9 rows (approximately)
 /*!40000 ALTER TABLE `__resource_form_field_attrs` DISABLE KEYS */;
-REPLACE INTO `__resource_form_field_attrs` (`id`, `form_field`, `name`, `value`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+INSERT INTO `__resource_form_field_attrs` (`id`, `form_field`, `name`, `value`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 	(1, 11, 'inline', '5', NULL, NULL, '2019-11-12 13:12:15', '2019-11-12 13:12:15'),
 	(2, 12, 'inline', '5', NULL, NULL, '2019-11-12 13:12:15', '2019-11-12 13:12:15'),
 	(3, 13, 'inline', '5', NULL, NULL, '2019-11-12 13:12:15', '2019-11-12 13:12:15'),
@@ -2487,9 +2491,9 @@ CREATE TABLE IF NOT EXISTS `__resource_form_field_data` (
   CONSTRAINT `__resource_form_field_data_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=311137 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table appframe.__resource_form_field_data: ~0 rows (approximately)
+-- Dumping data for table appframe.__resource_form_field_data: ~122 rows (approximately)
 /*!40000 ALTER TABLE `__resource_form_field_data` DISABLE KEYS */;
-REPLACE INTO `__resource_form_field_data` (`id`, `form_field`, `relation`, `nest_relation1`, `nest_relation2`, `nest_relation3`, `attribute`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+INSERT INTO `__resource_form_field_data` (`id`, `form_field`, `relation`, `nest_relation1`, `nest_relation2`, `nest_relation3`, `attribute`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 	(1, 1, NULL, NULL, NULL, NULL, 'name', NULL, NULL, '2019-11-12 13:12:16', '2019-11-12 13:12:16'),
 	(2, 2, NULL, NULL, NULL, NULL, 'email', NULL, NULL, '2019-11-12 13:12:16', '2019-11-12 13:12:16'),
 	(3, 3, NULL, NULL, NULL, NULL, 'password', NULL, NULL, '2019-11-12 13:12:16', '2019-11-12 13:12:16'),
@@ -2638,11 +2642,11 @@ CREATE TABLE IF NOT EXISTS `__resource_form_field_depends` (
   CONSTRAINT `__resource_form_field_depends_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `__resource_form_field_depends_form_field_foreign` FOREIGN KEY (`form_field`) REFERENCES `__resource_form_fields` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `__resource_form_field_depends_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=316101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table appframe.__resource_form_field_depends: ~0 rows (approximately)
+-- Dumping data for table appframe.__resource_form_field_depends: ~16 rows (approximately)
 /*!40000 ALTER TABLE `__resource_form_field_depends` DISABLE KEYS */;
-REPLACE INTO `__resource_form_field_depends` (`id`, `form_field`, `depend_field`, `db_field`, `operator`, `compare_method`, `method`, `value_db_field`, `ignore_null`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+INSERT INTO `__resource_form_field_depends` (`id`, `form_field`, `depend_field`, `db_field`, `operator`, `compare_method`, `method`, `value_db_field`, `ignore_null`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 	(1, 29, 'type', NULL, '=', NULL, 'id1List', NULL, 'Yes', NULL, NULL, '2019-11-12 13:12:19', '2019-11-12 13:12:19'),
 	(2, 29, 'resource', NULL, '=', NULL, 'id1List', NULL, 'Yes', NULL, NULL, '2019-11-12 13:12:19', '2019-11-12 13:12:19'),
 	(3, 30, 'type', NULL, '=', NULL, 'id2List', NULL, 'Yes', NULL, NULL, '2019-11-12 13:12:19', '2019-11-12 13:12:19'),
@@ -2685,11 +2689,11 @@ CREATE TABLE IF NOT EXISTS `__resource_form_field_dynamic` (
   CONSTRAINT `__resource_form_field_dynamic_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `__resource_form_field_dynamic_form_field_foreign` FOREIGN KEY (`form_field`) REFERENCES `__resource_form_fields` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `__resource_form_field_dynamic_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=314101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table appframe.__resource_form_field_dynamic: ~0 rows (approximately)
+-- Dumping data for table appframe.__resource_form_field_dynamic: ~2 rows (approximately)
 /*!40000 ALTER TABLE `__resource_form_field_dynamic` DISABLE KEYS */;
-REPLACE INTO `__resource_form_field_dynamic` (`id`, `form_field`, `type`, `depend_field`, `alter_on`, `value`, `values`, `operator`, `on_multiple`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+INSERT INTO `__resource_form_field_dynamic` (`id`, `form_field`, `type`, `depend_field`, `alter_on`, `value`, `values`, `operator`, `on_multiple`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 	(1, 30, 'disabled-enabled', 'type', 'value', NULL, 'FormWithData,AddRelation,ListRelation,ManageRelation', 'In', 'and', NULL, NULL, '2019-11-12 13:12:19', '2019-11-12 13:12:19'),
 	(2, 31, 'disabled-enabled', 'type', 'value', NULL, 'AddRelation', '=', 'and', NULL, NULL, '2019-11-12 13:12:19', '2019-11-12 13:12:19');
 /*!40000 ALTER TABLE `__resource_form_field_dynamic` ENABLE KEYS */;
@@ -2717,9 +2721,9 @@ CREATE TABLE IF NOT EXISTS `__resource_form_field_options` (
   CONSTRAINT `__resource_form_field_options_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=312118 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table appframe.__resource_form_field_options: ~0 rows (approximately)
+-- Dumping data for table appframe.__resource_form_field_options: ~37 rows (approximately)
 /*!40000 ALTER TABLE `__resource_form_field_options` DISABLE KEYS */;
-REPLACE INTO `__resource_form_field_options` (`id`, `form_field`, `type`, `detail`, `value_attr`, `label_attr`, `preload`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+INSERT INTO `__resource_form_field_options` (`id`, `form_field`, `type`, `detail`, `value_attr`, `label_attr`, `preload`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 	(1, 8, 'Foreign', NULL, 'id', 'title', 'Yes', NULL, NULL, '2019-11-12 13:12:18', '2019-11-12 13:12:18'),
 	(2, 13, 'Foreign', NULL, 'id', 'title', 'Yes', NULL, NULL, '2019-11-12 13:12:18', '2019-11-12 13:12:18'),
 	(3, 22, 'Enum', NULL, NULL, NULL, 'Yes', NULL, NULL, '2019-11-12 13:12:18', '2019-11-12 13:12:18'),
@@ -2784,9 +2788,9 @@ CREATE TABLE IF NOT EXISTS `__resource_form_field_validations` (
   CONSTRAINT `__resource_form_field_validations_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=315102 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table appframe.__resource_form_field_validations: ~0 rows (approximately)
+-- Dumping data for table appframe.__resource_form_field_validations: ~5 rows (approximately)
 /*!40000 ALTER TABLE `__resource_form_field_validations` DISABLE KEYS */;
-REPLACE INTO `__resource_form_field_validations` (`id`, `form_field`, `rule`, `message`, `arg1`, `arg2`, `arg3`, `arg4`, `arg5`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+INSERT INTO `__resource_form_field_validations` (`id`, `form_field`, `rule`, `message`, `arg1`, `arg2`, `arg3`, `arg4`, `arg5`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 	(1, 77, 'required', 'Group name cannot be empty', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-11-12 13:12:18', '2019-11-12 13:12:18'),
 	(2, 78, 'required', 'Group title cannot be empty', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-11-12 13:12:18', '2019-11-12 13:12:18'),
 	(3, 80, 'required', 'Group name cannot be empty', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-11-12 13:12:18', '2019-11-12 13:12:18'),
@@ -2816,9 +2820,9 @@ CREATE TABLE IF NOT EXISTS `__resource_form_layout` (
   CONSTRAINT `__resource_form_layout_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=317108 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table appframe.__resource_form_layout: ~0 rows (approximately)
+-- Dumping data for table appframe.__resource_form_layout: ~59 rows (approximately)
 /*!40000 ALTER TABLE `__resource_form_layout` DISABLE KEYS */;
-REPLACE INTO `__resource_form_layout` (`id`, `resource_form`, `form_field`, `colspan`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+INSERT INTO `__resource_form_layout` (`id`, `resource_form`, `form_field`, `colspan`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 	(1, 3, 7, 6, NULL, NULL, '2019-11-12 13:12:19', '2019-11-12 13:12:19'),
 	(2, 3, 8, 6, NULL, NULL, '2019-11-12 13:12:19', '2019-11-12 13:12:19'),
 	(3, 3, 9, 6, NULL, NULL, '2019-11-12 13:12:19', '2019-11-12 13:12:19'),
@@ -2902,7 +2906,7 @@ CREATE TABLE IF NOT EXISTS `__resource_form_upload` (
   KEY `__resource_form_upload_updated_by_index` (`updated_by`),
   CONSTRAINT `__resource_form_upload_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `__resource_form_upload_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=321101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.__resource_form_upload: ~0 rows (approximately)
 /*!40000 ALTER TABLE `__resource_form_upload` DISABLE KEYS */;
@@ -2933,9 +2937,9 @@ CREATE TABLE IF NOT EXISTS `__resource_lists` (
   CONSTRAINT `__resource_lists_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=322116 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table appframe.__resource_lists: ~0 rows (approximately)
+-- Dumping data for table appframe.__resource_lists: ~41 rows (approximately)
 /*!40000 ALTER TABLE `__resource_lists` DISABLE KEYS */;
-REPLACE INTO `__resource_lists` (`id`, `resource`, `name`, `description`, `title`, `identity`, `items_per_page`, `method`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+INSERT INTO `__resource_lists` (`id`, `resource`, `name`, `description`, `title`, `identity`, `items_per_page`, `method`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 	(1, 1, 'UsersListForSetup', 'List all users', 'Users', 'name', 20, NULL, NULL, NULL, '2019-11-12 13:12:22', '2019-11-12 13:12:22'),
 	(2, 1, 'UsersList', 'List all users', 'Users', 'name', 80, NULL, NULL, NULL, '2019-11-12 13:12:22', '2019-11-12 13:12:22'),
 	(3, 4, 'ResourcesList', 'List all resources', 'Resources', 'name', 100, NULL, NULL, NULL, '2019-11-12 13:12:22', '2019-11-12 13:12:22'),
@@ -3008,9 +3012,9 @@ CREATE TABLE IF NOT EXISTS `__resource_list_layout` (
   CONSTRAINT `__resource_list_layout_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=325150 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table appframe.__resource_list_layout: ~0 rows (approximately)
+-- Dumping data for table appframe.__resource_list_layout: ~147 rows (approximately)
 /*!40000 ALTER TABLE `__resource_list_layout` DISABLE KEYS */;
-REPLACE INTO `__resource_list_layout` (`id`, `resource_list`, `label`, `field`, `relation`, `nest_relation1`, `nest_relation2`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+INSERT INTO `__resource_list_layout` (`id`, `resource_list`, `label`, `field`, `relation`, `nest_relation1`, `nest_relation2`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 	(1, 1, 'Name', 'name', NULL, NULL, NULL, NULL, NULL, '2019-11-12 13:12:24', '2019-11-12 13:12:24'),
 	(2, 1, 'Email', 'email', NULL, NULL, NULL, NULL, NULL, '2019-11-12 13:12:24', '2019-11-12 13:12:24'),
 	(3, 1, 'Groups', 'title', 1, NULL, NULL, NULL, NULL, '2019-11-12 13:12:24', '2019-11-12 13:12:24'),
@@ -3196,9 +3200,9 @@ CREATE TABLE IF NOT EXISTS `__resource_list_relations` (
   CONSTRAINT `__resource_list_relations_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=324113 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table appframe.__resource_list_relations: ~0 rows (approximately)
+-- Dumping data for table appframe.__resource_list_relations: ~41 rows (approximately)
 /*!40000 ALTER TABLE `__resource_list_relations` DISABLE KEYS */;
-REPLACE INTO `__resource_list_relations` (`id`, `resource_list`, `relation`, `nest_relation1`, `nest_relation2`, `nest_relation3`, `nest_relation4`, `nest_relation5`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+INSERT INTO `__resource_list_relations` (`id`, `resource_list`, `relation`, `nest_relation1`, `nest_relation2`, `nest_relation3`, `nest_relation4`, `nest_relation5`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 	(1, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-11-12 13:12:23', '2019-11-12 13:12:23'),
 	(2, 2, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-11-12 13:12:23', '2019-11-12 13:12:23'),
 	(3, 4, 11, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-11-12 13:12:23', '2019-11-12 13:12:23'),
@@ -3263,9 +3267,9 @@ CREATE TABLE IF NOT EXISTS `__resource_list_scopes` (
   CONSTRAINT `__resource_list_scopes_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=323105 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table appframe.__resource_list_scopes: ~0 rows (approximately)
+-- Dumping data for table appframe.__resource_list_scopes: ~6 rows (approximately)
 /*!40000 ALTER TABLE `__resource_list_scopes` DISABLE KEYS */;
-REPLACE INTO `__resource_list_scopes` (`id`, `resource_list`, `scope`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+INSERT INTO `__resource_list_scopes` (`id`, `resource_list`, `scope`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 	(1, 1, 1, NULL, NULL, '2019-11-12 13:12:23', '2019-11-12 13:12:23'),
 	(2, 2, 2, NULL, NULL, '2019-11-12 13:12:23', '2019-11-12 13:12:23'),
 	(323101, 322104, 307101, NULL, NULL, '2019-11-12 13:13:01', '2019-11-12 13:13:01'),
@@ -3305,9 +3309,9 @@ CREATE TABLE IF NOT EXISTS `__resource_list_search` (
   CONSTRAINT `__resource_list_search_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=326128 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table appframe.__resource_list_search: ~0 rows (approximately)
+-- Dumping data for table appframe.__resource_list_search: ~27 rows (approximately)
 /*!40000 ALTER TABLE `__resource_list_search` DISABLE KEYS */;
-REPLACE INTO `__resource_list_search` (`id`, `resource_list`, `field`, `relation`, `nest_relation1`, `nest_relation2`, `nest_relation3`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+INSERT INTO `__resource_list_search` (`id`, `resource_list`, `field`, `relation`, `nest_relation1`, `nest_relation2`, `nest_relation3`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 	(326101, 322101, 'name', NULL, NULL, NULL, NULL, NULL, NULL, '2019-11-12 13:13:02', '2019-11-12 13:13:02'),
 	(326102, 322101, 'description', NULL, NULL, NULL, NULL, NULL, NULL, '2019-11-12 13:13:02', '2019-11-12 13:13:02'),
 	(326103, 322102, 'name', NULL, NULL, NULL, NULL, NULL, NULL, '2019-11-12 13:13:02', '2019-11-12 13:13:02'),
@@ -3366,7 +3370,7 @@ CREATE TABLE IF NOT EXISTS `__resource_metrics` (
   CONSTRAINT `__resource_metrics_resource_foreign` FOREIGN KEY (`resource`) REFERENCES `__resources` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `__resource_metrics_resource_list_foreign` FOREIGN KEY (`resource_list`) REFERENCES `__resource_lists` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `__resource_metrics_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=338101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table appframe.__resource_metrics: ~0 rows (approximately)
 /*!40000 ALTER TABLE `__resource_metrics` DISABLE KEYS */;
@@ -3398,9 +3402,9 @@ CREATE TABLE IF NOT EXISTS `__resource_relations` (
   CONSTRAINT `__resource_relations_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=308142 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table appframe.__resource_relations: ~0 rows (approximately)
+-- Dumping data for table appframe.__resource_relations: ~123 rows (approximately)
 /*!40000 ALTER TABLE `__resource_relations` DISABLE KEYS */;
-REPLACE INTO `__resource_relations` (`id`, `resource`, `name`, `description`, `method`, `type`, `relate_resource`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+INSERT INTO `__resource_relations` (`id`, `resource`, `name`, `description`, `method`, `type`, `relate_resource`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 	(1, 1, 'User Groups', 'Which groups this user belongs to', 'Groups', 'belongsToMany', 2, NULL, NULL, '2019-11-12 13:12:10', '2019-11-12 13:12:10'),
 	(2, 2, 'Group Users', 'List of users belongs to this group', 'Users', 'belongsToMany', 1, NULL, NULL, '2019-11-12 13:12:10', '2019-11-12 13:12:10'),
 	(3, 2, 'Group Roles', 'Roles assigneed to this group', 'Roles', 'belongsToMany', 3, NULL, NULL, '2019-11-12 13:12:10', '2019-11-12 13:12:10'),
@@ -3549,9 +3553,9 @@ CREATE TABLE IF NOT EXISTS `__resource_roles` (
   CONSTRAINT `__resource_roles_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=306129 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table appframe.__resource_roles: ~0 rows (approximately)
+-- Dumping data for table appframe.__resource_roles: ~68 rows (approximately)
 /*!40000 ALTER TABLE `__resource_roles` DISABLE KEYS */;
-REPLACE INTO `__resource_roles` (`id`, `resource`, `role`, `actions_availability`, `actions`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+INSERT INTO `__resource_roles` (`id`, `resource`, `role`, `actions_availability`, `actions`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 	(1, 1, 1, 'Only', '1,2,4,6,7', NULL, NULL, '2019-11-12 13:12:08', '2019-11-12 13:12:08'),
 	(2, 4, 2, 'All', NULL, NULL, NULL, '2019-11-12 13:12:08', '2019-11-12 13:12:08'),
 	(3, 6, 2, 'All', NULL, NULL, NULL, '2019-11-12 13:12:08', '2019-11-12 13:12:08'),
@@ -3647,9 +3651,9 @@ CREATE TABLE IF NOT EXISTS `__resource_scopes` (
   CONSTRAINT `__resource_scopes_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=307112 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table appframe.__resource_scopes: ~0 rows (approximately)
+-- Dumping data for table appframe.__resource_scopes: ~13 rows (approximately)
 /*!40000 ALTER TABLE `__resource_scopes` DISABLE KEYS */;
-REPLACE INTO `__resource_scopes` (`id`, `resource`, `name`, `description`, `method`, `arg1`, `arg2`, `arg3`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+INSERT INTO `__resource_scopes` (`id`, `resource`, `name`, `description`, `method`, `arg1`, `arg2`, `arg3`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 	(1, 1, 'SetupUser', 'Filter users which are maintained by Setup user only', 'setupUser', NULL, NULL, NULL, NULL, NULL, '2019-11-12 13:12:12', '2019-11-12 13:12:12'),
 	(2, 1, 'AdministratorUser', 'Filter users which are maintained by Administrator user', 'administratorUser', NULL, NULL, NULL, NULL, NULL, '2019-11-12 13:12:12', '2019-11-12 13:12:12'),
 	(307101, 305101, 'SalesExecutives', 'User where has group reference as SLS', 'salesExecutive', NULL, NULL, NULL, NULL, NULL, '2019-11-12 13:12:57', '2019-11-12 13:12:57'),
@@ -3684,9 +3688,9 @@ CREATE TABLE IF NOT EXISTS `__roles` (
   CONSTRAINT `__roles_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=303104 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table appframe.__roles: ~0 rows (approximately)
+-- Dumping data for table appframe.__roles: ~6 rows (approximately)
 /*!40000 ALTER TABLE `__roles` DISABLE KEYS */;
-REPLACE INTO `__roles` (`id`, `name`, `description`, `title`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+INSERT INTO `__roles` (`id`, `name`, `description`, `title`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 	(1, 'developer_administrator', 'Have access to Developer and Administrators', 'Developer Administrator', NULL, NULL, '2019-11-12 13:12:06', '2019-11-12 13:12:06'),
 	(2, 'developer', 'Access to resource creation', 'Developer', NULL, NULL, '2019-11-12 13:12:06', '2019-11-12 13:12:06'),
 	(3, 'administrator', 'Have access to Manage Users, Roles and assign Resources', 'Administrator', NULL, NULL, '2019-11-12 13:12:06', '2019-11-12 13:12:06'),
