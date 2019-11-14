@@ -25,6 +25,8 @@ class ResourceFormTableSeeder extends Seeder
             ->create([	'id' => '309107', 	'resource' => '305127', 	'name' => 'UpdateReserves', 	'description' => 'Form to update reserves', 	'title' => 'Function Reserves', 	'action_text' => 'Update', 										])
             ->create([	'id' => '309108', 	'resource' => '305104', 	'name' => 'UpdateMenu', 	'description' => 'Form to update menu details', 	'title' => 'Menu', 	'action_text' => 'Update', 										])
             ->create([	'id' => '309109', 	'resource' => '305128', 	'name' => 'NewExecutiveLoginMap', 	'description' => 'Form to map a user to login', 	'title' => 'Map Executive', 	'action_text' => 'Set', 										])
+            ->create([	'id' => '309110', 	'resource' => '305129', 	'name' => 'NewPrintThroughForm', 	'description' => 'Form to add new print using filling form', 	'title' => 'Print', 	'action_text' => 'Update', 										])
+            ->create([	'id' => '309111', 	'resource' => '305129', 	'name' => 'NewPrintThroughUpload', 	'description' => 'Form to add new print using file upload', 	'title' => 'Print', 	'action_text' => 'Save', 										])
         ;
         \DB::statement('set foreign_key_checks = ' . $_);
     }

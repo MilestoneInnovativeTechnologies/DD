@@ -32,6 +32,7 @@ class CreatePrintingsTable extends Migration
             $table->string('footer3', '512')->nullable();
             $table->text('template')->nullable();
             $table->text('object')->nullable();
+            $table->unsignedBigInteger('file')->nullable();
             $table->enum('status', ['Active','Inactive'])->nullable()->default('Active');
             $table->audit();
         });

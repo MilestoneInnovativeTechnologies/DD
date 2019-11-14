@@ -57,6 +57,11 @@ class ResourceActionTableSeeder extends Seeder
             ->create([	'id' => '332139', 	'resource' => '305104', 	'name' => 'MenuView', 	'description' => 'Action to view details', 	'title' => 'Details', 	'type' => 'primary', 										])
             ->create([	'id' => '332140', 	'resource' => '305128', 	'name' => 'ListUserExecutiveEntries', 	'description' => 'Action to view User Executive entries', 			'menu' => 'List All', 									])
             ->create([	'id' => '332141', 	'resource' => '305128', 	'name' => 'AddUserExecutiveEntries', 	'description' => 'Action to add User to Executive map', 			'menu' => 'Add New Map', 									])
+            ->create([	'id' => '332142', 	'resource' => '305129', 	'name' => 'ListAllPrintAction', 	'description' => 'Action to list all prints', 			'menu' => 'List All', 									])
+            ->create([	'id' => '332143', 	'resource' => '305129', 	'name' => 'AddNewPrintWithFormAction', 	'description' => 'Action to add a print using form filling', 			'menu' => 'Add (Form)', 									])
+            ->create([	'id' => '332144', 	'resource' => '305129', 	'name' => 'AddNewPrintWithUploadAction', 	'description' => 'Action to add a print using file upload', 			'menu' => 'Add (Upload)', 									])
+            ->create([	'id' => '332145', 	'resource' => '305129', 	'name' => 'ViewPrintDetailsAction', 	'description' => 'Action to view details of a selected print', 	'title' => 'Details', 											])
+            ->create([	'id' => '332146', 	'resource' => '305129', 	'name' => 'UpdatePrintDetailsAction', 	'description' => 'Action to update select print details', 	'title' => 'Update', 											])
         ;
         \DB::statement('set foreign_key_checks = ' . $_);
     }

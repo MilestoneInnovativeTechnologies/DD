@@ -31,6 +31,7 @@ class ResourceListTableSeeder extends Seeder
             ->create([	'id' => '322113', 	'resource' => '305101', 	'name' => 'LoginSalesExecutives', 	'description' => 'Sales Executive having login details', 	'title' => 'Users', 	'identity' => 'name', 	'items_per_page' => '50', 									])
             ->create([	'id' => '322114', 	'resource' => '305104', 	'name' => 'MenuList', 	'description' => 'List all menu', 	'title' => 'Menu', 	'identity' => 'name', 	'items_per_page' => '50', 									])
             ->create([	'id' => '322115', 	'resource' => '305128', 	'name' => 'UserToExecutiveMapList', 	'description' => 'User to Executive maps', 	'title' => 'User Executive Map', 	'identity' => 'executive.name', 	'items_per_page' => '50', 									])
+            ->create([	'id' => '322116', 	'resource' => '305129', 	'name' => 'PrintList', 	'description' => 'List all available prints', 	'title' => 'Print', 	'identity' => 'name', 	'items_per_page' => '50', 									])
         ;
         \DB::statement('set foreign_key_checks = ' . $_);
     }
