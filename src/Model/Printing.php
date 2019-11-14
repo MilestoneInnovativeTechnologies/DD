@@ -15,7 +15,7 @@ class Printing extends Model
 
     public static function boot(){
         parent::boot();
-        static::saving(function($model){
+        static::creating(function($model){
             if(!$model->file) return true;
             if(!$model->name) $model->setAttribute('name',date('YmdHis'));
             $RFU = ResourceFormUpload::find($model->file);
