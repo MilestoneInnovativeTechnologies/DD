@@ -18,9 +18,9 @@ class CreatePrintingsTable extends Migration
             $table->string('name', '64')->nullable()->index();
             $table->string('description', '1024')->nullable();
             $table->char('fncode', '5')->nullable()->index();
-            $table->string('query1', '1024')->nullable();
-            $table->string('query2', '1024')->nullable();
-            $table->string('query3', '1024')->nullable();
+            $table->string('query1', '2048')->nullable();
+            $table->string('query2', '2048')->nullable();
+            $table->string('query3', '2048')->nullable();
             $table->string('query1_props', '512')->nullable();
             $table->string('query2_props', '512')->nullable();
             $table->string('query3_props', '512')->nullable();
