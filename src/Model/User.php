@@ -34,4 +34,5 @@ class User extends AppframeUser
     }
     public function scopeLoginUsers($q){ return $q->whereNotNull('login'); }
     public function scopeLoginExecutives($q){ return $q->salesExecutive()->loginUsers()->where('reference','LIKE','SE%'); }
+    public function scopeExecutives($q){ return $q->where('reference','LIKE','SE%'); }
 }

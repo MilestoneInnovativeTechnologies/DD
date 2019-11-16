@@ -26,7 +26,7 @@ class ResourceFormFieldOptionTableSeeder extends Seeder
             ->create([	'id' => '312108', 	'form_field' => '310112', 	'type' => 'Enum', 													])
             ->create([	'id' => '312109', 	'form_field' => '310113', 	'type' => 'Foreign', 		'value_attr' => 'id', 	'label_attr' => 'narration', 	'preload' => 'Yes', 									])
             ->create([	'id' => '312110', 	'form_field' => '310119', 	'type' => 'Enum', 													])
-            ->create([	'id' => '312111', 	'form_field' => '310120', 	'type' => 'List', 	'detail' => '322109', 	'value_attr' => 'code', 	'label_attr' => 'code', 	'preload' => 'Yes', 									])
+            ->create([	'id' => '312111', 	'form_field' => '310120', 	'type' => 'List', 	'detail' => '322109', 	'value_attr' => 'code', 	'label_attr' => 'code_name', 	'preload' => 'Yes', 									])
             ->create([	'id' => '312112', 	'form_field' => '310121', 	'type' => 'Foreign', 		'value_attr' => 'id', 	'label_attr' => 'name', 	'preload' => 'Yes', 									])
             ->create([	'id' => '312113', 	'form_field' => '310127', 	'type' => 'Enum', 													])
             ->create([	'id' => '312114', 	'form_field' => '310128', 	'type' => 'Enum', 													])
