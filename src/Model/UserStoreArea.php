@@ -15,7 +15,7 @@ class UserStoreArea extends Model
     public function Customers(){ return $this->belongsToMany(User::class,'area_users','area','user','area','id'); }
 
     public function scopeAssigned($Q){
-        if(!request()->user()->id) return $Q;
+        if(!request()->user() || !request()->user()->id) return $Q;
         return $Q->where('user',request()->user()->id);
     }
 }

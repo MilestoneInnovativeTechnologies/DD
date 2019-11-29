@@ -12,6 +12,7 @@ class Receipt extends Model
     protected $guarded = [];
 
     public function scopeAssignedCustomerReceipts($Q){
+        if(!request()->user() || !request()->user()->id) return $Q;
         return $Q->whereIn('customer',User::find(request()->user()->id)->AreaCustomers->pluck('user')->all());
     }
 }

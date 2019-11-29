@@ -23,6 +23,7 @@ class Transaction extends Model
     public function STIn(){ return $this->hasOne(StockTransfer::class,'in','id'); }
 
     public function scopeAssignedCustomerTransactions($Q){
+        if(!request()->user() || !request()->user()->id) return $Q;
         return $Q->whereIn('customer',User::find(request()->user()->id)->AreaCustomers->pluck('user')->all());
     }
     public function scopeSTPending($Q){

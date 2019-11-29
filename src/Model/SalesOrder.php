@@ -13,6 +13,7 @@ class SalesOrder extends Model
     public function Store(){ return $this->belongsTo(Store::class,'store'); }
 
     public function scopeAssignedAreaCustomer($Q){
+        if(!request()->user() || !request()->user()->id) return $Q;
         return $Q->whereHas('Customer',function ($Q){
             $Q->whereIn('id',User::find(request()->user()->id)->AreaCustomers->pluck('user')->all());
         });
