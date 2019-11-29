@@ -13,12 +13,12 @@
 
     class pihdata implements Table
     {
-        private $user_cache = null;
         private $cache = [
             'store' => [],
             'dstre' => null,
             'cstmr' => null,
             'fndac' => null,
+            'user' => null,
         ];
 
         public function getModel()
@@ -53,8 +53,9 @@
             $this->cache['dstre'] = Store::first()->id;
         }
         public function getUserID($data){
-            if($data['ANALYSISCATCODE'] && $data['ANALYSISCODE']) return Arr::get($this->user_cache,implode('',[$data['ANALYSISCATCODE'],$data['ANALYSISCODE']]));
-            if($data['CREATED_USER'] && array_key_exists($data['CREATED_USER'],$this->user_cache)) return $this->user_cache[$data['CREATED_USER']];
+            if(!$this->cache['user']) return null;
+            if($data['ANALYSISCATCODE'] && $data['ANALYSISCODE']) return Arr::get($this->cache['user'],implode('',[$data['ANALYSISCATCODE'],$data['ANALYSISCODE']]));
+            if($data['CREATED_USER'] && array_key_exists($data['CREATED_USER'],$this->cache['user'])) return $this->cache['user'][$data['CREATED_USER']];
             return null;
         }
         public function getCustomerID($record){ return Arr::has($this->cache['user'],$record['ACCCODE']) ? Arr::get($this->cache['user'],$record['ACCCODE']) : null; }
@@ -100,11 +101,7 @@
             return $query->with(['Store']);
         }
         public function preExportUpdate($query){ return $this->preExportGet($query); }
-        public function getUserProp($data,$prop)
-        {
-            if (!array_key_exists($data['user'], (array)$this->user_cache)) $this->user_cache[$data['user']] = UserStoreArea::where('user', $data['user'])->with(['Store', 'User'])->first();
-            return Arr::get($this->user_cache[$data['user']], $prop, Arr::get($this->user_cache[$data['user']], "User.{$prop}", Arr::get($this->user_cache[$data['user']], "Store.{$prop}", null)));
-        }
+
         public function getStoreProp($data,$prop){
             return Arr::get($data['store'],$prop);
         }
