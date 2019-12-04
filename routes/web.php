@@ -16,6 +16,7 @@
 
     Route::get('demo/reset',function(){
         \Illuminate\Support\Facades\DB::unprepared(file_get_contents(__DIR__ . '/../ssdb.sql'));
+        \Illuminate\Support\Facades\Log::info('Demo reset called: ' . request()->fullUrl());
 //        \Illuminate\Support\Facades\Artisan::call('migrate:refresh');
 //        \Illuminate\Support\Facades\Artisan::call('db:seed',['--class' => 'Milestone\\SS\\Seeder\\DatabaseSeeder']);
 //        \Illuminate\Support\Facades\Artisan::call('db:seed',['--class' => 'Milestone\\SS\\Seeder\\SSDatabaseSeeder']);
