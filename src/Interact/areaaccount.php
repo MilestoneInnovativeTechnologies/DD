@@ -64,7 +64,7 @@
                 if($pk) $this->cache['del'][] = $pk;
                 return false;
             }
-            return !$pk;
+            return ($this->getAreaID($record) && $this->getUserID($record) && !$pk);
         }
 
         public function getAreaID($record){
