@@ -28,7 +28,7 @@ class itemmaster implements Table
     public function getImportAttributes()
     {
         return [
-            'code','name','narration','narration2','type','status'
+            'code','name','partcode','barcode','narration','narration2','type','status'
         ];
     }
 
@@ -83,8 +83,17 @@ class itemmaster implements Table
         return false;
     }
 
+    public function recordImported($record,$id){
+        if($this->bulk) return; $created_at = $updated_at = now()->toDateTimeString();
+        $this->cache['groups'][$id] = array_merge($this->getGroups($record,$created_at,$updated_at),['product' => $id]);
+    }
+
     public function postImport(){
-        if(!$this->bulk) return;
+        if(!$this->bulk) {
+            if(!empty($this->cache['groups']))
+                foreach ($this->cache['groups'] as $id => $update){ ProductGroup::updateOrCreate(['product' => $id],Arr::except($update,['created_at','updated_at'])); }
+            return;
+        }
         if(!empty($this->cache['insert'])){ Product::insert($this->cache['insert']); Event::dispatch('eloquent.created: ' . Product::class,Product::latest()->first()); }
         if(!empty($this->cache['update'])){
             foreach ($this->cache['update'] as $id => $update){ Product::where(compact('id'))->update(Arr::except($update,'created_at')); }

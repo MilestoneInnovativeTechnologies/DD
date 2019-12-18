@@ -32,6 +32,6 @@
 
         public function getExportAttributes()
         {
-            return ['id','name','description','value'];
+            return ['id','name','description','value','status'];
         }
     }

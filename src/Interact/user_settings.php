@@ -32,7 +32,7 @@
 
         public function getExportAttributes()
         {
-            return ['id','user','setting','value'];
+            return ['id','user','setting','value','status'];
         }
 
         public function preExportGet($query){
