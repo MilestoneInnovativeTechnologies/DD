@@ -93,8 +93,8 @@
 
         public function postImport(){
             $this->AddReceipts($this->cache['rcpts']);
-            $this->AddStockIn($this->cache['stkin']);
             $this->AddStockOut($this->cache['stout']);
+            $this->AddStockIn($this->cache['stkin']);
         }
 
 
