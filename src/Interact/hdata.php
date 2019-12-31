@@ -185,6 +185,7 @@
         public function getCOCode($data){ return $this->getStoreProp($data,'cocode'); }
         public function getBRCode($data){ return $this->getStoreProp($data,'brcode'); }
         public function getACCCode($data){
+            if(in_array($data['fncode'],[$this->fn_in,$this->fn_out])) return '120101000001';
             if(!$this->cache['cstmr']) $this->cache['cstmr'] = User::all()->pluck('reference','id')->toArray();
             return ($data['customer']) ? Arr::get($this->cache['cstmr'],$data['customer']) : $this->getFNDefaultAccount($data['fncode']);
         }
@@ -210,7 +211,10 @@
             $fncode = $data['fncode'];
             return ($fncode === $this->fn_in || in_array(substr($fncode,0,2),['SR'])) ? 'INV' : null;
         }
-        public function getSrcStore($data){ return $this->getStoreProp($data,'code'); }
+        public function getSrcStore($data){
+            if(!$this->getSrcStoreCat($data)) return null;
+            return $this->getStoreProp($data,'code');
+        }
         public function getDstStore($data){
             if(!$this->getDstStoreCat($data)) return null;
             return $this->getStoreProp($data,'code');
@@ -224,7 +228,7 @@
             return null;
         }
         public function getRefDate($data){
-            $fncode = $data['fncode'];
+            $fncode = $data['fncode']; if(in_array(substr($fncode,0,2),['SL'])) return $data['date'];
             if($fncode === $this->fn_in){
                 if(!array_key_exists($data['id'],$this->cache['stfrs'])) $this->cache['stfrs'][$data['id']] = StockTransfer::with('OUT')->where('in',$data['id'])->first();
                 return Arr::get($this->cache['stfrs'][$data['id']],"OUT.date",null);
