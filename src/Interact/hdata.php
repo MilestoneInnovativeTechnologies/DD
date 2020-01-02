@@ -63,7 +63,7 @@
             $this->cache['dstre'] = Store::first()->id;
         }
 
-        public function getExecutiveID($data){ return Arr::get($this->cache['users'],$data['ANALYSISCATCODE'].$data['ANALYSISCODE'],Arr::get($this->cache['users'],$data['CREATED_USER'])); }
+        public function getExecutiveID($data){ return Arr::get($this->cache['users'],$data['ANALYSISCATCODE'].$data['ANALYSISCODE'],Arr::get($this->cache['users'],$data['CREATED_USER'],Arr::get($this->cache['users'],'admin'))); }
         public function getReference($data){ return implode('',['U',$this->getExecutiveID($data),'T',intval(microtime(true)*10000)]); }
         public function getStoreID($data){ return ($data['STRSRC']) ? Arr::get($this->cache['store'],$data['STRSRC']) : $this->cache['dstre']; }
         public function getCustomerID($data){ return Arr::has($this->cache['users'],$data['ACCCODE']) ? Arr::get($this->cache['users'],$data['ACCCODE']) : null; }
