@@ -26,7 +26,7 @@
             'soi' => [],
             'exists' => [],
             'srno' => [],
-            'rfprp' => [],
+            'outtrans' => [],
         ];
 
         public function preImport($activity){
@@ -183,7 +183,15 @@
             return Arr::get($this->cache['detail'],"{$id}.{$idx}.{$prop}",null);
         }
         public function getRefProp($data, $prop){
-            return $data['soi'] ? Arr::get($this->cache['soi'][$data['soi']],$prop) : null;
+            return $data['soi'] ? Arr::get($this->cache['soi'][$data['soi']],$prop)
+                : ($this->getFNCode($data) === 'MT1'
+                    ? $this->getStockOutTransProp($data,$prop)
+                    : null);
+        }
+        public function getStockOutTransProp($data,$prop){
+            $inTranID = $this->getExpTransactionProp($data,'id');
+            if(!array_key_exists($inTranID,$this->cache['outtrans'])) $this->cache['outtrans'][$inTranID] = Transaction::with('Store')->find(StockTransfer::where('in',$inTranID)->first()->out)->toArray();
+            return Arr::get($this->cache['outtrans'][$inTranID],str_replace('sales_order.','',$prop));
         }
 
         public function getCOCode($data){ return $this->getStoreProp($data,'cocode'); }
