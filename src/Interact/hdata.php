@@ -120,7 +120,8 @@
         public function AddStockOut($StkOuts){
             if(empty($StkOuts) || count($StkOuts) === 0) return; $created_at = $updated_at = now()->toDateTimeString(); $insData = [];
             foreach ($StkOuts as $out) $insData[] = compact('out','created_at','updated_at');
-            StockTransfer::insert($insData);
+            $lastData = array_pop($insData);
+            if(!empty($insData)) StockTransfer::insert($insData); if(!empty($lastData)) StockTransfer::forceCreate(['out' => $lastData['out']]);
         }
 
         public function getPrimaryIdFromImportRecord($data){ return $this->getTransactionID($data['DOCNO'],$data['FNCODE'],$data['FYCODE']); }
