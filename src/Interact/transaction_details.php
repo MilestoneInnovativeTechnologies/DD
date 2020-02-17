@@ -21,7 +21,7 @@
 
         public function getImportAttributes()
         {
-            return ['transaction','store','product','direction','quantity','rate','taxrule','tax','discount01','discount02','soi'];
+            return ['transaction','store','product','direction','quantity','rate','taxrule','tax','discount01','discount02','soi','shift_docno'];
         }
 
         public function getImportMappings()

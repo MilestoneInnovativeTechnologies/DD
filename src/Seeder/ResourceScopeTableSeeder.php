@@ -28,6 +28,8 @@ class ResourceScopeTableSeeder extends Seeder
             ->create([	'id' => '307110', 	'resource' => '305101', 	'name' => 'LoginUsers', 	'description' => 'Users having login info', 	'method' => 'loginUsers', 											])
             ->create([	'id' => '307111', 	'resource' => '305101', 	'name' => 'LoginExecutives', 	'description' => 'Sales Executives having logins', 	'method' => 'loginExecutives', 											])
             ->create([	'id' => '307112', 	'resource' => '305101', 	'name' => 'Executives', 	'description' => 'Users having reference like SE%', 	'method' => 'executives', 											])
+            ->create([	'id' => '307113', 	'resource' => '305130', 	'name' => 'OwnShifts', 	'description' => 'Shifts which assigned to requesting user', 	'method' => 'own', 											])
+            ->create([	'id' => '307114', 	'resource' => '305131', 	'name' => 'OwnShiftTransactions', 	'description' => 'Transactions belongs to shift which assigned to a user', 	'method' => 'own', 											])
         ;
         \DB::statement('set foreign_key_checks = ' . $_);
     }

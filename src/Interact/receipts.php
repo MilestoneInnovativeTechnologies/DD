@@ -16,7 +16,7 @@
 
         public function getImportAttributes()
         {
-            return ['docno','store','fycode','fncode','mode','customer','date','user','amount','bank','cheque','cheque_date','source','_ref','status'];
+            return ['docno','store','fycode','fncode','mode','customer','date','user','amount','bank','cheque','cheque_date','source','_ref','shift_docno','status'];
         }
 
         public function getImportMappings()

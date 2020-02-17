@@ -37,7 +37,7 @@
 
         public function getExportAttributes()
         {
-            return ['COCODE','BRCODE','FYCODE','FNCODE','DOCNO','DOCDATE','REFNO','REFDATE','ACCCODE1','ACCCODE2','AMOUNT'];
+            return ['COCODE','BRCODE','FYCODE','FNCODE','DOCNO','DOCDATE','REFNO','REFDATE','ACCCODE1','ACCCODE2','AMOUNT','SHFDOCNO'];
         }
 
         public function getExportMappings()
@@ -54,6 +54,7 @@
                 'ACCCODE1' => 'getAccount1Code',
                 'ACCCODE2' => 'getAccount2Code',
                 'AMOUNT' => 'amount',
+                'SHFDOCNO' => 'shift_docno',
             ];
         }
 

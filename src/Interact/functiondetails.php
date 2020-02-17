@@ -18,7 +18,7 @@ class functiondetails implements Table
 
     public function getImportAttributes()
     {
-        return ['code','format','digit_length','direction','default_account'];
+        return ['code','format','digit_length','direction','default_account','shift_active'];
     }
 
     public function getImportMappings()
@@ -28,6 +28,7 @@ class functiondetails implements Table
             'format' => 'NUMBERING_FORMAT',
             'digit_length' => 'DIGIT_LENGTH',
             'default_account' => 'DEFAULTHCODE',
+            'shift_active' => 'SHIFTMANAGEMENT',
             'direction' => 'getDirectionFromDataRow'
         ];
     }
@@ -73,7 +74,7 @@ class functiondetails implements Table
 
     public function getExportAttributes()
     {
-        return ['id','code','format','digit_length','pricelist','tax','taxselection','list','ratewithtax','discount01','discount02','discount02base','discount03','discountmode','discount'];
+        return ['id','code','format','digit_length','pricelist','tax','taxselection','shift_active','list','ratewithtax','discount01','discount02','discount02base','discount03','discountmode','discount'];
     }
 
 }

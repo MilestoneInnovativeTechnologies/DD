@@ -151,13 +151,14 @@
                 'REFBRCODE' => 'getRefBRCode',
                 'REFFYCODE' => 'getRefFYCode',
                 'REFFNCODE' => 'getRefFNCode',
-                'REFDOCNO' => 'getRefDocNo'
+                'REFDOCNO' => 'getRefDocNo',
+                'SHFDOCNO' => 'shift_docno'
             ];
         }
 
         public function getExportAttributes()
         {
-            return ['COCODE','BRCODE','FYCODE','FNCODE','DOCNO','SRNO','SLNO','TYPE','CANCEL','DOCDATE','CO','BR','STRCATCODE','STRCODE','ITEMCODE','UNITCODE','PARTCODE','UNITQTY','UNITRATE','SIGN','TAXRULE','TAX','REFCOCODE','REFBRCODE','REFFYCODE','REFFNCODE','REFDOCNO'];
+            return ['COCODE','BRCODE','FYCODE','FNCODE','DOCNO','SRNO','SLNO','TYPE','CANCEL','DOCDATE','CO','BR','STRCATCODE','STRCODE','ITEMCODE','UNITCODE','PARTCODE','UNITQTY','UNITRATE','SIGN','TAXRULE','TAX','REFCOCODE','REFBRCODE','REFFYCODE','REFFNCODE','REFDOCNO','SHFDOCNO'];
         }
 
         public function preExportGet($query){
@@ -190,7 +191,15 @@
         }
         public function getStockOutTransProp($data,$prop){
             $inTranID = $this->getExpTransactionProp($data,'id');
-            if(!array_key_exists($inTranID,$this->cache['outtrans'])) $this->cache['outtrans'][$inTranID] = Transaction::with('Store')->find(StockTransfer::where('in',$inTranID)->first()->out)->toArray();
+            if(!array_key_exists($inTranID,$this->cache['outtrans'])){
+                $STF = StockTransfer::where('in',$inTranID)->first(); if(!$STF) $this->cache['outtrans'][$inTranID] = null;
+                else {
+                    $TRN = Transaction::with('Store')->find($STF->out);
+                    if(!$TRN) $this->cache['outtrans'][$inTranID] = null;
+                    else $this->cache['outtrans'][$inTranID] = $TRN->toArray();
+                }
+//                $this->cache['outtrans'][$inTranID] = Transaction::with('Store')->find($STF->out)->toArray();
+            }
             return Arr::get($this->cache['outtrans'][$inTranID],str_replace('sales_order.','',$prop));
         }
 

@@ -45,6 +45,8 @@ class ResourceTableSeeder extends Seeder
             ->create([	'id' => '305127', 	'name' => 'FnReserve', 	'description' => 'Function Reserves', 	'title' => 'Function Reserves', 	'namespace' => 'Milestone\SS\Model', 	'table' => 'fn_reserves', 										])
             ->create([	'id' => '305128', 	'name' => 'UserExecutive', 	'description' => 'User Executive Login Map', 	'title' => 'User Executive Map', 	'namespace' => 'Milestone\SS\Model', 	'table' => 'user_executive', 										])
             ->create([	'id' => '305129', 	'name' => 'Printing', 	'description' => 'Printing details', 	'title' => 'Prints', 	'namespace' => 'Milestone\SS\Model', 	'table' => 'printings', 										])
+            ->create([	'id' => '305130', 	'name' => 'Shift', 	'description' => 'Employee working shifts', 	'title' => 'Shifts', 	'namespace' => 'Milestone\SS\Model', 	'table' => 'shift', 										])
+            ->create([	'id' => '305131', 	'name' => 'ShiftTransaction', 	'description' => 'Transactions in a shift', 	'title' => 'Shift Transactions', 	'namespace' => 'Milestone\SS\Model', 	'table' => 'shift_transactions', 										])
         ;
         \DB::statement('set foreign_key_checks = ' . $_);
     }
