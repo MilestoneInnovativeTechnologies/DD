@@ -9,8 +9,8 @@
         }
     ],
     "require": {
-        "milestone/appframe": "^0.9.7",
-        "milestone/interact": "^0.3.0"
+        "milestone/appframe": "^0.11.3",
+        "milestone/interact": "^0.4.0"
     },
     "autoload": {
         "psr-4": {
