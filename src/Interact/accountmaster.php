@@ -44,7 +44,7 @@
         public function getPassword($data){ return ' '; }
 
         public function getPrimaryIdFromImportRecord($data){
-            Arr::get($this->cache['pending'],$data['NAME'],Arr::get($this->cache['users'],$data['CODE'],null));
+            return Arr::get($this->cache['pending'],$data['NAME'],Arr::get($this->cache['users'],$data['CODE'],null));
         }
 
         public function preImport($activity){
