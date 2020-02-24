@@ -35,7 +35,7 @@
             $this->cache['product'] = Product::pluck('id','code')->toArray();
 
             if($activity['mode'] === 'create') {
-                $cachedRecords = Cache::pull($this->cache_key,[]);
+                $cachedRecords = Cache::pull($this->getCacheKey(),[]);
                 if(!empty($cachedRecords)) $activity['data'] = array_merge($cachedRecords,$activity['data']);
             }
             return $activity;
@@ -116,9 +116,13 @@
         }
 
         private function doCacheRecord($record){
-            $cacheKey = $this->cache_key;
+            $cacheKey = $this->getCacheKey();
             $cache = Cache::get($cacheKey,[]); array_push($cache,$record);
             Cache::put($cacheKey,$cache);
+        }
+
+        private function getCacheKey(){
+            return implode('.',[$this->cache_key,Request()->getHost()]);
         }
 
 
