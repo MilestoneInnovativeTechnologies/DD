@@ -14,7 +14,7 @@ class ProductImageController extends Controller
         if(!$id || !$productImage) return null;
         Storage::prepend('ImageRequestCount',$id . "\t" . now());
         $image = $this->getDefaultImageDetails($productImage); if(!$image) return null;
-        $file = implode(array_filter([$image->path,$image->file]),'/');
+        $file = implode('/',array_filter([$image->path,$image->file]));
         return Storage::disk($image->disk)->exists($file) ? Storage::disk($image->disk)->response($file) : null;
     }
 
