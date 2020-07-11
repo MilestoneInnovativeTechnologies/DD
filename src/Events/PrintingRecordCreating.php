@@ -10,6 +10,7 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Milestone\Appframe\Model\ResourceFormUpload;
 use Milestone\SS\Model\Printing;
@@ -20,6 +21,7 @@ class PrintingRecordCreating
 
     public function __construct($model)
     {
+        if(!DB::table($model->getTable())->exists()) $this->insertPredefined($model->getTable());
         $this->setDefaultAttributes($model);
         $this->processFromFile($model);
     }
@@ -54,6 +56,12 @@ class PrintingRecordCreating
         if(empty($record)) return $model;
         foreach ($record as $key => $dataArray) $model->setAttribute($key,implode(PHP_EOL,$dataArray));
         return $model;
+    }
+
+    public function insertPredefined($table){
+        $created_at = $updated_at = now()->toDateTimeString();
+        $data = array_map(function($record)use($updated_at,$created_at){ return array_merge($record,compact('created_at','updated_at')); },Printing::$predefined);
+        DB::table($table)->insert($data);
     }
 
     public function broadcastOn()
