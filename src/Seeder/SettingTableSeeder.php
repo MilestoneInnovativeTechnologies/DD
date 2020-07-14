@@ -30,7 +30,7 @@ class SettingTableSeeder extends Seeder
             ->create([	'id' => '12', 	'name' => 'advance_sale_items_container_padding', 	'description' => 'The padding amount of  container where Filter, Items and Pagination exists', 	'value' => '10', 												])
             ->create([	'id' => '13', 	'name' => 'advance_sale_main_filter_width', 	'description' => 'Width of main filter - right to container', 	'value' => '110', 												])
             ->create([	'id' => '14', 	'name' => 'advance_sale_secondary_filter_height', 	'description' => 'Height of secondary filter - top to container', 	'value' => '70', 												])
-            ->create([	'id' => '15', 	'name' => 'advance_sale_item_with_to_height_ratio', 	'description' => 'Product list item - width to height ratio', 	'value' => '1.35', 												])
+            ->create([	'id' => '15', 	'name' => 'advance_sale_item_width_to_height_ratio', 	'description' => 'Product list item - width to height ratio', 	'value' => '1.35', 												])
             ->create([	'id' => '16', 	'name' => 'advance_sale_items_per_page', 	'description' => 'Items to be shown in one page', 	'value' => '100', 												])
             ->create([	'id' => '17', 	'name' => 'advance_sale_items_per_row', 	'description' => 'Items to be shown in one row', 	'value' => '5', 												])
             ->create([	'id' => '18', 	'name' => 'advance_sale_space_between_each_item', 	'description' => 'The space between each items', 	'value' => '2', 												])
