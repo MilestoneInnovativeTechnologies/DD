@@ -773,14 +773,24 @@ CREATE TABLE IF NOT EXISTS `settings` (
 -- Dumping data for table ss.settings: ~8 rows (approximately)
 /*!40000 ALTER TABLE `settings` DISABLE KEYS */;
 INSERT INTO `settings` (`id`, `name`, `description`, `value`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-	(1, 'home_screen_out_standing', 'Customers outstanding and overdue metric should display in Home Screen', 'Yes', 'Active', NULL, NULL, '2020-01-17 11:25:33', '2020-01-17 11:25:33'),
-	(2, 'home_screen_sales_order_progress', 'Sales order progress which mentions the incomplete and partially completed sales orders count', 'No', 'Active', NULL, NULL, '2020-01-17 11:25:33', '2020-01-17 11:25:33'),
-	(3, 'receipts_daily_weekly_metric_on_receipt_index', 'Receipts daily and weekly total amount display metric on receipts index window.', 'No', 'Active', NULL, NULL, '2020-01-17 11:25:33', '2020-01-17 11:25:33'),
-	(4, 'receipts_monthly_metric_on_receipt_index', 'Receipts monthly total amount display metric on receipts index window.', 'Yes', 'Active', NULL, NULL, '2020-01-17 11:25:33', '2020-01-17 11:25:33'),
-	(5, 'daily_sales_total_amount_in_sales_index', 'Total Sales amount in a day to be displayed in sales transaction index window', 'Yes', 'Active', NULL, NULL, '2020-01-17 11:25:33', '2020-01-17 11:25:33'),
-	(6, 'weekly_and_monthly_sales_total_amount_in_sales_index', 'Total Sales amount in the current week and month to be displayed in sales transaction index window', 'No', 'Active', NULL, NULL, '2020-01-17 11:25:33', '2020-01-17 11:25:33'),
-	(7, 'daily_sales_total_amount_in_sales_order_index', 'Total Sales amount in a day to be displayed in sales transaction index window', 'Yes', 'Active', NULL, NULL, '2020-01-17 11:25:33', '2020-01-17 11:25:33'),
-	(8, 'weekly_and_monthly_sales_total_amount_in_sales_order_index', 'Total Sales amount in the current week and month to be displayed in sales transaction index window', 'No', 'Active', NULL, NULL, '2020-01-17 11:25:33', '2020-01-17 11:25:33');
+    (1, 'home_screen_out_standing', 'Customers outstanding and overdue metric should display in Home Screen', 'Yes', 'Active', NULL, NULL, '2020-07-14 08:13:02', '2020-07-14 08:13:02'),
+    (2, 'home_screen_sales_order_progress', 'Sales order progress which mentions the incomplete and partially completed sales orders count', 'No', 'Active', NULL, NULL, '2020-07-14 08:13:02', '2020-07-14 08:13:02'),
+    (3, 'receipts_daily_weekly_metric_on_receipt_index', 'Receipts daily and weekly total amount display metric on receipts index window.', 'No', 'Active', NULL, NULL, '2020-07-14 08:13:02', '2020-07-14 08:13:02'),
+    (4, 'receipts_monthly_metric_on_receipt_index', 'Receipts monthly total amount display metric on receipts index window.', 'Yes', 'Active', NULL, NULL, '2020-07-14 08:13:02', '2020-07-14 08:13:02'),
+    (5, 'daily_sales_total_amount_in_sales_index', 'Total Sales amount in a day to be displayed in sales transaction index window', 'Yes', 'Active', NULL, NULL, '2020-07-14 08:13:02', '2020-07-14 08:13:02'),
+    (6, 'weekly_and_monthly_sales_total_amount_in_sales_index', 'Total Sales amount in the current week and month to be displayed in sales transaction index window', 'No', 'Active', NULL, NULL, '2020-07-14 08:13:02', '2020-07-14 08:13:02'),
+    (7, 'daily_sales_total_amount_in_sales_order_index', 'Total Sales amount in a day to be displayed in sales transaction index window', 'Yes', 'Active', NULL, NULL, '2020-07-14 08:13:02', '2020-07-14 08:13:02'),
+    (8, 'weekly_and_monthly_sales_total_amount_in_sales_order_index', 'Total Sales amount in the current week and month to be displayed in sales transaction index window', 'No', 'Active', NULL, NULL, '2020-07-14 08:13:02', '2020-07-14 08:13:02'),
+    (9, 'advance_sale_container_width', 'Container width in percentage', '99', 'Active', NULL, NULL, '2020-07-14 08:13:02', '2020-07-14 08:13:02'),
+    (10, 'advance_sale_left_portion_width', 'Width to be allocated for the left portion', '440', 'Active', NULL, NULL, '2020-07-14 08:13:02', '2020-07-14 08:13:02'),
+    (11, 'advance_sale_space_between_left_portion_and_right_portion', 'The space between left and right portions', '10', 'Active', NULL, NULL, '2020-07-14 08:13:02', '2020-07-14 08:13:02'),
+    (12, 'advance_sale_items_container_padding', 'The padding amount of  container where Filter, Items and Pagination exists', '10', 'Active', NULL, NULL, '2020-07-14 08:13:02', '2020-07-14 08:13:02'),
+    (13, 'advance_sale_main_filter_width', 'Width of main filter - right to container', '110', 'Active', NULL, NULL, '2020-07-14 08:13:02', '2020-07-14 08:13:02'),
+    (14, 'advance_sale_secondary_filter_height', 'Height of secondary filter - top to container', '70', 'Active', NULL, NULL, '2020-07-14 08:13:02', '2020-07-14 08:13:02'),
+    (15, 'advance_sale_item_with_to_height_ratio', 'Product list item - width to height ratio', '1.35', 'Active', NULL, NULL, '2020-07-14 08:13:02', '2020-07-14 08:13:02'),
+    (16, 'advance_sale_items_per_page', 'Items to be shown in one page', '100', 'Active', NULL, NULL, '2020-07-14 08:13:02', '2020-07-14 08:13:02'),
+    (17, 'advance_sale_items_per_row', 'Items to be shown in one row', '5', 'Active', NULL, NULL, '2020-07-14 08:13:02', '2020-07-14 08:13:02'),
+    (18, 'advance_sale_space_between_each_item', 'The space between each items', '2', 'Active', NULL, NULL, '2020-07-14 08:13:02', '2020-07-14 08:13:02');
 /*!40000 ALTER TABLE `settings` ENABLE KEYS */;
 
 -- Dumping structure for table ss.setup
