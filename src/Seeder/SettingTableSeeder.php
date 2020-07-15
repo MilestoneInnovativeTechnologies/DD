@@ -34,6 +34,7 @@ class SettingTableSeeder extends Seeder
             ->create([	'id' => '16', 	'name' => 'advance_sale_items_per_page', 	'description' => 'Items to be shown in one page', 	'value' => '100', 												])
             ->create([	'id' => '17', 	'name' => 'advance_sale_items_per_row', 	'description' => 'Items to be shown in one row', 	'value' => '5', 												])
             ->create([	'id' => '18', 	'name' => 'advance_sale_space_between_each_item', 	'description' => 'The space between each items', 	'value' => '2', 												])
+            ->create([	'id' => '19', 	'name' => 'advance_sale_clear_filter_on_item_select', 	'description' => 'Clear filtered text on item select', 	'value' => 'Yes', 												])
         ;
         \DB::statement('set foreign_key_checks = ' . $_);
     }

@@ -790,7 +790,8 @@ INSERT INTO `settings` (`id`, `name`, `description`, `value`, `status`, `created
     (15, 'advance_sale_item_with_to_height_ratio', 'Product list item - width to height ratio', '1.35', 'Active', NULL, NULL, '2020-07-14 08:13:02', '2020-07-14 08:13:02'),
     (16, 'advance_sale_items_per_page', 'Items to be shown in one page', '100', 'Active', NULL, NULL, '2020-07-14 08:13:02', '2020-07-14 08:13:02'),
     (17, 'advance_sale_items_per_row', 'Items to be shown in one row', '5', 'Active', NULL, NULL, '2020-07-14 08:13:02', '2020-07-14 08:13:02'),
-    (18, 'advance_sale_space_between_each_item', 'The space between each items', '2', 'Active', NULL, NULL, '2020-07-14 08:13:02', '2020-07-14 08:13:02');
+    (18, 'advance_sale_space_between_each_item', 'The space between each items', '2', 'Active', NULL, NULL, '2020-07-14 08:13:02', '2020-07-14 08:13:02'),
+    (19, 'advance_sale_clear_filter_on_item_select', 'Clear filtered text on item select', 'Yes', 'Active', NULL, NULL, '2020-07-14 08:13:02', '2020-07-14 08:13:02');
 /*!40000 ALTER TABLE `settings` ENABLE KEYS */;
 
 -- Dumping structure for table ss.setup
