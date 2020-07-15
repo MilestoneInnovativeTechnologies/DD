@@ -19,7 +19,7 @@ class ProductImageController extends Controller
     }
 
     private function getDefaultImageDetails($productImage){
-        $default = str_replace(' ','',strtolower($productImage->default));
+        $default = str_replace(' ','',strtolower($productImage->default ?: 'Image 01'));
         return Arr::get($productImage,"__upload_file_details.{$default}",null);
     }
 }
