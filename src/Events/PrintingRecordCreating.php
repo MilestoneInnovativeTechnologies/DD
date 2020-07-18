@@ -45,7 +45,7 @@ class PrintingRecordCreating
         $record = []; $current = null;
         foreach ($content as $data){
             $data = trim($data); if(!$data || in_array(substr($data,0,1),['#','/',';'])) continue;
-            if(substr($data,0,1) === '[' && substr($data,-1,1) === ']'){
+            if(substr($data,0,1) === '[' && substr($data,-1,1) === ']' && strpos($data,' ') === false && strlen($data) < 17){
                 $current = substr($data,1,-1);
                 $record[$current] = [];
                 continue;
