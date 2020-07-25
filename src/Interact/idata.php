@@ -148,6 +148,8 @@
                 'PARTCODE' => 'getPartCode',
                 'UNITQTY' => 'quantity',
                 'UNITRATE' => 'rate',
+                'DISCOUNT01' => 'discount01',
+                'DISCOUNT02' => 'discount02',
                 'SIGN' => 'getSign',
                 'TAXRULE' => 'taxrule',
                 'TAX' => 'tax',
@@ -162,7 +164,7 @@
 
         public function getExportAttributes()
         {
-            return ['COCODE','BRCODE','FYCODE','FNCODE','DOCNO','SRNO','SLNO','TYPE','CANCEL','DOCDATE','CO','BR','STRCATCODE','STRCODE','ITEMCODE','UNITCODE','PARTCODE','UNITQTY','UNITRATE','SIGN','TAXRULE','TAX','REFCOCODE','REFBRCODE','REFFYCODE','REFFNCODE','REFDOCNO','SHFDOCNO'];
+            return ['COCODE','BRCODE','FYCODE','FNCODE','DOCNO','SRNO','SLNO','TYPE','CANCEL','DOCDATE','CO','BR','STRCATCODE','STRCODE','ITEMCODE','UNITCODE','PARTCODE','UNITQTY','UNITRATE','DISCOUNT01','DISCOUNT02','SIGN','TAXRULE','TAX','REFCOCODE','REFBRCODE','REFFYCODE','REFFNCODE','REFDOCNO','SHFDOCNO'];
         }
 
         public function preExportGet($query){
