@@ -3,6 +3,7 @@
     namespace Milestone\SS\Interact;
 
     use Illuminate\Support\Arr;
+    use Illuminate\Support\Facades\Auth;
     use Milestone\Interact\Table;
     use Milestone\SS\Model\FnReserve;
 
