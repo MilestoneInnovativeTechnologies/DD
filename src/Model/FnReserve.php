@@ -21,6 +21,9 @@ class FnReserve extends Model
     public function scopeUnCompleted($Q){
         return $Q->where('progress','!=','Completed');
     }
+    public function scopeAssignedStore($Q){
+        $Q->whereHas('Store',function($q){ $q->assigned(); });
+    }
 
     public function User(){ return $this->belongsTo(User::class,'users','id'); }
     public function Store(){ return $this->belongsTo(Store::class,'store','id'); }
