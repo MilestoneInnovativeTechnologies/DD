@@ -76,6 +76,9 @@
         public function preImport($activity){
             $this->cache['product'] = Product::whereIn('code',Arr::pluck($activity['data'],'ITEMCODE'))->pluck('id','code')->toArray();
             $this->cache['store'] = Store::pluck('id','code')->toArray();
+
+            $activity['data'] = array_filter($activity['data'],function($record){ return $record['ITEMCODE'] && array_key_exists($record['ITEMCODE'],$this->cache['product']); });
+
             if($activity['mode'] === 'create') {
                 $cachedRecords = Cache::pull($this->cache_key,[]);
                 if(!empty($cachedRecords)) $activity['data'] = array_merge($cachedRecords,$activity['data']);
