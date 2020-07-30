@@ -17,5 +17,10 @@ class Store extends Model
     protected $table = 'stores';
 
     public function Users(){ return $this->belongsToMany(User::class,'user_store_area','store','user'); }
+    public function scopeAssigned($Q){
+        return $Q->whereHas("Users",function($q){
+            return $q->where('user',request()->user()->id);
+        });
+    }
 
 }
