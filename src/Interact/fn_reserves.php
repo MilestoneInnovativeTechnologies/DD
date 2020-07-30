@@ -40,5 +40,14 @@
             return ['id','fncode','user','store','start_num','end_num','quantity','current','progress','status'];
         }
 
+        public function preExportGet($query){
+            if(!request()->_user) return $query->unCompleted();
+            Auth::loginUsingId(request()->_user);
+            return $query->unCompleted()->assignedStore();
+        }
+        public function preExportUpdate($query){
+            return $this->preExportGet($query);
+        }
+
         public function getNull(){ return null; }
     }
