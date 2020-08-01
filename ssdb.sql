@@ -773,7 +773,7 @@ CREATE TABLE IF NOT EXISTS `settings` (
 -- Dumping data for table ss.settings: ~8 rows (approximately)
 /*!40000 ALTER TABLE `settings` DISABLE KEYS */;
 INSERT INTO `settings` (`id`, `name`, `description`, `value`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-    (1, 'print', 'Enable or Disable printing facility', 'Yes', 'Active', NULL, NULL, '2020-07-14 08:13:02', '2020-07-14 08:13:02'),
+    (1, 'print', 'Enable printing facility', 'Yes', 'Active', NULL, NULL, '2020-07-14 08:13:02', '2020-07-14 08:13:02'),
     (2, 'printer_uuid', 'The UUID of the printer', '00001101-0000-1000-8000-00805F9B34FB', 'Active', NULL, NULL, '2020-07-14 08:13:02', '2020-07-14 08:13:02'),
     (3, 'printer_address', 'The MAC Address of the printer', '00:11:22:33:44:55', 'Active', NULL, NULL, '2020-07-14 08:13:02', '2020-07-14 08:13:02'),
     (4, 'home_screen_out_standing', 'Customers outstanding and overdue metric should display in Home Screen', 'Yes', 'Active', NULL, NULL, '2020-07-14 08:13:02', '2020-07-14 08:13:02'),

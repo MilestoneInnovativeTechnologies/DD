@@ -16,7 +16,7 @@ class SettingTableSeeder extends Seeder
         $_ = \DB::statement('SELECT @@GLOBAL.foreign_key_checks');
         \DB::statement('set foreign_key_checks = 0');
         \Milestone\SS\Model\Setting::truncate()
-            ->create([	'id' => '1', 	'name' => 'print', 	'description' => 'Enable or Disable printing facility', 	'value' => 'Yes', 												])
+            ->create([	'id' => '1', 	'name' => 'print', 	'description' => 'Enable printing facility', 	'value' => 'Yes', 												])
             ->create([	'id' => '2', 	'name' => 'printer_uuid', 	'description' => 'The UUID of the printer', 	'value' => '00001101-0000-1000-8000-00805F9B34FB', 												])
             ->create([	'id' => '3', 	'name' => 'printer_address', 	'description' => 'The MAC Address of the printer', 	'value' => '00:11:22:33:44:55', 												])
             ->create([	'id' => '4', 	'name' => 'home_screen_out_standing', 	'description' => 'Customers outstanding and overdue metric should display in Home Screen', 	'value' => 'Yes', 												])
